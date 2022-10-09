@@ -1,9 +1,11 @@
+package com.example.kachow_now;
 
 public class Cook{
 
     private String username;
     private String password;
     private String firstName;
+    private String lastName;
     private String surname;
     private String email;
     private int[] bankInfo;
