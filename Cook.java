@@ -20,6 +20,7 @@ public class Cook{
         this.password = password;
         this.email = email;
         this.bankInfo = bankInfo;
+        //kevin commit
     }
 
     // getMethods
