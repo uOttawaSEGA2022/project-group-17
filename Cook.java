@@ -6,7 +6,6 @@ public class Cook{
     private String password;
     private String firstName;
     private String lastName;
-    private String surname;
     private String email;
     private int[] bankInfo;
     private double rating;
@@ -26,5 +25,5 @@ public class Cook{
     // getMethods
 
 
-
+    hi guys
 }
