@@ -21,6 +21,7 @@ public class Cook{
         this.email = email;
         this.bankInfo = bankInfo;
         //kevin commit
+        //nathan commit
     }
 
     // getMethods
