@@ -1,5 +1,7 @@
 package com.example.kachow_now;
 
+import java.util.Calendar;
+
 public class Cook{
 
     private String username;
@@ -14,6 +16,7 @@ public class Cook{
     private Meal[] log;
     private String description;
     private boolean isBanned;
+    private int currentDay;
 
 
 
@@ -31,6 +34,7 @@ public class Cook{
         this.log = log;
         this.description = description;
         this.isBanned = isBanned;
+        this.currentDay = getDate();
 
     }
     // setter methods
@@ -110,6 +114,12 @@ public class Cook{
     }
     public boolean getIsBanned(){
         return isBanned;
+    }
+    private int getDate(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        currentDay = day;
+        return currentDay;
     }
 
 
