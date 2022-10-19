@@ -72,7 +72,13 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(MainActivity.this, "Authentication Successful.",
                                     Toast.LENGTH_LONG).show();
+                            Bundle usr = new Bundle();
+                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                             FirebaseUser user = mAuth.getCurrentUser();
+                            usr.putParcelable("CurrentUser",user);
+                            intent.putExtras(usr);
+                            startActivity(intent);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this,"Authentication Failed.",
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void createAccount(View view){
         Intent intent = new Intent(MainActivity.this.getApplicationContext(),SignUp.class);
-        startActivityForResult(intent,0);
+        startActivity(intent);
     }
 
 }
