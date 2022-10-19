@@ -42,9 +42,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         login = (Button) findViewById(R.id.loginButton);
         signup = (Button) findViewById(R.id.singUpButton);
-
-
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            currentUser.reload();
+        }
+    }
+
+
     private void onClickSignup(){
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,21 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            //reload();
-        }
-    }
-
 
 }

@@ -73,7 +73,7 @@
                 android:backgroundTint="#FFC107"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Username"
+                android:text="Email"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
