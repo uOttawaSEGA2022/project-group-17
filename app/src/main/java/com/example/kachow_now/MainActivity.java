@@ -40,11 +40,18 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        login = (Button) findViewById(R.id.loginButton);
+        signup = (Button) findViewById(R.id.singUpButton);
 
 
     }
     private void onClickSignup(){
-
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createAccount();
+            }
+        });
     }
     private void login(){
         editTextUsername = (EditText) findViewById(R.id.userName);
