@@ -48,7 +48,7 @@
                     android:backgroundTint="#FFC107"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Username"
+                    android:hint="Username"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -67,7 +67,7 @@
                     android:backgroundTint="#FFC107"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="First Name"
+                    android:hint="First Name"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                     android:backgroundTint="#FFC107"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Last Name"
+                    android:hint="Last Name"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -107,6 +107,7 @@
                     android:ems="10"
                     android:inputType="textPassword"
                     android:textColor="#FFFFFF"
+                    android:hint="Password"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -126,6 +127,7 @@
                     android:ems="10"
                     android:inputType="textEmailAddress"
                     android:textColor="#FFFFFF"
+                    android:hint="Email"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -145,6 +147,7 @@
                     android:ems="10"
                     android:inputType="phone"
                     android:textColor="#FFFFFF"
+                    android:hint="Phone"
                     tools:ignore="SpeakableTextPresentCheck" />
 
             </LinearLayout>
@@ -191,8 +194,8 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
+                    android:hint="Account/Card Number"
                     android:inputType="textPersonName"
-                    android:text="Account/Card Number"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -210,8 +213,8 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
+                    android:hint="Branch Number/Expiry Date"
                     android:inputType="textPersonName"
-                    android:text="Branch Number/Expiry Date"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -229,8 +232,8 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
+                    android:hint="CVV/Institution Number"
                     android:inputType="textPersonName"
-                    android:text="CVV/Institution Number"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
