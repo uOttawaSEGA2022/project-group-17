@@ -39,25 +39,6 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/SignupUsername"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="Username"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <EditText
                     android:id="@+id/SignupFirstName"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
@@ -117,7 +98,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/SignUpEmailAddress"
+                    android:id="@+id/SignupEmail"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -137,7 +118,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/SignUpPhoneNumber"
+                    android:id="@+id/SignupPhone"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -152,7 +133,7 @@
             </LinearLayout>
 
             <Spinner
-                android:id="@+id/CookCustomer"
+                android:id="@+id/SignupRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -244,7 +225,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/RegisterButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
