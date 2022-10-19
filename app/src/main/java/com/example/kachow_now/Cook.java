@@ -113,21 +113,4 @@ public class Cook{
     }
 
 
-
-    // getMethods
-    import { getDatabase } from "firebase/database";
-
-        const database = getDatabase();
-
-    // setMethods
-    import { getDatabase, ref, set } from "firebase/database";
-
-    function writeUserData(userId, name, email, imageUrl) {
-      const db = getDatabase();
-            set(ref(db, 'users/' + userId), {
-                    username: name,
-                    email: email,
-                    profile_picture : imageUrl
-      });
-    }
 }
