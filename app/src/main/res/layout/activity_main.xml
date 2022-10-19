@@ -72,8 +72,8 @@
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
                 android:ems="10"
+                android:hint="Email"
                 android:inputType="textPersonName"
-                android:text="Email"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
@@ -90,9 +90,9 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFC107"
                 android:ems="10"
+                android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="#85E8E3E3"
-                tools:text="Password" />
+                android:textColor="#85E8E3E3" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,7 +107,8 @@
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFC107"
-                android:text="Login" />
+                android:text="@string/login"
+                android:onClick="buttonPressed"/>
 
         </LinearLayout>
 

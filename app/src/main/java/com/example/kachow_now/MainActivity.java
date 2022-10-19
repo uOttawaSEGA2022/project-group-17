@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,9 +30,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+
     EditText editTextUsername;
     EditText editTextPassword;
-    private FirebaseAuth mAuth;
     Button login;
     Button signup;
 
@@ -40,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        login = (Button) findViewById(R.id.loginButton);
-        signup = (Button) findViewById(R.id.singUpButton);
+
     }
 
     @Override
@@ -54,15 +55,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    private void onClickSignup(){
+    private void onClickSignup(View view){
+        signup = (Button) findViewById(R.id.singUpButton);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"BUTTON PRESSED",Toast.LENGTH_LONG).show();
                 createAccount();
             }
         });
     }
+
+    private void onClickLogin(View view){
+        login = (Button) findViewById(R.id.loginButton);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"BUTTON PRESSED",Toast.LENGTH_LONG).show();
+                login();
+            }
+        });
+    }
+
     private void login(){
         editTextUsername = (EditText) findViewById(R.id.userName);
         editTextPassword = (EditText) findViewById(R.id.password);
@@ -72,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(getApplicationContext(), welcome.class);
+                            startActivityForResult(intent, 0);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Authentication failed.",

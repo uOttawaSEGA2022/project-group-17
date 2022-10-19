@@ -49,7 +49,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="Username"
-                    android:textColor="#9E9D9D" />
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,7 +68,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="First Name"
-                    android:textColor="#9E9D9D" />
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,7 +88,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="Last Name"
-                    android:textColor="#9E9D9D" />
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,7 +106,7 @@
                     android:backgroundTint="#FFC107"
                     android:ems="10"
                     android:inputType="textPassword"
-                    android:textColor="#9E9D9D"
+                    android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -125,7 +125,7 @@
                     android:backgroundTint="#FFC107"
                     android:ems="10"
                     android:inputType="textEmailAddress"
-                    android:textColor="#9E9D9D"
+                    android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -144,7 +144,7 @@
                     android:backgroundTint="#FFC107"
                     android:ems="10"
                     android:inputType="phone"
-                    android:textColor="#9E9D9D"
+                    android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />
 
             </LinearLayout>
@@ -153,7 +153,102 @@
                 android:id="@+id/CookCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:entries="@array/AccountType"
+                android:minHeight="48dp" />
+
+            <LinearLayout
+                android:id="@+id/BankInfoDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:text="To register as a customer, enter your credit card information. \nTo register as a cook, please enter your direct deposit details."
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/AccountOrCardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Account/Card Number"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/BranchOrExpiry"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Branch Number/Expiry Date"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/CVVOrInstitutionNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="CVV/Institution Number"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/RegisterConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Register!" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
