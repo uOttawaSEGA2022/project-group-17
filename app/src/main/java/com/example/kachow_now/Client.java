@@ -44,7 +44,7 @@ public class Client {
         phoneNumber = newNumber;
     }
     public void setBank(int creditCardNumber, int expMonth, int expYear, int ccv){
-        int bank[] = new int[4];
+        int[] bank = new int[4];
         bank[0] = creditCardNumber;
         bank[1] = expMonth;
         bank[2] = expYear;

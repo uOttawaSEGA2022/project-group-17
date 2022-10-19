@@ -53,7 +53,7 @@ public class Cook{
         email = newEmail;
     }
     public void setBank(int transit, int institution, int account){
-        int bank[] = new int[3];
+        int[] bank = new int[3];
         bank[0] = transit;
         bank[1] = institution;
         bank[2] = account;
