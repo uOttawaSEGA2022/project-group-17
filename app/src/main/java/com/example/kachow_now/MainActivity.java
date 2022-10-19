@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        editTextUsername = ((EditText)findViewById(R.id.userName)) ;
+        editTextPassword = ((EditText)findViewById(R.id.password));
     }
 
     @Override
@@ -64,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(MainActivity.this, task.toString(),
-                                Toast.LENGTH_LONG).show();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(MainActivity.this, "Authentication Successful.",
@@ -73,23 +72,24 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
                             // If sign in fails, display a message to the user.
-                            System.out.println(Objects.requireNonNull(task.getException()).toString());
-
-                            Toast.makeText(MainActivity.this, Objects.requireNonNull(task.getException()).toString(),
+                            Toast.makeText(MainActivity.this,"Authentication Failed.",
                                     Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
     public void createAccount(View view){
-        editTextUsername = (EditText) findViewById(R.id.userName);
-        editTextPassword = (EditText) findViewById(R.id.password);
+        String username =  ((EditText)findViewById(R.id.userName)).getText().toString().trim();
+        String password =  ((EditText)findViewById(R.id.password)).getText().toString().trim();
+        System.out.println("formatted email and password");
         mAuth.createUserWithEmailAndPassword(editTextUsername.toString().trim().toLowerCase(Locale.ROOT),
                 editTextPassword.toString().trim()).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser usr = mAuth.getCurrentUser();
+                    Intent intent = new Intent(getApplicationContext(),welcome.class);
+                    startActivityForResult(intent,0);
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
