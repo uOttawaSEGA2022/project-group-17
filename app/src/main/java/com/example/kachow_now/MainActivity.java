@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        login = (Button) findViewById(R.id.loginButton);
+        signup = (Button) findViewById(R.id.singUpButton);
     }
 
     @Override
@@ -52,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void onClickSignup(){
-
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createAccount();
+            }
+        });
     }
     private void login(){
         editTextUsername = (EditText) findViewById(R.id.userName);
@@ -66,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -80,9 +89,9 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser usr = mAuth.getCurrentUser();
-
                 }
                 else{
+                    Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
                     Toast.makeText(MainActivity.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
                 }
             }
