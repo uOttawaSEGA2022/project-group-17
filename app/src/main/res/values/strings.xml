@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">KaChow-Now</string>
     <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
 
     <string-array name="AccountType">
         <item>Cook</item>

@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,48 +56,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void onClickSignup(View view){
-        signup = (Button) findViewById(R.id.singUpButton);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"BUTTON PRESSED",Toast.LENGTH_LONG).show();
-                createAccount();
-            }
-        });
-    }
 
-    private void onClickLogin(View view){
-        login = (Button) findViewById(R.id.loginButton);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"BUTTON PRESSED",Toast.LENGTH_LONG).show();
-                login();
-            }
-        });
-    }
-
-    private void login(){
-        editTextUsername = (EditText) findViewById(R.id.userName);
-        editTextPassword = (EditText) findViewById(R.id.password);
-        mAuth.signInWithEmailAndPassword(editTextUsername.toString(), editTextPassword.toString())
+    public void login(View view){
+        String username =  ((EditText)findViewById(R.id.userName)).getText().toString().trim();
+        String password =  ((EditText)findViewById(R.id.password)).getText().toString().trim();
+        mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(MainActivity.this, task.toString(),
+                                Toast.LENGTH_LONG).show();
                         if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(MainActivity.this, "Authentication Successful.",
+                                    Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(getApplicationContext(), welcome.class);
-                            startActivityForResult(intent, 0);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            System.out.println(Objects.requireNonNull(task.getException()).toString());
+
+                            Toast.makeText(MainActivity.this, Objects.requireNonNull(task.getException()).toString(),
                                     Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
-    private void createAccount(){
+    public void createAccount(View view){
         editTextUsername = (EditText) findViewById(R.id.userName);
         editTextPassword = (EditText) findViewById(R.id.password);
         mAuth.createUserWithEmailAndPassword(editTextUsername.toString().trim().toLowerCase(Locale.ROOT),
