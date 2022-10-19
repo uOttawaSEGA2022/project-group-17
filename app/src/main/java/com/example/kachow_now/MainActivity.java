@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseUser usr = mAuth.getCurrentUser();
                 }
                 else{
-                    Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
                 }
             }
         });
