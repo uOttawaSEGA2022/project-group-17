@@ -73,7 +73,8 @@
                 android:backgroundTint="#FFC107"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Username" />
+                android:text="Username"
+                android:textColor="#7EFFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +91,8 @@
                 android:backgroundTint="#FFC107"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:textColor="#E8E3E3" />
+                android:textColor="#85E8E3E3"
+                tools:text="Password" />
         </LinearLayout>
 
         <LinearLayout
