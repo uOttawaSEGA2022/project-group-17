@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         databaseProducts = FirebaseDatabase.getInstance().getReference("products");
-        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextUsername = (EditText) findViewById(R.id.userName);
+        editTextPassword = (EditText) findViewById(R.id.password);
 
     }
     private void onClickSignup(){
