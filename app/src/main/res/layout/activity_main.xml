@@ -26,7 +26,6 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
                 app:srcCompat="@drawable/logos" />
         </LinearLayout>
 
@@ -39,8 +38,8 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="362dp"
+                android:id="@+id/userName"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
@@ -57,7 +56,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/password"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFC107"
@@ -74,7 +73,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/loginButton"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:text="Login" />
@@ -88,11 +87,12 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/singUpButton"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:text="Sign up" />
+
         </LinearLayout>
 
     </LinearLayout>
