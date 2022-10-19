@@ -82,24 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
     public void createAccount(View view){
-        String username =  ((EditText)findViewById(R.id.userName)).getText().toString().trim();
-        String password =  ((EditText)findViewById(R.id.password)).getText().toString().trim();
-        System.out.println("formatted email and password");
-        mAuth.createUserWithEmailAndPassword(editTextUsername.toString().trim().toLowerCase(Locale.ROOT),
-                editTextPassword.toString().trim()).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    FirebaseUser usr = mAuth.getCurrentUser();
-                    Intent intent = new Intent(getApplicationContext(),welcome.class);
-                    startActivityForResult(intent,0);
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
-                    Toast.makeText(MainActivity.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        Intent intent = new Intent(MainActivity.this.getApplicationContext(),SignUp.class);
+        startActivityForResult(intent,0);
     }
 
 }
