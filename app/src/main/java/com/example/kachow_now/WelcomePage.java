@@ -19,7 +19,8 @@ public class WelcomePage extends AppCompatActivity {
             // access db and get information
         }
 
-    public void logOut(View view){
-        finish();
-    }
+        public void logOut(View view){
+            finish();
+        }
+
     }
