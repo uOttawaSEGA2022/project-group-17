@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
@@ -51,7 +52,7 @@ public class SignUp extends AppCompatActivity {
                     Day.setVisibility(View.INVISIBLE);
                     AccountOrCardNumber.setHint("Account Number");
                     MonthOrBranchNumber.setHint("Branch Number");
-                    BranchNumberorExpiry.setText("Enter Institution Number");
+                    BranchNumberorExpiry.setText("Enter Branch Number");
                     CCVorInstitution.setHint("Institution Number");
 
                 } else if (textFromSpinner.equals("client")){
