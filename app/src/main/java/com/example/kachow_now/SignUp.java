@@ -77,55 +77,77 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    public void createAccount(View view){
-        String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
-        String FirstName= ((EditText) findViewById(R.id.SignupFirstName)).getText().toString().trim();
-        String Surname = ((EditText) findViewById(R.id.SignupLastName)).getText().toString().trim();
-        String Phone = ((EditText) findViewById(R.id.SignupPhone)).getText().toString().trim();
-        String Email =  ((EditText)findViewById(R.id.SignupEmail)).getText().toString().trim();
-        String Password =  ((EditText)findViewById(R.id.SignupPassword)).getText().toString().trim();
-        String AccountOrCardNumber =  ((EditText)findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
-        String BranchOrMonth =  ((EditText)findViewById(R.id.CCVorInstitution)).getText().toString().trim();
-        String CCVOrInstitutionNumber =  ((EditText)findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
-        String Day;
-        if(Type.equals("client")) {
-            Day = ((EditText) findViewById(R.id.Day)).getText().toString().trim();
-        }else{
-            Day = null;
-        }
-        //int[]
-        //Client myClient = new Client()
-        mAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+    public void createAccount(View view) {
 
-                    FirebaseUser usr = mAuth.getCurrentUser();
-                    if(Type.equals("client")){
-                        Client u = new Client(Password, FirstName, Surname, Email,
-                                Long.parseLong(AccountOrCardNumber),Integer.parseInt(BranchOrMonth),
-                                Integer.parseInt(Day),Integer.parseInt(CCVOrInstitutionNumber),
-                                "TODO ADD address",Long.parseLong(Phone));
-                        database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
-                    }/*else{
-                        Cook u = new Cook(Password, FirstName, Surname, Email,
-                                Long.parseLong(AccountOrCardNumber),Integer.parseInt(BranchOrMonth),
-                                Integer.parseInt(Day),Integer.parseInt(CCVOrInstitutionNumber),
-                                "TODO ADD address",Long.parseLong(Phone));
-                        database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
-                    }*/
+        try {
+            String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
+            String FirstName = ((EditText) findViewById(R.id.SignupFirstName)).getText().toString().trim();
+            String Surname = ((EditText) findViewById(R.id.SignupLastName)).getText().toString().trim();
+            String Phone = ((EditText) findViewById(R.id.SignupPhone)).getText().toString().trim();
+            String Email = ((EditText) findViewById(R.id.SignupEmail)).getText().toString().trim();
+            String Password = ((EditText) findViewById(R.id.SignupPassword)).getText().toString().trim();
+            String AccountOrCardNumber = ((EditText) findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
+            String CCVorInstitution = ((EditText) findViewById(R.id.CCVorInstitution)).getText().toString().trim();
+            String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
+            String Day;
+            if (Type.equals("client")) {
+                Day = ((EditText) findViewById(R.id.Day)).getText().toString().trim();
+            } else {
+                Day = null;
+            }
 
-                    //TODO get all data feilds as veriables and apply them to our object, then push object into realtime DB
-                    // also push to auth server (half done)
 
-                    Intent intent = new Intent(SignUp.this.getApplicationContext(),WelcomePage.class);
-                    startActivityForResult(intent,0);
-                }
-                else{
-                    Toast.makeText(SignUp.this, "Authentication failed.", Toast.LENGTH_LONG).show();
-                    Toast.makeText(SignUp.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
+            if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
+                    Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() || CCVorInstitution.isEmpty()) {
+                Toast.makeText(SignUp.this, "Please Complete The Form", Toast.LENGTH_LONG).show();
+                if (Type.equals("client")) {
+                    if (Day.isEmpty()) {
+                        Toast.makeText(SignUp.this, "Please Complete The Form", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
-        });
+
+
+
+
+
+            //int[]
+            //Client myClient = new Client()
+            mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+
+                        FirebaseUser usr = mAuth.getCurrentUser();
+                        if (Type.equals("client")) {
+                            Client u = new Client(Password, FirstName, Surname, Email,
+                                    Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
+                                    Integer.parseInt(Day), Integer.parseInt(CCVorInstitution),
+                                    "TODO ADD address", Long.parseLong(Phone));
+                            database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
+                        }/*else{
+                            Cook u = new Cook(Password, FirstName, Surname, Email,
+                                    Long.parseLong(AccountOrCardNumber),Integer.parseInt(BranchOrMonth),
+                                    Integer.parseInt(Day),Integer.parseInt(CCVOrInstitutionNumber),
+                                    "TODO ADD address",Long.parseLong(Phone));
+                            database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
+                        }*/
+
+                        //TODO get all data feilds as veriables and apply them to our object, then push object into realtime DB
+                        // also push to auth server (half done)
+
+                        Intent intent = new Intent(SignUp.this.getApplicationContext(), WelcomePage.class);
+                        startActivityForResult(intent, 0);
+                    } else {
+                        Toast.makeText(SignUp.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUp.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+        catch (NumberFormatException E){
+            Toast.makeText(SignUp.this, "Please Enter Valid Input", Toast.LENGTH_LONG).show();
+        }
+
     }
 }
