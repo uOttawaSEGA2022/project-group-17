@@ -23,15 +23,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
-    private DatabaseReference dB;
-
+    private DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance().getReference("UID");
 
 
         Spinner spin = (Spinner) findViewById(R.id.SignupRole);
@@ -80,6 +78,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void createAccount(View view){
+        String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
         String FirstName= ((EditText) findViewById(R.id.SignupFirstName)).getText().toString().trim();
         String Surname = ((EditText) findViewById(R.id.SignupLastName)).getText().toString().trim();
         String Phone = ((EditText) findViewById(R.id.SignupPhone)).getText().toString().trim();
@@ -88,14 +87,22 @@ public class SignUp extends AppCompatActivity {
         String AccountOrCardNumber =  ((EditText)findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
         String BranchOrExpiry =  ((EditText)findViewById(R.id.CCVorInstitution)).getText().toString().trim();
         String CCVOrInstitutionNumber =  ((EditText)findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
-
+        if(Type.equals("client")) {
+            String Day = ((EditText) findViewById(R.id.Day)).getText().toString().trim();
+        }else{
+            String Day = null;
+        }
         //int[]
         //Client myClient = new Client()
         mAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    database = FirebaseDatabase.getInstance();
+
+                    if(Type.equals("client")){
+
+                    }
+
                     //TODO get all data feilds as veriables and apply them to our object, then push object into realtime DB
                     // also push to auth server (half done)
                     FirebaseUser usr = mAuth.getCurrentUser();
