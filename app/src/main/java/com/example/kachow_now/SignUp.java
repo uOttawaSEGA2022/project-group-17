@@ -47,12 +47,11 @@ public class SignUp extends AppCompatActivity {
                 if (textFromSpinner.equals("cook")){
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
                     CCVorInstitution.setVisibility(View.VISIBLE);
-                    BranchNumberorExpiry.setVisibility(View.VISIBLE);
+                    BranchNumberorExpiry.setVisibility(View.GONE);
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
-                    Day.setVisibility(View.INVISIBLE);
+                    Day.setVisibility(View.GONE);
                     AccountOrCardNumber.setHint("Account Number");
                     MonthOrBranchNumber.setHint("Branch Number");
-                    BranchNumberorExpiry.setText("Enter Branch Number");
                     CCVorInstitution.setHint("Institution Number");
 
                 } else if (textFromSpinner.equals("client")){
@@ -65,7 +64,6 @@ public class SignUp extends AppCompatActivity {
                     MonthOrBranchNumber.setHint("Month");
                     CCVorInstitution.setHint("CCV");
                     Day.setHint("Day");
-                    BranchNumberorExpiry.setText("Enter Card Expiry");
                 }
                 else{
                     AccountOrCardNumber.setVisibility(View.INVISIBLE);
