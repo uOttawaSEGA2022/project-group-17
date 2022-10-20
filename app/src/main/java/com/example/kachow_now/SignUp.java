@@ -67,9 +67,18 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void createAccount(View view){
-        String Username =  ((EditText)findViewById(R.id.SignupEmail)).getText().toString().trim();
+        String FirstName= ((EditText) findViewById(R.id.SignupFirstName)).getText().toString().trim();
+        String Surname = ((EditText) findViewById(R.id.SignupLastName)).getText().toString().trim();
+        String Phone = ((EditText) findViewById(R.id.SignupPhone)).getText().toString().trim();
+        String Email =  ((EditText)findViewById(R.id.SignupEmail)).getText().toString().trim();
         String Password =  ((EditText)findViewById(R.id.SignupPassword)).getText().toString().trim();
-        mAuth.createUserWithEmailAndPassword(Username,Password).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
+        String AccountOrCardNumber =  ((EditText)findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
+        String BranchOrExpiry =  ((EditText)findViewById(R.id.BranchOrExpiry)).getText().toString().trim();
+        String CCVOrInstitutionNumber =  ((EditText)findViewById(R.id.CCVOrInstitutionNumber)).getText().toString().trim();
+
+
+        //Client myClient = new Client()
+        mAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
