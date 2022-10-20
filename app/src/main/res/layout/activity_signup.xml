@@ -184,16 +184,32 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/BranchOrExpiry"
+                    android:id="@+id/CCVorInstitution"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint="Branch Number/Expiry Date"
+                    android:hint="CCV/Institution"
                     android:inputType="textPersonName"
                     android:textColor="#FFFFFF"
                     android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="0"
+                android:backgroundTint="#FFC107"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/BranchNumberorExpiry"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="0"
+                    android:gravity="center_vertical"
+                    android:text="Enter Card Expiry:" />
             </LinearLayout>
 
             <LinearLayout
@@ -204,13 +220,25 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/CCVOrInstitutionNumber"
+                    android:id="@+id/MonthOrBranchNumber"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint="CCV/Institution Number"
+                    android:hint="Month/BranchNumber"
+                    android:inputType="textPersonName"
+                    android:textColor="#FFFFFF"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/Day"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:hint="Day"
                     android:inputType="textPersonName"
                     android:textColor="#FFFFFF"
                     android:visibility="visible" />
