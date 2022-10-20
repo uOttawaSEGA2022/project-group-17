@@ -85,12 +85,13 @@ public class SignUp extends AppCompatActivity {
         String Email =  ((EditText)findViewById(R.id.SignupEmail)).getText().toString().trim();
         String Password =  ((EditText)findViewById(R.id.SignupPassword)).getText().toString().trim();
         String AccountOrCardNumber =  ((EditText)findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
-        String BranchOrExpiry =  ((EditText)findViewById(R.id.CCVorInstitution)).getText().toString().trim();
+        String BranchOrMonth =  ((EditText)findViewById(R.id.CCVorInstitution)).getText().toString().trim();
         String CCVOrInstitutionNumber =  ((EditText)findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
+        String Day;
         if(Type.equals("client")) {
-            String Day = ((EditText) findViewById(R.id.Day)).getText().toString().trim();
+            Day = ((EditText) findViewById(R.id.Day)).getText().toString().trim();
         }else{
-            String Day = null;
+            Day = null;
         }
         //int[]
         //Client myClient = new Client()
@@ -99,13 +100,24 @@ public class SignUp extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
 
+                    FirebaseUser usr = mAuth.getCurrentUser();
                     if(Type.equals("client")){
-
-                    }
+                        Client u = new Client(Password, FirstName, Surname, Email,
+                                Long.parseLong(AccountOrCardNumber),Integer.parseInt(BranchOrMonth),
+                                Integer.parseInt(Day),Integer.parseInt(CCVOrInstitutionNumber),
+                                "TODO ADD address",Long.parseLong(Phone));
+                        database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
+                    }/*else{
+                        Cook u = new Cook(Password, FirstName, Surname, Email,
+                                Long.parseLong(AccountOrCardNumber),Integer.parseInt(BranchOrMonth),
+                                Integer.parseInt(Day),Integer.parseInt(CCVOrInstitutionNumber),
+                                "TODO ADD address",Long.parseLong(Phone));
+                        database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
+                    }*/
 
                     //TODO get all data feilds as veriables and apply them to our object, then push object into realtime DB
                     // also push to auth server (half done)
-                    FirebaseUser usr = mAuth.getCurrentUser();
+
                     Intent intent = new Intent(SignUp.this.getApplicationContext(),WelcomePage.class);
                     startActivityForResult(intent,0);
                 }

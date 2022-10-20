@@ -1,22 +1,27 @@
 package com.example.kachow_now;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client {
-    private String username;
     private String password;
     private String firstname;
     private String lastname;
     private String email;
-    private int[] bank;
+    private ArrayList bank;
     private String address;
     private long phoneNumber;
 
-    public Client(String username, String password, String firstname, String lastname, String email, int[] bank, String address, long phoneNumber) {
-        this.username = username;
+    public Client(String password, String firstname, String lastname, String email, long CC, int month, int year, int ccv, String address, long phoneNumber) {
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.bank = bank;
+        this.bank = new ArrayList<>();
+        bank.add(CC);
+        bank.add(month);
+        bank.add(year);
+        bank.add(ccv);
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
@@ -27,9 +32,6 @@ public class Client {
     }
     public void setLastName(String newLastName){
         lastname = newLastName;
-    }
-    public void setUserName(String newUserName){
-        username = newUserName;
     }
     public void setPassword(String newPassword){
         password = newPassword;
@@ -44,11 +46,12 @@ public class Client {
         phoneNumber = newNumber;
     }
     public void setBank(int creditCardNumber, int expMonth, int expYear, int ccv){
-        int[] bank = new int[4];
-        bank[0] = creditCardNumber;
-        bank[1] = expMonth;
-        bank[2] = expYear;
-        bank[3] = ccv;
+        ArrayList bank1 = new ArrayList<>();
+        bank1.add(creditCardNumber);
+        bank1.add(expMonth);
+        bank1.add(expYear);
+        bank1.add(ccv);
+        bank = bank1;
     }
 
     // getter methods
@@ -57,9 +60,6 @@ public class Client {
     }
     public String getLastName(){
         return lastname;
-    }
-    public String getUserName(){
-        return username;
     }
     public String getPassword(){
         return password;
@@ -70,10 +70,8 @@ public class Client {
     public String getEmail(){
         return email;
     }
-    public long getPhoneNumber(){
-        return phoneNumber;
-    }
-    public int[] getBank(){
+    public long getPhoneNumber(){return phoneNumber;}
+    public ArrayList getBank(){
         return bank;
     }
 

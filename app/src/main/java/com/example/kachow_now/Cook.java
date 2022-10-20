@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 public class Cook{
 
-    private String username;
     private String password;
     private String firstname;
     private String lastname;
@@ -20,11 +19,10 @@ public class Cook{
 
 
 
-    public Cook(String firstname, String lastname, String username, String password, String email, String address, int[] bank, double rating, String description, Meal[] menu, Meal[] log, boolean isBanned){
+    public Cook(String firstname, String lastname, String password, String email, String address, int[] bank, double rating, String description, Meal[] menu, Meal[] log, boolean isBanned){
 
         this.firstname = firstname;
         this.lastname = lastname;
-        this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
@@ -43,9 +41,6 @@ public class Cook{
     }
     public void setLastName(String newLastName){
         lastname = newLastName;
-    }
-    public void setUserName(String newUserName){
-        username = newUserName;
     }
     public void setPassword(String newPassword){
         password = newPassword;
@@ -84,9 +79,6 @@ public class Cook{
     }
     public String getLastName(){
         return lastname;
-    }
-    public String getUserName(){
-        return username;
     }
     public String getPassword(){
         return password;
