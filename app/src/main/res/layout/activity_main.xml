@@ -107,8 +107,8 @@
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFC107"
-                android:text="@string/login"
-                android:onClick="login"/>
+                android:onClick="login"
+                android:text="@string/login" />
 
         </LinearLayout>
 
