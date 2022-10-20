@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
@@ -36,31 +35,43 @@ public class SignUp extends AppCompatActivity {
 
         Spinner spin = (Spinner) findViewById(R.id.SignupRole);
         EditText AccountOrCardNumber = (EditText) findViewById(R.id.AccountOrCardNumber);
-        EditText BranchOrExpiry = (EditText) findViewById(R.id.BranchOrExpiry);
-        EditText CCVOrInstitutionNumber = (EditText) findViewById(R.id.CCVOrInstitutionNumber);
+        EditText CCVorInstitution = (EditText) findViewById(R.id.CCVorInstitution);
+        TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
+        EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
+        EditText Day = (EditText) findViewById(R.id.Day);
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String textFromSpinner =String.valueOf(spin.getSelectedItem()).trim().toLowerCase();
                 if (textFromSpinner.equals("cook")){
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
-                    BranchOrExpiry.setVisibility(View.VISIBLE);
-                    CCVOrInstitutionNumber.setVisibility(View.VISIBLE);
+                    CCVorInstitution.setVisibility(View.VISIBLE);
+                    BranchNumberorExpiry.setVisibility(View.VISIBLE);
+                    MonthOrBranchNumber.setVisibility(View.VISIBLE);
+                    Day.setVisibility(View.INVISIBLE);
                     AccountOrCardNumber.setHint("Account Number");
-                    BranchOrExpiry.setHint("Branch Number");
-                    CCVOrInstitutionNumber.setHint("Institution Number");
+                    MonthOrBranchNumber.setHint("Branch Number");
+                    BranchNumberorExpiry.setText("Enter Institution Number");
+                    CCVorInstitution.setHint("Institution Number");
+
                 } else if (textFromSpinner.equals("client")){
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
-                    BranchOrExpiry.setVisibility(View.VISIBLE);
-                    CCVOrInstitutionNumber.setVisibility(View.VISIBLE);
+                    CCVorInstitution.setVisibility(View.VISIBLE);
+                    BranchNumberorExpiry.setVisibility(View.VISIBLE);
+                    MonthOrBranchNumber.setVisibility(View.VISIBLE);
+                    Day.setVisibility(View.VISIBLE);
                     AccountOrCardNumber.setHint("Card Number");
-                    BranchOrExpiry.setHint("Card Expiry");
-                    CCVOrInstitutionNumber.setHint("CCV");
+                    MonthOrBranchNumber.setHint("Month");
+                    CCVorInstitution.setHint("CCV");
+                    Day.setHint("Day");
+                    BranchNumberorExpiry.setText("Enter Card Expiry");
                 }
                 else{
                     AccountOrCardNumber.setVisibility(View.INVISIBLE);
-                    BranchOrExpiry.setVisibility(View.INVISIBLE);
-                    CCVOrInstitutionNumber.setVisibility(View.INVISIBLE);
+                    CCVorInstitution.setVisibility(View.INVISIBLE);
+                    BranchNumberorExpiry.setVisibility(View.INVISIBLE);
+                    MonthOrBranchNumber.setVisibility(View.INVISIBLE);
+                    Day.setVisibility(View.INVISIBLE);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -76,10 +87,10 @@ public class SignUp extends AppCompatActivity {
         String Email =  ((EditText)findViewById(R.id.SignupEmail)).getText().toString().trim();
         String Password =  ((EditText)findViewById(R.id.SignupPassword)).getText().toString().trim();
         String AccountOrCardNumber =  ((EditText)findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
-        String BranchOrExpiry =  ((EditText)findViewById(R.id.BranchOrExpiry)).getText().toString().trim();
-        String CCVOrInstitutionNumber =  ((EditText)findViewById(R.id.CCVOrInstitutionNumber)).getText().toString().trim();
+        String BranchOrExpiry =  ((EditText)findViewById(R.id.CCVorInstitution)).getText().toString().trim();
+        String CCVOrInstitutionNumber =  ((EditText)findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
 
-
+        //int[]
         //Client myClient = new Client()
         mAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
             @Override
