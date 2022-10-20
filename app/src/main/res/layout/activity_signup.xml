@@ -33,10 +33,12 @@
                 app:titleTextColor="#000000" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/SignupFirstName"
@@ -46,17 +48,18 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:inputType="textPersonName"
                     android:hint="First Name"
+                    android:inputType="textPersonName"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/SignupLastName"
@@ -66,16 +69,18 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:inputType="textPersonName"
                     android:hint="Last Name"
+                    android:inputType="textPersonName"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/SignupPassword"
@@ -85,17 +90,19 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:textColor="#FFFFFF"
-                    android:hint="Password"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/SignupEmail"
@@ -105,17 +112,19 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:textColor="#FFFFFF"
-                    android:hint="Email"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/SignupPhone"
@@ -125,18 +134,20 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
+                    android:hint="Phone"
                     android:inputType="phone"
                     android:textColor="#FFFFFF"
-                    android:hint="Phone"
                     tools:ignore="SpeakableTextPresentCheck" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <Spinner
                     android:id="@+id/SignupRole"
@@ -154,14 +165,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal"
+                android:translationY="20dp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/AccountOrCardNumber"
@@ -177,11 +191,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/CCVorInstitution"
@@ -197,11 +213,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_width="375dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="0"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <TextView
                     android:id="@+id/BranchNumberorExpiry"
@@ -209,15 +227,17 @@
                     android:layout_height="30dp"
                     android:layout_weight="0"
                     android:gravity="center_vertical"
-                    android:text="Enter Card Expiry:" />
+                    android:text=" Enter Card Expiry:" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="375dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <EditText
                     android:id="@+id/MonthOrBranchNumber"
@@ -248,9 +268,10 @@
                 android:id="@+id/RegisterConfirm"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:translationY="20dp">
 
                 <Button
                     android:id="@+id/RegisterButton"
