@@ -1,291 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LoginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#373430">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/LoginLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
-
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="12"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="0dp">
+            android:layout_weight="1"
+            android:background="#FFC107"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="Registration"
+            app:titleTextColor="#000000" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFC107"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:title="Registration"
-                app:titleTextColor="#000000" />
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <EditText
-                    android:id="@+id/SignupFirstName"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="First Name"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <EditText
-                    android:id="@+id/SignupLastName"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="Last Name"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <EditText
-                    android:id="@+id/SignupPassword"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColor="#FFFFFF"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <EditText
-                    android:id="@+id/SignupEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#FFFFFF"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <EditText
-                    android:id="@+id/SignupPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="Phone"
-                    android:inputType="phone"
-                    android:textColor="#FFFFFF"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <Spinner
-                    android:id="@+id/SignupRole"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:entries="@array/AccountType"
-                    android:minHeight="48dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/BankInfoDetails"
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
+            <EditText
+                android:id="@+id/SignupFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="20dp" />
+                android:ems="10"
+                android:hint="First Name"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/SignupLastName"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="20dp">
+                android:ems="10"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
 
-                <EditText
-                    android:id="@+id/AccountOrCardNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="Account/Card Number"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
-                    android:visibility="visible" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+            <EditText
+                android:id="@+id/SignupPassword"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="20dp">
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
 
-                <EditText
-                    android:id="@+id/CCVorInstitution"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="CCV/Institution"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
-                    android:visibility="visible" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+            <EditText
+                android:id="@+id/SignupEmail"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="20dp">
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="#FFFFFF"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/BranchNumberorExpiry"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="0"
-                    android:gravity="center_vertical"
-                    android:text=" Enter Card Expiry:" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+            <EditText
+                android:id="@+id/SignupPhone"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <EditText
-                    android:id="@+id/MonthOrBranchNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="Month/BranchNumber"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
-                    android:visibility="visible" />
-
-                <EditText
-                    android:id="@+id/Day"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:hint="Day"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/RegisterConfirm"
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="20dp">
-
-                <Button
-                    android:id="@+id/RegisterButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
-                    android:onClick="createAccount"
-                    android:text="Register!"
-                    android:textColor="#000000" />
-            </LinearLayout>
-
+                android:ems="10"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:textColor="#FFFFFF"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/SignupRole"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:entries="@array/AccountType"
+                android:minHeight="48dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/BankInfoDetails"
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/AccountOrCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Account/Card Number"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/CCVorInstitution"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="CCV/Institution"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/BranchNumberorExpiry"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="0"
+                android:gravity="center_vertical"
+                android:text=" Enter Card Expiry:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/MonthOrBranchNumber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Month/BranchNumber"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/Day"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Day"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/RegisterConfirm"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/RegisterButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:onClick="createAccount"
+                android:text="Register!"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
