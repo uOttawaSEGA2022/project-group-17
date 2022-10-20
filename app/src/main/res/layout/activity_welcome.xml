@@ -19,7 +19,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/logout"
+                android:id="@+id/logoutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -106,6 +106,18 @@
                 android:text="Logged in as: "
                 android:textColor="#FFC107"
                 android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="328dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:gravity="bottom"
+                android:text="role"
+                android:textColor="#FFC107"
+                android:textSize="40sp" />
+
         </LinearLayout>
 
         <LinearLayout
