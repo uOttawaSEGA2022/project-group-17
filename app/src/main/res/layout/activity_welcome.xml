@@ -109,7 +109,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="bottom"
-                android:text="Logged in as: "
+                android:text="   Logged in as: "
                 android:textColor="#FFC107"
                 android:textSize="34sp" />
 
