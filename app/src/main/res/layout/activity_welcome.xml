@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:backgroundTint="#FF0000"
+                android:onClick="logOut"
                 android:text="logout" />
         </LinearLayout>
 
