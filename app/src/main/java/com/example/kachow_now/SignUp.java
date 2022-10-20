@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +30,40 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         database = FirebaseDatabase.getInstance();
+
+        Spinner spin = (Spinner) findViewById(R.id.SignupRole);
+        EditText AccountOrCardNumber = (EditText) findViewById(R.id.AccountOrCardNumber);
+        EditText BranchOrExpiry = (EditText) findViewById(R.id.BranchOrExpiry);
+        EditText CCVOrInstitutionNumber = (EditText) findViewById(R.id.CCVOrInstitutionNumber);
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                String textFromSpinner =String.valueOf(spin.getSelectedItem()).trim().toLowerCase();
+                if (textFromSpinner.equals("cook")){
+                    AccountOrCardNumber.setVisibility(View.VISIBLE);
+                    BranchOrExpiry.setVisibility(View.VISIBLE);
+                    CCVOrInstitutionNumber.setVisibility(View.VISIBLE);
+                    AccountOrCardNumber.setHint("Account Number");
+                    BranchOrExpiry.setHint("Branch Number");
+                    CCVOrInstitutionNumber.setHint("Institution Number");
+                } else if (textFromSpinner.equals("client")){
+                    AccountOrCardNumber.setVisibility(View.VISIBLE);
+                    BranchOrExpiry.setVisibility(View.VISIBLE);
+                    CCVOrInstitutionNumber.setVisibility(View.VISIBLE);
+                    AccountOrCardNumber.setHint("Card Number");
+                    BranchOrExpiry.setHint("Card Expiry");
+                    CCVOrInstitutionNumber.setHint("CCV");
+                }
+                else{
+                    AccountOrCardNumber.setVisibility(View.INVISIBLE);
+                    BranchOrExpiry.setVisibility(View.INVISIBLE);
+                    CCVOrInstitutionNumber.setVisibility(View.INVISIBLE);
+                }
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void createAccount(View view){
