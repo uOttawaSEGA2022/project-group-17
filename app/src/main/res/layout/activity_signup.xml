@@ -29,7 +29,7 @@
                 android:background="#FFC107"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                app:title="                          Registration"
+                app:title="Registration"
                 app:titleTextColor="#000000" />
 
             <LinearLayout
