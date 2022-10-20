@@ -4,7 +4,7 @@
     <string name="sign_up">Sign up</string>
 
     <string-array name="AccountType">
-        <item>Select Role</item>
+        <item>Select Role...</item>
         <item>Cook</item>
         <item>Client</item>
     </string-array>
