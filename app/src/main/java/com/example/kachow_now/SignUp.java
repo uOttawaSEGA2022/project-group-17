@@ -24,12 +24,15 @@ public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
+    private DatabaseReference dB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         database = FirebaseDatabase.getInstance();
+
 
         Spinner spin = (Spinner) findViewById(R.id.SignupRole);
         EditText AccountOrCardNumber = (EditText) findViewById(R.id.AccountOrCardNumber);
