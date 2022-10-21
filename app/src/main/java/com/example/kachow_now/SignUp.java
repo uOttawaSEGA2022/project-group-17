@@ -41,7 +41,7 @@ public class SignUp extends AppCompatActivity {
         TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
         EditText Year = (EditText) findViewById(R.id.Year);
-        EditText address = (EditText) findViewById(R.id.SignupAddress);
+
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -101,6 +101,7 @@ public class SignUp extends AppCompatActivity {
             String CCVorInstitution = ((EditText) findViewById(R.id.CCVorInstitution)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String Year;
+            EditText address = (EditText) findViewById(R.id.SignupAddress);
 
 
             System.out.println("made strings");
