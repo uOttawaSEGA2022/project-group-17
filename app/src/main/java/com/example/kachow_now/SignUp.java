@@ -107,12 +107,6 @@ public class SignUp extends AppCompatActivity {
                 }
             }
 
-
-
-
-
-            //int[]
-            //Client myClient = new Client()
             mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -145,7 +139,7 @@ public class SignUp extends AppCompatActivity {
                 }
             });
         }
-        catch (NumberFormatException E){
+        catch (NumberFormatException e){
             Toast.makeText(SignUp.this, "Please Enter Valid Input", Toast.LENGTH_LONG).show();
         }
 
