@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     String role = snapshot.child("role").getValue(String.class);
                                     if(role.equalsIgnoreCase("admin")){
+
                                         Toast.makeText(MainActivity.this,"Welcome administrator",Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(MainActivity.this.getApplicationContext(), AdminPage.class);
                                         startActivity(intent);
