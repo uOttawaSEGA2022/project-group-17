@@ -5,13 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.w3c.dom.Text;
+
 public class WelcomePage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+
+
+        TextView Name = (TextView) findViewById(R.id.clientname);
+        TextView Role = (TextView) findViewById(R.id.textView7);
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState){
@@ -23,8 +31,11 @@ public class WelcomePage extends AppCompatActivity {
 
             //TODO Edit text on welcome screen
             // access db and get information
-        }
 
+            Name.setText("Name");
+            Role.setText("Role");
+
+        }
         public void logOut(View view){
             finish();
         }

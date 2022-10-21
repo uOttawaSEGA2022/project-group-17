@@ -102,6 +102,7 @@ public class SignUp extends AppCompatActivity {
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String Day;
 
+
             System.out.println("made strings");
 
             if (Type.equals("client")) {
