@@ -41,6 +41,7 @@ public class SignUp extends AppCompatActivity {
         TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
         EditText Year = (EditText) findViewById(R.id.Year);
+        EditText address = (EditText) findViewById(R.id.SignupAddress);
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
