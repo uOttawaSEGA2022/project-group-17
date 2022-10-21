@@ -3,7 +3,7 @@ package com.example.kachow_now;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client {
+public class Client extends User {
     private String password;
     private String firstname;
     private String lastname;
