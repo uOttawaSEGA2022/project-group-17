@@ -137,7 +137,7 @@ public class SignUp extends AppCompatActivity {
                                     Integer.parseInt(AccountOrCardNumber),0.0,"",new Menu[100]);
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                         }
-
+                        Toast.makeText(SignUp.this,"Registration Successful",Toast.LENGTH_LONG);
                         finish();
                     } else {
                         Toast.makeText(SignUp.this, "Authentication failed.", Toast.LENGTH_LONG).show();

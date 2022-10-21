@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.util.Log;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                             Bundle usr = new Bundle();
                             Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                             FirebaseUser user = mAuth.getCurrentUser();
-                            usr.putParcelable("CurrentUser",user);
+                            usr.putParcelable("CurrentUser", user);
                             intent.putExtras(usr);
                             startActivity(intent);
 
