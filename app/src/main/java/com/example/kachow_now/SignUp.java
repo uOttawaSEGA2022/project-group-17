@@ -132,7 +132,7 @@ public class SignUp extends AppCompatActivity {
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
                             Cook u = new Cook( FirstName, Surname,Password, Email,address,
-                                    Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
+                                    Long.parseLong(Phone), Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
                                     Integer.parseInt(AccountOrCardNumber));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
