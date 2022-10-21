@@ -14,6 +14,7 @@ public class Cook{
     private String lastName;
     private String email;
     private String address;
+    private long phoneNumber;
     private ArrayList<Integer> bank;
     private double rating;
     private String description;
@@ -22,13 +23,14 @@ public class Cook{
 
 
     public Cook(String firstname, String lastname, String password, String email,
-        String address, int transit, int institution, int account){
+        String address, long phoneNumber, int transit, int institution, int account){
 
         this.firstName = firstname;
         this.lastName = lastname;
         this.password = password;
         this.email = email;
         this.address = address;
+        this.phoneNumber = phoneNumber;
         this.bank = new ArrayList();
         bank.add(transit);
         bank.add(institution);
@@ -79,6 +81,14 @@ public class Cook{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public long getPhoneNumber(){
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber){
+        this.phoneNumber = phoneNumber;
     }
 
     public ArrayList<Integer> getBank() {
