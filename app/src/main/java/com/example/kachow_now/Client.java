@@ -11,8 +11,9 @@ public class Client {
     private ArrayList bank;
     private String address;
     private long phoneNumber;
+    private String postalcode;
 
-    public Client(String password, String firstname, String lastname, String email, long CC, int month, int year, int ccv, String address, long phoneNumber) {
+    public Client(String password, String firstname, String lastname, String email, long CC, int month, int year, int ccv, String address, String postalcode, long phoneNumber) {
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -23,6 +24,7 @@ public class Client {
         bank.add(year);
         bank.add(ccv);
         this.address = address;
+        this.postalcode = postalcode;
         this.phoneNumber = phoneNumber;
     }
 
@@ -30,6 +32,7 @@ public class Client {
     public void setFirstName(String newFirstName) {
         firstname = newFirstName;
     }
+    public void setPostalcode(String postalcode) { this.postalcode = postalcode;}
     public void setLastName(String newLastName){
         lastname = newLastName;
     }
@@ -67,6 +70,7 @@ public class Client {
     public String getAddress(){
         return address;
     }
+    public String getPostalcode() { return postalcode;}
     public String getEmail(){
         return email;
     }

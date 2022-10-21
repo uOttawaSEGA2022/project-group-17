@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,18 +18,12 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.model.AddressComponent;
 import com.google.android.libraries.places.api.model.AddressComponents;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.AuthResult;
@@ -199,6 +192,9 @@ public class SignUp extends AppCompatActivity {
             String CCVorInstitution = ((EditText) findViewById(R.id.CCVorInstitution)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String address = ((EditText) findViewById(R.id.SignupAddress)).getText().toString().trim();
+            String postalcode1 = ((EditText) findViewById(R.id.pc1)).getText().toString().trim();
+            String postalcode2 = ((EditText) findViewById(R.id.pc2)).getText().toString().trim();
+            String postalcode = postalcode1 + postalcode2;
             String Year;
 
 
@@ -213,10 +209,10 @@ public class SignUp extends AppCompatActivity {
 
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
                     Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
-                    CCVorInstitution.isEmpty() || address.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
+                    CCVorInstitution.isEmpty() || address.isEmpty() || postalcode.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
                 throw new IllegalArgumentException();
             }
-            if (Phone.length() != 10){
+            if (Phone.length() != 10 || postalcode.length() != 6){
                 throw new NumberFormatException();
             }
             if (Type.equals("client") && (AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
@@ -238,11 +234,11 @@ public class SignUp extends AppCompatActivity {
                             Client u = new Client(Password, FirstName, Surname, Email,
                                     Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
-                                    address, Long.parseLong(Phone));
+                                    address, postalcode ,Long.parseLong(Phone));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
-                            Cook u = new Cook( FirstName, Surname,Password, Email,address,
+                            Cook u = new Cook( FirstName, Surname,Password, Email,address, postalcode,
                                     Long.parseLong(Phone), Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
                                     Integer.parseInt(AccountOrCardNumber));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);

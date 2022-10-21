@@ -10,10 +10,11 @@ import java.util.Map;
 public class Cook{
 
     private String password;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private String email;
     private String address;
+    private String postalcode;
     private long phoneNumber;
     private ArrayList<Integer> bank;
     private double rating;
@@ -23,13 +24,14 @@ public class Cook{
 
 
     public Cook(String firstname, String lastname, String password, String email,
-        String address, long phoneNumber, int transit, int institution, int account){
+        String address, String postalcode,long phoneNumber, int transit, int institution, int account){
 
-        this.firstName = firstname;
-        this.lastName = lastname;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.address = address;
+        this.postalcode = postalcode;
         this.phoneNumber = phoneNumber;
         this.bank = new ArrayList();
         bank.add(transit);
@@ -52,19 +54,19 @@ public class Cook{
     }
 
     public String getFirstName() {
-        return this.firstName;
+        return this.firstname;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstname = firstName;
     }
 
     public String getLastName() {
-        return this.lastName;
+        return this.lastname;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
 
     public String getEmail() {
@@ -82,6 +84,10 @@ public class Cook{
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public void setPostalCode(String postalcode) { this.postalcode = postalcode;}
+
+    public String getPostalCode() {return this.postalcode;}
 
     public long getPhoneNumber(){
         return this.phoneNumber;
@@ -154,8 +160,8 @@ public class Cook{
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("password", password);
-        result.put("firstName", firstName);
-        result.put("lastName", lastName);
+        result.put("firstName", firstname);
+        result.put("lastName", lastname);
         result.put("email", email);
         result.put("address", address);
         result.put("bank", bank);
