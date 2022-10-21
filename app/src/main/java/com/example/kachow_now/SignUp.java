@@ -111,10 +111,20 @@ public class SignUp extends AppCompatActivity {
                 Year = null;
             }
 
+            //exception handling
+
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
                     Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
                     CCVorInstitution.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
                 throw new IllegalArgumentException();
+            }
+            if (Type.equals("client") && (AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
+                    Integer.parseInt(BranchOrMonth) >12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) >99)){
+                throw new NumberFormatException();
+            }
+            if (Type.equals("cook") && (AccountOrCardNumber.length() > 12 || AccountOrCardNumber.length() <7 || CCVorInstitution.length() != 3 ||
+                    BranchOrMonth.length() != 5)){
+                throw new NumberFormatException();
             }
 
             mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

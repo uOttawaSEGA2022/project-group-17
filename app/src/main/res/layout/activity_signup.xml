@@ -136,7 +136,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint="Phone"
+                    android:hint=" Phone: 613XXXXXXX"
                     android:inputType="phone"
                     android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />
