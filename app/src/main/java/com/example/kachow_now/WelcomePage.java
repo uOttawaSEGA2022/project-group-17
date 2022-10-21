@@ -28,7 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -73,6 +75,19 @@ public class WelcomePage extends AppCompatActivity {
                 public void onClick(View v) {
                     Toast.makeText(WelcomePage.this, "Menu Pages Under Development", Toast.LENGTH_LONG).show();
                     //setContentView(R.layout.activity_home);
+/*
+                    Cook tmp = new Cook("john","bowling","123abc",
+                            "JohnDoe@gmail.com","Your moms house",123,456,789);
+
+                   // ArrayList<Meal>
+
+                    //tmp.setMonday();
+                    Map<String, Object> cookValues = tmp.toMap();
+
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put(user.getUid(), cookValues);
+                    dB.updateChildren(childUpdates);*/
+
                 }
             });
             logOutButton.setOnClickListener(new View.OnClickListener() {

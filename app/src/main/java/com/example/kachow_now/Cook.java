@@ -1,13 +1,17 @@
 package com.example.kachow_now;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cook{
 
     private String password;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String email;
     private String address;
     private ArrayList<Integer> bank;
@@ -29,8 +33,8 @@ public class Cook{
     public Cook(String firstname, String lastname, String password, String email,
         String address, int transit, int institution, int account){
 
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstname;
+        this.lastName = lastname;
         this.password = password;
         this.email = email;
         this.address = address;
@@ -62,20 +66,20 @@ public class Cook{
         this.password = password;
     }
 
-    public String getFirstname() {
-        return this.firstname;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return this.lastname;
+    public String getLastName() {
+        return this.lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -199,6 +203,31 @@ public class Cook{
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         return day;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("password", password);
+        result.put("firstName", firstName);
+        result.put("lastName", lastName);
+        result.put("email", email);
+        result.put("address", address);
+        result.put("bank", bank);
+        result.put("rating", rating);
+        result.put("description", description);
+        result.put("isBanned", isBanned);
+        result.put("currentDay", currentDay);
+
+        result.put("monday", monday);
+        result.put("tuesday", tuesday);
+        result.put("wednesday", wednesday);
+        result.put("thursday", thursday);
+        result.put("friday", friday);
+        result.put("saturday", saturday);
+        result.put("sunday", sunday);
+
+        return result;
     }
 
 
