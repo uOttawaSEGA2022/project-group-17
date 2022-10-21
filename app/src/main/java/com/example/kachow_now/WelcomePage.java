@@ -1,5 +1,6 @@
 package com.example.kachow_now;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,8 +10,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,14 +28,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+
 public class WelcomePage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private DatabaseReference dB;
 
 
 
         @Override
         protected void onCreate(Bundle savedInstanceState){
+            System.out.println("got in");
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_welcome);
 
@@ -36,13 +49,28 @@ public class WelcomePage extends AppCompatActivity {
             Button continueButton = (Button) findViewById(R.id.Continue);
 
             mAuth = FirebaseAuth.getInstance();
-            FirebaseUser user = this.getIntent().getParcelableExtra("CurrentUser");
+            dB = FirebaseDatabase.getInstance().getReference("UID");
+            FirebaseUser user = mAuth.getCurrentUser();
+            dB.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String tmpName = snapshot.child("firstName").getValue(String.class) + " "
+                            + snapshot.child("lastName").getValue(String.class);
+                    System.out.println("added 2 data snapshots together");
 
-            //TODO Edit text on welcome screen
-            // access db and get information
+                    Name.setText(tmpName);
+                    Role.setText(snapshot.child("role").getValue(String.class));
+                    System.out.println("set names");
+                }
 
-            Name.setText("Name");
-            Role.setText("Role");
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Name.setText("");
+                    Role.setText(R.string.user);
+                }
+            });
+
+
 
             continueButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,6 +87,7 @@ public class WelcomePage extends AppCompatActivity {
             });
         }
         public void logOut(View view){
+            mAuth.signOut();
             finish();
         }
 

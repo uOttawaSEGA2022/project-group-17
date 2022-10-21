@@ -76,13 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
                             Toast.makeText(MainActivity.this, "Authentication Successful.",
                                     Toast.LENGTH_LONG).show();
-                            Bundle usr = new Bundle();
                             Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            usr.putParcelable("CurrentUser", user);
-                            intent.putExtras(usr);
                             startActivity(intent);
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this,"Authentication Failed.",

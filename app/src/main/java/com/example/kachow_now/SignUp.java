@@ -132,13 +132,15 @@ public class SignUp extends AppCompatActivity {
                                     Integer.parseInt(Day), Integer.parseInt(CCVorInstitution),
                                     "TODO ADD address", Long.parseLong(Phone));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
+                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
                             Cook u = new Cook( FirstName, Surname,Password, Email,"TODO address",
                                     Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
                                     Integer.parseInt(AccountOrCardNumber),0.0,"",new Menu[100]);
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
+                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
                         }
-                        Toast.makeText(SignUp.this,"Registration Successful",Toast.LENGTH_LONG);
+                        Toast.makeText(SignUp.this,"Registration Successful",Toast.LENGTH_LONG).show();
                         finish();
                     } else {
                         Toast.makeText(SignUp.this, "Authentication failed.", Toast.LENGTH_LONG).show();
