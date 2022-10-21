@@ -96,15 +96,10 @@ public class SignUp extends AppCompatActivity {
                 Day = null;
             }
 
-
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
-                    Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() || CCVorInstitution.isEmpty()) {
-                Toast.makeText(SignUp.this, "Please Complete The Form", Toast.LENGTH_LONG).show();
-                if (Type.equals("client")) {
-                    if (Day.isEmpty()) {
-                        Toast.makeText(SignUp.this, "Please Complete The Form", Toast.LENGTH_LONG).show();
-                    }
-                }
+                    Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
+                    CCVorInstitution.isEmpty() ||(Type.equals("client") &&Day.isEmpty())) {
+                throw new IllegalArgumentException();
             }
 
             mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -141,6 +136,9 @@ public class SignUp extends AppCompatActivity {
         }
         catch (NumberFormatException e){
             Toast.makeText(SignUp.this, "Please Enter Valid Input", Toast.LENGTH_LONG).show();
+        }
+        catch (IllegalArgumentException e){
+            Toast.makeText(SignUp.this, "Please fill in all fields", Toast.LENGTH_LONG).show();
         }
 
     }
