@@ -128,15 +128,61 @@
                 android:orientation="horizontal"
                 android:translationY="0dp">
 
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="80dp"
+                    android:layout_height="37dp"
+                    android:layout_weight="0"
+                    android:gravity="bottom|center_vertical"
+                    android:text="Phone:"
+                    android:textSize="18dp" />
+
                 <EditText
-                    android:id="@+id/SignupPhone"
+                    android:id="@+id/firstPhone"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint=" Phone: 613XXXXXXX"
+                    android:gravity="center_horizontal"
+                    android:hint="(XXX)"
+                    android:inputType="phone"
+                    android:textColor="#FFFFFF"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <EditText
+                    android:id="@+id/secondPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="XXX"
+                    android:inputType="phone"
+                    android:textColor="#FFFFFF"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="-" />
+
+                <EditText
+                    android:id="@+id/thirdPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="XXXX"
                     android:inputType="phone"
                     android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />

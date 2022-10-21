@@ -6,6 +6,8 @@
     <string name="day">Day</string>
     <string name="month_branchnumber">Month/BranchNumber</string>
     <string name="user">User</string>
+    <string name="meal">Meal</string>
+    <string name="enter_an_address">Enter an address</string>
 
     <string-array name="AccountType">
         <item>Select Role...</item>

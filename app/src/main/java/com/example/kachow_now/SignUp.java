@@ -1,10 +1,10 @@
 package com.example.kachow_now;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,18 +12,113 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.model.AddressComponent;
+import com.google.android.libraries.places.api.model.AddressComponents;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Arrays;
+import java.util.List;
+
+
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference database;
+
+    private EditText AddressField;
+
+    private final ActivityResultLauncher<Intent> startAutocomplete = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            (ActivityResultCallback<ActivityResult>) result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
+                    if (intent != null) {
+                        Place place = Autocomplete.getPlaceFromIntent(intent);
+
+                        // Write a method to read the address components from the Place
+                        // and populate the form with the address components
+                        fillInAddress(place);
+                    }
+                } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
+                    // The user canceled the operation.
+
+                }
+            });
+
+    private void startAutocompleteIntent() {
+
+        // Set the fields to specify which types of place data to
+        // return after the user has made a selection.
+        List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS_COMPONENTS,
+                Place.Field.LAT_LNG, Place.Field.VIEWPORT);
+
+        // Build the autocomplete intent with field, country, and type filters applied
+        Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                .setCountry("CA")
+                .setTypeFilter(TypeFilter.ADDRESS)
+                .build(this);
+        startAutocomplete.launch(intent);
+    }
+
+    private void fillInAddress(Place place) {
+        AddressComponents components = place.getAddressComponents();
+        StringBuilder address1 = new StringBuilder();
+
+        // Get each component of the address from the place details,
+        // and then fill-in the corresponding field on the form.
+        // Possible AddressComponent types are documented at https://goo.gle/32SJPM1
+        if (components != null) {
+            for (AddressComponent component : components.asList()) {
+                String type = component.getTypes().get(0);
+                switch (type) {
+                    case "street_number": {
+                        address1.insert(0, component.getName());
+                        break;
+                    }
+
+                    case "route": {
+                        address1.append(" ");
+                        address1.append(component.getShortName());
+                        break;
+                    }
+
+                }
+            }
+        }
+
+        AddressField.setText(address1.toString());
+
+        // After filling the form with address components from the Autocomplete
+        // prediction, set cursor focus on the second address line to encourage
+        // entry of sub-premise information such as apartment, unit, or floor number.
+
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +126,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         database = FirebaseDatabase.getInstance().getReference("UID");
         mAuth = FirebaseAuth.getInstance();
-
+        AddressField = (EditText) findViewById(R.id.SignupAddress);
 
 
         Button register = (Button)findViewById(R.id.RegisterButton);
@@ -94,7 +189,10 @@ public class SignUp extends AppCompatActivity {
             String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
             String FirstName = ((EditText) findViewById(R.id.SignupFirstName)).getText().toString().trim();
             String Surname = ((EditText) findViewById(R.id.SignupLastName)).getText().toString().trim();
-            String Phone = ((EditText) findViewById(R.id.SignupPhone)).getText().toString().trim();
+            String firstPhone = ((EditText) findViewById(R.id.firstPhone)).getText().toString().trim();
+            String secondPhone = ((EditText) findViewById(R.id.secondPhone)).getText().toString().trim();
+            String thirdPhone = ((EditText) findViewById(R.id.thirdPhone)).getText().toString().trim();
+            String Phone = firstPhone + secondPhone + thirdPhone;
             String Email = ((EditText) findViewById(R.id.SignupEmail)).getText().toString().trim();
             String Password = ((EditText) findViewById(R.id.SignupPassword)).getText().toString().trim();
             String AccountOrCardNumber = ((EditText) findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
@@ -115,8 +213,11 @@ public class SignUp extends AppCompatActivity {
 
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
                     Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
-                    CCVorInstitution.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
+                    CCVorInstitution.isEmpty() || address.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
                 throw new IllegalArgumentException();
+            }
+            if (Phone.length() != 10){
+                throw new NumberFormatException();
             }
             if (Type.equals("client") && (AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
                     Integer.parseInt(BranchOrMonth) >12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) >99)){
