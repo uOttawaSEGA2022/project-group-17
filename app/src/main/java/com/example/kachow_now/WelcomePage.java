@@ -55,7 +55,6 @@ public class WelcomePage extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String tmpName = snapshot.child("firstName").getValue(String.class) + " "
                             + snapshot.child("lastName").getValue(String.class);
-
                     Name.setText(tmpName);
                     Role.setText(snapshot.child("role").getValue(String.class));
                 }
