@@ -64,13 +64,17 @@ public class Client {
     public String getPassword(){
         return password;
     }
-    public String address(){
+    public String getAddress(){
         return address;
     }
     public String getEmail(){
         return email;
     }
-    public long getPhoneNumber(){return phoneNumber;}
+    public long getPhoneNumber(){
+        return phoneNumber;
+    }
+
+
     public ArrayList getBank(){
         return bank;
     }

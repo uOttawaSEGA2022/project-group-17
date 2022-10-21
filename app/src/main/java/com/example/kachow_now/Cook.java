@@ -10,16 +10,24 @@ public class Cook{
     private String lastname;
     private String email;
     private String address;
-    private ArrayList bank;
+    private ArrayList<Integer> bank;
     private double rating;
-    private Menu[] menu;
     private String description;
     private boolean isBanned;
     private int currentDay;
 
+    private ArrayList monday;
+    private ArrayList tuesday;
+    private ArrayList wednesday;
+    private ArrayList thursday;
+    private ArrayList friday;
+    private ArrayList saturday;
+    private ArrayList sunday;
 
 
-    public Cook(String firstname, String lastname, String password, String email, String address, int transit, int institution, int account, double rating, String description, Menu[] menu){
+
+    public Cook(String firstname, String lastname, String password, String email,
+        String address, int transit, int institution, int account){
 
         this.firstname = firstname;
         this.lastname = lastname;
@@ -30,85 +38,170 @@ public class Cook{
         bank.add(transit);
         bank.add(institution);
         bank.add(account);
-        this.rating = rating;
-        this.menu = menu;
-        this.description = description;
-        this.isBanned = isBanned;
+        this.rating = 0.0;
+        this.description = "";
+        this.isBanned = false;
         this.currentDay = getDate();
+
+        monday = new ArrayList<Meal>();
+        tuesday = new ArrayList<Meal>();
+        wednesday = new ArrayList<Meal>();
+        thursday = new ArrayList<Meal>();
+        friday = new ArrayList<Meal>();
+        saturday = new ArrayList<Meal>();
+        sunday = new ArrayList<Meal>();
 
     }
     // setter methods
-    public void setFirstName(String newFirstName) {
-        firstname = newFirstName;
-    }
-    public void setLastName(String newLastName){
-        lastname = newLastName;
-    }
-    public void setPassword(String newPassword){
-        password = newPassword;
-    }
-    public void setAddress(String newAddress){
-        address = newAddress;
-    }
-    public void setEmail(String newEmail){
-        email = newEmail;
-    }
-    public void setBank(int transit, int institution, int account){
-        this.bank.clear();
-        bank.add(transit);
-        bank.add(institution);
-        bank.add(account);
-    }
-    public void setRating(double newRating){
-        rating = newRating;
-    }
-    // idk abt these
-    public void setMenu(){
+
+    public String getPassword() {
+        return this.password;
     }
 
-    public void setDescription(String newDescription){
-        description = newDescription;
-    }
-    public void setIsBanned(boolean newIsBanned){
-        isBanned = newIsBanned;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    // getter methods
-    public String getFirstName() {
-        return firstname;
+    public String getFirstname() {
+        return this.firstname;
     }
-    public String getLastName(){
-        return lastname;
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
-    public String getPassword(){
-        return password;
+
+    public String getLastname() {
+        return this.lastname;
     }
-    public String address(){
-        return address;
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
-    public String getEmail(){
-        return email;
+
+    public String getEmail() {
+        return this.email;
     }
-    public ArrayList getBank(){
-        return bank;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public double getRating(){
-        return rating;
+
+    public String getAddress() {
+        return this.address;
     }
-    public Menu[] getMenu(){
-        return menu;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-    public String getDescription(){
-        return description;
+
+    public ArrayList<Integer> getBank() {
+        return this.bank;
     }
-    public boolean getIsBanned(){
-        return isBanned;
+
+    public void setBank(int transit, int institution, int account) {
+        ArrayList<Integer> bank1 = new ArrayList<>();
+        bank1.add(transit);
+        bank1.add(institution);
+        bank1.add(account);
+        this.bank = bank1;
     }
-    private int getDate(){
+
+    public double getRating() {
+        return this.rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isIsBanned() {
+        return this.isBanned;
+    }
+
+    public boolean getIsBanned() {
+        return this.isBanned;
+    }
+
+    public void setIsBanned(boolean isBanned) {
+        this.isBanned = isBanned;
+    }
+
+    public int getCurrentDay() {
+        return this.currentDay;
+    }
+
+    public void setCurrentDay(int currentDay) {
+        this.currentDay = currentDay;
+    }
+
+    public ArrayList getMonday() {
+        return this.monday;
+    }
+
+    public void setMonday(ArrayList monday) {
+        this.monday = monday;
+    }
+
+    public ArrayList getTuesday() {
+        return this.tuesday;
+    }
+
+    public void setTuesday(ArrayList tuesday) {
+        this.tuesday = tuesday;
+    }
+
+    public ArrayList getWednesday() {
+        return this.wednesday;
+    }
+
+    public void setWednesday(ArrayList wednesday) {
+        this.wednesday = wednesday;
+    }
+
+    public ArrayList getThursday() {
+        return this.thursday;
+    }
+
+    public void setThursday(ArrayList thursday) {
+        this.thursday = thursday;
+    }
+
+    public ArrayList getFriday() {
+        return this.friday;
+    }
+
+    public void setFriday(ArrayList friday) {
+        this.friday = friday;
+    }
+
+    public ArrayList getSaturday() {
+        return this.saturday;
+    }
+
+    public void setSaturday(ArrayList saturday) {
+        this.saturday = saturday;
+    }
+
+    public ArrayList getSunday() {
+        return this.sunday;
+    }
+
+    public void setSunday(ArrayList sunday) {
+        this.sunday = sunday;
+    }
+
+    public static int getDate(){
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-        currentDay = day;
-        return currentDay;
+        return day;
     }
 
 
