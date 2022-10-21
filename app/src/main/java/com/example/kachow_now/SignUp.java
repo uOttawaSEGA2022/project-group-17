@@ -3,6 +3,7 @@ package com.example.kachow_now;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -141,8 +142,11 @@ public class SignUp extends AppCompatActivity {
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
                     Year.setVisibility(View.GONE);
                     AccountOrCardNumber.setHint("Account Number");
+                    AccountOrCardNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
                     MonthOrBranchNumber.setHint("Branch Number");
+                    MonthOrBranchNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(5)});
                     CCVorInstitution.setHint("Institution Number");
+                    CCVorInstitution.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)});
 
                 } else if (textFromSpinner.equals("client")){
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
@@ -151,9 +155,13 @@ public class SignUp extends AppCompatActivity {
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
                     Year.setVisibility(View.VISIBLE);
                     AccountOrCardNumber.setHint("Card Number");
+                    AccountOrCardNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(16)});
                     MonthOrBranchNumber.setHint("Month");
+                    MonthOrBranchNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
                     CCVorInstitution.setHint("CCV");
+                    CCVorInstitution.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)});
                     Year.setHint("Year");
+                    Year.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
                 }
                 else{
                     AccountOrCardNumber.setVisibility(View.INVISIBLE);
