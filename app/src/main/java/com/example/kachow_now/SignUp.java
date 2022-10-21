@@ -3,7 +3,6 @@ package com.example.kachow_now;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,7 +40,7 @@ public class SignUp extends AppCompatActivity {
         EditText CCVorInstitution = (EditText) findViewById(R.id.CCVorInstitution);
         TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
-        EditText Day = (EditText) findViewById(R.id.Day);
+        EditText Year = (EditText) findViewById(R.id.Year);
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -51,7 +50,7 @@ public class SignUp extends AppCompatActivity {
                     CCVorInstitution.setVisibility(View.VISIBLE);
                     BranchNumberorExpiry.setVisibility(View.GONE);
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
-                    Day.setVisibility(View.GONE);
+                    Year.setVisibility(View.GONE);
                     AccountOrCardNumber.setHint("Account Number");
                     MonthOrBranchNumber.setHint("Branch Number");
                     CCVorInstitution.setHint("Institution Number");
@@ -61,18 +60,18 @@ public class SignUp extends AppCompatActivity {
                     CCVorInstitution.setVisibility(View.VISIBLE);
                     BranchNumberorExpiry.setVisibility(View.VISIBLE);
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
-                    Day.setVisibility(View.VISIBLE);
+                    Year.setVisibility(View.VISIBLE);
                     AccountOrCardNumber.setHint("Card Number");
                     MonthOrBranchNumber.setHint("Month");
                     CCVorInstitution.setHint("CCV");
-                    Day.setHint("Day");
+                    Year.setHint("Year");
                 }
                 else{
                     AccountOrCardNumber.setVisibility(View.INVISIBLE);
                     CCVorInstitution.setVisibility(View.INVISIBLE);
                     BranchNumberorExpiry.setVisibility(View.INVISIBLE);
                     MonthOrBranchNumber.setVisibility(View.INVISIBLE);
-                    Day.setVisibility(View.INVISIBLE);
+                    Year.setVisibility(View.INVISIBLE);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -100,20 +99,20 @@ public class SignUp extends AppCompatActivity {
             String AccountOrCardNumber = ((EditText) findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
             String CCVorInstitution = ((EditText) findViewById(R.id.CCVorInstitution)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
-            String Day;
+            String Year;
 
 
             System.out.println("made strings");
 
             if (Type.equals("client")) {
-                Day = ((EditText) findViewById(R.id.Day)).getText().toString().trim();
+                Year = ((EditText) findViewById(R.id.Year)).getText().toString().trim();
             } else {
-                Day = null;
+                Year = null;
             }
 
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
                     Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
-                    CCVorInstitution.isEmpty() ||(Type.equals("client") &&Day.isEmpty())) {
+                    CCVorInstitution.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
                 throw new IllegalArgumentException();
             }
 
@@ -129,7 +128,7 @@ public class SignUp extends AppCompatActivity {
                         if (Type.equals("client")) {
                             Client u = new Client(Password, FirstName, Surname, Email,
                                     Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
-                                    Integer.parseInt(Day), Integer.parseInt(CCVorInstitution),
+                                    Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
                                     "TODO ADD address", Long.parseLong(Phone));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                         }else{
