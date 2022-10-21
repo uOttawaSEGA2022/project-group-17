@@ -76,8 +76,34 @@ public class MainActivity extends AppCompatActivity {
 
                             Toast.makeText(MainActivity.this, "Authentication Successful.",
                                     Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
-                            startActivity(intent);
+
+                            DatabaseReference dB = FirebaseDatabase.getInstance().getReference("UID");
+
+                            //if(dB.child(mAuth.getCurrentUser().getUid()))
+                            dB.child((mAuth.getCurrentUser()).getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String role = snapshot.child("role").getValue(String.class);
+                                    if(role.equalsIgnoreCase("admin")){
+                                        Toast.makeText(MainActivity.this,"Welcome administrator",Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(MainActivity.this.getApplicationContext(), AdminPage.class);
+                                        startActivity(intent);
+
+                                    }
+                                    else{
+                                        Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(MainActivity.this,"Failed to access Database error: "
+                                            + error.toString(),Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this,"Authentication Failed.",
