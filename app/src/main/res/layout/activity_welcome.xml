@@ -105,6 +105,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:gravity="bottom"
             android:orientation="horizontal">
 
             <TextView
@@ -113,10 +114,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:gravity="bottom"
+                android:gravity="bottom|right"
                 android:text="   Logged in as: "
                 android:textColor="#FFC107"
-                android:textSize="34sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -133,7 +134,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal">
 
