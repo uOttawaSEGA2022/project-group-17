@@ -100,6 +100,7 @@ public class SignUp extends AppCompatActivity {
             String AccountOrCardNumber = ((EditText) findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
             String CCVorInstitution = ((EditText) findViewById(R.id.CCVorInstitution)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
+            String address = ((EditText) findViewById(R.id.SignupAddress)).getText().toString().trim();
             String Year;
 
 
@@ -123,20 +124,18 @@ public class SignUp extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
-                        System.out.println("Task successful");
-
                         FirebaseUser usr = mAuth.getCurrentUser();
                         if (Type.equals("client")) {
                             Client u = new Client(Password, FirstName, Surname, Email,
                                     Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
-                                    "TODO ADD address", Long.parseLong(Phone));
+                                    address, Long.parseLong(Phone));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
-                            Cook u = new Cook( FirstName, Surname,Password, Email,"TODO address",
+                            Cook u = new Cook( FirstName, Surname,Password, Email,address,
                                     Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
-                                    Integer.parseInt(AccountOrCardNumber),0.0,"",new Menu[100]);
+                                    Integer.parseInt(AccountOrCardNumber));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
                         }
