@@ -205,11 +205,57 @@ public class Cook{
         return day;
     }
 
-    public void addToMenu(Meal meal){
-
+    public void addToMenu(Meal meal, int i){
+        if (i == 1) {
+            sunday.add(meal);
+        }
+        else if (i == 2) {
+            monday.add(meal);
+        }
+        else if (i == 3) {
+            tuesday.add(meal);
+        }
+        else if (i == 4) {
+            wednesday.add(meal);
+        }
+        else if (i == 5) {
+            thursday.add(meal);
+        }
+        else if (i == 6) {
+            friday.add(meal);
+        }
+        else {
+            saturday.add(meal);
+        }
     }
-    public void setMenu(ArrayList menu, int i){
-        //if(i==1){}
+
+    public void removeFromMenu(Meal meal, int i) {
+        if (i == 1) {
+            sunday.remove(meal);
+        }
+        else if (i == 2) {
+            monday.remove(meal);
+        }
+        else if (i == 3) {
+            tuesday.remove(meal);
+        }
+        else if (i == 4) {
+            wednesday.remove(meal);
+        }
+        else if (i == 5) {
+            thursday.remove(meal);
+        }
+        else if (i == 6) {
+            friday.remove(meal);
+        }
+        else {
+            saturday.remove(meal);
+        }
+    }
+
+
+    public void setMenu(ArrayList<Meal> menu, int i){
+        //if(i==1){
 
     }
 
