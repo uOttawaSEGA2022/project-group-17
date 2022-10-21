@@ -122,9 +122,6 @@ public class Cook{
         this.description = description;
     }
 
-    public boolean isIsBanned() {
-        return this.isBanned;
-    }
 
     public boolean getIsBanned() {
         return this.isBanned;
