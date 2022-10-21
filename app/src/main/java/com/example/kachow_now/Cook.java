@@ -18,15 +18,6 @@ public class Cook{
     private double rating;
     private String description;
     private boolean isBanned;
-    private int currentDay;
-
-    private ArrayList monday;
-    private ArrayList tuesday;
-    private ArrayList wednesday;
-    private ArrayList thursday;
-    private ArrayList friday;
-    private ArrayList saturday;
-    private ArrayList sunday;
 
 
 
@@ -45,15 +36,7 @@ public class Cook{
         this.rating = 0.0;
         this.description = "";
         this.isBanned = false;
-        this.currentDay = getDate();
 
-        monday = new ArrayList<Meal>();
-        tuesday = new ArrayList<Meal>();
-        wednesday = new ArrayList<Meal>();
-        thursday = new ArrayList<Meal>();
-        friday = new ArrayList<Meal>();
-        saturday = new ArrayList<Meal>();
-        sunday = new ArrayList<Meal>();
 
     }
     // setter methods
@@ -135,69 +118,7 @@ public class Cook{
         this.isBanned = isBanned;
     }
 
-    public int getCurrentDay() {
-        return this.currentDay;
-    }
 
-    public void setCurrentDay(int currentDay) {
-        this.currentDay = currentDay;
-    }
-
-    public ArrayList getMonday() {
-        return this.monday;
-    }
-
-    public void setMonday(ArrayList monday) {
-        this.monday = monday;
-    }
-
-    public ArrayList getTuesday() {
-        return this.tuesday;
-    }
-
-    public void setTuesday(ArrayList tuesday) {
-        this.tuesday = tuesday;
-    }
-
-    public ArrayList getWednesday() {
-        return this.wednesday;
-    }
-
-    public void setWednesday(ArrayList wednesday) {
-        this.wednesday = wednesday;
-    }
-
-    public ArrayList getThursday() {
-        return this.thursday;
-    }
-
-    public void setThursday(ArrayList thursday) {
-        this.thursday = thursday;
-    }
-
-    public ArrayList getFriday() {
-        return this.friday;
-    }
-
-    public void setFriday(ArrayList friday) {
-        this.friday = friday;
-    }
-
-    public ArrayList getSaturday() {
-        return this.saturday;
-    }
-
-    public void setSaturday(ArrayList saturday) {
-        this.saturday = saturday;
-    }
-
-    public ArrayList getSunday() {
-        return this.sunday;
-    }
-
-    public void setSunday(ArrayList sunday) {
-        this.sunday = sunday;
-    }
 
     public static int getDate(){
         Calendar calendar = Calendar.getInstance();
@@ -226,15 +147,6 @@ public class Cook{
         result.put("rating", rating);
         result.put("description", description);
         result.put("isBanned", isBanned);
-        result.put("currentDay", currentDay);
-
-        result.put("monday", monday);
-        result.put("tuesday", tuesday);
-        result.put("wednesday", wednesday);
-        result.put("thursday", thursday);
-        result.put("friday", friday);
-        result.put("saturday", saturday);
-        result.put("sunday", sunday);
 
         return result;
     }
