@@ -77,6 +77,8 @@ public class SignUp extends AppCompatActivity {
             Places.initialize(getApplicationContext(), apiKey);
         }
 
+        //AddressField.on
+
         AddressField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,21 +165,14 @@ public class SignUp extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //When success initialize place
                 Place place = Autocomplete.getPlaceFromIntent(data);
-
-                Toast.makeText(SignUp.this,"DONE",Toast.LENGTH_LONG).show();
-
                 //set address on edittext
                 AddressField.setText(place.getAddress());
-            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                Toast.makeText(SignUp.this,"FAILED",Toast.LENGTH_SHORT).show();
 
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 Status status = Autocomplete.getStatusFromIntent(data);
-                System.out.println(status.getStatusMessage());
-                Toast.makeText(SignUp.this,status.getStatusMessage(),Toast.LENGTH_LONG).show();
                 //Log.i(TAG, status.getStatusMessage());
             } else if (resultCode == RESULT_CANCELED) {
 
-                Toast.makeText(SignUp.this,"CANCELED",Toast.LENGTH_LONG).show();
                 // The user canceled the operation.
             }
         }
