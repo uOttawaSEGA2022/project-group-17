@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cook{
+public class Cook extends User{
 
     private String password;
     private String firstname;
@@ -25,7 +25,6 @@ public class Cook{
 
     public Cook(String firstname, String lastname, String password, String email,
         String address, String postalcode,long phoneNumber, int transit, int institution, int account){
-
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
