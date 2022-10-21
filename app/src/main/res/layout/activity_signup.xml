@@ -271,15 +271,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/BankInfoDetails"
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="0dp" />
-
-            <LinearLayout
                 android:layout_width="375dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
