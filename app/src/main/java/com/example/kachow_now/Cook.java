@@ -205,6 +205,15 @@ public class Cook{
         return day;
     }
 
+    public void addToMenu(Meal meal){
+
+    }
+    public void setMenu(ArrayList menu, int i){
+        if(i==1){
+
+        }
+    }
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
