@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -106,7 +108,57 @@ public class SignUp extends AppCompatActivity {
         TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
         EditText Year = (EditText) findViewById(R.id.Year);
+        EditText postalcode1 = (EditText) findViewById(R.id.pc1);
+        EditText postalcode2 = (EditText) findViewById(R.id.pc2);
+        EditText firstPhone = (EditText) findViewById(R.id.firstPhone);
+        EditText secondPhone = (EditText) findViewById(R.id.secondPhone);
+        EditText thirdPhone = (EditText) findViewById(R.id.thirdPhone);
 
+        postalcode1.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count) {
+                // TODO Auto-generated method stub
+                if(postalcode1.getText().toString().length()==3)     //size as per your requirement
+                {
+                    postalcode2.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+        firstPhone.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count) {
+                // TODO Auto-generated method stub
+                if(firstPhone.getText().toString().length()==3)     //size as per your requirement
+                {
+                    secondPhone.requestFocus();
+                }
+                if(secondPhone.getText().toString().length()==3)     //size as per your requirement
+                {
+                    thirdPhone.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -158,6 +210,7 @@ public class SignUp extends AppCompatActivity {
                 createAccount(v);
             }
         });
+
     }
 
     @Override
