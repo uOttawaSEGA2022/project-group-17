@@ -4,16 +4,19 @@ public class Admin {
 
     private String email;
     private String password;
-    private String nickname;
+    private String firstName;
+    private String lastName;
 
-    public Admin(String email, String password, String nickname) {
+
+    public Admin(String email, String password, String firstName, String lastName) {
         this.email = email;
         this.password = password;
-        this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -21,18 +24,27 @@ public class Admin {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
-    public void setPassword(String email) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setNickname(String email) {
-        this.nickname = nickname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
 }
