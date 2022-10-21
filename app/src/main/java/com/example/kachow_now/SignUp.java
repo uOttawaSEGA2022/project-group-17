@@ -143,6 +143,22 @@ public class SignUp extends AppCompatActivity {
                 {
                     secondPhone.requestFocus();
                 }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+        secondPhone.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count) {
+                // TODO Auto-generated method stub
                 if(secondPhone.getText().toString().length()==3)     //size as per your requirement
                 {
                     thirdPhone.requestFocus();
@@ -159,6 +175,7 @@ public class SignUp extends AppCompatActivity {
             }
 
         });
+
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
