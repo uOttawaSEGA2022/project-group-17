@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#8E8585"
                 android:minHeight="48dp"
-                android:onClick="createAccount"
+                android:onClick="moveToRegister"
                 android:text="@string/sign_up"
                 tools:ignore="TouchTargetSizeCheck" />
 

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success, update UI with the signed-in user's informatsion
                             ((EditText)findViewById(R.id.userName)).setText("");
                             ((EditText)findViewById(R.id.password)).setText("");
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-    public void createAccount(View view){
+    public void moveToRegister(View view){
         Intent intent = new Intent(MainActivity.this.getApplicationContext(),SignUp.class);
         startActivity(intent);
     }

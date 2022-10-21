@@ -1,5 +1,6 @@
 package com.example.kachow_now;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Cook{
@@ -9,27 +10,28 @@ public class Cook{
     private String lastname;
     private String email;
     private String address;
-    private int[] bank;
+    private ArrayList bank;
     private double rating;
-    private Meal[] menu;
-    private Meal[] log;
+    private Menu[] menu;
     private String description;
     private boolean isBanned;
     private int currentDay;
 
 
 
-    public Cook(String firstname, String lastname, String password, String email, String address, int[] bank, double rating, String description, Meal[] menu, Meal[] log, boolean isBanned){
+    public Cook(String firstname, String lastname, String password, String email, String address, int transit, int institution, int account, double rating, String description, Menu[] menu){
 
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.address = address;
-        this.bank = bank;
+        this.bank = new ArrayList();
+        bank.add(transit);
+        bank.add(institution);
+        bank.add(account);
         this.rating = rating;
         this.menu = menu;
-        this.log = log;
         this.description = description;
         this.isBanned = isBanned;
         this.currentDay = getDate();
@@ -52,17 +54,15 @@ public class Cook{
         email = newEmail;
     }
     public void setBank(int transit, int institution, int account){
-        int[] bank = new int[3];
-        bank[0] = transit;
-        bank[1] = institution;
-        bank[2] = account;
+        this.bank.clear();
+        bank.add(transit);
+        bank.add(institution);
+        bank.add(account);
     }
     public void setRating(double newRating){
         rating = newRating;
     }
     // idk abt these
-    public void setLog(){
-    }
     public void setMenu(){
     }
 
@@ -89,16 +89,13 @@ public class Cook{
     public String getEmail(){
         return email;
     }
-    public int[] getBank(){
+    public ArrayList getBank(){
         return bank;
     }
     public double getRating(){
         return rating;
     }
-    public Meal[] getLog(){
-        return log;
-    }
-    public Meal[] getMenu(){
+    public Menu[] getMenu(){
         return menu;
     }
     public String getDescription(){

@@ -101,7 +101,6 @@ public class SignUp extends AppCompatActivity {
                     CCVorInstitution.isEmpty() ||(Type.equals("client") &&Day.isEmpty())) {
                 throw new IllegalArgumentException();
             }
-
             mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -114,13 +113,12 @@ public class SignUp extends AppCompatActivity {
                                     Integer.parseInt(Day), Integer.parseInt(CCVorInstitution),
                                     "TODO ADD address", Long.parseLong(Phone));
                             database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
-                        }/*else{
-                            Cook u = new Cook(Password, FirstName, Surname, Email,
-                                    Long.parseLong(AccountOrCardNumber),Integer.parseInt(BranchOrMonth),
-                                    Integer.parseInt(Day),Integer.parseInt(CCVOrInstitutionNumber),
-                                    "TODO ADD address",Long.parseLong(Phone));
+                        }else{
+                            Cook u = new Cook( FirstName, Surname,Password, Email,"TODO address",
+                                    Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
+                                    Integer.parseInt(AccountOrCardNumber),0.0,"",new Menu[100]);
                             database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
-                        }*/
+                        }
 
                         //TODO get all data feilds as veriables and apply them to our object, then push object into realtime DB
                         // also push to auth server (half done)
