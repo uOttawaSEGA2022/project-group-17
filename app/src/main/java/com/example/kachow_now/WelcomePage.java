@@ -39,7 +39,6 @@ public class WelcomePage extends AppCompatActivity {
 
         @Override
         protected void onCreate(Bundle savedInstanceState){
-            System.out.println("got in");
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_welcome);
 
@@ -56,11 +55,9 @@ public class WelcomePage extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String tmpName = snapshot.child("firstName").getValue(String.class) + " "
                             + snapshot.child("lastName").getValue(String.class);
-                    System.out.println("added 2 data snapshots together");
 
                     Name.setText(tmpName);
                     Role.setText(snapshot.child("role").getValue(String.class));
-                    System.out.println("set names");
                 }
 
                 @Override

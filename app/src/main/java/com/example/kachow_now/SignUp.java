@@ -102,10 +102,8 @@ public class SignUp extends AppCompatActivity {
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String address = ((EditText) findViewById(R.id.SignupAddress)).getText().toString().trim();
             String Year;
-            EditText address = (EditText) findViewById(R.id.SignupAddress);
 
 
-            System.out.println("made strings");
 
             if (Type.equals("client")) {
                 Year = ((EditText) findViewById(R.id.Year)).getText().toString().trim();
@@ -119,7 +117,6 @@ public class SignUp extends AppCompatActivity {
                 throw new IllegalArgumentException();
             }
 
-            System.out.println("NOTHING EMPTY");
             mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
