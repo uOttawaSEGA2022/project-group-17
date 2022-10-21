@@ -8,9 +8,10 @@
     <string name="user">User</string>
     <string name="meal">Meal</string>
     <string name="enter_an_address">Enter an address</string>
+    <string name="api_key">AIzaSyAOi9ydMB6zwJSQerohFZdonV7Didui3w8</string>
 
     <string-array name="AccountType">
-        <item>Select Role...</item>
+        <item>Select Role…</item>
         <item>Cook</item>
         <item>Client</item>
     </string-array>

@@ -2,9 +2,11 @@ package com.example.kachow_now;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,13 +21,25 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AddressComponent;
 import com.google.android.libraries.places.api.model.AddressComponents;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
 import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,77 +53,12 @@ import java.util.List;
 
 public class SignUp extends AppCompatActivity {
 
+    private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
     private FirebaseAuth mAuth;
     private DatabaseReference database;
+    private String address;
 
     private EditText AddressField;
-
-    private final ActivityResultLauncher<Intent> startAutocomplete = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            (ActivityResultCallback<ActivityResult>) result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent intent = result.getData();
-                    if (intent != null) {
-                        Place place = Autocomplete.getPlaceFromIntent(intent);
-
-                        // Write a method to read the address components from the Place
-                        // and populate the form with the address components
-                        fillInAddress(place);
-                    }
-                } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
-                    // The user canceled the operation.
-
-                }
-            });
-
-    private void startAutocompleteIntent() {
-
-        // Set the fields to specify which types of place data to
-        // return after the user has made a selection.
-        List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS_COMPONENTS,
-                Place.Field.LAT_LNG, Place.Field.VIEWPORT);
-
-        // Build the autocomplete intent with field, country, and type filters applied
-        Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
-                .setCountry("CA")
-                .setTypeFilter(TypeFilter.ADDRESS)
-                .build(this);
-        startAutocomplete.launch(intent);
-    }
-
-    private void fillInAddress(Place place) {
-        AddressComponents components = place.getAddressComponents();
-        StringBuilder address1 = new StringBuilder();
-
-        // Get each component of the address from the place details,
-        // and then fill-in the corresponding field on the form.
-        // Possible AddressComponent types are documented at https://goo.gle/32SJPM1
-        if (components != null) {
-            for (AddressComponent component : components.asList()) {
-                String type = component.getTypes().get(0);
-                switch (type) {
-                    case "street_number": {
-                        address1.insert(0, component.getName());
-                        break;
-                    }
-
-                    case "route": {
-                        address1.append(" ");
-                        address1.append(component.getShortName());
-                        break;
-                    }
-
-                }
-            }
-        }
-
-        AddressField.setText(address1.toString());
-
-        // After filling the form with address components from the Autocomplete
-        // prediction, set cursor focus on the second address line to encourage
-        // entry of sub-premise information such as apartment, unit, or floor number.
-
-    }
 
 
 
@@ -120,7 +69,30 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         database = FirebaseDatabase.getInstance().getReference("UID");
         mAuth = FirebaseAuth.getInstance();
-        AddressField = (EditText) findViewById(R.id.SignupAddress);
+
+        AddressField = (EditText)findViewById(R.id.SignupAddress);
+
+        String apiKey = getString(R.string.api_key);
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), apiKey);
+        }
+
+        AddressField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Set the fields to specify which types of place data to
+                // return after the user has made a selection.
+                List<Place.Field> field = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS);
+
+                // Start the autocomplete intent.
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, field)
+                        .build(SignUp.this);
+                //start activity result
+                startActivityForResult(intent,AUTOCOMPLETE_REQUEST_CODE);
+
+            }
+
+        });
 
 
         Button register = (Button)findViewById(R.id.RegisterButton);
@@ -182,6 +154,33 @@ public class SignUp extends AppCompatActivity {
                 createAccount(v);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                //When success initialize place
+                Place place = Autocomplete.getPlaceFromIntent(data);
+
+                Toast.makeText(SignUp.this,"DONE",Toast.LENGTH_LONG).show();
+
+                //set address on edittext
+                AddressField.setText(place.getAddress());
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                Toast.makeText(SignUp.this,"FAILED",Toast.LENGTH_SHORT).show();
+
+                Status status = Autocomplete.getStatusFromIntent(data);
+                System.out.println(status.getStatusMessage());
+                Toast.makeText(SignUp.this,status.getStatusMessage(),Toast.LENGTH_LONG).show();
+                //Log.i(TAG, status.getStatusMessage());
+            } else if (resultCode == RESULT_CANCELED) {
+
+                Toast.makeText(SignUp.this,"CANCELED",Toast.LENGTH_LONG).show();
+                // The user canceled the operation.
+            }
+        }
     }
 
     private void createAccount(View view) {
