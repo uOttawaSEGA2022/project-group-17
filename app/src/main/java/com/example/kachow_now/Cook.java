@@ -209,7 +209,7 @@ public class Cook{
 
     }
     public void setMenu(ArrayList menu, int i){
-        if(i==1){
+        //if(i==1){
 
         }
     }
