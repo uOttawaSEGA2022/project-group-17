@@ -266,7 +266,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint="Month/BranchNumber"
+                    android:hint="@string/month_branchnumber"
                     android:inputType="textPersonName"
                     android:textColor="#FFFFFF"
                     android:visibility="visible" />
@@ -278,7 +278,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint="Day"
+                    android:hint="@string/day"
                     android:inputType="textPersonName"
                     android:textColor="#FFFFFF"
                     android:visibility="visible" />
@@ -295,12 +295,11 @@
 
                 <Button
                     android:id="@+id/RegisterButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
-                    android:onClick="createAccount"
-                    android:text="Register!"
+                    android:text="@string/register"
                     android:textColor="#000000" />
             </LinearLayout>
 

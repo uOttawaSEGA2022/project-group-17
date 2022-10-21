@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,8 +31,11 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         database = FirebaseDatabase.getInstance().getReference("UID");
+        mAuth = FirebaseAuth.getInstance();
 
 
+
+        Button register = (Button)findViewById(R.id.RegisterButton);
         Spinner spin = (Spinner) findViewById(R.id.SignupRole);
         EditText AccountOrCardNumber = (EditText) findViewById(R.id.AccountOrCardNumber);
         EditText CCVorInstitution = (EditText) findViewById(R.id.CCVorInstitution);
@@ -75,9 +79,16 @@ public class SignUp extends AppCompatActivity {
 
             }
         });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAccount(v);
+            }
+        });
     }
 
-    public void createAccount(View view) {
+    private void createAccount(View view) {
 
         try {
             String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
@@ -90,6 +101,9 @@ public class SignUp extends AppCompatActivity {
             String CCVorInstitution = ((EditText) findViewById(R.id.CCVorInstitution)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String Day;
+
+            System.out.println("made strings");
+
             if (Type.equals("client")) {
                 Day = ((EditText) findViewById(R.id.Day)).getText().toString().trim();
             } else {
@@ -101,10 +115,14 @@ public class SignUp extends AppCompatActivity {
                     CCVorInstitution.isEmpty() ||(Type.equals("client") &&Day.isEmpty())) {
                 throw new IllegalArgumentException();
             }
+
+            System.out.println("NOTHING EMPTY");
             mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+
+                        System.out.println("Task successful");
 
                         FirebaseUser usr = mAuth.getCurrentUser();
                         if (Type.equals("client")) {
@@ -112,19 +130,15 @@ public class SignUp extends AppCompatActivity {
                                     Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
                                     Integer.parseInt(Day), Integer.parseInt(CCVorInstitution),
                                     "TODO ADD address", Long.parseLong(Phone));
-                            database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
+                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                         }else{
                             Cook u = new Cook( FirstName, Surname,Password, Email,"TODO address",
                                     Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
                                     Integer.parseInt(AccountOrCardNumber),0.0,"",new Menu[100]);
-                            database.child(String.valueOf(mAuth.getCurrentUser().getIdToken(false))).setValue(u);
+                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                         }
 
-                        //TODO get all data feilds as veriables and apply them to our object, then push object into realtime DB
-                        // also push to auth server (half done)
-
-                        Intent intent = new Intent(SignUp.this.getApplicationContext(), WelcomePage.class);
-                        startActivityForResult(intent, 0);
+                        finish();
                     } else {
                         Toast.makeText(SignUp.this, "Authentication failed.", Toast.LENGTH_LONG).show();
                         Toast.makeText(SignUp.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
