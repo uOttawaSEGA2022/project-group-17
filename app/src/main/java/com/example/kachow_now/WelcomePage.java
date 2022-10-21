@@ -47,7 +47,7 @@ public class WelcomePage extends AppCompatActivity {
             continueButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(WelcomePage.this, "Menu Pages Under Development")
+                    Toast.makeText(WelcomePage.this, "Menu Pages Under Development", Toast.LENGTH_LONG).show();
                     //setContentView(R.layout.activity_home);
                 }
             });
