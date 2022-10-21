@@ -272,13 +272,13 @@
                     android:visibility="visible" />
 
                 <EditText
-                    android:id="@+id/Day"
+                    android:id="@+id/Year"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint="@string/day"
+                    android:hint="Year"
                     android:inputType="textPersonName"
                     android:textColor="#FFFFFF"
                     android:visibility="visible" />
