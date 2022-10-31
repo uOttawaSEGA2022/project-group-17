@@ -9,27 +9,53 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="395dp"
+            android:layout_height="70dp"
+            android:layout_weight="0"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/adminLogoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="LOGOUT" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0"
-            android:orientation="horizontal" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:translationY="-20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/InboxText"
+                android:layout_width="171dp"
+                android:layout_height="100dp"
+                android:layout_weight="0"
+                android:gravity="center_vertical"
+                android:text="Inbox"
+                android:textSize="50dp"
+                android:translationX="20dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="331dp"
-            android:orientation="horizontal">
+            android:layout_height="532dp"
+            android:orientation="horizontal"
+            android:translationY="-20dp">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -37,6 +63,7 @@
                 android:fillViewport="true">
 
                 <ListView
+                    android:id="@+id/list of complaints"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </ScrollView>
