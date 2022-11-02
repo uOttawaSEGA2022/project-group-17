@@ -63,6 +63,7 @@
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/api_key"
                         android:scaleType="fitStart"
                         app:srcCompat="@drawable/chef" />
 
@@ -71,6 +72,7 @@
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/api_key"
                         android:scaleType="fitStart"
                         app:srcCompat="@drawable/chef2" />
 
@@ -79,6 +81,7 @@
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/api_key"
                         android:scaleType="fitStart"
                         app:srcCompat="@drawable/fchef" />
                 </LinearLayout>
