@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setMealReviewed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#373430">
+
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="888dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="#373430"
+        android:backgroundTint="#00952FA6"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:background="#FFC107"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="#040404"
+                android:textSize="48sp"
+                tools:text="Submit a Report" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/setComplaintee"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Cook"
+                android:textColor="#000000"
+                android:textColorHint="#FF9800"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Meal Ordered"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="73dp"
+                    android:text="Date:"
+                    android:textAlignment="viewStart"
+                    android:textSize="24sp"
+                    android:translationY="38dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="98dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Day"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Month"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#FFC107"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Year"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="318dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Describe the Situation"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                android:text="Button" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
