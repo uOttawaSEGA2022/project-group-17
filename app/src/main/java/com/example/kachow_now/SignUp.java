@@ -53,7 +53,7 @@ public class SignUp extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference("UID");
         mAuth = FirebaseAuth.getInstance();
 
-        AddressField = (EditText)findViewById(R.id.SignupAddress);
+        AddressField = (EditText)findViewById(R.id.Allergens);
 
         String apiKey = getString(R.string.api_key);
         if (!Places.isInitialized()) {
@@ -80,14 +80,14 @@ public class SignUp extends AppCompatActivity {
 
         Button register = (Button)findViewById(R.id.RegisterButton);
         Spinner spin = (Spinner) findViewById(R.id.SignupRole);
-        EditText AccountOrCardNumber = (EditText) findViewById(R.id.AccountOrCardNumber);
-        EditText CCVorInstitution = (EditText) findViewById(R.id.CCVorInstitution);
+        EditText AccountOrCardNumber = (EditText) findViewById(R.id.ServingSize);
+        EditText CCVorInstitution = (EditText) findViewById(R.id.Calories);
         TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
         EditText Year = (EditText) findViewById(R.id.Year);
         EditText postalcode1 = (EditText) findViewById(R.id.pc1);
         EditText postalcode2 = (EditText) findViewById(R.id.pc2);
-        EditText firstPhone = (EditText) findViewById(R.id.firstPhone);
+        EditText firstPhone = (EditText) findViewById(R.id.IngredientsList);
         EditText secondPhone = (EditText) findViewById(R.id.secondPhone);
         EditText thirdPhone = (EditText) findViewById(R.id.thirdPhone);
 
@@ -232,17 +232,17 @@ public class SignUp extends AppCompatActivity {
         try {
             String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
             String FirstName = ((EditText) findViewById(R.id.MealName)).getText().toString().trim();
-            String Surname = ((EditText) findViewById(R.id.SignupLastName)).getText().toString().trim();
-            String firstPhone = ((EditText) findViewById(R.id.firstPhone)).getText().toString().trim();
+            String Surname = ((EditText) findViewById(R.id.MealType)).getText().toString().trim();
+            String firstPhone = ((EditText) findViewById(R.id.IngredientsList)).getText().toString().trim();
             String secondPhone = ((EditText) findViewById(R.id.secondPhone)).getText().toString().trim();
             String thirdPhone = ((EditText) findViewById(R.id.thirdPhone)).getText().toString().trim();
             String Phone = firstPhone + secondPhone + thirdPhone;
-            String Email = ((EditText) findViewById(R.id.SignupEmail)).getText().toString().trim();
-            String Password = ((EditText) findViewById(R.id.SignupPassword)).getText().toString().trim();
-            String AccountOrCardNumber = ((EditText) findViewById(R.id.AccountOrCardNumber)).getText().toString().trim();
-            String CCVorInstitution = ((EditText) findViewById(R.id.CCVorInstitution)).getText().toString().trim();
+            String Email = ((EditText) findViewById(R.id.Cuisine)).getText().toString().trim();
+            String Password = ((EditText) findViewById(R.id.Price)).getText().toString().trim();
+            String AccountOrCardNumber = ((EditText) findViewById(R.id.ServingSize)).getText().toString().trim();
+            String CCVorInstitution = ((EditText) findViewById(R.id.Calories)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
-            String address = ((EditText) findViewById(R.id.SignupAddress)).getText().toString().trim();
+            String address = ((EditText) findViewById(R.id.Allergens)).getText().toString().trim();
             String postalcode1 = ((EditText) findViewById(R.id.pc1)).getText().toString().trim();
             String postalcode2 = ((EditText) findViewById(R.id.pc2)).getText().toString().trim();
             String postalcode = postalcode1 + postalcode2;
