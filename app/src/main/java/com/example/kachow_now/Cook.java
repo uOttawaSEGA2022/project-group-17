@@ -1,39 +1,26 @@
 package com.example.kachow_now;
 
-import com.google.firebase.database.Exclude;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
-public class Cook{
+public class Cook extends User {
 
-    private String password;
-    private String firstname;
-    private String lastname;
-    private String email;
     private String address;
-    private String postalcode;
+    private String postalCode;
     private long phoneNumber;
-    private ArrayList<Integer> bank;
+    private ArrayList<Number> bank;
     private double rating;
     private String description;
     private boolean isBanned;
 
-
-
-    public Cook(String firstname, String lastname, String password, String email,
-        String address, String postalcode,long phoneNumber, int transit, int institution, int account){
-
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.password = password;
-        this.email = email;
+    public Cook(String firstName, String lastname, String password, String email,
+                String address, String postalCode, long phoneNumber, int transit, int institution, double account) {
+        super(firstName, lastname, password, email);
+        this.role = "Cook";
         this.address = address;
-        this.postalcode = postalcode;
+        this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
-        this.bank = new ArrayList();
+        this.bank = new ArrayList<Number>();
         bank.add(transit);
         bank.add(institution);
         bank.add(account);
@@ -41,41 +28,8 @@ public class Cook{
         this.description = "";
         this.isBanned = false;
 
-
     }
     // setter methods
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return this.firstname;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstname = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastname;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastname = lastName;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getAddress() {
         return this.address;
@@ -85,9 +39,13 @@ public class Cook{
         this.address = address;
     }
 
-    public void setPostalCode(String postalcode) { this.postalcode = postalcode;}
+    public String getPostalCode() {
+        return this.postalCode;
+    }
 
-    public String getPostalCode() {return this.postalcode;}
+    public void setPostalCode(String postalcode) {
+        this.postalCode = postalcode;
+    }
 
     public long getPhoneNumber(){
         return this.phoneNumber;
@@ -97,12 +55,12 @@ public class Cook{
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<Integer> getBank() {
+    public ArrayList<Number> getBank() {
         return this.bank;
     }
 
     public void setBank(int transit, int institution, int account) {
-        ArrayList<Integer> bank1 = new ArrayList<>();
+        ArrayList<Number> bank1 = new ArrayList<>();
         bank1.add(transit);
         bank1.add(institution);
         bank1.add(account);
@@ -156,11 +114,11 @@ public class Cook{
 
     }*/
 
-    @Exclude
+/*    @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("password", password);
-        result.put("firstName", firstname);
+        result.put("firstName", firstName);
         result.put("lastName", lastname);
         result.put("email", email);
         result.put("address", address);
@@ -170,7 +128,7 @@ public class Cook{
         result.put("isBanned", isBanned);
 
         return result;
-    }
+    }*/
 
 
 }

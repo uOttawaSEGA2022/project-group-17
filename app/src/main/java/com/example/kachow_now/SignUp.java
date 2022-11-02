@@ -1,12 +1,11 @@
 package com.example.kachow_now;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.location.Address;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,32 +13,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AddressComponent;
-import com.google.android.libraries.places.api.model.AddressComponents;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.RectangularBounds;
-import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +29,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SignUp extends AppCompatActivity {
@@ -77,6 +60,7 @@ public class SignUp extends AppCompatActivity {
             Places.initialize(getApplicationContext(), apiKey);
         }
 
+
         AddressField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +69,7 @@ public class SignUp extends AppCompatActivity {
                 List<Place.Field> field = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS);
 
                 // Start the autocomplete intent.
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, field)
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, field)
                         .build(SignUp.this);
                 //start activity result
                 startActivityForResult(intent,AUTOCOMPLETE_REQUEST_CODE);
@@ -102,6 +86,73 @@ public class SignUp extends AppCompatActivity {
         TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
         EditText Year = (EditText) findViewById(R.id.Year);
+        EditText postalcode1 = (EditText) findViewById(R.id.pc1);
+        EditText postalcode2 = (EditText) findViewById(R.id.pc2);
+        EditText firstPhone = (EditText) findViewById(R.id.firstPhone);
+        EditText secondPhone = (EditText) findViewById(R.id.secondPhone);
+        EditText thirdPhone = (EditText) findViewById(R.id.thirdPhone);
+
+        postalcode1.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count) {
+                // TODO Auto-generated method stub
+                if(postalcode1.getText().toString().length()==3)     //size as per your requirement
+                {
+                    postalcode2.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+        firstPhone.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count) {
+                // TODO Auto-generated method stub
+                if(firstPhone.getText().toString().length()==3)     //size as per your requirement
+                {
+                    secondPhone.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+        secondPhone.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start,int before, int count) {
+                // TODO Auto-generated method stub
+                if(secondPhone.getText().toString().length()==3)     //size as per your requirement
+                {
+                    thirdPhone.requestFocus();
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
 
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -154,6 +205,7 @@ public class SignUp extends AppCompatActivity {
                 createAccount(v);
             }
         });
+
     }
 
     @Override
@@ -163,21 +215,14 @@ public class SignUp extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //When success initialize place
                 Place place = Autocomplete.getPlaceFromIntent(data);
-
-                Toast.makeText(SignUp.this,"DONE",Toast.LENGTH_LONG).show();
-
                 //set address on edittext
                 AddressField.setText(place.getAddress());
-            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                Toast.makeText(SignUp.this,"FAILED",Toast.LENGTH_SHORT).show();
 
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 Status status = Autocomplete.getStatusFromIntent(data);
-                System.out.println(status.getStatusMessage());
-                Toast.makeText(SignUp.this,status.getStatusMessage(),Toast.LENGTH_LONG).show();
                 //Log.i(TAG, status.getStatusMessage());
             } else if (resultCode == RESULT_CANCELED) {
 
-                Toast.makeText(SignUp.this,"CANCELED",Toast.LENGTH_LONG).show();
                 // The user canceled the operation.
             }
         }
@@ -187,7 +232,7 @@ public class SignUp extends AppCompatActivity {
 
         try {
             String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
-            String FirstName = ((EditText) findViewById(R.id.SignupFirstName)).getText().toString().trim();
+            String FirstName = ((EditText) findViewById(R.id.MealName)).getText().toString().trim();
             String Surname = ((EditText) findViewById(R.id.SignupLastName)).getText().toString().trim();
             String firstPhone = ((EditText) findViewById(R.id.firstPhone)).getText().toString().trim();
             String secondPhone = ((EditText) findViewById(R.id.secondPhone)).getText().toString().trim();
@@ -216,18 +261,21 @@ public class SignUp extends AppCompatActivity {
 
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
                     Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
-                    CCVorInstitution.isEmpty() || address.isEmpty() || postalcode.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
+                    CCVorInstitution.isEmpty() || address.isEmpty() || postalcode.isEmpty() || (Type.equals("client") && Year.isEmpty())) {
                 throw new IllegalArgumentException();
             }
-            if (Phone.length() != 10 || postalcode.length() != 6){
+            if (Phone.length() != 10 || postalcode.length() != 6) {
+                Toast.makeText(SignUp.this, "Phone error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
-            if (Type.equals("client") && (AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
-                    Integer.parseInt(BranchOrMonth) >12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) >99)){
+            if (Type.equals("client") && ((AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
+                    Integer.parseInt(BranchOrMonth) > 12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) > 99))) {
+                Toast.makeText(SignUp.this, "Client error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
-            if (Type.equals("cook") && (AccountOrCardNumber.length() > 12 || AccountOrCardNumber.length() <7 || CCVorInstitution.length() != 3 ||
-                    BranchOrMonth.length() != 5)){
+            if (Type.equals("cook") && (AccountOrCardNumber.length() > 12 || AccountOrCardNumber.length() < 7 || CCVorInstitution.length() != 3 ||
+                    BranchOrMonth.length() != 5)) {
+                Toast.makeText(SignUp.this, "Cook error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
 
@@ -243,13 +291,13 @@ public class SignUp extends AppCompatActivity {
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
                                     address, postalcode ,Long.parseLong(Phone));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
-                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
+                            //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
-                            Cook u = new Cook( FirstName, Surname,Password, Email,address, postalcode,
-                                    Long.parseLong(Phone), Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
-                                    Integer.parseInt(AccountOrCardNumber));
+                            Cook u = new Cook(FirstName, Surname, Password, Email, address, postalcode,
+                                    Long.parseLong(Phone), Integer.parseInt(BranchOrMonth), Integer.parseInt(CCVorInstitution),
+                                    Double.parseDouble(AccountOrCardNumber));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
-                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
+                            //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
                         }
                         Toast.makeText(SignUp.this,"Registration Successful",Toast.LENGTH_LONG).show();
                         finish();
@@ -261,7 +309,7 @@ public class SignUp extends AppCompatActivity {
             });
         }
         catch (NumberFormatException e){
-            Toast.makeText(SignUp.this, "Please Enter Valid Input", Toast.LENGTH_LONG).show();
+            Toast.makeText(SignUp.this, e.toString() + " Please Enter Valid Input", Toast.LENGTH_LONG).show();
         }
         catch (IllegalArgumentException e){
             Toast.makeText(SignUp.this, "Please fill in all fields", Toast.LENGTH_LONG).show();
