@@ -105,10 +105,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="horizontal"
+            android:translationY="20dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="480dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="480dp"
+                        android:layout_weight="0" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:orientation="horizontal"
-            android:translationY="500dp">
+            android:translationY="20dp">
 
             <Button
                 android:id="@+id/ReportCookProfileClient"
@@ -120,4 +143,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
