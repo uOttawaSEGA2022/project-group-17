@@ -53,8 +53,9 @@
 
                     <TextView
                         android:id="@+id/cookName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="91dp"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:text="Name:"
                         android:textColor="#FFC107" />
 
@@ -63,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="<NAME>"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
@@ -73,8 +74,9 @@
 
                     <TextView
                         android:id="@+id/cookAddress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="91dp"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:text="Address:"
                         android:textColor="#FFC107" />
 
@@ -83,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="<ADDRESS>"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
@@ -103,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="<CUISINETYPE>"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
