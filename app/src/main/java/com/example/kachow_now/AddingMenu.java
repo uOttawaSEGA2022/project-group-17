@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -34,16 +36,27 @@ public class AddingMenu extends AppCompatActivity {
     private StorageReference storageReference;
     private ImageView imageView;
     private Uri filePath;
+    private Button uploadBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_menu);
+
+        uploadBtn = (Button) findViewById(R.id.ChangeMealButton);
+
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference("UID");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         //.child("images/"+mAuth.getCurrentUser().getUid());
+
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectImage();
+            }
+        });
     }
 
     private void SelectImage() {

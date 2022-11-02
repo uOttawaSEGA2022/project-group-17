@@ -238,17 +238,13 @@
                 android:orientation="horizontal"
                 android:translationY="0dp">
 
-                <TextView
-                    android:id="@+id/ChangeMealPhoto"
+                <Button
+                    android:id="@+id/ChangeMealButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Change Meal Photo..."
-                    android:textColor="#0A79C3"
-                    android:textColorLink="#009AFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:translationY="5dp" />
+                    android:text="Upload Meal Photo..." />
             </LinearLayout>
 
             <LinearLayout
