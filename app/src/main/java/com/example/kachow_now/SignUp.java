@@ -13,9 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +29,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SignUp extends AppCompatActivity {
@@ -69,7 +69,7 @@ public class SignUp extends AppCompatActivity {
                 List<Place.Field> field = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS);
 
                 // Start the autocomplete intent.
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, field)
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, field)
                         .build(SignUp.this);
                 //start activity result
                 startActivityForResult(intent,AUTOCOMPLETE_REQUEST_CODE);
@@ -261,18 +261,21 @@ public class SignUp extends AppCompatActivity {
 
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
                     Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
-                    CCVorInstitution.isEmpty() || address.isEmpty() || postalcode.isEmpty() ||(Type.equals("client") && Year.isEmpty())) {
+                    CCVorInstitution.isEmpty() || address.isEmpty() || postalcode.isEmpty() || (Type.equals("client") && Year.isEmpty())) {
                 throw new IllegalArgumentException();
             }
-            if (Phone.length() != 10 || postalcode.length() != 6){
+            if (Phone.length() != 10 || postalcode.length() != 6) {
+                Toast.makeText(SignUp.this, "Phone error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
-            if (Type.equals("client") && (AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
-                    Integer.parseInt(BranchOrMonth) >12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) >99)){
+            if (Type.equals("client") && ((AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
+                    Integer.parseInt(BranchOrMonth) > 12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) > 99))) {
+                Toast.makeText(SignUp.this, "Client error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
-            if (Type.equals("cook") && (AccountOrCardNumber.length() > 12 || AccountOrCardNumber.length() <7 || CCVorInstitution.length() != 3 ||
-                    BranchOrMonth.length() != 5)){
+            if (Type.equals("cook") && (AccountOrCardNumber.length() > 12 || AccountOrCardNumber.length() < 7 || CCVorInstitution.length() != 3 ||
+                    BranchOrMonth.length() != 5)) {
+                Toast.makeText(SignUp.this, "Cook error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
 
@@ -288,13 +291,13 @@ public class SignUp extends AppCompatActivity {
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
                                     address, postalcode ,Long.parseLong(Phone));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
-                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
+                            //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
-                            Cook u = new Cook( FirstName, Surname,Password, Email,address, postalcode,
-                                    Long.parseLong(Phone), Integer.parseInt(BranchOrMonth),Integer.parseInt(CCVorInstitution),
-                                    Integer.parseInt(AccountOrCardNumber));
+                            Cook u = new Cook(FirstName, Surname, Password, Email, address, postalcode,
+                                    Long.parseLong(Phone), Integer.parseInt(BranchOrMonth), Integer.parseInt(CCVorInstitution),
+                                    Double.parseDouble(AccountOrCardNumber));
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
-                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
+                            //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
                         }
                         Toast.makeText(SignUp.this,"Registration Successful",Toast.LENGTH_LONG).show();
                         finish();
@@ -306,7 +309,7 @@ public class SignUp extends AppCompatActivity {
             });
         }
         catch (NumberFormatException e){
-            Toast.makeText(SignUp.this, "Please Enter Valid Input", Toast.LENGTH_LONG).show();
+            Toast.makeText(SignUp.this, e.toString() + " Please Enter Valid Input", Toast.LENGTH_LONG).show();
         }
         catch (IllegalArgumentException e){
             Toast.makeText(SignUp.this, "Please fill in all fields", Toast.LENGTH_LONG).show();

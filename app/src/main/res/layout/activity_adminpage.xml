@@ -63,7 +63,7 @@
                 android:fillViewport="true">
 
                 <ListView
-                    android:id="@+id/list of complaints"
+                    android:id="@+id/list_of_complaints"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </ScrollView>

@@ -1,55 +1,28 @@
 package com.example.kachow_now;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Client extends User {
-    private String password;
-    private String firstname;
-    private String lastname;
-    private String email;
-    private ArrayList bank;
+    private ArrayList<Number> bank;
     private String address;
     private long phoneNumber;
-    private String postalcode;
+    private String postalCode;
 
-    public Client(String password, String firstname, String lastname, String email, long CC, int month, int year, int ccv, String address, String postalcode, long phoneNumber) {
-        this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
+    public Client(String password, String firstName, String lastName, String email, long CC, int month, int year, int ccv, String address, String postalCode, long phoneNumber) {
+        super(firstName, lastName, password, email);
+        this.role = "Client";
         this.bank = new ArrayList<>();
         bank.add(CC);
         bank.add(month);
         bank.add(year);
         bank.add(ccv);
         this.address = address;
-        this.postalcode = postalcode;
+        this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
     }
 
-    // setter methods
-    public void setFirstName(String newFirstName) {
-        firstname = newFirstName;
-    }
-    public void setPostalcode(String postalcode) { this.postalcode = postalcode;}
-    public void setLastName(String newLastName){
-        lastname = newLastName;
-    }
-    public void setPassword(String newPassword){
-        password = newPassword;
-    }
-    public void setAddress(String newAddress){
-        address = newAddress;
-    }
-    public void setEmail(String newEmail){
-        email = newEmail;
-    }
-    public void setPhoneNumber(long newNumber){
-        phoneNumber = newNumber;
-    }
-    public void setBank(int creditCardNumber, int expMonth, int expYear, int ccv){
-        ArrayList bank1 = new ArrayList<>();
+    public void setBank(int creditCardNumber, int expMonth, int expYear, int ccv) {
+        ArrayList<Number> bank1 = new ArrayList<>();
         bank1.add(creditCardNumber);
         bank1.add(expMonth);
         bank1.add(expYear);
@@ -57,29 +30,33 @@ public class Client extends User {
         bank = bank1;
     }
 
+    public void setAddress(String newAddress) {
+        address = newAddress;
+    }
+
+    public void setPhoneNumber(long newNumber) {
+        phoneNumber = newNumber;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
     // getter methods
-    public String getFirstName() {
-        return firstname;
-    }
-    public String getLastName(){
-        return lastname;
-    }
-    public String getPassword(){
-        return password;
-    }
-    public String getAddress(){
+    public String getAddress() {
         return address;
     }
-    public String getPostalcode() { return postalcode;}
-    public String getEmail(){
-        return email;
+
+    // setter methods
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
-    public long getPhoneNumber(){
+
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-
-    public ArrayList getBank(){
+    public ArrayList<Number> getBank() {
         return bank;
     }
 

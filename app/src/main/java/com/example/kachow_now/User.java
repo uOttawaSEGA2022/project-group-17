@@ -1,43 +1,62 @@
 package com.example.kachow_now;
 
 public class User {
-    private String email;
-    private String password;
-    private String firstname;
-    private String lastname;
+    protected String email;
+    protected String password;
+    protected String firstName;
+    protected String lastName;
+    protected String role;
 
-    public User(){}
 
-    public User(String firstname, String lastname, String password, String email, String address){
+    public User(String firstName, String lastName, String password, String email) {
         this.email = email;
         this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getEmail(){
+    public String getRole() {
+        return role;
+    }
+
+    ;
+
+    public String getEmail() {
         return email;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
-    public String getFirstname(){
-        return firstname;
+
+    public void setRole(String role) {
+        this.role = role;
     }
-    public String getLastname(){
-        return lastname;
+
+    public String getFirstName() {
+        return firstName;
     }
-    public void setEmail(String email){
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    ;
+
+    public void setEmail(String email) {
         this.email = email;
     }
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
-    public void setFirstname(String firstname){
-        this.firstname = firstname;
+
+    public String getLastName() {
+        return lastName;
     }
-    public void setLastname(String lastname){
-        this.lastname = lastname;
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 }
