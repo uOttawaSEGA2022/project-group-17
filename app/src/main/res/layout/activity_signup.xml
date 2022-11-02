@@ -70,7 +70,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/SignupLastName"
+                    android:id="@+id/MealType"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -91,7 +91,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/SignupPassword"
+                    android:id="@+id/Price"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -113,7 +113,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/SignupEmail"
+                    android:id="@+id/Cuisine"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -145,7 +145,7 @@
                     android:textSize="18dp" />
 
                 <EditText
-                    android:id="@+id/firstPhone"
+                    android:id="@+id/IngredientsList"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -208,7 +208,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/SignupAddress"
+                    android:id="@+id/Allergens"
                     android:layout_width="150dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -289,7 +289,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/AccountOrCardNumber"
+                    android:id="@+id/ServingSize"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -311,7 +311,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/CCVorInstitution"
+                    android:id="@+id/Calories"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -378,7 +378,7 @@
 
             <LinearLayout
                 android:id="@+id/RegisterConfirm"
-                android:layout_width="375dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
