@@ -60,7 +60,6 @@ public class SignUp extends AppCompatActivity {
             Places.initialize(getApplicationContext(), apiKey);
         }
 
-
         AddressField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
