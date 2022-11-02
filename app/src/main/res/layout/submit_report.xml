@@ -68,6 +68,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/setMealOrdered"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -104,7 +105,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/day"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#FFC107"
@@ -120,7 +121,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName5"
+                    android:id="@+id/month"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#FFC107"
@@ -136,7 +137,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName6"
+                    android:id="@+id/year"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#FFC107"
@@ -154,7 +155,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextTextPersonName7"
+                android:id="@+id/setTextReview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
