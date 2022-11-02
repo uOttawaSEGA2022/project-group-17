@@ -2,7 +2,12 @@ package com.example.kachow_now;
 
 public class Complaint {
 
-    public Complaint (Meal mealReviewed, String textReview, Cook complaintee, String date){
+    private String textReview;
+    private Meal mealReviewed;
+    private Cook complaintee;
+    public long date;
+
+    public Complaint (Meal mealReviewed, String textReview, Cook complaintee, long date){
         this.mealReviewed = mealReviewed;
         this.textReview = textReview;
         this.complaintee = complaintee;
@@ -28,10 +33,10 @@ public class Complaint {
     public void setComplaintee(Cook newComplaintee){
         complaintee = newComplaintee;
     }
-    public String getDate(){
+    public long getDate(){
         return this.date;
     }
-    public void setDate(String newDate){
+    public void setDate(long newDate){
         date = newDate;
     }
 }
