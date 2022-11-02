@@ -13,6 +13,13 @@
         android:theme="@style/Theme.KaChowNow"
         tools:targetApi="31">
         <activity
+            android:name=".CookProfileClientSide"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AddingMenu"
             android:exported="false">
             <meta-data
