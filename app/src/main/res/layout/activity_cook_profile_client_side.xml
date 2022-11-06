@@ -65,7 +65,7 @@
                         android:textColor="#FFC107" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/chefaddress"
                         android:layout_width="210dp"
                         android:layout_height="20dp"
                         android:layout_weight="0"
