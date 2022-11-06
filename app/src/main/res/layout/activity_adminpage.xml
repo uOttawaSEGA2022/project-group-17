@@ -58,6 +58,7 @@
             android:translationY="-20dp">
 
             <ScrollView
+                android:id="@+id/listOfComplaints"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fillViewport="true">
