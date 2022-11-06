@@ -48,6 +48,7 @@ public class submit_report extends AppCompatActivity {
     private EditText year = (EditText) findViewById(R.id.year);
     private EditText textReview = (EditText) findViewById(R.id.setTextReview);
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +62,35 @@ public class submit_report extends AppCompatActivity {
 
             }
         });
+
+    }
+    public void sendReportToDatabase(){
+        String cookToComplain = complaintee.getText().toString().trim();
+        String mealReview = mealOrdered.getText().toString().trim();
+        String dayOfReview = day.getText().toString().trim();
+        String monthOfReview = month.getText().toString().trim();
+        String yearOfReview = year.getText().toString().trim();
+        String textBoxReview = textReview.getText().toString().trim();
+
+        if (cookToComplain.isEmpty() || mealReview.isEmpty() || dayOfReview.isEmpty()
+        || monthOfReview.isEmpty() || yearOfReview.isEmpty() || textBoxReview.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        if (dayOfReview.length()!=2 || monthOfReview.length()!= 2 || yearOfReview.length()!=4){
+            Toast.makeText(submit_report.this, "Invalid date", Toast.LENGTH_LONG).show();
+            throw new NumberFormatException();
+
+        }
+
+        // TODO
+        Meal temp = null;
+        Cook temp2 = null;
+
+        Complaint comp = new Complaint(temp, textBoxReview, temp2, Integer.parseInt(dayOfReview),
+        Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
+
+        Toast.makeText(submit_report.this, "Report has been sent.", Toast.LENGTH_LONG).show();
+        finish();
     }
 
 
