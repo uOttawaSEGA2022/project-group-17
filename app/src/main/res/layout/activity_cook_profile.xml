@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:translationY="5dp">
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -58,15 +59,15 @@
                         android:layout_width="91dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="Name:"
+                        android:text="@string/name_"
                         android:textColor="#FFC107" />
 
                     <TextView
                         android:id="@+id/cookNameInput"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="<NAME>"
+                        android:text="@string/name"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
@@ -79,15 +80,15 @@
                         android:layout_width="91dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="Address:"
+                        android:text="@string/address_"
                         android:textColor="#FFC107" />
 
                     <TextView
                         android:id="@+id/cookAddressInput"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="<ADDRESS>"
+                        android:text="@string/address"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
@@ -99,15 +100,15 @@
                         android:id="@+id/cookCuisineType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cuisine Types:"
+                        android:text="@string/cuisine_types"
                         android:textColor="#FFC107" />
 
                     <TextView
                         android:id="@+id/cookCuisineTypeInput"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="<CUISINETYPE>"
+                        android:text="@string/cuisinetype"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
@@ -117,17 +118,23 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="610dp"
+            android:layout_weight="0"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/cookProfileMenuButton"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:backgroundTint="#FFC107"
-                android:text="Menu" />
+                android:text="@string/menu" />
 
         </LinearLayout>
 
@@ -143,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFC107"
-                android:text="Orders" />
+                android:text="@string/orders" />
 
         </LinearLayout>
 
