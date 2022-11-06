@@ -27,7 +27,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/photoButton"
+                android:id="@+id/submitreporttitle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -90,7 +90,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/dateTitle"
                     android:layout_width="match_parent"
                     android:layout_height="73dp"
                     android:text="Date:"
@@ -172,12 +172,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cookProfileMenuButton"
-                android:layout_width="279dp"
+                android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FF9800"
-                android:text="Submit" />
+                android:backgroundTint="#FFC107"
+                android:text="submit report" />
         </LinearLayout>
 
     </LinearLayout>

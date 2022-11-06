@@ -9,6 +9,14 @@
     <string name="meal">Meal</string>
     <string name="enter_an_address">Enter an address</string>
     <string name="api_key">AIzaSyAOi9ydMB6zwJSQerohFZdonV7Didui3w8</string>
+    <string name="name">NAME</string>
+    <string name="name_">Name:</string>
+    <string name="address">ADDRESS</string>
+    <string name="address_">Address:</string>
+    <string name="cuisinetype">CUISINETYPE</string>
+    <string name="cuisine_types">Cuisine Types:</string>
+    <string name="menu">Menu</string>
+    <string name="orders">Orders</string>
 
     <string-array name="AccountType">
         <item>Select Role…</item>

@@ -5,13 +5,15 @@ public class Complaint {
     private String textReview;
     private Meal mealReviewed;
     private Cook complaintee;
-    public long date;
+    private int day, month, year;
 
-    public Complaint (Meal mealReviewed, String textReview, Cook complaintee, long date){
+    public Complaint (Meal mealReviewed, String textReview, Cook complaintee, int day, int month, int year){
         this.mealReviewed = mealReviewed;
         this.textReview = textReview;
         this.complaintee = complaintee;
-        this.date = date;
+        this.day = day;
+        this.month = month;
+        this.year = year;
     }
 
     // get and set methods
@@ -33,10 +35,22 @@ public class Complaint {
     public void setComplaintee(Cook newComplaintee){
         complaintee = newComplaintee;
     }
-    public long getDate(){
-        return this.date;
+    public int getDay(){
+        return this.day;
     }
-    public void setDate(long newDate){
-        date = newDate;
+    public void setDay(int newDay){
+        day = newDay;
+    }
+    public int getMonth(){
+        return this.month;
+    }
+    public void setMonth(int newMonth){
+        month = newMonth;
+    }
+    public int getYear(){
+        return this.year;
+    }
+    public void setYear(int newYear){
+        year = newYear;
     }
 }

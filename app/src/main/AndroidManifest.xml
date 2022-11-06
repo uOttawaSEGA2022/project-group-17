@@ -13,6 +13,13 @@
         android:theme="@style/Theme.KaChowNow"
         tools:targetApi="31">
         <activity
+            android:name=".submit_report"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CookProfileClientSide"
             android:exported="false">
             <meta-data
@@ -40,6 +47,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
+
         <activity
             android:name=".Admin"
             android:exported="false">
