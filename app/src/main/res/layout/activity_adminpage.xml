@@ -58,15 +58,23 @@
             android:translationY="-20dp">
 
             <ScrollView
+                android:id="@+id/listOfComplaints"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fillViewport="true">
 
-                <ListView
-                    android:id="@+id/list_of_complaints"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ListView
+                        android:id="@+id/list_of_complaints"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </ScrollView>
+
         </LinearLayout>
     </LinearLayout>
 
