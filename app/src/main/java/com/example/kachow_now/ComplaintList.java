@@ -33,7 +33,7 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
         textViewMeal.setText(complaint.getMealReviewed().getName());
         textViewReview.setText(complaint.getTextReview());
         textViewCook.setText(complaint.getComplaintee().getFirstName());
-        textViewDate.setText(complaint.getMonth());
+        textViewDate.setText(complaint.getMonth() + "/" + complaint.getDay() + "/" + complaint.getYear());
         return listViewItem;
     }
 }
