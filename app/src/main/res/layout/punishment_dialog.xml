@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#373430"
+    android:backgroundTint="#373430"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,20 +15,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Dismiss" />
+            android:backgroundTint="#FFC107"
+            android:text="Dismiss"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ban" />
+            android:backgroundTint="#FFC107"
+            android:text="Ban"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Suspend" />
+            android:backgroundTint="#FFC107"
+            android:text="Suspend"
+            android:textColor="#000000" />
     </LinearLayout>
 </LinearLayout>
