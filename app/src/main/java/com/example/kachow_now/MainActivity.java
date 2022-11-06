@@ -75,14 +75,16 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     String role = snapshot.child("role").getValue(String.class);
-                                    if(role.equalsIgnoreCase("admin")){
+                                    if (role.equalsIgnoreCase("admin")) {
 
-                                        Toast.makeText(MainActivity.this,"Welcome administrator",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(MainActivity.this, "Welcome administrator", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(MainActivity.this.getApplicationContext(), AdminPage.class);
                                         startActivity(intent);
 
-                                    }
-                                    else{
+                                    } else if (role.equalsIgnoreCase("cook")) {
+                                        Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
+                                        startActivity(intent);
+                                    } else {
                                         Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                                         startActivity(intent);
                                     }
