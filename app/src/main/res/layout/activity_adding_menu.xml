@@ -39,7 +39,7 @@
                     android:gravity="center"
                     android:minHeight="?attr/actionBarSize"
                     android:theme="?attr/actionBarTheme"
-                    app:title="                            Add Meal"
+                    app:title="                              Menu"
                     app:titleTextColor="#000000" />
             </LinearLayout>
 
@@ -145,7 +145,7 @@
                     android:layout_weight="0"
                     android:gravity="bottom|center_vertical"
                     android:text="Ingredients:"
-                    android:textColor="#9E9E9E"
+                    android:textColor="#FFC107"
                     android:textSize="18dp" />
 
                 <EditText
@@ -244,7 +244,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Upload Meal Photo..." />
+                    android:text="Upload Meal Photo..."
+                    android:textColor="#FFC107" />
             </LinearLayout>
 
             <LinearLayout
@@ -293,6 +294,7 @@
                     android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text="Description: "
+                    android:textColor="#FFC107"
                     android:textSize="18sp" />
 
                 <EditText
