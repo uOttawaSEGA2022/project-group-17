@@ -27,6 +27,7 @@ public class AdminPage extends AppCompatActivity {
     List<Complaint> complaints;
     ListView listViewComplaints;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,8 @@ public class AdminPage extends AppCompatActivity {
         dB = FirebaseDatabase.getInstance().getReference("LOG");
         Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
         listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
+        Bundle bundle = getIntent().getExtras();
+       // String venName = bundle.getString(MainActivity.VENUE_NAME);
 
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
