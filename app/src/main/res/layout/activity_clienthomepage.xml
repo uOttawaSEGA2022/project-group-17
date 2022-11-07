@@ -83,43 +83,13 @@
             android:layout_height="150dp"
             android:orientation="horizontal">
 
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/my_recyclerView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/breakfeast"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/photo_of_chef"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/egg" />
-
-                    <ImageButton
-                        android:id="@+id/lunch"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/photo_of_chef"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/chef" />
-
-                    <ImageButton
-                        android:id="@+id/dinner"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/photo_of_chef"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/chef2" />
-                </LinearLayout>
-            </HorizontalScrollView>
 
         </LinearLayout>
 
