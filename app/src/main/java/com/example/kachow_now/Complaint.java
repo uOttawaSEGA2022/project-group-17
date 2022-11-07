@@ -6,6 +6,7 @@ public class Complaint {
     private Meal mealReviewed;
     private Cook complaintee;
     private int day, month, year;
+    private long time;
 
     public Complaint (Meal mealReviewed, String textReview, Cook complaintee, int day, int month, int year){
         this.mealReviewed = mealReviewed;
@@ -14,25 +15,39 @@ public class Complaint {
         this.day = day;
         this.month = month;
         this.year = year;
+        this.time = System.currentTimeMillis();
     }
 
     // get and set methods
-    public Meal getMealReviewed(){
+    public Meal getMealReviewed() {
         return this.mealReviewed;
     }
-    public void setMealReviewed(Meal newMealReviewed){
+
+    public void setMealReviewed(Meal newMealReviewed) {
         mealReviewed = newMealReviewed;
     }
-    public String getTextReview(){
+
+    public long getTime() {
+        return this.time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getTextReview() {
         return this.textReview;
     }
-    public void setTextReview(String newReview){
+
+    public void setTextReview(String newReview) {
         textReview = newReview;
     }
-    public Cook getComplaintee(){
+
+    public Cook getComplaintee() {
         return complaintee;
     }
-    public void setComplaintee(Cook newComplaintee){
+
+    public void setComplaintee(Cook newComplaintee) {
         complaintee = newComplaintee;
     }
     public int getDay(){

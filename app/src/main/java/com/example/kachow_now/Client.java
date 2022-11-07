@@ -8,6 +8,9 @@ public class Client extends User {
     private long phoneNumber;
     private String postalCode;
 
+    public Client() {
+    }
+
     public Client(String password, String firstName, String lastName, String email, long CC, int month, int year, int ccv, String address, String postalCode, long phoneNumber) {
         super(firstName, lastName, password, email);
         this.role = "Client";

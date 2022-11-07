@@ -2,12 +2,10 @@ package com.example.kachow_now;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,10 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.List;
 
 public class AdminPage extends AppCompatActivity {
 
@@ -34,7 +32,7 @@ public class AdminPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminpage);
         mAuth = FirebaseAuth.getInstance();
-        dB = FirebaseDatabase.getInstance().getReference("log");
+        dB = FirebaseDatabase.getInstance().getReference("LOG");
         Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
         listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
 
@@ -50,7 +48,8 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
-                showMealEntry(complaint.getMealReviewed().getName(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName());
+                showMealEntry(complaint.getMealReviewed().getName(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName(),
+                        complaint.getComplaintee(), complaint);
                 return true;
             }
         });
@@ -83,7 +82,7 @@ public class AdminPage extends AppCompatActivity {
         finish();
     }
 
-    public void showMealEntry(final String mealName, String cookName) {
+    public void showMealEntry(final String mealName, String cookName, Cook cook, Complaint c) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -98,40 +97,38 @@ public class AdminPage extends AppCompatActivity {
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
+
         buttonDismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO remove complaint from database
-                //complaints.remove()
-
+                dB.child(String.valueOf(c.getTime())).removeValue();
             }
         });
 
         buttonPermaBan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //call method banCook to ban the cook and remove the complaint from list of complaints
-                //complaints.get(i)
-              //  b.dismiss();
+                banCook(cook);
             }
         });
 
         buttonSuspension.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //call method banCook to ban the cook and remove the complaint from list of complaints
-                //complaints.get(i)
-                //  b.dismiss();
+                suspendCook(cook);
             }
         });
 
     }
-    private void banCook(){
-        //TODO set isBanned to true in database
 
+    private void banCook(Cook cook) {
+        DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
+        c.child(cook.getUID()).child("isBanned").setValue(true);
     }
-    private void suspendCook(){
-        //TODO
 
+    private void suspendCook(Cook cook) {
+        DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
+        c.child(cook.getUID()).child("isSuspended").setValue(true);
+        c.child(cook.getUID()).child("daySus").setValue(Cook.getDate());
     }
 }
