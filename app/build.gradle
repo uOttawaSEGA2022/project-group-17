@@ -47,4 +47,15 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.0.0'
     implementation 'com.google.android.libraries.places:places:2.6.0'
     implementation 'com.google.firebase:firebase-storage:20.1.0'
+    // imported for unit tests
+    // Required -- JUnit 4 framework
+    testImplementation "junit:junit:$jUnitVersion"
+    // Optional -- Robolectric environment
+    testImplementation "androidx.test:core:$androidXTestVersion"
+    // Optional -- Mockito framework
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    // Optional -- mockito-kotlin
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"
+    // Optional -- Mockk framework
+    testImplementation "io.mockk:mockk:$mockkVersion"
 }
