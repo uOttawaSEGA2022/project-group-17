@@ -2,10 +2,12 @@ package com.example.kachow_now;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;

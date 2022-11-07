@@ -67,6 +67,7 @@ public class submit_report extends AppCompatActivity {
                 }
 
 
+
             }
         });
 
@@ -90,10 +91,9 @@ public class submit_report extends AppCompatActivity {
         }
 
         // TODO
-        Meal temp = null;
         Cook temp2 = null;
 
-        Complaint comp = new Complaint(temp, textBoxReview, temp2, Integer.parseInt(dayOfReview),
+        Complaint comp = new Complaint(mealReview, textBoxReview, temp2, Integer.parseInt(dayOfReview),
         Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
 
         Toast.makeText(submit_report.this, "Report has been sent.", Toast.LENGTH_LONG).show();
