@@ -30,7 +30,7 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
         TextView textViewDate = (TextView) listViewItem.findViewById(R.id.textViewDate);
 
         Complaint complaint = complaints.get(position);
-        textViewMeal.setText(complaint.getMealReviewed().getName());
+        textViewMeal.setText(complaint.getMealReviewed());
         textViewReview.setText(complaint.getTextReview());
         textViewCook.setText(complaint.getComplaintee().getFirstName());
         textViewDate.setText(complaint.getMonth() + "/" + complaint.getDay() + "/" + complaint.getYear());

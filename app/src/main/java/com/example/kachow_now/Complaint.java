@@ -2,12 +2,11 @@ package com.example.kachow_now;
 
 public class Complaint {
 
-    private String textReview;
-    private Meal mealReviewed;
+    private String textReview, mealReviewed;
     private Cook complaintee;
     private int day, month, year;
 
-    public Complaint (Meal mealReviewed, String textReview, Cook complaintee, int day, int month, int year){
+    public Complaint (String mealReviewed, String textReview, Cook complaintee, int day, int month, int year){
         this.mealReviewed = mealReviewed;
         this.textReview = textReview;
         this.complaintee = complaintee;
@@ -17,10 +16,10 @@ public class Complaint {
     }
 
     // get and set methods
-    public Meal getMealReviewed(){
+    public String getMealReviewed(){
         return this.mealReviewed;
     }
-    public void setMealReviewed(Meal newMealReviewed){
+    public void setMealReviewed(String newMealReviewed){
         mealReviewed = newMealReviewed;
     }
     public String getTextReview(){

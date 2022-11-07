@@ -50,7 +50,7 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
-                showMealEntry(complaint.getMealReviewed().getName(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName());
+                showMealEntry(complaint.getMealReviewed(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName());
                 return true;
             }
         });
