@@ -8,10 +8,17 @@ public class UnitTest extends Cook {
 
     AdminPage newAdmin = new AdminPage();
 
-    Cook newCook = new Cook();
+    @Test
+    public void cookInfoValidator() {
+        
+    }
+
     @Test
     public void newAccountBanValidator() {
-        assertFalse(newCook.getIsBanned());
+        Cook evilCook = new Cook();
+        newAdmin.banCook(evilCook);
+        assertFalse(evilCook.getIsBanned());
+        assertTrue(evilCook.getIsBanned());
     }
 
 }
