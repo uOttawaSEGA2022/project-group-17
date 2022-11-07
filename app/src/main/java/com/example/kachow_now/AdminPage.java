@@ -2,12 +2,10 @@ package com.example.kachow_now;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,7 +48,7 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
-                showMealEntry(complaint.getMealReviewed().getName(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName(),
+                showMealEntry(complaint.getMealReviewed(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName(),
                         complaint.getComplaintee(), complaint);
                 return true;
             }
