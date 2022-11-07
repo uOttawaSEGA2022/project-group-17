@@ -2,6 +2,7 @@ package com.example.kachow_now;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +22,7 @@ public class ClientHomepage extends AppCompatActivity {
     private DatabaseReference dB;
     private ImageButton chef1;
     private ArrayList<Cook> chefs;
+    private ListView listViewChefs;
 
 
     @Override
@@ -30,7 +32,11 @@ public class ClientHomepage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("UID");
 
-        chef1 = (ImageButton) findViewById(R.id.chef1);
+        /*LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(),
+                LinearLayoutManager.HORIZONTAL, false);
+
+        RecyclerView rv= (RecyclerView) findViewById(R.id.my_recyclerView);
+        rv.setLayoutManager(layoutManager);*/
         chefs = new ArrayList<>();
     }
 
@@ -47,6 +53,7 @@ public class ClientHomepage extends AppCompatActivity {
                         chefs.add(s.getValue(Cook.class));
                     }
                 }
+
             }
 
             @Override

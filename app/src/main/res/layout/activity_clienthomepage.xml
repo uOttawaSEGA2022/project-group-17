@@ -48,43 +48,12 @@
             android:layout_height="150dp"
             android:orientation="horizontal">
 
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/my_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/chef1"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/photo_of_chef"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/chef" />
-
-                    <ImageButton
-                        android:id="@+id/chef2"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/photo_of_chef"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/chef2" />
-
-                    <ImageButton
-                        android:id="@+id/chef3"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/photo_of_chef"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/fchef" />
-                </LinearLayout>
-            </HorizontalScrollView>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
 
