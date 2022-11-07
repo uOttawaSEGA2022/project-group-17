@@ -32,7 +32,7 @@ public class Cook extends User {
         bank.add(account);
         this.rating = 0.0;
         this.description = "";
-        this.isBanned = false;
+        this.isSuspended = false;
         this.isBanned = false;
     }
     // setter methods
