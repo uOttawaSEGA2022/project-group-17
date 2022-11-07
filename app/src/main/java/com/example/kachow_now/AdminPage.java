@@ -121,12 +121,12 @@ public class AdminPage extends AppCompatActivity {
 
     }
 
-    private void banCook(Cook cook) {
+    public void banCook(Cook cook) {
         DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
         c.child(cook.getUID()).child("isBanned").setValue(true);
     }
 
-    private void suspendCook(Cook cook) {
+    public void suspendCook(Cook cook) {
         DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
         c.child(cook.getUID()).child("isSuspended").setValue(true);
         c.child(cook.getUID()).child("daySus").setValue(Cook.getDate());
