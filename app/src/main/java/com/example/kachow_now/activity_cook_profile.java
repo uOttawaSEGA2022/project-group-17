@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class activity_cook_profile extends AppCompatActivity {
+public class    activity_cook_profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

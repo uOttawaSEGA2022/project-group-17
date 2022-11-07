@@ -38,6 +38,8 @@ public class ClientHomepage extends AppCompatActivity {
         RecyclerView rv= (RecyclerView) findViewById(R.id.my_recyclerView);
         rv.setLayoutManager(layoutManager);*/
         chefs = new ArrayList<>();
+
+
     }
 
     @Override
