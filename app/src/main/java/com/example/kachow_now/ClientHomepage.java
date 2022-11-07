@@ -10,9 +10,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +26,7 @@ public class ClientHomepage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
     private ImageButton chef1;
-    private ArrayList<Cook> chefs;
+    private ArrayList<GenericTypeIndicator> chefs;
     private ListView listViewChefs;
     private RecyclerView rv;
     private RecyclerView mealTypeRV;
@@ -75,12 +77,10 @@ public class ClientHomepage extends AppCompatActivity {
                 for (DataSnapshot s : snapshot.getChildren()) {
                     User t = s.getValue(User.class);
                     if (t.getRole().equalsIgnoreCase("cook")) {
-
-
                         Cook d = s.getValue(Cook.class);
-
-
-                        chefs.add(d);
+                        GenericTypeIndicator<List<Cook>> p = new GenericTypeIndicator<List<Cook>>() {
+                        };
+                        chefs.add(p);
                     }
                 }
                 rv.setAdapter(new CookList(chefs));

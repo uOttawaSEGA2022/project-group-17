@@ -35,7 +35,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
      * @param dataSet String[] containing the data to populate views to be used
      *                by RecyclerView.
      */
-    public CookList(ArrayList<Cook> dataSet) {
+    public CookList(ArrayList dataSet) {
         cooks = dataSet;
     }
 
