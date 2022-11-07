@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ public class AdminPage extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     DatabaseReference dB;
-    List<Complaint> complaints;
+    List complaints;
     ListView listViewComplaints;
 
 
@@ -37,6 +38,7 @@ public class AdminPage extends AppCompatActivity {
         Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
         listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
 
+        complaints = new ArrayList();
         Bundle bundle = getIntent().getExtras();
        // String venName = bundle.getString(MainActivity.VENUE_NAME);
 
@@ -51,7 +53,7 @@ public class AdminPage extends AppCompatActivity {
     listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Complaint complaint = complaints.get(i);
+                Complaint complaint = (Complaint) complaints.get(i);
                 showMealEntry(complaint.getMealReviewed(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName(),
                         complaint.getComplaintee(), complaint);
                 return true;

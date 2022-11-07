@@ -7,7 +7,10 @@ public class Complaint {
     private int day, month, year;
     private long time;
 
-    public Complaint (String mealReviewed, String textReview, Cook complaintee, int day, int month, int year){
+    public Complaint() {
+    }
+
+    public Complaint(String mealReviewed, String textReview, Cook complaintee, int day, int month, int year) {
         this.mealReviewed = mealReviewed;
         this.textReview = textReview;
         this.complaintee = complaintee;
