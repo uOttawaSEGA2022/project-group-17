@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         String username =  ((EditText)findViewById(R.id.userName)).getText().toString().trim();
         String password =  ((EditText)findViewById(R.id.password)).getText().toString().trim();
+        //TODO error checking here
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                                         Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                                         startActivity(intent);
                                     } else {
-                                        Intent intent = new Intent(MainActivity.this.getApplicationContext(), submit_report.class);
+                                        Intent intent = new Intent(MainActivity.this.getApplicationContext(), ClientHomepage.class);
                                         startActivity(intent);
                                     }
                                 }
@@ -100,9 +102,15 @@ public class MainActivity extends AppCompatActivity {
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this,"Authentication Failed.",
+                            Toast.makeText(MainActivity.this, "Authentication Failed.",
                                     Toast.LENGTH_LONG).show();
                         }
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "failed to login", Toast.LENGTH_LONG).show();
                     }
                 });
     }

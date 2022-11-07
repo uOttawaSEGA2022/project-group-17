@@ -1,7 +1,6 @@
 package com.example.kachow_now;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -14,7 +13,6 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +24,7 @@ public class ClientHomepage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
     private ImageButton chef1;
-    private ArrayList<GenericTypeIndicator> chefs;
+    private ArrayList<Cook> chefs;
     private ListView listViewChefs;
     private RecyclerView rv;
     private RecyclerView mealTypeRV;
@@ -38,32 +36,14 @@ public class ClientHomepage extends AppCompatActivity {
         setContentView(R.layout.activity_clienthomepage);
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("UID");
-        chefs = new ArrayList<>();
+        chefs = new ArrayList<Cook>();
+
         rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
         rv.setAdapter(new CookList(chefs));
         mealTypeRV = (RecyclerView) findViewById(R.id.mealTypeRecyclerView);
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-      //  mealTypeRV.setLayoutManager();
-
-        rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
-
-
+        //  mealTypeRV.setLayoutManager();
 
     }
 
@@ -74,16 +54,47 @@ public class ClientHomepage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chefs.clear();
-                for (DataSnapshot s : snapshot.getChildren()) {
-                    User t = s.getValue(User.class);
-                    if (t.getRole().equalsIgnoreCase("cook")) {
-                        Cook d = s.getValue(Cook.class);
-                        GenericTypeIndicator<List<Cook>> p = new GenericTypeIndicator<List<Cook>>() {
-                        };
-                        chefs.add(p);
+                for (DataSnapshot cookSnapshot : snapshot.getChildren()) {
+                    String r = cookSnapshot.child("role").getValue(String.class);
+                    if (r.equalsIgnoreCase("cook")) {
+                        Cook tmpCook = new Cook();
+                        tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
+                        tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));
+
+                        tmpCook.setBank(cookSnapshot.child("bank").getValue(new GenericTypeIndicator<ArrayList<Long>>() {
+                        }));
+
+                        try {
+                            tmpCook.setDaySus(cookSnapshot.child("daySus").getValue(Integer.class));
+
+                        } catch (NullPointerException e) {
+                            // nothing because this is not a needed value
+                        }
+                        try {
+                            tmpCook.setIsBanned(cookSnapshot.child("isBanned").getValue(boolean.class));
+                        } catch (NullPointerException e) {
+                            tmpCook.setIsBanned(false);
+                        }
+                        try {
+                            tmpCook.setIsSuspended(cookSnapshot.child("isSuspended").getValue(boolean.class));
+                        } catch (NullPointerException e) {
+                            tmpCook.setIsSuspended(false); // assume people are angels and they are not suspended or banned
+                        }
+
+
+                        tmpCook.setDescription(cookSnapshot.child("description").getValue(String.class));
+                        tmpCook.setEmail(cookSnapshot.child("email").getValue(String.class));
+                        tmpCook.setFirstName(cookSnapshot.child("firstName").getValue(String.class));
+                        tmpCook.setLastName(cookSnapshot.child("lastName").getValue(String.class));
+                        tmpCook.setPassword(cookSnapshot.child("passord").getValue(String.class));
+                        tmpCook.setPhoneNumber(cookSnapshot.child("phoneNumber").getValue(long.class));
+                        tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
+                        tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
+                        tmpCook.setRole(cookSnapshot.child("role").getValue(String.class));
+                        chefs.add(tmpCook);
                     }
                 }
-                rv.setAdapter(new CookList(chefs));
+                rv.swapAdapter(new CookList(chefs), true);
             }
 
             @Override

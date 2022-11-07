@@ -57,7 +57,7 @@ public class Cook extends User {
         return this.phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber){
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -65,11 +65,12 @@ public class Cook extends User {
         return this.bank;
     }
 
-    public void setBank(int transit, int institution, int account) {
-        ArrayList bank1 = new ArrayList<>();
-        bank1.add(transit);
-        bank1.add(institution);
-        bank1.add(account);
+    public void setBank(ArrayList bank1) {
+        //setBank(int transit, int institution, int account)
+        //ArrayList bank1 = new ArrayList<>();
+        //bank1.add(transit);
+        //bank1.add(institution);
+        //bank1.add(account);
         this.bank = bank1;
     }
 
@@ -118,6 +119,11 @@ public class Cook extends User {
     public void setDaySus() {
         this.daySus = getDate();
     }
+
+    public void setDaySus(int daySus) {
+        this.daySus = daySus;
+    }
+
     /*
     public void addToMenu(Meal meal, int i){
 

@@ -18,6 +18,7 @@
     <string name="menu">Menu</string>
     <string name="orders">Orders</string>
     <string name="photo_of_chef">Photo of chef</string>
+    <string name="chef">Chef</string>
 
     <string-array name="AccountType">
         <item>Select Role…</item>

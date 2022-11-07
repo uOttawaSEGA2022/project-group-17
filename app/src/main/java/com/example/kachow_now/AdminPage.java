@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class AdminPage extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     DatabaseReference dB;
-    List complaints;
+    List<Complaint> complaints;
     ListView listViewComplaints;
 
 
@@ -38,7 +39,7 @@ public class AdminPage extends AppCompatActivity {
         Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
         listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
 
-        complaints = new ArrayList();
+        complaints = new ArrayList<Complaint>();
         Bundle bundle = getIntent().getExtras();
        // String venName = bundle.getString(MainActivity.VENUE_NAME);
 
@@ -53,7 +54,7 @@ public class AdminPage extends AppCompatActivity {
     listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Complaint complaint = (Complaint) complaints.get(i);
+                Complaint complaint = complaints.get(i);
                 showMealEntry(complaint.getMealReviewed(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName(),
                         complaint.getComplaintee(), complaint);
                 return true;
@@ -67,11 +68,41 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 complaints.clear();
-                for (DataSnapshot post: snapshot.getChildren()) {
-                    Complaint complaint = post.getValue(Complaint.class);
-                    complaints.add(complaint);
+                //complaints = snapshot.getValue(new GenericTypeIndicator<ArrayList<Complaint>>(){});
+                for (DataSnapshot s : snapshot.getChildren()) {
+                    Complaint tmp = new Complaint();
+                    Cook tmpCook = new Cook();
+                    DataSnapshot cookSnapshot = s.child("complaintee");
+                    tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
+                    tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));
+
+                    tmpCook.setBank(cookSnapshot.child("bank").getValue(new GenericTypeIndicator<ArrayList<Long>>() {
+                    }));
+
+                    tmpCook.setDaySus(cookSnapshot.child("daySus").getValue(Integer.class));
+                    tmpCook.setDescription(cookSnapshot.child("description").getValue(String.class));
+                    tmpCook.setEmail(cookSnapshot.child("email").getValue(String.class));
+                    tmpCook.setFirstName(cookSnapshot.child("firstName").getValue(String.class));
+                    tmpCook.setIsBanned(cookSnapshot.child("isBanned").getValue(boolean.class));
+                    tmpCook.setIsSuspended(cookSnapshot.child("isSuspended").getValue(boolean.class));
+                    tmpCook.setLastName(cookSnapshot.child("lastName").getValue(String.class));
+                    tmpCook.setPassword(cookSnapshot.child("passord").getValue(String.class));
+                    tmpCook.setPhoneNumber(cookSnapshot.child("phoneNumber").getValue(long.class));
+                    tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
+                    tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
+                    tmpCook.setRole(cookSnapshot.child("role").getValue(String.class));
+
+                    tmp.setComplaintee(tmpCook);
+                    tmp.setDay(s.child("day").getValue(Integer.class));
+                    tmp.setMealReviewed(s.child("mealReviewed").getValue(String.class));
+                    tmp.setMonth(s.child("month").getValue(Integer.class));
+                    tmp.setTextReview(s.child("textReview").getValue(String.class));
+                    tmp.setTime(s.child("time").getValue(long.class));
+                    tmp.setYear(s.child("year").getValue(Integer.class));
+
+                    complaints.add(tmp);
                 }
-                ComplaintList productsAdapter = new ComplaintList(AdminPage.this,complaints);
+                ComplaintList productsAdapter = new ComplaintList(AdminPage.this, complaints);
                 listViewComplaints.setAdapter(productsAdapter);
             }
 

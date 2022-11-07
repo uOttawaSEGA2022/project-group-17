@@ -1,10 +1,10 @@
 package com.example.kachow_now;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class    activity_cook_profile extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CookHomepage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
