@@ -38,13 +38,14 @@ public class AdminPage extends AppCompatActivity {
         Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
         listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
 
+        //Button dismissButton = (Button) findViewById(R.id.dismissButton);
+
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 logOut(view);
             }
         });
-
 
 
     /*listen for long click on items   listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
