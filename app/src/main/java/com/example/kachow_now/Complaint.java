@@ -5,6 +5,7 @@ public class Complaint {
     private String textReview, mealReviewed;
     private Cook complaintee;
     private int day, month, year;
+    private long time;
 
     public Complaint (String mealReviewed, String textReview, Cook complaintee, int day, int month, int year){
         this.mealReviewed = mealReviewed;
@@ -13,6 +14,7 @@ public class Complaint {
         this.day = day;
         this.month = month;
         this.year = year;
+        this.time = System.currentTimeMillis();
     }
 
     // get and set methods
@@ -22,7 +24,16 @@ public class Complaint {
     public void setMealReviewed(String newMealReviewed){
         mealReviewed = newMealReviewed;
     }
-    public String getTextReview(){
+
+    public long getTime() {
+        return this.time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getTextReview() {
         return this.textReview;
     }
     public void setTextReview(String newReview){

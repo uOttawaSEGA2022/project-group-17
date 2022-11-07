@@ -331,12 +331,14 @@ public class SignUp extends AppCompatActivity {
                                     Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
                                     address, postalcode ,Long.parseLong(Phone));
+                            u.setUID(mAuth.getCurrentUser().getUid());
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                             //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
                             Cook u = new Cook(FirstName, Surname, Password, Email, address, postalcode,
                                     Long.parseLong(Phone), Integer.parseInt(BranchOrMonth), Integer.parseInt(CCVorInstitution),
                                     Double.parseDouble(AccountOrCardNumber));
+                            u.setUID(mAuth.getCurrentUser().getUid());
                             database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
                             //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
                         }

@@ -12,6 +12,12 @@ public class Cook extends User {
     private double rating;
     private String description;
     private boolean isBanned;
+    private boolean isSuspended;
+    private int daySus;
+
+
+    public Cook() {
+    }
 
     public Cook(String firstName, String lastname, String password, String email,
                 String address, String postalCode, long phoneNumber, int transit, int institution, double account) {
@@ -27,7 +33,7 @@ public class Cook extends User {
         this.rating = 0.0;
         this.description = "";
         this.isBanned = false;
-
+        this.isBanned = false;
     }
     // setter methods
 
@@ -92,12 +98,25 @@ public class Cook extends User {
         this.isBanned = isBanned;
     }
 
-
-
-    public static int getDate(){
+    public static int getDate() {
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-        return day;
+        return calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+    }
+
+    public boolean getIsSuspended() {
+        return this.isSuspended;
+    }
+
+    public void setIsSuspended(boolean isSuspended) {
+        this.isSuspended = isSuspended;
+    }
+
+    public int getDaySus() {
+        return this.daySus;
+    }
+
+    public void setDaySus() {
+        this.daySus = getDate();
     }
     /*
     public void addToMenu(Meal meal, int i){
