@@ -92,7 +92,7 @@ public class submit_report extends AppCompatActivity {
         }
 
         // TODO
-        Cook temp2 = null;
+        Cook temp2 = new Cook("kevin", "dang", "1234567","kdang038@uottawa", "2302 apple st", "K6V 34A", 2139539306, 12345764,248,68345);
 
         Complaint comp = new Complaint(mealReview, textBoxReview, temp2, Integer.parseInt(dayOfReview),
         Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
