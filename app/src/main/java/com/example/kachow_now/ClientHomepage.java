@@ -36,8 +36,9 @@ public class ClientHomepage extends AppCompatActivity {
         setContentView(R.layout.activity_clienthomepage);
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("UID");
-
+        chefs = new ArrayList<>();
         rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
+        rv.setAdapter(new CookList(chefs));
         mealTypeRV = (RecyclerView) findViewById(R.id.mealTypeRecyclerView);
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -60,7 +61,6 @@ public class ClientHomepage extends AppCompatActivity {
             }
         });
 
-        chefs = new ArrayList<Cook>();
 
 
     }
@@ -75,7 +75,12 @@ public class ClientHomepage extends AppCompatActivity {
                 for (DataSnapshot s : snapshot.getChildren()) {
                     User t = s.getValue(User.class);
                     if (t.getRole().equalsIgnoreCase("cook")) {
-                        chefs.add(s.getValue(Cook.class));
+
+
+                        Cook d = s.getValue(Cook.class);
+
+
+                        chefs.add(d);
                     }
                 }
                 rv.setAdapter(new CookList(chefs));

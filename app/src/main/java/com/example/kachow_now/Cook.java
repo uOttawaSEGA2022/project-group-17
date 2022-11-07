@@ -8,7 +8,7 @@ public class Cook extends User {
     private String address;
     private String postalCode;
     private long phoneNumber;
-    private ArrayList<Number> bank;
+    private ArrayList bank;
     private double rating;
     private String description;
     private boolean isBanned;
@@ -26,7 +26,7 @@ public class Cook extends User {
         this.address = address;
         this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
-        this.bank = new ArrayList<Number>();
+        this.bank = new ArrayList();
         bank.add(transit);
         bank.add(institution);
         bank.add(account);
@@ -61,12 +61,12 @@ public class Cook extends User {
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<Number> getBank() {
+    public ArrayList getBank() {
         return this.bank;
     }
 
     public void setBank(int transit, int institution, int account) {
-        ArrayList<Number> bank1 = new ArrayList<>();
+        ArrayList bank1 = new ArrayList<>();
         bank1.add(transit);
         bank1.add(institution);
         bank1.add(account);
