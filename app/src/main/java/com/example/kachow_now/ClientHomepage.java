@@ -27,6 +27,7 @@ public class ClientHomepage extends AppCompatActivity {
     private ArrayList<Cook> chefs;
     private ListView listViewChefs;
     private RecyclerView rv;
+    private RecyclerView mealTypeRV;
 
 
     @Override
@@ -37,7 +38,10 @@ public class ClientHomepage extends AppCompatActivity {
         dB = FirebaseDatabase.getInstance().getReference("UID");
 
         rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
+        mealTypeRV = (RecyclerView) findViewById(R.id.mealTypeRecyclerView);
+
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+      //  mealTypeRV.setLayoutManager();
 
         rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
@@ -56,7 +60,7 @@ public class ClientHomepage extends AppCompatActivity {
             }
         });
 
-        chefs = new ArrayList<>();
+        chefs = new ArrayList<Cook>();
 
 
     }
