@@ -38,8 +38,6 @@ public class AdminPage extends AppCompatActivity {
         Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
         listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
 
-        //Button dismissButton = (Button) findViewById(R.id.dismissButton);
-
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,6 +115,16 @@ public class AdminPage extends AppCompatActivity {
               //  b.dismiss();
             }
         });
+
+        buttonSuspension.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //call method banCook to ban the cook and remove the complaint from list of complaints
+                //complaints.get(i)
+                //  b.dismiss();
+            }
+        });
+
     }
     private void banCook(){
         //TODO set isBanned to true in database
