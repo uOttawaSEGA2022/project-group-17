@@ -8,6 +8,7 @@ KaChow-Now is an app where Clients order homecooked meals from local Cooks in th
 
 
 **Features**
+
 Deliverable 1:
 
 - Create an account choosing either the Cook or Client role.
