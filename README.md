@@ -8,10 +8,18 @@ KaChow-Now is an app where Clients order homecooked meals from local Cooks in th
 
 
 **Features**
+Deliverable 1:
+
 - Create an account choosing either the Cook or Client role.
 - Login to account using email and password
 - Dedicated welcome screen displaying the user's name and role once signed in
 - The ability to log out of account on the welcome screen
+
+Deliverable 2:
+
+- Admin can view list of complaints
+- Admin can take action by punishing the Cook (by suspending or banning) or dismissing the report
+
 
 
 **Built in**
