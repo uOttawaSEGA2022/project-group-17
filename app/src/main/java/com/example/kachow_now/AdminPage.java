@@ -38,6 +38,8 @@ public class AdminPage extends AppCompatActivity {
         Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
         listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
 
+        //Button dismissButton = (Button) findViewById(R.id.dismissButton);
+
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,14 +47,15 @@ public class AdminPage extends AppCompatActivity {
             }
         });
 
-    /*listen for long click on items   listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+    listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Complaint complaint = complaints.get(i);
-                showUpdateDeleteDialog(complaint.getId(), complaint.getProductName());
+                Complaint complaint = complaints.get(i);
+                showMealEntry(complaint.getMealReviewed().getName(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName());
                 return true;
             }
-        }); */
+        });
     }
     @Override
     protected void onStart() {
@@ -82,40 +85,45 @@ public class AdminPage extends AppCompatActivity {
         finish();
     }
 
-    /*public void showMealEntry(final String productId, String productName) {
+    public void showMealEntry(final String mealName, String cookName) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.CookProfileClientSide, null);
+        final View dialogView = inflater.inflate(R.layout.punishment_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
-        final EditText editTextPrice  = (EditText) dialogView.findViewById(R.id.editTextPrice);
-        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateProduct);
-        final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteProduct);
+        final Button buttonDismiss = (Button) dialogView.findViewById(R.id.dismissButton);
+        final Button buttonPermaBan = (Button) dialogView.findViewById(R.id.permaBanButton);
+        final Button buttonSuspension = (Button) dialogView.findViewById(R.id.suspendButton);
 
-        dialogBuilder.setTitle(productName);
+        dialogBuilder.setTitle("Complaint about " + cookName);
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
-        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+        buttonDismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = editTextName.getText().toString().trim();
-                double price = Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
-                if (!TextUtils.isEmpty(name)) {
-                    updateProduct(productId, name, price);
-                    b.dismiss();
-                }
+                //TODO remove complaint from database
+                //complaints.remove()
+
             }
         });
 
-        buttonDelete.setOnClickListener(new View.OnClickListener    () {
+        buttonPermaBan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteProduct(productId);
-                b.dismiss();
+                //call method banCook to ban the cook and remove the complaint from list of complaints
+                //complaints.get(i)
+              //  b.dismiss();
             }
         });
-    } */
+    }
+    private void banCook(){
+        //TODO set isBanned to true in database
+
+    }
+    private void suspendCook(){
+        //TODO
+
+    }
 }

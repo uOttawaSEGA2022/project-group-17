@@ -59,6 +59,13 @@ public class submit_report extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                try {
+                    sendReportToDatabase();
+                }
+                catch (IllegalArgumentException e) {
+                    Toast.makeText(submit_report.this, "All fields must be filled out.", Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });

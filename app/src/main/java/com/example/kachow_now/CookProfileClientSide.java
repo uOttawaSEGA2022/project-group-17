@@ -21,8 +21,7 @@ public class CookProfileClientSide extends AppCompatActivity {
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TO DO //
-                //setContentView(R.layout.activity_submit_report);
+                setContentView(R.layout.activity_submit_report);
             }
         });
 
