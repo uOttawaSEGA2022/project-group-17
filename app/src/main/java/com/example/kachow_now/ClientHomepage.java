@@ -1,6 +1,7 @@
 package com.example.kachow_now;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ClientHomepage extends AppCompatActivity {
 
@@ -23,6 +26,7 @@ public class ClientHomepage extends AppCompatActivity {
     private ImageButton chef1;
     private ArrayList<Cook> chefs;
     private ListView listViewChefs;
+    private RecyclerView rv;
 
 
     @Override
@@ -32,11 +36,26 @@ public class ClientHomepage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("UID");
 
-        /*LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(),
-                LinearLayoutManager.HORIZONTAL, false);
+        rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        RecyclerView rv= (RecyclerView) findViewById(R.id.my_recyclerView);
-        rv.setLayoutManager(layoutManager);*/
+        rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
         chefs = new ArrayList<>();
 
 
@@ -55,7 +74,7 @@ public class ClientHomepage extends AppCompatActivity {
                         chefs.add(s.getValue(Cook.class));
                     }
                 }
-
+                rv.setAdapter(new CookList(chefs));
             }
 
             @Override
