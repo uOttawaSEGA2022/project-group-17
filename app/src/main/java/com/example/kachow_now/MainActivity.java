@@ -87,15 +87,22 @@ public class MainActivity extends AppCompatActivity {
 
                                     } else if (role.equalsIgnoreCase("cook") && !isBanned) {
                                         Cook cook = new Cook();
-                                        if (isSuspended){
+                                        if (!isSuspended){
+                                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
+                                            startActivity(intent);
+                                        }else if (isSuspended){
                                             int daySus = snapshot.child("daySus").getValue(int.class);
-                                            if (daySus == cook.getDate()){
+                                            if (daySus >= cook.getDate()){
                                                 DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
                                                 c.child(cook.getUID()).child("isSuspended").setValue(false);
                                                 Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                                                 startActivity(intent);
+                                            }else{
+                                                Toast.makeText(MainActivity.this,"You are suspended for " + (daySus-Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
                                             }
                                         }
+
+
 
                                     } else {
                                         Intent intent = new Intent(MainActivity.this.getApplicationContext(), ClientHomepage.class);
