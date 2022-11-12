@@ -101,7 +101,7 @@ public class Cook extends User {
 
     public static int getDate() {
         Calendar calendar = Calendar.getInstance();
-        return calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+        return calendar.get(Calendar.DAY_OF_YEAR);
     }
 
     public boolean getIsSuspended() {
@@ -116,13 +116,11 @@ public class Cook extends User {
         return this.daySus;
     }
 
-    public void setDaySus() {
-        this.daySus = getDate();
-    }
-
     public void setDaySus(int daySus) {
         this.daySus = daySus;
     }
+
+
 
     /*
     public void addToMenu(Meal meal, int i){
