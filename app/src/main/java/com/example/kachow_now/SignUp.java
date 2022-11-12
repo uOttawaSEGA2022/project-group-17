@@ -43,7 +43,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class SignUp extends AppCompatActivity {
+public class    SignUp extends AppCompatActivity {
 
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
     private static final int PICK_IMAGE_REQUEST = 22;
@@ -70,7 +70,7 @@ public class SignUp extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        uploadBtn = (Button) findViewById(R.id.UploadProfilePicture);
+        uploadBtn = (Button) findViewById(R.id.UploadItemPicture);
         uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,10 +103,10 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-        Button register = (Button)findViewById(R.id.RegisterButton);
+        Button register = (Button)findViewById(R.id.AddNewItemButton);
         Spinner spin = (Spinner) findViewById(R.id.SignupRole);
-        EditText AccountOrCardNumber = (EditText) findViewById(R.id.ServingSize);
-        EditText CCVorInstitution = (EditText) findViewById(R.id.Calories);
+        EditText AccountOrCardNumber = (EditText) findViewById(R.id.Calories);
+        EditText CCVorInstitution = (EditText) findViewById(R.id.Ingredients);
         TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
         EditText Year = (EditText) findViewById(R.id.Year);
@@ -273,16 +273,16 @@ public class SignUp extends AppCompatActivity {
 
         try {
             String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
-            String FirstName = ((EditText) findViewById(R.id.MealName)).getText().toString().trim();
+            String FirstName = ((EditText) findViewById(R.id.ItemName)).getText().toString().trim();
             String Surname = ((EditText) findViewById(R.id.MealType)).getText().toString().trim();
             String firstPhone = ((EditText) findViewById(R.id.IngredientsList)).getText().toString().trim();
             String secondPhone = ((EditText) findViewById(R.id.secondPhone)).getText().toString().trim();
             String thirdPhone = ((EditText) findViewById(R.id.thirdPhone)).getText().toString().trim();
             String Phone = firstPhone + secondPhone + thirdPhone;
-            String Email = ((EditText) findViewById(R.id.Cuisine)).getText().toString().trim();
+            String Email = ((EditText) findViewById(R.id.CusineType)).getText().toString().trim();
             String Password = ((EditText) findViewById(R.id.Price)).getText().toString().trim();
-            String AccountOrCardNumber = ((EditText) findViewById(R.id.ServingSize)).getText().toString().trim();
-            String CCVorInstitution = ((EditText) findViewById(R.id.Calories)).getText().toString().trim();
+            String AccountOrCardNumber = ((EditText) findViewById(R.id.Calories)).getText().toString().trim();
+            String CCVorInstitution = ((EditText) findViewById(R.id.Ingredients)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String address = ((EditText) findViewById(R.id.Allergens)).getText().toString().trim();
             String postalcode1 = ((EditText) findViewById(R.id.pc1)).getText().toString().trim();

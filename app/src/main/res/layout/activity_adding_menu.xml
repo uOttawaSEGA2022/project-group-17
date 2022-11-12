@@ -30,7 +30,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar3"
+                    android:id="@+id/toolbar4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -53,7 +53,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/MealName"
+                    android:id="@+id/ItemName"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -117,7 +117,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/Cuisine"
+                    android:id="@+id/CusineType"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
@@ -194,7 +194,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/ServingSize"
+                    android:id="@+id/Calories"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -216,7 +216,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/Calories"
+                    android:id="@+id/Ingredients"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -321,7 +321,7 @@
                 android:translationY="0dp">
 
                 <Button
-                    android:id="@+id/RegisterButton"
+                    android:id="@+id/AddNewItemButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
