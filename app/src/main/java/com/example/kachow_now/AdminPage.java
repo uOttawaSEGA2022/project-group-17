@@ -42,7 +42,7 @@ public class AdminPage extends AppCompatActivity {
 
         complaints = new ArrayList<Complaint>();
         Bundle bundle = getIntent().getExtras();
-       // String venName = bundle.getString(MainActivity.VENUE_NAME);
+        // String venName = bundle.getString(MainActivity.VENUE_NAME);
 
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +52,7 @@ public class AdminPage extends AppCompatActivity {
         });
 
 
-    listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
@@ -62,6 +62,7 @@ public class AdminPage extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -87,7 +88,7 @@ public class AdminPage extends AppCompatActivity {
                     tmpCook.setIsBanned(cookSnapshot.child("isBanned").getValue(boolean.class));
                     tmpCook.setIsSuspended(cookSnapshot.child("isSuspended").getValue(boolean.class));
                     tmpCook.setLastName(cookSnapshot.child("lastName").getValue(String.class));
-                    tmpCook.setPassword(cookSnapshot.child("passord").getValue(String.class));
+                    tmpCook.setPassword(cookSnapshot.child("password").getValue(String.class));
                     tmpCook.setPhoneNumber(cookSnapshot.child("phoneNumber").getValue(long.class));
                     tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
                     tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
@@ -115,7 +116,7 @@ public class AdminPage extends AppCompatActivity {
     }
 
 
-    public void logOut(View view){
+    public void logOut(View view) {
         mAuth.signOut();
         finish();
     }
@@ -155,7 +156,7 @@ public class AdminPage extends AppCompatActivity {
         buttonSuspension.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                suspendCook(cook,daySus);
+                suspendCook(cook, daySus);
             }
         });
 
@@ -169,6 +170,6 @@ public class AdminPage extends AppCompatActivity {
     public void suspendCook(Cook cook, int days) {
         DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
         c.child(cook.getUID()).child("isSuspended").setValue(true);
-        c.child(cook.getUID()).child("daySus").setValue((Cook.getDate()+days)%365);
+        c.child(cook.getUID()).child("daySus").setValue((Cook.getDate() + days) % 365);
     }
 }

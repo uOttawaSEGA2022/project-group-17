@@ -9,6 +9,7 @@ public class Cook extends User {
     private String postalCode;
     private long phoneNumber;
     private ArrayList bank;
+    private ArrayList<Meal> meals;
     private double rating;
     private String description;
     private boolean isBanned;
@@ -30,6 +31,7 @@ public class Cook extends User {
         bank.add(transit);
         bank.add(institution);
         bank.add(account);
+        this.meals = new ArrayList<>();
         this.rating = 0.0;
         this.description = "";
         this.isSuspended = false;
@@ -118,6 +120,14 @@ public class Cook extends User {
 
     public void setDaySus(int daySus) {
         this.daySus = daySus;
+    }
+
+    public ArrayList<Meal> getMeals() {
+        return this.meals;
+    }
+
+    public void setMeals(ArrayList<Meal> meals) {
+        this.meals = meals;
     }
 
 

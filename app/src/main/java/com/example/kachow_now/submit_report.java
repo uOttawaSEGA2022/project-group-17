@@ -8,14 +8,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class submit_report extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference database;
+    private DatabaseReference dB;
     private Button submit;
     private TextView reportTitle;
     private EditText complaintee;
@@ -26,13 +34,19 @@ public class submit_report extends AppCompatActivity {
     private EditText year;
     private EditText textReview;
 
+    private String cUID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_report);
         database = FirebaseDatabase.getInstance().getReference("LOG");
+        dB = FirebaseDatabase.getInstance().getReference("UID");
         mAuth = FirebaseAuth.getInstance();
+
+        cUID = savedInstanceState.getString("UID");
+
 
         submit = (Button) findViewById(R.id.submitButton);
         reportTitle = (TextView) findViewById(R.id.submitreporttitle);
@@ -70,20 +84,49 @@ public class submit_report extends AppCompatActivity {
         String textBoxReview = textReview.getText().toString().trim();
 
         if (cookToComplain.isEmpty() || mealReview.isEmpty() || dayOfReview.isEmpty()
-        || monthOfReview.isEmpty() || yearOfReview.isEmpty() || textBoxReview.isEmpty()){
+                || monthOfReview.isEmpty() || yearOfReview.isEmpty() || textBoxReview.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        if (dayOfReview.length()!=2 || monthOfReview.length()!= 2 || yearOfReview.length()!=4){
+        if (dayOfReview.length() != 2 || monthOfReview.length() != 2 || yearOfReview.length() != 4) {
             Toast.makeText(submit_report.this, "Invalid date", Toast.LENGTH_LONG).show();
             throw new NumberFormatException();
 
         }
 
-        // TODO
-        Cook temp2 = new Cook("kevin", "dang", "1234567","kdang038@uottawa", "2302 apple st", "K6V 34A", 2139539306, 12345764,248,68345);
 
-        Complaint comp = new Complaint(mealReview, textBoxReview, temp2, Integer.parseInt(dayOfReview),
-        Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
+        Cook tmpCook = new Cook();
+        dB.child(cUID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot cookSnapshot) {
+                Cook tmpCook = new Cook();
+                tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
+                tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));
+
+                tmpCook.setBank(cookSnapshot.child("bank").getValue(new GenericTypeIndicator<ArrayList<Long>>() {
+                }));
+
+                tmpCook.setDaySus(cookSnapshot.child("daySus").getValue(Integer.class));
+                tmpCook.setDescription(cookSnapshot.child("description").getValue(String.class));
+                tmpCook.setEmail(cookSnapshot.child("email").getValue(String.class));
+                tmpCook.setFirstName(cookSnapshot.child("firstName").getValue(String.class));
+                tmpCook.setIsBanned(cookSnapshot.child("isBanned").getValue(boolean.class));
+                tmpCook.setIsSuspended(cookSnapshot.child("isSuspended").getValue(boolean.class));
+                tmpCook.setLastName(cookSnapshot.child("lastName").getValue(String.class));
+                tmpCook.setPassword(cookSnapshot.child("password").getValue(String.class));
+                tmpCook.setPhoneNumber(cookSnapshot.child("phoneNumber").getValue(long.class));
+                tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
+                tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
+                tmpCook.setRole(cookSnapshot.child("role").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Complaint comp = new Complaint(mealReview, textBoxReview, tmpCook, Integer.parseInt(dayOfReview),
+                Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
 
         database.child(String.valueOf(System.currentTimeMillis())).setValue(comp);
 

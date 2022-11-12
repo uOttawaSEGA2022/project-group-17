@@ -1,7 +1,6 @@
 package com.example.kachow_now;
 
 import android.os.Bundle;
-import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +22,6 @@ public class ClientHomepage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
-    private ImageButton chef1;
     private ArrayList<Cook> chefs;
     private ListView listViewChefs;
     private RecyclerView rv;

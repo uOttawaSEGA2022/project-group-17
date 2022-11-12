@@ -1,5 +1,6 @@
 package com.example.kachow_now;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -90,14 +91,16 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
                 }
             });
 
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException ignored) {
         }
 
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO add connection between adapter and buttons
-                //curCook.getUID();
+                String cUID = curCook.getUID();
+                Intent intent = new Intent(v.getContext(), OfferedMealsClientSide.class);
+                intent.putExtra("UID", cUID);
+                v.getContext().startActivity(intent);
             }
         });
     }

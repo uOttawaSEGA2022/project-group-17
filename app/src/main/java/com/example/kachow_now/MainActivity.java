@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's informatsion
+                            // Sign in success, update UI with the signed-in user's information
                             ((EditText)findViewById(R.id.userName)).setText("");
                             ((EditText)findViewById(R.id.password)).setText("");
 
@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(MainActivity.this, "Welcome administrator", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(MainActivity.this.getApplicationContext(), AdminPage.class);
                                         startActivity(intent);
-
                                     } else if (role.equalsIgnoreCase("cook") && !isBanned) {
                                         Cook cook = new Cook();
                                         if (!isSuspended){
@@ -101,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                                                 Toast.makeText(MainActivity.this,"You are suspended for " + (daySus-Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
                                             }
                                         }
-
 
 
                                     } else {
