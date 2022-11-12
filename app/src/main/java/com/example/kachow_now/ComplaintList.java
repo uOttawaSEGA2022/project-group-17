@@ -24,7 +24,7 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_complaint_list, null, true);
 
-        TextView textViewMeal = (TextView) listViewItem.findViewById(R.id.textViewMeal);
+        TextView textViewMeal = (TextView) listViewItem.findViewById(R.id.textViewMealName);
         TextView textViewReview = (TextView) listViewItem.findViewById(R.id.textViewReview);
         TextView textViewCook = (TextView) listViewItem.findViewById(R.id.textViewCook);
         TextView textViewDate = (TextView) listViewItem.findViewById(R.id.textViewDate);

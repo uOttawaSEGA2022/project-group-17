@@ -14,6 +14,9 @@ public class Meal {
     private double servingSize;
     private double Calories;
 
+    public Meal(){
+
+    }
     public Meal(String Name, String Description, String MealType, double Price, String Cuisine, ArrayList<String> Ingredients, ArrayList<String> Allergens, double servingSize, double Calories) {
         this.Name = Name;
         this.Description = Description;
