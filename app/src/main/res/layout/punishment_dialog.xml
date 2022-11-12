@@ -16,10 +16,13 @@
             android:id="@+id/daySus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Set Number of Suspension Days" />
+            android:foregroundGravity="center_vertical|center_horizontal"
+            android:gravity="center|center_horizontal"
+            android:hint="Set Number of Suspension Days"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout

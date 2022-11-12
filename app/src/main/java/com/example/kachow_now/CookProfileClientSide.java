@@ -14,7 +14,7 @@ public class CookProfileClientSide extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook_profile_client_side);
 
-        String cUID = savedInstanceState.getString("UID");
+        String cUID = getIntent().getExtras().getString("UID");
 
         /*Cook tmpCook = new Cook();
         dB.child(cUID).addValueEventListener(new ValueEventListener() {

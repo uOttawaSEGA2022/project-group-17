@@ -45,7 +45,7 @@ public class submit_report extends AppCompatActivity {
         dB = FirebaseDatabase.getInstance().getReference("UID");
         mAuth = FirebaseAuth.getInstance();
 
-        cUID = savedInstanceState.getString("UID");
+        cUID = getIntent().getExtras().getString("UID");
 
 
         submit = (Button) findViewById(R.id.submitButton);
@@ -98,6 +98,9 @@ public class submit_report extends AppCompatActivity {
         dB.child(cUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot cookSnapshot) {
+                for (DataSnapshot c : cookSnapshot.getChildren()) {
+                    System.out.println(c.getKey());
+                }
                 Cook tmpCook = new Cook();
                 tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
                 tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));
@@ -117,6 +120,7 @@ public class submit_report extends AppCompatActivity {
                 tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
                 tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
                 tmpCook.setRole(cookSnapshot.child("role").getValue(String.class));
+
             }
 
             @Override

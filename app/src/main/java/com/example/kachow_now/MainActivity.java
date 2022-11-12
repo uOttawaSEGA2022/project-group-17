@@ -77,27 +77,27 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     String role = snapshot.child("role").getValue(String.class);
-                                    boolean isBanned = snapshot.child("isBanned").getValue(boolean.class);
-                                    boolean isSuspended = snapshot.child("isSuspended").getValue(boolean.class);
                                     if (role.equalsIgnoreCase("admin")) {
 
                                         Toast.makeText(MainActivity.this, "Welcome administrator", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(MainActivity.this.getApplicationContext(), AdminPage.class);
                                         startActivity(intent);
-                                    } else if (role.equalsIgnoreCase("cook") && !isBanned) {
+                                    } else if (role.equalsIgnoreCase("cook") && snapshot.child("isBanned").getValue(boolean.class) != null) {
+                                        boolean isBanned = Boolean.TRUE.equals(snapshot.child("isBanned").getValue(boolean.class));
+                                        boolean isSuspended = Boolean.TRUE.equals(snapshot.child("isSuspended").getValue(boolean.class));
                                         Cook cook = new Cook();
-                                        if (!isSuspended){
+                                        if (!isSuspended) {
                                             Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                                             startActivity(intent);
-                                        }else if (isSuspended){
+                                        } else if (isSuspended) {
                                             int daySus = snapshot.child("daySus").getValue(int.class);
-                                            if (daySus >= cook.getDate()){
+                                            if (daySus >= Cook.getDate()) {
                                                 DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
                                                 c.child(cook.getUID()).child("isSuspended").setValue(false);
                                                 Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                                                 startActivity(intent);
-                                            }else{
-                                                Toast.makeText(MainActivity.this,"You are suspended for " + (daySus-Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(MainActivity.this, "You are suspended for " + (daySus - Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
                                             }
                                         }
 
@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
-                                    Toast.makeText(MainActivity.this,"Failed to access Database error: "
-                                            + error.toString(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MainActivity.this, "Failed to access Database error: "
+                                            + error, Toast.LENGTH_LONG).show();
                                 }
                             });
 

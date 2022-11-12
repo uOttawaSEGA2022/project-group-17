@@ -132,7 +132,7 @@ public class AdminPage extends AppCompatActivity {
         final Button buttonPermaBan = (Button) dialogView.findViewById(R.id.permaBanButton);
         final Button buttonSuspension = (Button) dialogView.findViewById(R.id.suspendButton);
         final EditText textDaySus = (EditText) dialogView.findViewById(R.id.daySus);
-        int daySus = Integer.parseInt(String.valueOf(textDaySus));
+
 
         dialogBuilder.setTitle("Complaint about " + cookName);
         final AlertDialog b = dialogBuilder.create();
@@ -156,6 +156,7 @@ public class AdminPage extends AppCompatActivity {
         buttonSuspension.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int daySus = Integer.parseInt(textDaySus.getText().toString());
                 suspendCook(cook, daySus);
             }
         });
