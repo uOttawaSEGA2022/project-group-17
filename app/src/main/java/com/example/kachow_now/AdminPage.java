@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -129,6 +130,8 @@ public class AdminPage extends AppCompatActivity {
         final Button buttonDismiss = (Button) dialogView.findViewById(R.id.dismissButton);
         final Button buttonPermaBan = (Button) dialogView.findViewById(R.id.permaBanButton);
         final Button buttonSuspension = (Button) dialogView.findViewById(R.id.suspendButton);
+        final EditText textDaySus = (EditText) dialogView.findViewById(R.id.daySus);
+        int daySus = Integer.parseInt(String.valueOf(textDaySus));
 
         dialogBuilder.setTitle("Complaint about " + cookName);
         final AlertDialog b = dialogBuilder.create();
@@ -152,7 +155,7 @@ public class AdminPage extends AppCompatActivity {
         buttonSuspension.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                suspendCook(cook);
+                suspendCook(cook,daySus);
             }
         });
 
@@ -163,9 +166,9 @@ public class AdminPage extends AppCompatActivity {
         c.child(cook.getUID()).child("isBanned").setValue(true);
     }
 
-    public void suspendCook(Cook cook) {
+    public void suspendCook(Cook cook, int days) {
         DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
         c.child(cook.getUID()).child("isSuspended").setValue(true);
-        c.child(cook.getUID()).child("daySus").setValue(Cook.getDate());
+        c.child(cook.getUID()).child("daySus").setValue((Cook.getDate()+days)%365);
     }
 }
