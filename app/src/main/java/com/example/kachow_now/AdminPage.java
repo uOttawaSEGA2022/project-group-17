@@ -51,8 +51,7 @@ public class AdminPage extends AppCompatActivity {
             }
         });
 
-
-    listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewComplaints.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
@@ -87,7 +86,7 @@ public class AdminPage extends AppCompatActivity {
                     tmpCook.setIsBanned(cookSnapshot.child("isBanned").getValue(boolean.class));
                     tmpCook.setIsSuspended(cookSnapshot.child("isSuspended").getValue(boolean.class));
                     tmpCook.setLastName(cookSnapshot.child("lastName").getValue(String.class));
-                    tmpCook.setPassword(cookSnapshot.child("passord").getValue(String.class));
+                    tmpCook.setPassword(cookSnapshot.child("password").getValue(String.class));
                     tmpCook.setPhoneNumber(cookSnapshot.child("phoneNumber").getValue(long.class));
                     tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
                     tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
