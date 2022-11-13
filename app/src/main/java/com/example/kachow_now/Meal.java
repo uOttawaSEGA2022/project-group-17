@@ -13,6 +13,7 @@ public class Meal {
     private ArrayList<String> Allergens;
     private double servingSize;
     private double Calories;
+    private String CookUID;
 
     public Meal(){
 
@@ -27,6 +28,7 @@ public class Meal {
         this.Allergens = Allergens;
         this.servingSize = servingSize;
         this.Calories = Calories;
+
     }
 
     public String getName() {
@@ -100,4 +102,9 @@ public class Meal {
     public void setCalories(double Calories) {
         this.Calories = Calories;
     }
+
+    public String getCookUID() { return this.CookUID;}
+
+    public void setCookUID(String s) {this.CookUID = s;}
 }
+
