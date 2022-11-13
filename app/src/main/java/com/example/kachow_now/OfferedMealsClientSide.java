@@ -78,7 +78,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-        dB = FirebaseDatabase.getInstance().getReference("Meals");
+        dB = FirebaseDatabase.getInstance().getReference("UID");
         listViewMeals = (ListView) findViewById(R.id.list_of_offered_meals);
 
         meals = new ArrayList<Meal>();
@@ -95,7 +95,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
         });
 
     }
- /*   @Override
+    @Override
     protected void onStart() {
         super.onStart();
         dB.addValueEventListener(new ValueEventListener() {
@@ -108,8 +108,10 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                     DataSnapshot mealSnapShot = s.child("Meals");
 
                     ArrayList<String> ingredients = new ArrayList<String>();
-                    for (String s1 : mealSnapShot.getValue(String.class)){
-                        ingredients.add(s1);
+
+                    DataSnapshot ingredientsSnapshot = mealSnapShot.child("Ingredients");
+                    for (DataSnapshot ingredient : ingredientsSnapshot.getChildren()){
+                //        ingredients.add();
                     }
 
                     tmp.setName(mealSnapShot.child("Name").getValue(String.class));
@@ -117,8 +119,8 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                     tmp.setMealType(mealSnapShot.child("MealType").getValue(String.class));
                     tmp.setPrice(mealSnapShot.child("Price").getValue(double.class));
                     tmp.setCuisine(mealSnapShot.child("Cuisine").getValue(String.class));
-                    tmp.setIngredients(mealSnapShot.child("Ingredients").getValue(ArrayList<String>.class));
-                    tmp.setAllergens(mealSnapShot.child("Allergens").getValue(ArrayList<String>.class));
+               //     tmp.setIngredients(mealSnapShot.child("Ingredients").getValue(ArrayList<String>.class));
+               //     tmp.setAllergens(mealSnapShot.child("Allergens").getValue(ArrayList<String>.class));
                     tmp.setServingSize(mealSnapShot.child("ServingSize").getValue(double.class));
                     tmp.setCalories(mealSnapShot.child("Calories").getValue(double.class));
                     meals.add(tmp);
@@ -132,7 +134,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
 
             }
         });
-    } */
+    }
     public void showMealEntry (String mealName){
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OfferedMealsClientSide.this);

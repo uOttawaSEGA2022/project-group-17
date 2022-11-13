@@ -5,13 +5,15 @@ public class Complaint {
     private String textReview, mealReviewed;
     private int day, month, year;
     private long time;
+    private Cook complaintee;
 
     public Complaint() {
     }
 
-    public Complaint(String mealReviewed, String textReview, int day, int month, int year) {
+    public Complaint(String mealReviewed, Cook complaintee, String textReview, int day, int month, int year) {
         this.mealReviewed = mealReviewed;
         this.textReview = textReview;
+        this.complaintee = complaintee;
         this.day = day;
         this.month = month;
         this.year = year;
@@ -25,7 +27,8 @@ public class Complaint {
     public void setMealReviewed(String newMealReviewed){
         mealReviewed = newMealReviewed;
     }
-
+    public Cook getComplaintee(){return this.complaintee;}
+    public void setComplaintee(Cook newComplaintee){this.complaintee = newComplaintee;}
     public long getTime() {
         return this.time;
     }
