@@ -1,6 +1,8 @@
 package com.example.kachow_now;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -36,6 +38,7 @@ public class ClientHomepage extends AppCompatActivity {
         setContentView(R.layout.activity_clienthomepage);
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("UID");
+        Button logOutButton = (Button) findViewById(R.id.ClientHomePageLogout);
         chefs = new ArrayList<Cook>();
 
         rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
@@ -44,8 +47,19 @@ public class ClientHomepage extends AppCompatActivity {
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         //  mealTypeRV.setLayoutManager();
-
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOut(view);
+            }
+        });
     }
+    public void logOut(View view){
+        mAuth.signOut();
+        finish();
+    }
+
+
 
     @Override
     protected void onStart() {
