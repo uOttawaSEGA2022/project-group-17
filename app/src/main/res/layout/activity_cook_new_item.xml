@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#373430"
+        android:orientation="vertical"
+        android:weightSum="0">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFC107"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:title="                       Add New Item"
+                app:titleTextColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <EditText
+                android:id="@+id/ItemName"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Item Name"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <EditText
+                android:id="@+id/MealType"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Meal type"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <EditText
+                android:id="@+id/ItemPrice"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Price"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <EditText
+                android:id="@+id/CusineType"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="CusineType"
+                android:inputType="textEmailAddress"
+                android:textColor="#FFFFFF"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ItemAllergens"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Allergens " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <EditText
+                android:id="@+id/Calories"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Calories"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <EditText
+                android:id="@+id/Ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:hint="Ingredients "
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:backgroundTint="#FFC107"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <EditText
+                android:id="@+id/ItemDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Description" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/UploadItemPicture"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Upload Item Picture..." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/RegisterConfirm"
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:translationY="0dp">
+
+            <Button
+                android:id="@+id/AddNewItemButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:text="Add"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,14 @@
                 android:textColor="#FFC107"
                 android:textSize="45sp"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/ClientHomePageLogout"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="Logout" />
+
         </LinearLayout>
 
         <LinearLayout
