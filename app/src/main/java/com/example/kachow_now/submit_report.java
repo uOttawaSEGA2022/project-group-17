@@ -79,7 +79,7 @@ public class submit_report extends AppCompatActivity {
 
         
 
-        Complaint comp = new Complaint(mealReview, textBoxReview, Integer.parseInt(dayOfReview),
+        Complaint comp = new Complaint(mealReview, new Cook() , textBoxReview, Integer.parseInt(dayOfReview),
         Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
 
         database.child(String.valueOf(System.currentTimeMillis())).setValue(comp);
