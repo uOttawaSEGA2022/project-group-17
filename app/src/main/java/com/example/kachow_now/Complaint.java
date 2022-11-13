@@ -3,17 +3,15 @@ package com.example.kachow_now;
 public class Complaint {
 
     private String textReview, mealReviewed;
-    private Cook complaintee;
     private int day, month, year;
     private long time;
 
     public Complaint() {
     }
 
-    public Complaint(String mealReviewed, String textReview, Cook complaintee, int day, int month, int year) {
+    public Complaint(String mealReviewed, String textReview, int day, int month, int year) {
         this.mealReviewed = mealReviewed;
         this.textReview = textReview;
-        this.complaintee = complaintee;
         this.day = day;
         this.month = month;
         this.year = year;
@@ -41,12 +39,6 @@ public class Complaint {
     }
     public void setTextReview(String newReview){
         textReview = newReview;
-    }
-    public Cook getComplaintee(){
-        return complaintee;
-    }
-    public void setComplaintee(Cook newComplaintee){
-        complaintee = newComplaintee;
     }
     public int getDay(){
         return this.day;

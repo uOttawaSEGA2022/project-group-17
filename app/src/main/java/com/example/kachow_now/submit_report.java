@@ -26,7 +26,6 @@ public class submit_report extends AppCompatActivity {
     private DatabaseReference dB;
     private Button submit;
     private TextView reportTitle;
-    private EditText complaintee;
     private EditText mealOrdered;
     private TextView date;
     private EditText day;
@@ -50,7 +49,6 @@ public class submit_report extends AppCompatActivity {
 
         submit = (Button) findViewById(R.id.submitButton);
         reportTitle = (TextView) findViewById(R.id.submitreporttitle);
-        complaintee = (EditText) findViewById(R.id.setComplaintee);
         mealOrdered = (EditText) findViewById(R.id.setMealOrdered);
         date = (TextView) findViewById(R.id.dateTitle);
         day = (EditText) findViewById(R.id.day);
@@ -76,15 +74,14 @@ public class submit_report extends AppCompatActivity {
 
     }
     public void sendReportToDatabase(){
-        String cookToComplain = complaintee.getText().toString().trim();
         String mealReview = mealOrdered.getText().toString().trim();
         String dayOfReview = day.getText().toString().trim();
         String monthOfReview = month.getText().toString().trim();
         String yearOfReview = year.getText().toString().trim();
         String textBoxReview = textReview.getText().toString().trim();
 
-        if (cookToComplain.isEmpty() || mealReview.isEmpty() || dayOfReview.isEmpty()
-                || monthOfReview.isEmpty() || yearOfReview.isEmpty() || textBoxReview.isEmpty()) {
+        if (mealReview.isEmpty() || dayOfReview.isEmpty()
+        || monthOfReview.isEmpty() || yearOfReview.isEmpty() || textBoxReview.isEmpty()){
             throw new IllegalArgumentException();
         }
         if (dayOfReview.length() != 2 || monthOfReview.length() != 2 || yearOfReview.length() != 4) {
