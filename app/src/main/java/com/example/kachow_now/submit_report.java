@@ -18,7 +18,6 @@ public class submit_report extends AppCompatActivity {
     private DatabaseReference database;
     private Button submit;
     private TextView reportTitle;
-    private EditText complaintee;
     private EditText mealOrdered;
     private TextView date;
     private EditText day;
@@ -36,7 +35,6 @@ public class submit_report extends AppCompatActivity {
 
         submit = (Button) findViewById(R.id.submitButton);
         reportTitle = (TextView) findViewById(R.id.submitreporttitle);
-        complaintee = (EditText) findViewById(R.id.setComplaintee);
         mealOrdered = (EditText) findViewById(R.id.setMealOrdered);
         date = (TextView) findViewById(R.id.dateTitle);
         day = (EditText) findViewById(R.id.day);
@@ -62,14 +60,13 @@ public class submit_report extends AppCompatActivity {
 
     }
     public void sendReportToDatabase(){
-        String cookToComplain = complaintee.getText().toString().trim();
         String mealReview = mealOrdered.getText().toString().trim();
         String dayOfReview = day.getText().toString().trim();
         String monthOfReview = month.getText().toString().trim();
         String yearOfReview = year.getText().toString().trim();
         String textBoxReview = textReview.getText().toString().trim();
 
-        if (cookToComplain.isEmpty() || mealReview.isEmpty() || dayOfReview.isEmpty()
+        if (mealReview.isEmpty() || dayOfReview.isEmpty()
         || monthOfReview.isEmpty() || yearOfReview.isEmpty() || textBoxReview.isEmpty()){
             throw new IllegalArgumentException();
         }
@@ -79,10 +76,10 @@ public class submit_report extends AppCompatActivity {
 
         }
 
-        // TODO
-        Cook temp2 = new Cook("kevin", "dang", "1234567","kdang038@uottawa", "2302 apple st", "K6V 34A", 2139539306, 12345764,248,68345);
 
-        Complaint comp = new Complaint(mealReview, textBoxReview, temp2, Integer.parseInt(dayOfReview),
+        
+
+        Complaint comp = new Complaint(mealReview, textBoxReview, Integer.parseInt(dayOfReview),
         Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
 
         database.child(String.valueOf(System.currentTimeMillis())).setValue(comp);

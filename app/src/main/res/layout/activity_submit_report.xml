@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/setMealReviewed"
+    android:id="@+id/test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#373430">
@@ -47,36 +47,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="96dp"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/setComplaintee"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="#FFC107"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Cook"
-                android:textColor="#000000"
-                android:textColorHint="#FF9800"
-                android:textSize="24sp" />
-        </LinearLayout>
+            android:orientation="vertical"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="105dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/setMealOrdered"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Meal Ordered"
-                android:textSize="24sp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setMealOrdered"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#373430"
+                    android:hint="Meal Ordered:"
+                    android:textSize="24sp" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -104,15 +93,18 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/day"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Day"
-                    android:textSize="24sp" />
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/day"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#373430"
+                        android:hint="Day"
+                        android:textSize="24sp" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -120,15 +112,18 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/month"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Month"
-                    android:textSize="24sp" />
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/month"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#373430"
+                        android:hint="Month"
+                        android:textSize="24sp" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -136,15 +131,18 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/year"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#FFC107"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Year"
-                    android:textSize="24sp" />
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/year"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#373430"
+                        android:hint="Year"
+                        android:textSize="24sp" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -154,16 +152,18 @@
             android:layout_height="318dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/setTextReview"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Describe the Situation"
-                android:textSize="24sp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setTextReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#373430"
+                    android:hint="Describe the situation."
+                    android:textSize="24sp" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
