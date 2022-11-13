@@ -14,8 +14,12 @@ import android.widget.ListView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -103,27 +107,36 @@ public class OfferedMealsClientSide extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 meals.clear();
                 for (DataSnapshot s : snapshot.getChildren()) {
-                    Meal tmp = new Meal();
-                    Cook tmpCook = new Cook();
-                    DataSnapshot mealSnapShot = s.child("Meals");
+                    if (s.child("role").getValue(String.class).equals("cook")){
+                        Meal tmp = new Meal();
+                        DataSnapshot mealSnapShot = s.child("meals");
 
-                    ArrayList<String> ingredients = new ArrayList<String>();
+                        ArrayList<String> ingredients = new ArrayList<String>();
 
-                    DataSnapshot ingredientsSnapshot = mealSnapShot.child("Ingredients");
-                    for (DataSnapshot ingredient : ingredientsSnapshot.getChildren()){
-                //        ingredients.add();
+                        DataSnapshot ingredientsSnapshot = mealSnapShot.child("Ingredients");
+                        for (DataSnapshot ingredient : ingredientsSnapshot.getChildren()){
+                            ingredients.add(String.valueOf(ingredient));
+                        }
+
+                        ArrayList<String> allergens = new ArrayList<String>();
+
+                        DataSnapshot allergensSnapshot = mealSnapShot.child("Allergens");
+                        for (DataSnapshot allergen : allergensSnapshot.getChildren()){
+                            allergens.add(String.valueOf(allergen));
+                        }
+
+                        tmp.setName(mealSnapShot.child("Name").getValue(String.class));
+                        tmp.setDescription(mealSnapShot.child("Description").getValue(String.class));
+                        tmp.setMealType(mealSnapShot.child("MealType").getValue(String.class));
+                        tmp.setPrice(mealSnapShot.child("Price").getValue(double.class));
+                        tmp.setCuisine(mealSnapShot.child("Cuisine").getValue(String.class));
+                        tmp.setIngredients(ingredients);
+                        tmp.setAllergens(allergens);
+                        tmp.setServingSize(mealSnapShot.child("ServingSize").getValue(double.class));
+                        tmp.setCalories(mealSnapShot.child("Calories").getValue(double.class));
+                        meals.add(tmp);
                     }
 
-                    tmp.setName(mealSnapShot.child("Name").getValue(String.class));
-                    tmp.setDescription(mealSnapShot.child("Description").getValue(String.class));
-                    tmp.setMealType(mealSnapShot.child("MealType").getValue(String.class));
-                    tmp.setPrice(mealSnapShot.child("Price").getValue(double.class));
-                    tmp.setCuisine(mealSnapShot.child("Cuisine").getValue(String.class));
-               //     tmp.setIngredients(mealSnapShot.child("Ingredients").getValue(ArrayList<String>.class));
-               //     tmp.setAllergens(mealSnapShot.child("Allergens").getValue(ArrayList<String>.class));
-                    tmp.setServingSize(mealSnapShot.child("ServingSize").getValue(double.class));
-                    tmp.setCalories(mealSnapShot.child("Calories").getValue(double.class));
-                    meals.add(tmp);
                 }
                 MealList productsAdapter = new MealList(OfferedMealsClientSide.this, meals);
                 listViewMeals.setAdapter(productsAdapter);
