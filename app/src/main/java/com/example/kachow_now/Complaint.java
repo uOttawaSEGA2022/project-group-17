@@ -21,14 +21,22 @@ public class Complaint {
     }
 
     // get and set methods
-    public String getMealReviewed(){
+    public String getMealReviewed() {
         return this.mealReviewed;
     }
-    public void setMealReviewed(String newMealReviewed){
+
+    public void setMealReviewed(String newMealReviewed) {
         mealReviewed = newMealReviewed;
     }
-    public Cook getComplaintee(){return this.complaintee;}
-    public void setComplaintee(Cook newComplaintee){this.complaintee = newComplaintee;}
+
+    public Cook getComplaintee() {
+        return this.complaintee;
+    }
+
+    public void setComplaintee(Cook newComplaintee) {
+        this.complaintee = newComplaintee;
+    }
+
     public long getTime() {
         return this.time;
     }

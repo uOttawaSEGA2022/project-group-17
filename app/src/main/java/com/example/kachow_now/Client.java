@@ -64,4 +64,14 @@ public class Client extends User {
     }
 
 
+    @Override
+    public String toString() {
+        return super.toString() + "\n{" +
+                " bank='" + getBank() + "'" +
+                ", address='" + getAddress() + "'" +
+                ", phoneNumber='" + getPhoneNumber() + "'" +
+                ", postalCode='" + getPostalCode() + "'" +
+                "}";
+    }
+
 }

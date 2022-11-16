@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.loginButton);
         signup = findViewById(R.id.singUpButton);
 
-        editTextUsername = ((EditText)findViewById(R.id.userName)) ;
-        editTextPassword = ((EditText)findViewById(R.id.password));
+        editTextUsername = findViewById(R.id.userName);
+        editTextPassword = findViewById(R.id.password);
     }
 
     @Override
@@ -86,19 +86,20 @@ public class MainActivity extends AppCompatActivity {
                                         boolean isBanned = Boolean.TRUE.equals(snapshot.child("isBanned").getValue(boolean.class));
                                         boolean isSuspended = Boolean.TRUE.equals(snapshot.child("isSuspended").getValue(boolean.class));
                                         Cook cook = new Cook();
-                                        if (!isSuspended) {
+                                        if (!isSuspended && !isBanned) {
                                             Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                                             startActivity(intent);
-                                        } else if (isSuspended) {
+                                        } else if (isSuspended && !isBanned) {
                                             int daySus = snapshot.child("daySus").getValue(int.class);
-                                            if (daySus >= Cook.getDate()) {
-                                                DatabaseReference c = FirebaseDatabase.getInstance().getReference("UID");
-                                                c.child(cook.getUID()).child("isSuspended").setValue(false);
+                                            if (daySus <= Cook.getDate()) {
+                                                dB.child((mAuth.getCurrentUser()).getUid()).child("isSuspended").setValue(false);
                                                 Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
                                                 startActivity(intent);
                                             } else {
                                                 Toast.makeText(MainActivity.this, "You are suspended for " + (daySus - Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
                                             }
+                                        } else {
+                                            Toast.makeText(MainActivity.this, "You are permanently banned from out platform, thank you for your co-operation", Toast.LENGTH_LONG).show();
                                         }
 
 

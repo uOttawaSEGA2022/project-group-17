@@ -47,14 +47,14 @@ public class submit_report extends AppCompatActivity {
         cUID = getIntent().getExtras().getString("UID");
 
 
-        submit = (Button) findViewById(R.id.submitButton);
-        reportTitle = (TextView) findViewById(R.id.submitreporttitle);
-        mealOrdered = (EditText) findViewById(R.id.setMealOrdered);
-        date = (TextView) findViewById(R.id.dateTitle);
-        day = (EditText) findViewById(R.id.day);
-        month = (EditText) findViewById(R.id.month);
-        year = (EditText) findViewById(R.id.year);
-        textReview = (EditText) findViewById(R.id.setTextReview);
+        submit = findViewById(R.id.submitButton);
+        reportTitle = findViewById(R.id.submitreporttitle);
+        mealOrdered = findViewById(R.id.setMealOrdered);
+        date = findViewById(R.id.dateTitle);
+        day = findViewById(R.id.day);
+        month = findViewById(R.id.month);
+        year = findViewById(R.id.year);
+        textReview = findViewById(R.id.setTextReview);
 
         submit.setOnClickListener(new View.OnClickListener() {
 
@@ -95,11 +95,10 @@ public class submit_report extends AppCompatActivity {
         dB.child(cUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot cookSnapshot) {
-                for (DataSnapshot c : cookSnapshot.getChildren()) {
-                    System.out.println(c.getKey());
-                }
-                Cook tmpCook = new Cook();
+
                 tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
+
+
                 tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));
 
                 tmpCook.setBank(cookSnapshot.child("bank").getValue(new GenericTypeIndicator<ArrayList<Long>>() {
@@ -117,6 +116,19 @@ public class submit_report extends AppCompatActivity {
                 tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
                 tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
                 tmpCook.setRole(cookSnapshot.child("role").getValue(String.class));
+                Complaint comp = new Complaint(mealReview, tmpCook, textBoxReview, Integer.parseInt(dayOfReview),
+                        Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
+
+                String time = String.valueOf(System.currentTimeMillis());
+
+                database.child(time).setValue(comp);
+                database.child(time).child("complaintee").removeValue();
+                database.child(time).child("complaintee").setValue(tmpCook);
+                // weird firebase doesn't recognise cook fully, need to manually set and pull both ways I guess
+
+
+                Toast.makeText(submit_report.this, "Report has been sent.", Toast.LENGTH_LONG).show();
+                finish();
 
             }
 
@@ -125,14 +137,6 @@ public class submit_report extends AppCompatActivity {
 
             }
         });
-
-        Complaint comp = new Complaint(mealReview, tmpCook, textBoxReview, Integer.parseInt(dayOfReview),
-                Integer.parseInt(monthOfReview), Integer.parseInt(yearOfReview));
-
-        database.child(String.valueOf(System.currentTimeMillis())).setValue(comp);
-
-        Toast.makeText(submit_report.this, "Report has been sent.", Toast.LENGTH_LONG).show();
-        finish();
     }
 
 

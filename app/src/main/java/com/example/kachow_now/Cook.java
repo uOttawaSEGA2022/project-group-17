@@ -164,4 +164,20 @@ public class Cook extends User {
     }*/
 
 
+    @Override
+    public String toString() {
+        return super.toString() + "\n{" +
+                " address='" + getAddress() + "'" +
+                ", postalCode='" + getPostalCode() + "'" +
+                ", phoneNumber='" + getPhoneNumber() + "'" +
+                ", bank='" + getBank() + "'" +
+                ", meals='" + getMeals() + "'" +
+                ", rating='" + getRating() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", isBanned='" + getIsBanned() + "'" +
+                ", isSuspended='" + getIsSuspended() + "'" +
+                ", daySus='" + getDaySus() + "'" +
+                "}";
+    }
+
 }

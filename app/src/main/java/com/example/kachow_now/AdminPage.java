@@ -37,8 +37,8 @@ public class AdminPage extends AppCompatActivity {
         setContentView(R.layout.activity_adminpage);
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("LOG");
-        Button adminLogoutButton = (Button) findViewById(R.id.adminLogoutButton);
-        listViewComplaints = (ListView) findViewById(R.id.list_of_complaints);
+        Button adminLogoutButton = findViewById(R.id.adminLogoutButton);
+        listViewComplaints = findViewById(R.id.list_of_complaints);
 
         complaints = new ArrayList<Complaint>();
         Bundle bundle = getIntent().getExtras();
@@ -75,6 +75,9 @@ public class AdminPage extends AppCompatActivity {
                     Complaint tmp = new Complaint();
                     Cook tmpCook = new Cook();
                     DataSnapshot cookSnapshot = s.child("complaintee");
+                    for (DataSnapshot j : cookSnapshot.getChildren()) {
+                        System.out.println(j.getKey() + ": " + j.getValue());
+                    }
                     tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
                     tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));
 
@@ -128,10 +131,10 @@ public class AdminPage extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.punishment_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final Button buttonDismiss = (Button) dialogView.findViewById(R.id.dismissButton);
-        final Button buttonPermaBan = (Button) dialogView.findViewById(R.id.permaBanButton);
-        final Button buttonSuspension = (Button) dialogView.findViewById(R.id.suspendButton);
-        final EditText textDaySus = (EditText) dialogView.findViewById(R.id.daySus);
+        final Button buttonDismiss = dialogView.findViewById(R.id.dismissButton);
+        final Button buttonPermaBan = dialogView.findViewById(R.id.permaBanButton);
+        final Button buttonSuspension = dialogView.findViewById(R.id.suspendButton);
+        final EditText textDaySus = dialogView.findViewById(R.id.daySus);
 
 
         dialogBuilder.setTitle("Complaint about " + cookName);
@@ -143,6 +146,7 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child(String.valueOf(c.getTime())).removeValue();
+                b.dismiss();
             }
         });
 
@@ -150,6 +154,8 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 banCook(cook);
+                dB.child(String.valueOf(c.getTime())).removeValue();
+                b.dismiss();
             }
         });
 
@@ -158,6 +164,8 @@ public class AdminPage extends AppCompatActivity {
             public void onClick(View view) {
                 int daySus = Integer.parseInt(textDaySus.getText().toString());
                 suspendCook(cook, daySus);
+                dB.child(String.valueOf(c.getTime())).removeValue();
+                b.dismiss();
             }
         });
 
