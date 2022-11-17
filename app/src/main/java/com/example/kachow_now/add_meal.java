@@ -20,6 +20,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,8 +55,9 @@ public class add_meal extends AppCompatActivity {
         calories = findViewById(R.id.Calories);
         ingredients = findViewById(R.id.Ingredients);
         description = findViewById(R.id.ItemDescription);
+        //servingSize = findViewById(R.id.ServingSize);
 
-        upload = findViewById(R.id.UploadItemPicture);
+        //upload = findViewById(R.id.UploadItemPicture);
         add = findViewById(R.id.AddNewItemButton);
 
         upload.setOnClickListener(new View.OnClickListener() {
@@ -116,12 +118,18 @@ public class add_meal extends AppCompatActivity {
         String mealDesc = description.getText().toString().trim();
         String mealType = type.getText().toString().trim();
         double mealPrice = Double.parseDouble(price.getText().toString().trim());
+        String mealCuisine = cuisine.getText().toString().trim();
+        double mealCalories = Double.parseDouble(calories.getText().toString().trim());
+        ArrayList<String> mealIngredients;
+        ArrayList<String> mealAllergens;
+        //double mealServingSize = Double.parseDouble(mealServingSize.getText().toString().trim());
 
 
         //TODO finish meal to database
 
+        // Meal(String Name, String Description, String MealType, double Price, String Cuisine, ArrayList<String> Ingredients, ArrayList<String> Allergens, double servingSize, double Calories)
 
-        //Meal m = new Meal(mealName,mealDesc,mealType,mealPrice,)
+        //Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, mealIngredients, mealAllergens, servingSize, mealCalories);
         //dB.child(name.getText().toString()).setValue(m);
 
     }
