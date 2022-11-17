@@ -29,7 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class add_meal extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 22;
-    private EditText name, type, price, cuisine, allergens, calories, ingredients, description;
+    private EditText name, type, price, cuisine, allergens, calories, ingredients, description, servingSize;
     private Button upload, add;
     private Uri filePath;
     private FirebaseAuth mAuth;
@@ -55,10 +55,10 @@ public class add_meal extends AppCompatActivity {
         calories = findViewById(R.id.Calories);
         ingredients = findViewById(R.id.Ingredients);
         description = findViewById(R.id.ItemDescription);
-        //servingSize = findViewById(R.id.ServingSize);
+        servingSize = findViewById(R.id.ServingSize);
 
         //upload = findViewById(R.id.UploadItemPicture);
-        add = findViewById(R.id.AddNewItemButton);
+        add = findViewById(R.id.addNewItemButton4);
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,14 +122,14 @@ public class add_meal extends AppCompatActivity {
         double mealCalories = Double.parseDouble(calories.getText().toString().trim());
         ArrayList<String> mealIngredients;
         ArrayList<String> mealAllergens;
-        //double mealServingSize = Double.parseDouble(mealServingSize.getText().toString().trim());
+        double mealServingSize = Double.parseDouble(servingSize.getText().toString().trim());
 
 
         //TODO finish meal to database
 
         // Meal(String Name, String Description, String MealType, double Price, String Cuisine, ArrayList<String> Ingredients, ArrayList<String> Allergens, double servingSize, double Calories)
 
-        //Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, mealIngredients, mealAllergens, servingSize, mealCalories);
+        //Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, mealIngredients, mealAllergens, mealServingSize, mealCalories);
         //dB.child(name.getText().toString()).setValue(m);
 
     }
