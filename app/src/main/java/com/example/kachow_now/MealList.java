@@ -1,6 +1,8 @@
 package com.example.kachow_now;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,6 +20,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 
 public class MealList extends ArrayAdapter<Meal> {
@@ -58,19 +63,40 @@ public class MealList extends ArrayAdapter<Meal> {
         Meal meal = meals.get(position);
         String cUID = meal.getCookUID();
 
-        //TODO think of the best way to implement database information gathering through this
+
+        StorageReference ref = storageReference.child("images/" +
+                (mAuth.getCurrentUser()).getUid() + "/" + meal.getName());
+
+        final long TWO_MEGABYTE = 2048 * 2048;
+        try {
+            Task<byte[]> im = ref.getBytes(TWO_MEGABYTE);
+            im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
+                @Override
+                public void onComplete(@NonNull Task<byte[]> task) {
+                    if (im.isSuccessful()) {
+                        byte[] b = im.getResult();
+                        Bitmap bm = BitmapFactory.decodeByteArray(b, 0, b.length);
+                        chefprofilePic.setImageBitmap(bm);
+                    } else {
+                        System.out.println("Not Successful");
+                    }
+                }
+            });
+
+        } catch (IndexOutOfBoundsException ignored) {
+        }
 
         String ingredients;
         StringBuilder line = new StringBuilder();
         for (String ingredient : meal.getIngredients()) {
-            line.append(ingredient);
+            line.append(ingredient + ", ");
         }
         ingredients = line.toString();
 
         String allergens;
         StringBuilder line2 = new StringBuilder();
         for (String allergen: meal.getAllergens()){
-            line.append(allergen);
+            line.append(allergen+", ");
         }
         allergens = line2.toString();
 
@@ -83,6 +109,9 @@ public class MealList extends ArrayAdapter<Meal> {
         textViewMealAllergens.setText(allergens);
         textViewServingSize.setText(String.valueOf(meal.getServingSize()));
         textViewCalories.setText(String.valueOf(meal.getCalories()));
+
+        offered.setChecked(meal.getIsOffered());
+
 
 
         return listViewItem;

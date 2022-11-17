@@ -41,8 +41,6 @@ public class AdminPage extends AppCompatActivity {
         listViewComplaints = findViewById(R.id.list_of_complaints);
 
         complaints = new ArrayList<Complaint>();
-        Bundle bundle = getIntent().getExtras();
-        // String venName = bundle.getString(MainActivity.VENUE_NAME);
 
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
