@@ -208,7 +208,7 @@
 
             <EditText
                 android:id="@+id/ServingSize"
-                android:layout_width="wrap_content"
+                android:layout_width="330dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
@@ -219,20 +219,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/uploadItemPicture3"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Upload Item Picture..."
+                android:textColor="#FFC107" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/uploadItemPicture3"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="Upload Item Picture..."
-            android:textColor="#FFC107" />
 
         <LinearLayout
             android:id="@+id/RegisterConfirm"
@@ -244,7 +243,7 @@
             android:translationY="0dp">
 
             <Button
-                android:id="@+id/AddNewItemButton"
+                android:id="@+id/addNewItemButton4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
