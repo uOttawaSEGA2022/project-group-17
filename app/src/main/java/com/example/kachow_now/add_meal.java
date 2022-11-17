@@ -46,17 +46,17 @@ public class add_meal extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        name = (EditText) findViewById(R.id.ItemName);
-        type = (EditText) findViewById(R.id.MealType);
-        price = (EditText) findViewById(R.id.ItemPrice);
-        cuisine = (EditText) findViewById(R.id.CusineType);
-        allergens = (EditText) findViewById(R.id.ItemAllergens);
-        calories = (EditText) findViewById(R.id.Calories);
-        ingredients = (EditText) findViewById(R.id.Ingredients);
-        description = (EditText) findViewById(R.id.ItemDescription);
+        name = findViewById(R.id.ItemName);
+        type = findViewById(R.id.MealType);
+        price = findViewById(R.id.ItemPrice);
+        cuisine = findViewById(R.id.CusineType);
+        allergens = findViewById(R.id.ItemAllergens);
+        calories = findViewById(R.id.Calories);
+        ingredients = findViewById(R.id.Ingredients);
+        description = findViewById(R.id.ItemDescription);
 
-        upload = (Button) findViewById(R.id.UploadItemPicture);
-        add = (Button) findViewById(R.id.AddNewItemButton);
+        upload = findViewById(R.id.UploadItemPicture);
+        add = findViewById(R.id.AddNewItemButton);
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +69,12 @@ public class add_meal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SendMealToDatabase();
-                uploadImage();
-                finish();
+                if (filePath != null) {
+                    uploadImage();
+                    finish();
+                } else {
+                    Toast.makeText(add_meal.this, "Please upload a picture of the meal", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -112,6 +116,7 @@ public class add_meal extends AppCompatActivity {
         String mealDesc = description.getText().toString().trim();
         String mealType = type.getText().toString().trim();
         double mealPrice = Double.parseDouble(price.getText().toString().trim());
+
 
         //TODO finish meal to database
 
