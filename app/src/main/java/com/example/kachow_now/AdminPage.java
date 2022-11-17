@@ -126,10 +126,10 @@ public class AdminPage extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.punishment_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final Button buttonDismiss = dialogView.findViewById(R.id.dismissButton);
-        final Button buttonPermaBan = dialogView.findViewById(R.id.permaBanButton);
+        final Button buttonDismiss = dialogView.findViewById(R.id.toggleoffer);
+        final Button buttonPermaBan = dialogView.findViewById(R.id.deletemeal);
         final Button buttonSuspension = dialogView.findViewById(R.id.suspendButton);
-        final EditText textDaySus = dialogView.findViewById(R.id.daySus);
+        final EditText textDaySus = dialogView.findViewById(R.id.labelOffer);
 
 
         dialogBuilder.setTitle("Complaint about " + cookName);

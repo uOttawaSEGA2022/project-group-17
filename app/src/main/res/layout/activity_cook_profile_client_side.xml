@@ -138,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="0"
-            android:background="#00FFC107"
+            android:background="#FFC107"
             android:backgroundTint="#FFC107"
             android:orientation="horizontal">
 
@@ -148,7 +148,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:text="Rate" />
+                android:text="Rate"
+                android:textColor="#FFFFFF"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
     </LinearLayout>
