@@ -63,11 +63,10 @@ public class currentlyOffered extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 boolean isOffered = snapshot.child("isOffered").getValue(boolean.class);
+                                dB.child(String.valueOf(meals.get(position))).child("isOffered").removeValue();
                                 if (isOffered){
-                                    dB.child(String.valueOf(meals.get(position))).child("isOffered").removeValue();
                                     dB.child(String.valueOf(meals.get(position))).child("isOffered").setValue(false);
                                 }else{
-                                    dB.child(String.valueOf(meals.get(position))).child("isOffered").removeValue();
                                     dB.child(String.valueOf(meals.get(position))).child("isOffered").setValue(true);
                                 }
 
