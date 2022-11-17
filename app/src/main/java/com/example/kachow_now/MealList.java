@@ -100,15 +100,15 @@ public class MealList extends ArrayAdapter<Meal> {
         }
         allergens = line2.toString();
 
-        textViewMealName.setText(meal.getName());
-        textViewDescription.setText(meal.getDescription());
-        textViewMealType.setText(meal.getMealType());
-        textViewPrice.setText(String.valueOf(meal.getPrice()));
-        textViewCuisine.setText(meal.getCuisine());
-        textViewIngredients.setText(ingredients);
-        textViewMealAllergens.setText(allergens);
-        textViewServingSize.setText(String.valueOf(meal.getServingSize()));
-        textViewCalories.setText(String.valueOf(meal.getCalories()));
+        textViewMealName.setText("Meal name:"+meal.getName());
+        textViewDescription.setText("Description:"+meal.getDescription());
+        textViewMealType.setText("Meal Type:"+meal.getMealType());
+        textViewPrice.setText(String.valueOf("Price:"+meal.getPrice()));
+        textViewCuisine.setText("Cuisine Type:"+meal.getCuisine());
+        textViewIngredients.setText("Ingredients:"+ingredients);
+        textViewMealAllergens.setText("Allergens:"+allergens);
+        textViewServingSize.setText(String.valueOf("Serving size:"+meal.getServingSize()));
+        textViewCalories.setText(String.valueOf("Calories:"+meal.getCalories()));
 
         offered.setChecked(meal.getIsOffered());
 
