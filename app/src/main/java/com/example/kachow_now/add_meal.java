@@ -30,12 +30,15 @@ public class add_meal extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 22;
     private EditText name, type, price, cuisine, allergens, calories, ingredients, description, servingSize;
-    private Button upload, add;
+    private Button upload, add, addAllergen, addIngredients;
     private Uri filePath;
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+
+    private ArrayList<String> ing;
+    private ArrayList<String> all;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,9 @@ public class add_meal extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+        all = new ArrayList<>();
+        ing = new ArrayList<>();
+
         name = findViewById(R.id.ItemName);
         type = findViewById(R.id.MealType);
         price = findViewById(R.id.Price);
@@ -57,10 +63,27 @@ public class add_meal extends AppCompatActivity {
         description = findViewById(R.id.Description);
         servingSize = findViewById(R.id.ServingSize);
 
-        //upload = findViewById(R.id.UploadItemPicture);
-        add = findViewById(R.id.AddNewItemButton);
+        addIngredients = findViewById(R.id.addIngredients);
+        addAllergen = findViewById(R.id.addAllergens);
 
+        add = findViewById(R.id.AddNewItemButton);
         upload = findViewById(R.id.UploadImageButton);
+
+        addIngredients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ing.add(ingredients.getText().toString().trim());
+                ingredients.setText("");
+            }
+        });
+
+        addAllergen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                all.add(allergens.getText().toString().trim());
+                allergens.setText("");
+            }
+        });
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,17 +145,12 @@ public class add_meal extends AppCompatActivity {
         double mealPrice = Double.parseDouble(price.getText().toString().trim());
         String mealCuisine = cuisine.getText().toString().trim();
         double mealCalories = Double.parseDouble(calories.getText().toString().trim());
-        ArrayList<String> mealIngredients = new ArrayList<>();
-        ArrayList<String> mealAllergens = new ArrayList<>();
         double mealServingSize = Double.parseDouble(servingSize.getText().toString().trim());
 
 
-        //TODO finish meal to database
-
-        // Meal(String Name, String Description, String MealType, double Price, String Cuisine, ArrayList<String> Ingredients, ArrayList<String> Allergens, double servingSize, double Calories)
-
-        //Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, mealIngredients, mealAllergens, mealServingSize, mealCalories);
-        //dB.child(name.getText().toString()).setValue(m);
+        Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
+                mealServingSize, mealCalories);
+        dB.child(name.getText().toString()).setValue(m);
 
     }
 

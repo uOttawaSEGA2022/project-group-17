@@ -44,6 +44,7 @@ public class CookHomepage extends AppCompatActivity {
         dB = FirebaseDatabase.getInstance().getReference("UID").child(mAuth.getCurrentUser().getUid());
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        Button logOutButton = (Button) findViewById(R.id.CookLogout);
 
         tName = (Toolbar) findViewById(R.id.CookMenuToolbar);
         name = (TextView) findViewById(R.id.cookNameInput);
@@ -57,6 +58,14 @@ public class CookHomepage extends AppCompatActivity {
 
         StorageReference mImageRef = storageReference.child("images/" +
                 mAuth.getCurrentUser().getUid() + "/profilePhoto");
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOut(view);
+            }
+        });
+
+
 
         final long TWO_MEGABYTE = 2048 * 2048;
         try {
@@ -115,6 +124,10 @@ public class CookHomepage extends AppCompatActivity {
         });
 
     }
+    public void logOut(View view) {
+        mAuth.signOut();
+        finish();}
+
 
 
 }
