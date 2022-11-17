@@ -8,50 +8,35 @@
     android:background="#373430">
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="888dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#373430"
         android:backgroundTint="#00952FA6"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="92dp"
+            android:layout_height="60dp"
             android:background="#FFC107"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/submitreporttitle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="#040404"
-                android:textSize="48sp"
-                tools:text="Submit a Report" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="#FFC107"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:title="Submit Report"
+                app:titleTextColor="#131212" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:orientation="horizontal"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:orientation="vertical"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
+            android:layout_height="75dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -75,23 +60,21 @@
 
             <LinearLayout
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/dateTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="73dp"
                     android:text="Date:"
                     android:textAlignment="viewStart"
                     android:textSize="24sp"
-                    android:translationY="38dp" />
+                    android:translationY="38dp"
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="98dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -109,8 +92,7 @@
 
             <LinearLayout
                 android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -128,8 +110,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -149,7 +130,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="318dp"
+            android:layout_height="100dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -168,7 +149,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <Button
