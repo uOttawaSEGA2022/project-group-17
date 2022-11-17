@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -42,8 +43,8 @@ public class currentlyOffered extends AppCompatActivity {
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO WHAT DO WE DO HERE???
-                return true;
+                // TODO delete dialog
+                return true; // hi
             }
         });
 
@@ -69,9 +70,24 @@ public class currentlyOffered extends AppCompatActivity {
                 meals.clear();
                 for (DataSnapshot s:snapshot.getChildren()) {
                     Meal tmpMeal = new Meal();
+                    tmpMeal.setName(s.child("name").getValue(String.class));
+                    tmpMeal.setAllergens(s.child("allergens").getValue(new GenericTypeIndicator<ArrayList<String>>() {
+                    }));
+                    tmpMeal.setCalories(s.child("calories").getValue(double.class));
+                    tmpMeal.setCuisine(s.child("cuisine").getValue(String.class));
+                    tmpMeal.setDescription(s.child("description").getValue(String.class));
+                    tmpMeal.setIngredients(s.child("ingredients").getValue(new GenericTypeIndicator<ArrayList<String>>() {
+                    }));
+                    tmpMeal.setIsOffered(Boolean.TRUE.equals(s.child("isOffered").getValue(boolean.class)));
+                    tmpMeal.setMealType(s.child("mealType").getValue(String.class));
+                    tmpMeal.setPrice(s.child("price").getValue(double.class));
+                    tmpMeal.setServingSize(s.child("servingSize").getValue(double.class));
 
-                    //tmpMeal.setName();
+                    meals.add(tmpMeal);
                 }
+
+                MealList mealAdapter = new MealList(currentlyOffered.this,meals);
+                listViewMeals.setAdapter(mealAdapter);
             }
 
             @Override
