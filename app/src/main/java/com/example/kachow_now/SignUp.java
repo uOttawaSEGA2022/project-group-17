@@ -70,7 +70,7 @@ public class    SignUp extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        uploadBtn = (Button) findViewById(R.id.UploadItemPicture);
+        uploadBtn = findViewById(R.id.UploadItemPicture);
         uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +78,7 @@ public class    SignUp extends AppCompatActivity {
             }
         });
 
-        AddressField = (EditText) findViewById(R.id.Allergens);
+        AddressField = findViewById(R.id.Allergens);
 
         String apiKey = getString(R.string.api_key);
         if (!Places.isInitialized()) {
@@ -96,34 +96,35 @@ public class    SignUp extends AppCompatActivity {
                 Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, field)
                         .build(SignUp.this);
                 //start activity result
-                startActivityForResult(intent,AUTOCOMPLETE_REQUEST_CODE);
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
 
             }
 
         });
 
 
-        Button register = (Button)findViewById(R.id.AddNewItemButton);
-        Spinner spin = (Spinner) findViewById(R.id.SignupRole);
-        EditText AccountOrCardNumber = (EditText) findViewById(R.id.Calories);
-        EditText CCVorInstitution = (EditText) findViewById(R.id.Ingredients);
-        TextView BranchNumberorExpiry = (TextView) findViewById(R.id.BranchNumberorExpiry);
-        EditText MonthOrBranchNumber = (EditText) findViewById(R.id.MonthOrBranchNumber);
-        EditText Year = (EditText) findViewById(R.id.Year);
-        EditText postalcode1 = (EditText) findViewById(R.id.pc1);
-        EditText postalcode2 = (EditText) findViewById(R.id.pc2);
-        EditText firstPhone = (EditText) findViewById(R.id.IngredientsList);
-        EditText secondPhone = (EditText) findViewById(R.id.secondPhone);
-        EditText thirdPhone = (EditText) findViewById(R.id.thirdPhone);
+        Button register = findViewById(R.id.AddNewItemButton);
+        Spinner spin = findViewById(R.id.SignupRole);
+        EditText AccountOrCardNumber = findViewById(R.id.Calories);
+        EditText CCVorInstitution = findViewById(R.id.Ingredients);
+        TextView BranchNumberorExpiry = findViewById(R.id.BranchNumberorExpiry);
+        EditText MonthOrBranchNumber = findViewById(R.id.MonthOrBranchNumber);
+        EditText Year = findViewById(R.id.Year);
+        EditText postalcode1 = findViewById(R.id.pc1);
+        EditText postalcode2 = findViewById(R.id.pc2);
+        EditText firstPhone = findViewById(R.id.IngredientsList);
+        EditText secondPhone = findViewById(R.id.secondPhone);
+        EditText thirdPhone = findViewById(R.id.thirdPhone);
 
         postalcode1.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start,int before, int count) {
-                if(postalcode1.getText().toString().length()==3)     //size as per your requirement
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (postalcode1.getText().toString().length() == 3)     //size as per your requirement
                 {
                     postalcode2.requestFocus();
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
 
@@ -153,7 +154,6 @@ public class    SignUp extends AppCompatActivity {
         secondPhone.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start,int before, int count) {
-                // TODO Auto-generated method stub
                 if(secondPhone.getText().toString().length()==3)     //size as per your requirement
                 {
                     thirdPhone.requestFocus();
@@ -307,7 +307,7 @@ public class    SignUp extends AppCompatActivity {
                 throw new NumberFormatException();
             }
 
-            if (filePath == null) {
+            if (Type.equals("cook") && filePath == null) {
                 throw new NullPointerException();
             }
 
