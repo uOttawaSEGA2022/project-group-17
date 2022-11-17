@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                                                 Toast.makeText(MainActivity.this, "You are suspended for " + (daySus - Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
                                             }
                                         } else {
-                                            Toast.makeText(MainActivity.this, "You are permanently banned from out platform, thank you for your co-operation", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(MainActivity.this, "KaChow you're banned! Katch you later!", Toast.LENGTH_LONG).show();
                                         }
 
 
