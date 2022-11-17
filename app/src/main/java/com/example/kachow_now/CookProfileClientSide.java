@@ -47,6 +47,7 @@ public class CookProfileClientSide extends AppCompatActivity {
             }
         });*/
 
+        //TODO DO THIS AFTER DOING THE COOK SIDE FIRST
 
         Button reportButton = (Button) findViewById(R.id.ReportCookProfileClient);
         reportButton.setOnClickListener(new View.OnClickListener() {

@@ -119,7 +119,6 @@ public class    SignUp extends AppCompatActivity {
         postalcode1.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start,int before, int count) {
-                // TODO Auto-generated method stub
                 if(postalcode1.getText().toString().length()==3)     //size as per your requirement
                 {
                     postalcode2.requestFocus();
@@ -127,12 +126,10 @@ public class    SignUp extends AppCompatActivity {
             }
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                // TODO Auto-generated method stub
 
             }
 
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
 
         });
@@ -140,7 +137,6 @@ public class    SignUp extends AppCompatActivity {
         firstPhone.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start,int before, int count) {
-                // TODO Auto-generated method stub
                 if(firstPhone.getText().toString().length()==3)     //size as per your requirement
                 {
                     secondPhone.requestFocus();
@@ -148,12 +144,9 @@ public class    SignUp extends AppCompatActivity {
             }
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                // TODO Auto-generated method stub
-
             }
 
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
 
         });
@@ -168,12 +161,9 @@ public class    SignUp extends AppCompatActivity {
             }
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                // TODO Auto-generated method stub
-
             }
 
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
 
         });
@@ -306,18 +296,19 @@ public class    SignUp extends AppCompatActivity {
                 throw new IllegalArgumentException();
             }
             if (Phone.length() != 10 || postalcode.length() != 6) {
-                Toast.makeText(SignUp.this, "Phone error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
             if (Type.equals("client") && ((AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
                     Integer.parseInt(BranchOrMonth) > 12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) > 99))) {
-                Toast.makeText(SignUp.this, "Client error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
             }
             if (Type.equals("cook") && (AccountOrCardNumber.length() > 12 || AccountOrCardNumber.length() < 7 || CCVorInstitution.length() != 3 ||
                     BranchOrMonth.length() != 5)) {
-                Toast.makeText(SignUp.this, "Cook error checking", Toast.LENGTH_LONG).show();
                 throw new NumberFormatException();
+            }
+
+            if (filePath == null) {
+                throw new NullPointerException();
             }
 
             mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -332,14 +323,14 @@ public class    SignUp extends AppCompatActivity {
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
                                     address, postalcode ,Long.parseLong(Phone));
                             u.setUID(mAuth.getCurrentUser().getUid());
-                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
+                            database.child(mAuth.getCurrentUser().getUid()).setValue(u);
                             //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         }else{
                             Cook u = new Cook(FirstName, Surname, Password, Email, address, postalcode,
                                     Long.parseLong(Phone), Integer.parseInt(BranchOrMonth), Integer.parseInt(CCVorInstitution),
                                     Double.parseDouble(AccountOrCardNumber));
                             u.setUID(mAuth.getCurrentUser().getUid());
-                            database.child(String.valueOf(mAuth.getCurrentUser().getUid())).setValue(u);
+                            database.child(mAuth.getCurrentUser().getUid()).setValue(u);
                             //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
                         }
                         uploadImage();
@@ -352,9 +343,11 @@ public class    SignUp extends AppCompatActivity {
                 }
             });
         } catch (NumberFormatException e) {
-            Toast.makeText(SignUp.this, e.toString() + " Please Enter Valid Input", Toast.LENGTH_LONG).show();
+            Toast.makeText(SignUp.this, e + " Please Enter Valid Input", Toast.LENGTH_LONG).show();
         } catch (IllegalArgumentException e) {
             Toast.makeText(SignUp.this, "Please fill in all fields", Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e) {
+            Toast.makeText(SignUp.this, "Please add an image", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -384,7 +377,7 @@ public class    SignUp extends AppCompatActivity {
                     // Image uploaded successfully
                     // Dismiss dialog
 
-                    Toast.makeText(SignUp.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SignUp.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

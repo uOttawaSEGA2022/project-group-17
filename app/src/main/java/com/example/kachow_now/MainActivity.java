@@ -87,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
                                         boolean isSuspended = Boolean.TRUE.equals(snapshot.child("isSuspended").getValue(boolean.class));
                                         Cook cook = new Cook();
                                         if (!isSuspended && !isBanned) {
-                                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
+                                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
                                             startActivity(intent);
                                         } else if (isSuspended && !isBanned) {
                                             int daySus = snapshot.child("daySus").getValue(int.class);
                                             if (daySus <= Cook.getDate()) {
                                                 dB.child((mAuth.getCurrentUser()).getUid()).child("isSuspended").setValue(false);
-                                                Intent intent = new Intent(MainActivity.this.getApplicationContext(), WelcomePage.class);
+                                                Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
                                                 startActivity(intent);
                                             } else {
                                                 Toast.makeText(MainActivity.this, "You are suspended for " + (daySus - Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();

@@ -14,6 +14,7 @@ public class Meal {
     private double servingSize;
     private double Calories;
     private String CookUID;
+    private boolean isOffered;
 
     public Meal(){
 
@@ -28,7 +29,7 @@ public class Meal {
         this.Allergens = Allergens;
         this.servingSize = servingSize;
         this.Calories = Calories;
-
+        this.isOffered = true;
     }
 
     public String getName() {
@@ -103,8 +104,20 @@ public class Meal {
         this.Calories = Calories;
     }
 
-    public String getCookUID() { return this.CookUID;}
+    public String getCookUID() {
+        return this.CookUID;
+    }
 
-    public void setCookUID(String s) {this.CookUID = s;}
+    public void setCookUID(String s) {
+        this.CookUID = s;
+    }
+
+    public boolean getIsOffered() {
+        return this.isOffered;
+    }
+
+    public void setIsOffered(boolean isOffered) {
+        this.isOffered = isOffered;
+    }
 }
 

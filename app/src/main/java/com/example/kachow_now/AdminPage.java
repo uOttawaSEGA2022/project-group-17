@@ -56,7 +56,7 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
-                showMealEntry(complaint.getMealReviewed(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName(),
+                showComplaintEntry(complaint.getMealReviewed(), complaint.getComplaintee().getFirstName() + " " + complaint.getComplaintee().getLastName(),
                         complaint.getComplaintee(), complaint);
                 return true;
             }
@@ -75,9 +75,6 @@ public class AdminPage extends AppCompatActivity {
                     Complaint tmp = new Complaint();
                     Cook tmpCook = new Cook();
                     DataSnapshot cookSnapshot = s.child("complaintee");
-                    for (DataSnapshot j : cookSnapshot.getChildren()) {
-                        System.out.println(j.getKey() + ": " + j.getValue());
-                    }
                     tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
                     tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));
 
@@ -124,7 +121,7 @@ public class AdminPage extends AppCompatActivity {
         finish();
     }
 
-    public void showMealEntry(final String mealName, String cookName, Cook cook, Complaint c) {
+    public void showComplaintEntry(final String mealName, String cookName, Cook cook, Complaint c) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();

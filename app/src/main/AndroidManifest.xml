@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity_cook_profile"
+            android:name=".CookHomepage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -71,6 +71,20 @@
 
         <activity
             android:name=".Admin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".add_meal"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".currentlyOffered"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

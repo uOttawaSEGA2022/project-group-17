@@ -10,7 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="12">
+        android:weightSum="12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,90 +34,126 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="400dp"
+        <ImageView
+            android:id="@+id/cookProfilePic"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            tools:srcCompat="@tools:sample/avatars" />
 
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:translationX="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/cookName"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/name_"
+                    android:textColor="#FFC107" />
 
-                    <TextView
-                        android:id="@+id/cookName"
-                        android:layout_width="91dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="@string/name_"
-                        android:textColor="#FFC107" />
+                <TextView
+                    android:id="@+id/cookNameInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/name"
+                    android:textColor="#FFFFFF"
+                    android:translationX="5dp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/cookNameInput"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/name"
-                        android:textColor="#FFFFFF"
-                        android:translationX="5dp" />
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/cookEmail"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="Email"
+                    android:textColor="#FFC107" />
 
-                    <TextView
-                        android:id="@+id/cookAddress"
-                        android:layout_width="91dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="@string/address_"
-                        android:textColor="#FFC107" />
+                <TextView
+                    android:id="@+id/cookEmailInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="EMAIL"
+                    android:textColor="#FFFFFF"
+                    android:translationX="5dp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/cookAddressInput"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/address"
-                        android:textColor="#FFFFFF"
-                        android:translationX="5dp" />
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/cookPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number"
+                    android:textColor="#FFC107" />
 
-                    <TextView
-                        android:id="@+id/cookCuisineType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cuisine_types"
-                        android:textColor="#FFC107" />
+                <TextView
+                    android:id="@+id/cookPhoneNumberInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PHONENUMBER"
+                    android:textColor="#FFFFFF"
+                    android:translationX="5dp" />
 
-                    <TextView
-                        android:id="@+id/cookCuisineTypeInput"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/cuisinetype"
-                        android:textColor="#FFFFFF"
-                        android:translationX="5dp" />
-                </LinearLayout>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/cookAddress"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/address_"
+                    android:textColor="#FFC107" />
+
+                <TextView
+                    android:id="@+id/cookAddressInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/address"
+                    android:textColor="#FFFFFF"
+                    android:translationX="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/cookPostalCode"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="Potal Code"
+                    android:textColor="#FFC107" />
+
+                <TextView
+                    android:id="@+id/cookPostalCodeInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="POSTALCODE"
+                    android:textColor="#FFFFFF"
+                    android:translationX="5dp" />
             </LinearLayout>
 
         </LinearLayout>

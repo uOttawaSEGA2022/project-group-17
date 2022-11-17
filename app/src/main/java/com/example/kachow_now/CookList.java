@@ -3,6 +3,7 @@ package com.example.kachow_now;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         curCook = cook;
         String n = cook.getFirstName() + " " + cook.getLastName();
         ((TextView) viewHolder.name).setText(n);
+        ((TextView) viewHolder.name).setTextColor(Color.parseColor("#FFC107"));
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         StorageReference mImageRef = storageReference.child("images/" + cook.getUID() + "/profilePhoto");

@@ -19,6 +19,7 @@
     <string name="orders">Orders</string>
     <string name="photo_of_chef">Photo of chef</string>
     <string name="chef">Chef</string>
+    <string name="offered">Offered:</string>
 
     <string-array name="AccountType">
         <item>Select Role…</item>

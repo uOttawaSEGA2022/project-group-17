@@ -5,14 +5,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.StringBufferInputStream;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
+
+import androidx.appcompat.widget.SwitchCompat;
 
 public class MealList extends ArrayAdapter<Meal> {
     private final Activity context;
-    List<Meal> meals ;
+    List<Meal> meals;
+    private FirebaseAuth mAuth;
+    private DatabaseReference dB;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
 
     public MealList(Activity context, List<Meal> meals) {
         super(context, R.layout.layout_meal_list, meals);
@@ -35,11 +47,22 @@ public class MealList extends ArrayAdapter<Meal> {
         TextView textViewServingSize = (TextView) listViewItem.findViewById(R.id.textViewServingSize);
         TextView textViewCalories = (TextView) listViewItem.findViewById(R.id.textViewCalories);
 
+        ImageView chefprofilePic = (ImageView) listViewItem.findViewById(R.id.mealPhp);
+        SwitchCompat offered = (SwitchCompat) listViewItem.findViewById(R.id.Offered_switch);
+
+        mAuth = FirebaseAuth.getInstance();
+        dB = FirebaseDatabase.getInstance().getReference("MEALS");
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         Meal meal = meals.get(position);
+        String cUID = meal.getCookUID();
+
+        //TODO think of the best way to implement database information gathering through this
 
         String ingredients;
         StringBuilder line = new StringBuilder();
-        for (String ingredient: meal.getIngredients()){
+        for (String ingredient : meal.getIngredients()) {
             line.append(ingredient);
         }
         ingredients = line.toString();

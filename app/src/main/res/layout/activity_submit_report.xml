@@ -177,7 +177,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="#FFC107"
-                android:text="submit report" />
+                android:text="submit report"
+                android:textColor="@color/black" />
         </LinearLayout>
 
     </LinearLayout>

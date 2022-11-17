@@ -1,15 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewMealName" android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewDescription" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewMealType" android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewPrice" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewCuisine" android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewIngredients" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewMealAllergens" android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewServingSize" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewCalories" android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" android:text=""/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <ImageView
+        android:id="@+id/mealPhp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:contentDescription="@string/photo_of_chef"
+        app:srcCompat="@drawable/dinner" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:forceDarkAllowed="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewServingSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/textViewMealName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/textViewCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/textViewMealType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/textViewIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/textViewMealAllergens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/textViewCuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/Offered_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/offered"
+            app:useMaterialThemeColors="true" />
+    </LinearLayout>
+
 </LinearLayout>
 
