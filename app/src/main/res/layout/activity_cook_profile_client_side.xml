@@ -139,7 +139,7 @@
             android:layout_height="50dp"
             android:layout_weight="0"
             android:background="#00FFFFFF"
-            android:backgroundTint="#00FF0707"
+            android:backgroundTint="#FFC107"
             android:orientation="horizontal">
 
             <Button

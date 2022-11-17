@@ -110,7 +110,7 @@ public class    SignUp extends AppCompatActivity {
         TextView BranchNumberorExpiry = findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = findViewById(R.id.MonthOrBranchNumber);
         EditText Year = findViewById(R.id.Year);
-        EditText postalcode1 = findViewById(R.id.ItemDescription);
+        EditText postalcode1 = findViewById(R.id.Description);
         EditText postalcode2 = findViewById(R.id.pc2);
         EditText firstPhone = findViewById(R.id.IngredientsList);
         EditText secondPhone = findViewById(R.id.secondPhone);
@@ -275,7 +275,7 @@ public class    SignUp extends AppCompatActivity {
             String CCVorInstitution = ((EditText) findViewById(R.id.Calories)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String address = ((EditText) findViewById(R.id.Allergens)).getText().toString().trim();
-            String postalcode1 = ((EditText) findViewById(R.id.ItemDescription)).getText().toString().trim();
+            String postalcode1 = ((EditText) findViewById(R.id.Description)).getText().toString().trim();
             String postalcode2 = ((EditText) findViewById(R.id.pc2)).getText().toString().trim();
             String postalcode = postalcode1 + postalcode2;
             String Year;

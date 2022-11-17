@@ -52,13 +52,15 @@ public class add_meal extends AppCompatActivity {
         price = findViewById(R.id.Price);
         cuisine = findViewById(R.id.CusineType);
         allergens = findViewById(R.id.Allergens);
-        calories = findViewById(R.id.ServingSize);
-        ingredients = findViewById(R.id.Calories);
-        description = findViewById(R.id.ItemDescription);
+        calories = findViewById(R.id.Calories);
+        ingredients = findViewById(R.id.IngredientsList);
+        description = findViewById(R.id.Description);
         servingSize = findViewById(R.id.ServingSize);
 
         //upload = findViewById(R.id.UploadItemPicture);
         add = findViewById(R.id.AddNewItemButton);
+
+        upload = findViewById(R.id.UploadImageButton);
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,8 +122,8 @@ public class add_meal extends AppCompatActivity {
         double mealPrice = Double.parseDouble(price.getText().toString().trim());
         String mealCuisine = cuisine.getText().toString().trim();
         double mealCalories = Double.parseDouble(calories.getText().toString().trim());
-        ArrayList<String> mealIngredients;
-        ArrayList<String> mealAllergens;
+        ArrayList<String> mealIngredients = new ArrayList<>();
+        ArrayList<String> mealAllergens = new ArrayList<>();
         double mealServingSize = Double.parseDouble(servingSize.getText().toString().trim());
 
 

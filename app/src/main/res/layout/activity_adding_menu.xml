@@ -138,16 +138,6 @@
                 android:orientation="horizontal"
                 android:translationY="0dp">
 
-                <TextView
-                    android:id="@+id/ingredients"
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_weight="0"
-                    android:gravity="bottom|center_vertical"
-                    android:text="Ingredients:"
-                    android:textColor="#FFC107"
-                    android:textSize="18dp" />
-
                 <EditText
                     android:id="@+id/IngredientsList"
                     android:layout_width="0dp"
@@ -156,12 +146,18 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:gravity="center_horizontal"
                     android:hint="Enter Ingredients..."
-                    android:maxLength="3"
-                    android:inputType="phone"
                     android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/addIngredients"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Add Ingredients"
+                    android:textColor="#FFC107" />
 
             </LinearLayout>
 
@@ -179,8 +175,17 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:hint="Allergens"
+                    android:hint="Enter Allergens..."
                     android:inputType="textPersonName" />
+
+                <Button
+                    android:id="@+id/addAllergens"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Add Allergens"
+                    android:textColor="#FFC107" />
 
             </LinearLayout>
 
@@ -230,23 +235,49 @@
 
             <LinearLayout
                 android:layout_width="375dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:translationY="0dp"/>
+
+            <LinearLayout
+                android:layout_width="375dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:orientation="horizontal"
+                android:translationY="0dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="375dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_weight="0"
-                    android:gravity="center_vertical"
-                    android:text="Description: "
-                    android:textColor="#FFC107"
-                    android:textSize="18sp" />
-
                 <EditText
-                    android:id="@+id/ItemDescription"
+                    android:id="@+id/Description"
                     android:layout_width="82dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -270,7 +301,7 @@
                 android:translationY="0dp">
 
                 <Button
-                    android:id="@+id/ChangeMealButton"
+                    android:id="@+id/UploadImageButton"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
