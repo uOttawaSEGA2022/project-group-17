@@ -58,10 +58,15 @@ public class MainActivity extends AppCompatActivity {
         String username =  ((EditText)findViewById(R.id.userName)).getText().toString().trim();
         String password =  ((EditText)findViewById(R.id.password)).getText().toString().trim();
         //TODO error checking here
+
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (username == "" || password == ""){
+                            Toast.makeText(MainActivity.this, "Unable to Login. Empty fields detected.",
+                                    Toast.LENGTH_LONG).show();
+                        }
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             ((EditText)findViewById(R.id.userName)).setText("");
