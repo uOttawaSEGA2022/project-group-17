@@ -56,6 +56,26 @@ public class CookHomepage extends AppCompatActivity {
         menu = (Button) findViewById(R.id.cookProfileMenuButton);
         orders = (Button) findViewById(R.id.cookProfileOrders);
 
+        dB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean isSuspended = snapshot.child("isSuspended").getValue(boolean.class);
+                if (isSuspended == true){
+                    menu.setVisibility(View.GONE);
+                    orders.setVisibility(View.GONE);
+                }else{
+                    menu.setVisibility(View.VISIBLE);
+                    orders.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         StorageReference mImageRef = storageReference.child("images/" +
                 mAuth.getCurrentUser().getUid() + "/profilePhoto");
         logOutButton.setOnClickListener(new View.OnClickListener() {
