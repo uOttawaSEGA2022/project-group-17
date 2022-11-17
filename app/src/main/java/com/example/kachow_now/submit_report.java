@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +26,6 @@ public class submit_report extends AppCompatActivity {
     private DatabaseReference database;
     private DatabaseReference dB;
     private Button submit;
-    private TextView reportTitle;
     private EditText mealOrdered;
     private TextView date;
     private EditText day;
@@ -48,7 +48,6 @@ public class submit_report extends AppCompatActivity {
 
 
         submit = findViewById(R.id.submitButton);
-        reportTitle = findViewById(R.id.submitreporttitle);
         mealOrdered = findViewById(R.id.setMealOrdered);
         date = findViewById(R.id.dateTitle);
         day = findViewById(R.id.day);
