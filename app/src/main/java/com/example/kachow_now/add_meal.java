@@ -40,7 +40,7 @@ public class add_meal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cook_new_item);
+        setContentView(R.layout.activity_adding_menu);
 
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("MEALS").child(mAuth.getCurrentUser().getUid());
@@ -49,16 +49,16 @@ public class add_meal extends AppCompatActivity {
 
         name = findViewById(R.id.ItemName);
         type = findViewById(R.id.MealType);
-        price = findViewById(R.id.ItemPrice);
+        price = findViewById(R.id.Price);
         cuisine = findViewById(R.id.CusineType);
-        allergens = findViewById(R.id.ItemAllergens);
-        calories = findViewById(R.id.Calories);
-        ingredients = findViewById(R.id.Ingredients);
+        allergens = findViewById(R.id.Allergens);
+        calories = findViewById(R.id.ServingSize);
+        ingredients = findViewById(R.id.Calories);
         description = findViewById(R.id.ItemDescription);
         servingSize = findViewById(R.id.ServingSize);
 
         //upload = findViewById(R.id.UploadItemPicture);
-        add = findViewById(R.id.addNewItemButton4);
+        add = findViewById(R.id.AddNewItemButton);
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override

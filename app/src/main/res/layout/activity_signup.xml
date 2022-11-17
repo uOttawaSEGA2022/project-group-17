@@ -238,7 +238,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/pc1"
+                    android:id="@+id/ItemDescription"
                     android:layout_width="82dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -290,7 +290,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/Calories"
+                    android:id="@+id/ServingSize"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -312,7 +312,7 @@
                 android:translationY="0dp">
 
                 <EditText
-                    android:id="@+id/Ingredients"
+                    android:id="@+id/Calories"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
