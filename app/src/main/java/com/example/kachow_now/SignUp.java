@@ -105,12 +105,12 @@ public class    SignUp extends AppCompatActivity {
 
         Button register = findViewById(R.id.AddNewItemButton);
         Spinner spin = findViewById(R.id.SignupRole);
-        EditText AccountOrCardNumber = findViewById(R.id.Calories);
-        EditText CCVorInstitution = findViewById(R.id.Ingredients);
+        EditText AccountOrCardNumber = findViewById(R.id.ServingSize);
+        EditText CCVorInstitution = findViewById(R.id.Calories);
         TextView BranchNumberorExpiry = findViewById(R.id.BranchNumberorExpiry);
         EditText MonthOrBranchNumber = findViewById(R.id.MonthOrBranchNumber);
         EditText Year = findViewById(R.id.Year);
-        EditText postalcode1 = findViewById(R.id.pc1);
+        EditText postalcode1 = findViewById(R.id.ItemDescription);
         EditText postalcode2 = findViewById(R.id.pc2);
         EditText firstPhone = findViewById(R.id.IngredientsList);
         EditText secondPhone = findViewById(R.id.secondPhone);
@@ -271,11 +271,11 @@ public class    SignUp extends AppCompatActivity {
             String Phone = firstPhone + secondPhone + thirdPhone;
             String Email = ((EditText) findViewById(R.id.CusineType)).getText().toString().trim();
             String Password = ((EditText) findViewById(R.id.Price)).getText().toString().trim();
-            String AccountOrCardNumber = ((EditText) findViewById(R.id.Calories)).getText().toString().trim();
-            String CCVorInstitution = ((EditText) findViewById(R.id.Ingredients)).getText().toString().trim();
+            String AccountOrCardNumber = ((EditText) findViewById(R.id.ServingSize)).getText().toString().trim();
+            String CCVorInstitution = ((EditText) findViewById(R.id.Calories)).getText().toString().trim();
             String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
             String address = ((EditText) findViewById(R.id.Allergens)).getText().toString().trim();
-            String postalcode1 = ((EditText) findViewById(R.id.pc1)).getText().toString().trim();
+            String postalcode1 = ((EditText) findViewById(R.id.ItemDescription)).getText().toString().trim();
             String postalcode2 = ((EditText) findViewById(R.id.pc2)).getText().toString().trim();
             String postalcode = postalcode1 + postalcode2;
             String Year;

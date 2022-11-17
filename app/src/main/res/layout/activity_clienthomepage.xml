@@ -32,7 +32,7 @@
                 android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FFC107"
+                android:backgroundTint="#F44336"
                 android:text="Logout" />
 
         </LinearLayout>
