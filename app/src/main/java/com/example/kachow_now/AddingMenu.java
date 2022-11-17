@@ -43,7 +43,7 @@ public class AddingMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_menu);
 
-        uploadBtn = (Button) findViewById(R.id.ChangeMealButton);
+        uploadBtn = (Button) findViewById(R.id.UploadImageButton);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference("UID");
