@@ -88,7 +88,7 @@ public class currentlyOffered extends AppCompatActivity {
                     }
                 });
                 b.show();
-                return true; // hi
+                return true;
             }
         });
 
