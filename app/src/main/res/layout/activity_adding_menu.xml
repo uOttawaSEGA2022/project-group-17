@@ -146,7 +146,6 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:gravity="center_horizontal"
                     android:hint="Enter Ingredients..."
                     android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -176,8 +175,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:ems="10"
-                    android:gravity="center_horizontal"
-                    android:hint="Allergens"
+                    android:hint="Enter Allergens..."
                     android:inputType="textPersonName" />
 
                 <Button
