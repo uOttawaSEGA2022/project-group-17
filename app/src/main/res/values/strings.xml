@@ -20,6 +20,12 @@
     <string name="photo_of_chef">Photo of chef</string>
     <string name="chef">Chef</string>
     <string name="offered">Offered:</string>
+    <string name="postal_code">Postal Code:</string>
+    <string name="postalcode">POSTALCODE</string>
+    <string name="phone_nnumber">Phone\nNumber:</string>
+    <string name="phonenumber">PHONENUMBER</string>
+    <string name="email">Email:</string>
+    <string name="email_">EMAIL</string>
 
     <string-array name="AccountType">
         <item>Select Role…</item>
