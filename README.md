@@ -22,6 +22,12 @@ Deliverable 2:
 - Admin can take action by punishing the Cook (by suspending or banning) or dismissing the report
 
 
+Deliverable 3:
+- Cook can create a new meal and add it to menu
+- New meal can be toggled as offered for the day or not
+- Suspended cooks can login but won't be able to do anything on the app aside from logging out
+
+
 
 **Built in**
 - Android Studio
