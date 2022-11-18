@@ -62,7 +62,7 @@ jobs:
 
       - run:
           name: Run Tests
-          command: ./gradlew test connectedAndroidTest
+          command: ./gradlew lint test
 
       - store_test_results:
           path: app/build/test-results
