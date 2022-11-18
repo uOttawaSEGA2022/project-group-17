@@ -96,8 +96,8 @@ public class add_meal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (name.getText().toString().isEmpty() || type.getText().toString().isEmpty() || price.getText().toString().isEmpty() || cuisine.getText().toString().isEmpty() ||
-                        allergens.getText().toString().isEmpty() || calories.getText().toString().isEmpty() ||
-                        ingredients.getText().toString().isEmpty() || description.getText().toString().isEmpty() || servingSize.getText().toString().isEmpty()) {
+                        all.isEmpty() || calories.getText().toString().isEmpty() ||
+                        ing.isEmpty() || description.getText().toString().isEmpty() || servingSize.getText().toString().isEmpty()) {
                     Toast.makeText(add_meal.this, "Could not add meal. Please fill all boxes.", Toast.LENGTH_LONG).show();
                 }else{
                     if (filePath != null){
