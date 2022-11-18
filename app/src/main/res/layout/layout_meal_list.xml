@@ -32,6 +32,7 @@
                 android:layout_height="50dp"
                 android:minHeight="48dp"
                 android:text="@string/offered"
+                android:enabled="false"
                 app:useMaterialThemeColors="true" />
         </LinearLayout>
 

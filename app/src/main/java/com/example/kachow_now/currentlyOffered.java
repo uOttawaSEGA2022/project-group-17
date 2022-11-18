@@ -44,11 +44,11 @@ public class currentlyOffered extends AppCompatActivity {
         meals = new ArrayList<Meal>();
 
 
+        //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
                 showMealEntry(position);
                 return true;
             }
@@ -103,7 +103,7 @@ public class currentlyOffered extends AppCompatActivity {
         });
     }
 
-    private void showMealEntry(int position){
+   private void showMealEntry(int position){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.cook_offered_dialog, null);
@@ -116,12 +116,14 @@ public class currentlyOffered extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     toggleOffered(meals.get(position).getName());
+                    b.dismiss();
                 }
             });
             deleteMeal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     deleteMeal(meals.get(position).getName());
+                    b.dismiss();
                 }
             });
             b.show();
@@ -130,11 +132,13 @@ public class currentlyOffered extends AppCompatActivity {
 
 
     private void toggleOffered(String name){
-        dB.addValueEventListener(new ValueEventListener() {
+        dB.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean isOffered = snapshot.child("isOffered").getValue(boolean.class);
-                dB.child(name).child("isOffered").removeValue();
+
+                boolean isOffered = (snapshot.child("isOffered").getValue(boolean.class));
+
+               // dB.child(name).child("isOffered").removeValue();
                 if (isOffered){
                     dB.child(name).child("isOffered").setValue(false);
                 }else{
@@ -150,11 +154,11 @@ public class currentlyOffered extends AppCompatActivity {
 
     }
     private void deleteMeal(String name){
-        dB.addValueEventListener(new ValueEventListener() {
+        dB.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean isOffered = snapshot.child("isOffered").getValue(boolean.class);
-                if (isOffered == false){
+                boolean isOffered = Boolean.TRUE.equals(snapshot.child("isOffered").getValue(boolean.class));
+                if (!isOffered){
                     Toast.makeText(currentlyOffered.this, "Deleted Meal", Toast.LENGTH_LONG).show();
                     dB.child(name).removeValue();
                 }else{
