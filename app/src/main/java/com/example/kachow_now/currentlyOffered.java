@@ -43,12 +43,14 @@ public class currentlyOffered extends AppCompatActivity {
 
         meals = new ArrayList<Meal>();
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
 
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                LayoutInflater inflater = getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.cook_offered_dialog, null);
                 dialogBuilder.setView(dialogView);
                 Button toggleOffer = dialogView.findViewById(R.id.toggleoffer);
@@ -58,32 +60,13 @@ public class currentlyOffered extends AppCompatActivity {
                 toggleOffer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        dB.child(String.valueOf(meals.get(position))).addValueEventListener( new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                boolean isOffered = snapshot.child("isOffered").getValue(boolean.class);
-                                dB.child(String.valueOf(meals.get(position))).child("isOffered").removeValue();
-                                if (isOffered){
-                                    dB.child(String.valueOf(meals.get(position))).child("isOffered").setValue(false);
-                                }else{
-                                    dB.child(String.valueOf(meals.get(position))).child("isOffered").setValue(true);
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
+                        toggleOffered(meals.get(position).getName());
                     }
                 });
                 deleteMeal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(currentlyOffered.this, "Deleted Meal", Toast.LENGTH_LONG).show();
-                        dB.child(String.valueOf(meals.get(position))).removeValue();
+                        deleteMeal(meals.get(position).getName());
                     }
                 });
                 b.show();
@@ -142,6 +125,32 @@ public class currentlyOffered extends AppCompatActivity {
 
     private void showMealEntry(){
 
+
+
+    }
+    private void toggleOffered(String name){
+        dB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean isOffered = snapshot.child("isOffered").getValue(boolean.class);
+                dB.child(name).child("isOffered").removeValue();
+                if (isOffered){
+                    dB.child(name).child("isOffered").setValue(false);
+                }else{
+                    dB.child(name).child("isOffered").setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+    private void deleteMeal(String name){
+        Toast.makeText(currentlyOffered.this, "Deleted Meal", Toast.LENGTH_LONG).show();
+        dB.child(name).removeValue();
     }
 
 }
