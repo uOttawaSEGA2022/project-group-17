@@ -102,7 +102,8 @@ public class currentlyOffered extends AppCompatActivity {
             }
         });
     }
-   private void showMealEntry(int position){
+
+    private void showMealEntry(int position){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.cook_offered_dialog, null);
