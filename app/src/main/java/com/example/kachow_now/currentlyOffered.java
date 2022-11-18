@@ -149,8 +149,25 @@ public class currentlyOffered extends AppCompatActivity {
 
     }
     private void deleteMeal(String name){
-        Toast.makeText(currentlyOffered.this, "Deleted Meal", Toast.LENGTH_LONG).show();
-        dB.child(name).removeValue();
+        dB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean isOffered = snapshot.child("isOffered").getValue(boolean.class);
+                if (isOffered == false){
+                    Toast.makeText(currentlyOffered.this, "Deleted Meal", Toast.LENGTH_LONG).show();
+                    dB.child(name).removeValue();
+                }else{
+                    Toast.makeText(currentlyOffered.this, "Could not Delete Meal. Meal is currently offered.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 }
