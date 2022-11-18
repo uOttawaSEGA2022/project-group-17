@@ -95,6 +95,11 @@ public class add_meal extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (name.getText().toString().isEmpty() || type.getText().toString().isEmpty() || price.getText().toString().isEmpty() || cuisine.getText().toString().isEmpty() ||
+                        allergens.getText().toString().isEmpty() || calories.getText().toString().isEmpty() ||
+                        ingredients.getText().toString().isEmpty() || description.getText().toString().isEmpty() || servingSize.getText().toString().isEmpty()) {
+                    Toast.makeText(add_meal.this, "Could not add meal. Please fill all boxes.", Toast.LENGTH_LONG).show();
+                }
                 SendMealToDatabase();
                 if (filePath != null) {
                     uploadImage();
@@ -150,16 +155,11 @@ public class add_meal extends AppCompatActivity {
         String mealServingSizeString = servingSize.getText().toString().trim();
         double mealServingSize = Double.parseDouble(mealServingSizeString);
 
-        if (mealName.isEmpty() || mealDesc.isEmpty() || mealType.isEmpty() || mealPriceString.isEmpty() || mealCuisine.isEmpty() ||
-                mealCaloriesString.isEmpty() || mealServingSizeString.isEmpty()){
-            Toast.makeText(add_meal.this, "Could not add meal. Please fill all boxes.", Toast.LENGTH_LONG).show();
-        }else{
-            Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
-                    mealServingSize, mealCalories);
-            dB.child(name.getText().toString()).setValue(m);
-        }
 
 
+        Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
+                mealServingSize, mealCalories);
+        dB.child(name.getText().toString()).setValue(m);
 
     }
 
