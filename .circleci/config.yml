@@ -29,6 +29,7 @@ jobs:
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
+
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
 
