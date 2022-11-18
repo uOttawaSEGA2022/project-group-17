@@ -102,7 +102,6 @@ public class currentlyOffered extends AppCompatActivity {
             }
         });
     }
-
    private void showMealEntry(int position){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -127,10 +126,7 @@ public class currentlyOffered extends AppCompatActivity {
                 }
             });
             b.show();
-
     }
-
-
     private void toggleOffered(String name){
         dB.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
             // REMEMBER, You spent 30 minutes checking for a non-existent error based on this
