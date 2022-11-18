@@ -133,6 +133,7 @@ public class currentlyOffered extends AppCompatActivity {
 
     private void toggleOffered(String name){
         dB.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
+            // REMEMBER, You spent 30 minutes checking for a non-existent error based on this
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
