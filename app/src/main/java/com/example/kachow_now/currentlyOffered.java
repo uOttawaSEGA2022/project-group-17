@@ -44,32 +44,12 @@ public class currentlyOffered extends AppCompatActivity {
         meals = new ArrayList<Meal>();
 
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-                LayoutInflater inflater = getLayoutInflater();
-                final View dialogView = inflater.inflate(R.layout.cook_offered_dialog, null);
-                dialogBuilder.setView(dialogView);
-                Button toggleOffer = dialogView.findViewById(R.id.toggleoffer);
-                Button deleteMeal = dialogView.findViewById(R.id.deletemeal);
-                final AlertDialog b = dialogBuilder.create();
-
-                toggleOffer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        toggleOffered(meals.get(position).getName());
-                    }
-                });
-                deleteMeal.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        deleteMeal(meals.get(position).getName());
-                    }
-                });
-                b.show();
+                showMealEntry(position);
                 return true;
             }
         });
@@ -123,11 +103,32 @@ public class currentlyOffered extends AppCompatActivity {
         });
     }
 
-    private void showMealEntry(){
+    private void showMealEntry(int position){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.cook_offered_dialog, null);
+        dialogBuilder.setView(dialogView);
+        Button toggleOffer = dialogView.findViewById(R.id.toggleoffer);
+        Button deleteMeal = dialogView.findViewById(R.id.deletemeal);
+        final AlertDialog b = dialogBuilder.create();
 
-
+            toggleOffer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    toggleOffered(meals.get(position).getName());
+                }
+            });
+            deleteMeal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteMeal(meals.get(position).getName());
+                }
+            });
+            b.show();
 
     }
+
+
     private void toggleOffered(String name){
         dB.addValueEventListener(new ValueEventListener() {
             @Override
