@@ -162,7 +162,6 @@ public class add_meal extends AppCompatActivity {
         dB.child(name.getText().toString()).setValue(m);
 
     }
-
     private void uploadImage() {
         if (filePath != null) {
             // Code for showing progressDialog while uploading
