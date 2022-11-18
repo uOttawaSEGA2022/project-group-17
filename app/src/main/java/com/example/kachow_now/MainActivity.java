@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     .addOnFailureListener(this, new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(MainActivity.this, "Failed to login. Unknown username or password.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Failed to login. Incorrect username or password.", Toast.LENGTH_LONG).show();
                         }
                     });
         }
