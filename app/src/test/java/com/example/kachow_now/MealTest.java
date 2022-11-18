@@ -1,13 +1,19 @@
 package com.example.kachow_now;
 
+
 import static org.junit.Assert.*;
-import java.util.*;
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class MealTest {
 
     @Test
     public void getName() {
+        ArrayList<String> ingredients = new ArrayList<String>();
+        ingredients.add("lettuce");
+        Meal salad = new Meal("Salad", "well-dressed salad", "Lunch", 5.00, "Mediterranean", ingredients, null, 2.00, 200.00 );
+        assertEquals( "Salad", salad.getName());
     }
 
     @Test
