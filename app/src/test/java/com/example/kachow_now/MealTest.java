@@ -12,6 +12,7 @@ public class MealTest {
 
     @Test
     public void setName() {
+        Meal rightinfrontofmysalad = new Meal()
     }
 
     @Test
