@@ -103,7 +103,6 @@
                     android:backgroundTint="#FFC107"
                     android:ems="10"
                     android:hint="Price"
-                    android:inputType="textPassword"
                     android:textColor="#FFFFFF"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
