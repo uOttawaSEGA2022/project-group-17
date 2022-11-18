@@ -16,16 +16,24 @@ jobs:
   build-and-test:
     # These next lines define the Android machine image executor.
     # See: https://circleci.com/docs/2.0/executor-types/
+
+    working_directory: ~/project-group-17
+
     executor:
-      name: android/android-machine
+      name: android/android
 
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
-      - checkout
+      - checkout:
+          path: ~/project-group-17
 
       # The next step will run the unit tests
+
+      - restore_cache:
+          key: android-orb-v1-
+
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
@@ -34,21 +42,53 @@ jobs:
           name: Create local.properties
           command: touch local.properties
 
-      - android/run-tests:
-          test-command: ./gradlew lint testDebug --continue
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
 
-      # Then start the emulator and run the Instrumentation tests!
-      - android/start-emulator-and-run-tests:
-          test-command: ./gradlew connectedDebugAndroidTest
-          system-image: system-images;android-25;google_apis;x86
-
-      # And finally run the release build
-
+      - save_cache:
+          key: 'android-orb-v1-{{ epoch }}'
+          paths:
+            - ~/.android/build-cache
+            - ~/.android/cache
 
       - run:
-          name: Assemble release build
-          command: |
-            ./gradlew assembleRelease
+          name: Run Build
+          command: ./gradlew build
+
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+
+      - store_test_results:
+          path: app/build/test-results
+
+      - store_artifacts:
+          path: app/build/outputs/apk/debug/
+          destination: artifact-file
+      - run:
+          name: Delete local.properties
+          command: rm local.properties
+
+          #- android/run-tests:
+          #   test-command: ./gradlew lint testDebug --continue
+
+          # Then start the emulator and run the Instrumentation tests!
+          #- android/start-emulator-and-run-tests:
+          #   test-command: ./gradlew connectedDebugAndroidTest
+          #  system-image: system-images;android-25;google_apis;x86
+
+          # And finally run the release build
+
+
+          #- run:
+          #   name: Assemble release build
+          #  command: |
+          #   ./gradlew assembleRelease
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
