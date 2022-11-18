@@ -67,9 +67,9 @@ public class MealList extends ArrayAdapter<Meal> {
         StorageReference ref = storageReference.child("images/" +
                 (mAuth.getCurrentUser()).getUid() + "/" + meal.getName());
 
-        final long TWO_MEGABYTE = 2048 * 2048;
+        final long FOUR_MEGABYTE = 4096 * 4096;
         try {
-            Task<byte[]> im = ref.getBytes(TWO_MEGABYTE);
+            Task<byte[]> im = ref.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
                 @Override
                 public void onComplete(@NonNull Task<byte[]> task) {

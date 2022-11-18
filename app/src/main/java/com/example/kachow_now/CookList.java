@@ -77,9 +77,9 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         storageReference = storage.getReference();
         StorageReference mImageRef = storageReference.child("images/" + cook.getUID() + "/profilePhoto");
 
-        final long TWO_MEGABYTE = 2048 * 2048;
+        final long FOUR_MEGABYTE = 4096 * 4096;
         try {
-            Task<byte[]> im = mImageRef.getBytes(TWO_MEGABYTE);
+            Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
                 @Override
                 public void onComplete(@NonNull Task<byte[]> task) {
@@ -152,9 +152,9 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         Cook cook = cooks.get(position);
         StorageReference mImageRef = storageReference.child("images/" + cook.UID + "/profilePhoto");
 
-        final long TWO_MEGABYTE = 2048 * 2048;
+        final long FOUR_MEGABYTE = 4096 * 4096;
         try {
-            Task<byte[]> im = mImageRef.getBytes(TWO_MEGABYTE);
+            Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
             if (im.isSuccessful()) {
                 byte[] b = im.getResult();
                 Bitmap bm = BitmapFactory.decodeByteArray(b, 0, b.length);

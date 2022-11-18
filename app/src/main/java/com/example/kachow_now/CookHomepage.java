@@ -87,9 +87,9 @@ public class CookHomepage extends AppCompatActivity {
 
 
 
-        final long TWO_MEGABYTE = 2048 * 2048;
+        final long FOUR_MEGABYTE = 4096 * 4096;
         try {
-            Task<byte[]> im = mImageRef.getBytes(TWO_MEGABYTE);
+            Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
                 @Override
                 public void onComplete(@NonNull Task<byte[]> task) {
