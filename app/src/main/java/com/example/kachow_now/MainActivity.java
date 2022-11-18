@@ -58,85 +58,84 @@ public class MainActivity extends AppCompatActivity {
         String username =  ((EditText)findViewById(R.id.userName)).getText().toString().trim();
         String password =  ((EditText)findViewById(R.id.password)).getText().toString().trim();
         //TODO error checking here
+        if (username.isEmpty() || password.isEmpty()){
+            Toast.makeText(MainActivity.this, "Unable to Login. Empty fields detected.",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            mAuth.signInWithEmailAndPassword(username, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-        mAuth.signInWithEmailAndPassword(username, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (username == "" || password == ""){
-                            Toast.makeText(MainActivity.this, "Unable to Login. Empty fields detected.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            ((EditText)findViewById(R.id.userName)).setText("");
-                            ((EditText)findViewById(R.id.password)).setText("");
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                ((EditText)findViewById(R.id.userName)).setText("");
+                                ((EditText)findViewById(R.id.password)).setText("");
 
-                            Toast.makeText(MainActivity.this, "Authentication Successful.",
-                                    Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this, "Authentication Successful.",
+                                        Toast.LENGTH_LONG).show();
 
-                            DatabaseReference dB = FirebaseDatabase.getInstance().getReference("UID");
+                                DatabaseReference dB = FirebaseDatabase.getInstance().getReference("UID");
 
-                            //if(dB.child(mAuth.getCurrentUser().getUid())
-                            dB.child((mAuth.getCurrentUser()).getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    String role = snapshot.child("role").getValue(String.class);
-                                    if (role.equalsIgnoreCase("admin")) {
+                                //if(dB.child(mAuth.getCurrentUser().getUid())
+                                dB.child((mAuth.getCurrentUser()).getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String role = snapshot.child("role").getValue(String.class);
+                                        if (role.equalsIgnoreCase("admin")) {
 
-                                        Toast.makeText(MainActivity.this, "Welcome administrator", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(MainActivity.this.getApplicationContext(), AdminPage.class);
-                                        startActivity(intent);
-                                    } else if (role.equalsIgnoreCase("cook") && snapshot.child("isBanned").getValue(boolean.class) != null) {
-                                        boolean isBanned = Boolean.TRUE.equals(snapshot.child("isBanned").getValue(boolean.class));
-                                        boolean isSuspended = Boolean.TRUE.equals(snapshot.child("isSuspended").getValue(boolean.class));
-                                        Cook cook = new Cook();
-                                        if (!isSuspended && !isBanned) {
-                                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
+                                            Toast.makeText(MainActivity.this, "Welcome administrator", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), AdminPage.class);
                                             startActivity(intent);
-                                        } else if (isSuspended && !isBanned) {
-                                            int daySus = snapshot.child("daySus").getValue(int.class);
-                                            if (daySus <= Cook.getDate()) {
-                                                dB.child((mAuth.getCurrentUser()).getUid()).child("isSuspended").setValue(false);
+                                        } else if (role.equalsIgnoreCase("cook") && snapshot.child("isBanned").getValue(boolean.class) != null) {
+                                            boolean isBanned = Boolean.TRUE.equals(snapshot.child("isBanned").getValue(boolean.class));
+                                            boolean isSuspended = Boolean.TRUE.equals(snapshot.child("isSuspended").getValue(boolean.class));
+                                            Cook cook = new Cook();
+                                            if (!isSuspended && !isBanned) {
                                                 Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
                                                 startActivity(intent);
+                                            } else if (isSuspended && !isBanned) {
+                                                int daySus = snapshot.child("daySus").getValue(int.class);
+                                                if (daySus <= Cook.getDate()) {
+                                                    dB.child((mAuth.getCurrentUser()).getUid()).child("isSuspended").setValue(false);
+                                                    Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
+                                                    startActivity(intent);
+                                                } else {
+                                                    Toast.makeText(MainActivity.this, "You are suspended for " + (daySus - Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
+                                                    Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
+                                                    startActivity(intent);
+                                                }
                                             } else {
-                                                Toast.makeText(MainActivity.this, "You are suspended for " + (daySus - Cook.getDate()) + " more days.", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
-                                                startActivity(intent);
+                                                Toast.makeText(MainActivity.this, "KaChow you're banned! Katch you later!", Toast.LENGTH_LONG).show();
                                             }
+
+
                                         } else {
-                                            Toast.makeText(MainActivity.this, "KaChow you're banned! Katch you later!", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(MainActivity.this.getApplicationContext(), ClientHomepage.class);
+                                            startActivity(intent);
                                         }
-
-
-                                    } else {
-                                        Intent intent = new Intent(MainActivity.this.getApplicationContext(), ClientHomepage.class);
-                                        startActivity(intent);
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Toast.makeText(MainActivity.this, "Failed to access Database error: "
-                                            + error, Toast.LENGTH_LONG).show();
-                                }
-                            });
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(MainActivity.this, "Failed to access Database error: "
+                                                + error, Toast.LENGTH_LONG).show();
+                                    }
+                                });
 
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this, "Authentication Failed.",
-                                    Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "failed to login", Toast.LENGTH_LONG).show();
-                    }
-                });
+                    })
+                    .addOnFailureListener(this, new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, "Failed to login. Unknown username or password.", Toast.LENGTH_LONG).show();
+                        }
+                    });
+        }
+
     }
     public void moveToRegister(View view){
         Intent intent = new Intent(MainActivity.this.getApplicationContext(),SignUp.class);

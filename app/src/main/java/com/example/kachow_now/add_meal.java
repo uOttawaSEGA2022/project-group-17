@@ -98,6 +98,27 @@ public class add_meal extends AppCompatActivity {
                 if (name.getText().toString().isEmpty() || type.getText().toString().isEmpty() || price.getText().toString().isEmpty() || cuisine.getText().toString().isEmpty() ||
                         calories.getText().toString().isEmpty() || description.getText().toString().isEmpty() || servingSize.getText().toString().isEmpty()) {
                     Toast.makeText(add_meal.this, "Could not add meal. Please fill all boxes.", Toast.LENGTH_LONG).show();
+                    try{
+                        String mealPriceString = price.getText().toString().trim();
+                        double mealPrice = Double.parseDouble(mealPriceString);
+                    }catch (NumberFormatException e){
+                        Toast.makeText(add_meal.this, "Could not add meal. Price must be a number.", Toast.LENGTH_LONG).show();
+                        price.setText("");
+                    }
+                    try{
+                        String mealCaloriesString = calories.getText().toString().trim();
+                        double mealCalories = Double.parseDouble(mealCaloriesString);
+                    }catch (NumberFormatException exception){
+                        Toast.makeText(add_meal.this, "Could not add meal. Calories must be a number.", Toast.LENGTH_LONG).show();
+                        calories.setText("");
+                    }
+                    try{
+                        String mealServingSizeString = servingSize.getText().toString().trim();
+                        double mealServingSize = Double.parseDouble(mealServingSizeString);
+                    }catch (NumberFormatException a){
+                        Toast.makeText(add_meal.this, "Could not add meal. Serving size must be a number.", Toast.LENGTH_LONG).show();
+                        servingSize.setText("");
+                    }
                 }else if (ing.isEmpty()){
                     Toast.makeText(add_meal.this, "Could not add meal. Please enter ingredients.", Toast.LENGTH_LONG).show();
                 }else{
