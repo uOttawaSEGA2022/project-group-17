@@ -99,13 +99,16 @@ public class add_meal extends AppCompatActivity {
                         allergens.getText().toString().isEmpty() || calories.getText().toString().isEmpty() ||
                         ingredients.getText().toString().isEmpty() || description.getText().toString().isEmpty() || servingSize.getText().toString().isEmpty()) {
                     Toast.makeText(add_meal.this, "Could not add meal. Please fill all boxes.", Toast.LENGTH_LONG).show();
-                }
-                SendMealToDatabase();
-                if (filePath != null) {
-                    uploadImage();
-                    finish();
-                } else {
-                    Toast.makeText(add_meal.this, "Please upload a picture of the meal", Toast.LENGTH_LONG).show();
+                }else{
+                    if (filePath != null){
+                        Toast.makeText(add_meal.this, "Added meal.", Toast.LENGTH_LONG).show();
+                        SendMealToDatabase();
+                        uploadImage();
+                        finish();
+                    } else{
+                        Toast.makeText(add_meal.this, "Please upload a picture of the meal", Toast.LENGTH_LONG).show();
+                    }
+
                 }
             }
         });
