@@ -142,15 +142,24 @@ public class add_meal extends AppCompatActivity {
         String mealName = name.getText().toString().trim();
         String mealDesc = description.getText().toString().trim();
         String mealType = type.getText().toString().trim();
-        double mealPrice = Double.parseDouble(price.getText().toString().trim());
+        String mealPriceString = price.getText().toString().trim();
+        double mealPrice = Double.parseDouble(mealPriceString);
         String mealCuisine = cuisine.getText().toString().trim();
-        double mealCalories = Double.parseDouble(calories.getText().toString().trim());
-        double mealServingSize = Double.parseDouble(servingSize.getText().toString().trim());
+        String mealCaloriesString = calories.getText().toString().trim();
+        double mealCalories = Double.parseDouble(mealCaloriesString);
+        String mealServingSizeString = servingSize.getText().toString().trim();
+        double mealServingSize = Double.parseDouble(mealServingSizeString);
+
+        if (mealName.isEmpty() || mealDesc.isEmpty() || mealType.isEmpty() || mealPriceString.isEmpty() || mealCuisine.isEmpty() ||
+                mealCaloriesString.isEmpty() || mealServingSizeString.isEmpty()){
+            Toast.makeText(add_meal.this, "Could not add meal. Please fill all boxes.", Toast.LENGTH_LONG).show();
+        }else{
+            Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
+                    mealServingSize, mealCalories);
+            dB.child(name.getText().toString()).setValue(m);
+        }
 
 
-        Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
-                mealServingSize, mealCalories);
-        dB.child(name.getText().toString()).setValue(m);
 
     }
 
