@@ -31,6 +31,7 @@ Deliverable 3:
 Admins can login using the following:
 
 ```Email: halosman@uottawa.ca ```
+
 ```Password: 123456```
 
 **Built in**
