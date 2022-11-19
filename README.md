@@ -27,7 +27,12 @@ Deliverable 3:
 - New meal can be toggled as offered for the day or not
 - Suspended cooks can login but won't be able to do anything on the app aside from logging out
 
+**Admin Login**
+Admins can login using the following:
 
+```Email: halosman@uottawa.ca ```
+
+```Password: 123456```
 
 **Built in**
 - Android Studio
