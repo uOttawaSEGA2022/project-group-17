@@ -110,7 +110,7 @@
             android:translationY="20dp" >
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/cookDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
