@@ -6,231 +6,234 @@
     android:layout_height="match_parent"
     android:background="#373430">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="12"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="410dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/CookMenuToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFC107"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:title="Profile"
-                app:titleTextColor="#000000" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/cookProfilePic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/photo_of_chef"
-            tools:ignore="ImageContrastCheck"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="50dp"
-            android:layout_weight="0.25"
-            android:gravity="end|center_vertical"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/CookLogout"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#F44336"
-                android:text="Logout"
-                android:textColor="#000000" />
-        </LinearLayout>
+        android:layout_weight="0.25">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="12">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_width="410dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/cookName"
-                    android:layout_width="91dp"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/CookMenuToolbar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="@string/name_"
-                    android:textSize="20sp"
-                    android:textColor="#FFC107" />
-
-                <TextView
-                    android:id="@+id/cookNameInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/name"
-                    android:textSize="20sp"
-                    android:textColor="#FFFFFF"
-                    android:translationX="5dp" />
+                    android:background="#FFC107"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+                    app:title="Profile"
+                    app:titleTextColor="#000000" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/cookEmail"
-                    android:layout_width="91dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="@string/email"
-                    android:textSize="20sp"
-                    android:textColor="#FFC107" />
-
-                <TextView
-                    android:id="@+id/cookEmailInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/email_"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:translationX="5dp" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/cookProfilePic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/photo_of_chef"
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-
-                <TextView
-                    android:id="@+id/cookPhoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:minLines="2"
-                    android:text="@string/phone_nnumber"
-                    android:textColor="#FFC107"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/cookPhoneNumberInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/phonenumber"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:translationX="5dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/cookAddress"
-                    android:layout_width="91dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="@string/address_"
-                    android:textSize="20sp"
-                    android:textColor="#FFC107" />
-
-                <TextView
-                    android:id="@+id/cookAddressInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/address"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:translationX="5dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/cookPostalCode"
-                    android:layout_width="91dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="@string/postal_code"
-                    android:textSize="20sp"
-                    android:textColor="#FFC107" />
-
-                <TextView
-                    android:id="@+id/cookPostalCodeInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/postalcode"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:translationX="5dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="0"
-            android:gravity="bottom|center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/cookProfileMenuButton"
                 android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.25"
+                android:gravity="end|center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/CookLogout"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F44336"
+                    android:text="Logout"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/cookName"
+                        android:layout_width="91dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/name_"
+                        android:textColor="#FFC107"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/cookNameInput"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/name"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:translationX="5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/cookEmail"
+                        android:layout_width="91dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/email"
+                        android:textColor="#FFC107"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/cookEmailInput"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/email_"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:translationX="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/cookPhoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:minLines="2"
+                        android:text="@string/phone_nnumber"
+                        android:textColor="#FFC107"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/cookPhoneNumberInput"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/phonenumber"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:translationX="5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/cookAddress"
+                        android:layout_width="91dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/address_"
+                        android:textColor="#FFC107"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/cookAddressInput"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/address"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:translationX="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/cookPostalCode"
+                        android:layout_width="91dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/postal_code"
+                        android:textColor="#FFC107"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/cookPostalCodeInput"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/postalcode"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:translationX="5dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_weight="0"
-                android:backgroundTint="#FFC107"
-                android:text="@string/menu"
-                android:textColor="#006064" />
+                android:gravity="bottom|center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/cookProfileMenuButton"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:backgroundTint="#FFC107"
+                    android:text="@string/menu"
+                    android:textColor="#006064" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="0"
-            android:gravity="bottom|center"
-            android:orientation="horizontal"
-            android:weightSum="0">
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/cookProfileOrders"
-                android:layout_width="400dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
-                android:text="@string/orders"
-                android:textColor="#006064" />
+                android:layout_gravity="bottom"
+                android:layout_weight="0"
+                android:gravity="bottom|center"
+                android:orientation="horizontal"
+                android:weightSum="0">
 
+                <Button
+                    android:id="@+id/cookProfileOrders"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFC107"
+                    android:text="@string/orders"
+                    android:textColor="#006064" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
