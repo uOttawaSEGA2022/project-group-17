@@ -7,26 +7,23 @@ public class Request {
 
     private String clientId;
     private String cookId;
-    private long currentTime;
-    private ArrayList<Pair<String,Long>> orders;
+    private String currentTime;
+    private ArrayList<String> orders;
 
-    public class Pair<String, Long> {
-        private String left;
-        private Long right;
+    public Request(ArrayList<String> mealList, String cookId, String clientId){
+        this.orders = mealList;
+        this.cookId = cookId;
+        this.clientId = clientId;
+        this.currentTime = Long.toString(System.currentTimeMillis());
 
-        public Pair(String mealName,Long currentTime){
-            this.left = mealName;
-            this.right = currentTime;
-        }
     }
 
-    public Request(){
-        this.orders = new ArrayList<>();
+    public void makeOrder(Meal meal){
+        orders.add(meal.getName());
+
     }
-
-    public void orderMeal(Meal meal){
-        orders.add(new Pair(meal.getName(),System.currentTimeMillis()));
-
+    public void removeMeal(int i){
+        orders.remove(i);
     }
 }
 
