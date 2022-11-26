@@ -137,7 +137,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                     }
 
                 }
-                MealList productsAdapter = new MealList(OfferedMealsClientSide.this, meals);
+                MealListClient productsAdapter = new MealListClient(OfferedMealsClientSide.this, meals);
                 listViewMeals.setAdapter(productsAdapter);
             }
 
