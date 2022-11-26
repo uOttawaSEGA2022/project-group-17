@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/ratingCookToolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="#FFC107"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -24,7 +24,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_gravity="left"
             android:layout_weight="0"
             android:orientation="horizontal"
@@ -73,7 +73,7 @@
                     android:layout_weight="0">
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/CookRating"
                         android:layout_width="63dp"
                         android:layout_height="20dp"
                         android:layout_weight="0"
@@ -81,7 +81,7 @@
                         android:textColor="#FFC107" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/chefrating"
                         android:layout_width="210dp"
                         android:layout_height="20dp"
                         android:layout_weight="0"
@@ -115,7 +115,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <EditText
@@ -132,11 +132,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/rateCookDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -149,14 +149,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="15dp"
+            android:layout_weight="0"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/submitRatingButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_weight="0"
                 android:backgroundTint="#FFC107"
                 android:text="Submit" />
         </LinearLayout>

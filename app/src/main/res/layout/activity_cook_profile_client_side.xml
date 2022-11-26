@@ -81,7 +81,7 @@
                     android:layout_weight="0">
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/CookRating"
                         android:layout_width="63dp"
                         android:layout_height="20dp"
                         android:layout_weight="0"
@@ -89,7 +89,7 @@
                         android:textColor="#FFC107" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/chefrating"
                         android:layout_width="210dp"
                         android:layout_height="20dp"
                         android:layout_weight="0"
