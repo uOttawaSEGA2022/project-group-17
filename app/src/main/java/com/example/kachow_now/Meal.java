@@ -15,6 +15,7 @@ public class Meal {
     private double Calories;
     private String CookUID;
     private boolean isOffered;
+    private String orderState;
 
     public Meal(){
 
@@ -30,6 +31,7 @@ public class Meal {
         this.servingSize = servingSize;
         this.Calories = Calories;
         this.isOffered = true;
+        this.orderState = "pending";
     }
 
     public String getName() {
@@ -118,6 +120,12 @@ public class Meal {
 
     public void setIsOffered(boolean isOffered) {
         this.isOffered = isOffered;
+    }
+
+    public String getOrderState(){ return this.orderState;}
+
+    public void setOrderState(String orderState){
+        this.orderState = orderState;
     }
 }
 
