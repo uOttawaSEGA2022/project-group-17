@@ -38,7 +38,7 @@ public class RequestList extends ArrayAdapter<Request> {
         dB = FirebaseDatabase.getInstance().getReference("MEALS");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-
+        //TODO actually finish this
         /*StorageReference ref = storageReference.child("images/" +
                 (mAuth.getCurrentUser()).getUid() + "/" + meal.getName());
 

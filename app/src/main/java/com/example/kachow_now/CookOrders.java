@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class CookOrders extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference dB;
     List<Request> requests;
-    ListView listViewRequests;
+    ListView listViewPending;
+    ListView listViewAccepted;
 
     private String cUID;
 
@@ -36,15 +38,22 @@ public class CookOrders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook_orders);
         mAuth = FirebaseAuth.getInstance();
-        dB = FirebaseDatabase.getInstance().getReference("ORDERS");
-        listViewRequests = findViewById(R.id.list_of_requests);
 
-        cUID = getIntent().getExtras().getString("UID");
+
+        dB = FirebaseDatabase.getInstance().getReference("ORDERS")
+                .child(mAuth.getCurrentUser().getUid());
+        // This page is accessed by the cook, so we have their ID
+
+        listViewAccepted = findViewById(R.id.list_of_accepted);
+        // This is what I meant when we were talking about it, Check out the layout for cook orders
+        // This is not the one your working on rn, I just made this for later
+
+        listViewPending = findViewById(R.id.list_of_requests);
 
 
         requests = new ArrayList<Request>();
 
-        listViewRequests.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewPending.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Request request = requests.get(i);
@@ -57,32 +66,26 @@ public class CookOrders extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        dB.child(cUID).addValueEventListener(new ValueEventListener() {
+        dB.child("pending").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot s) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 requests.clear();
-                for (DataSnapshot snapshot : s.getChildren()) {
+                for (DataSnapshot s : snapshot.getChildren()) {
                     Request tmp = new Request();
-                    tmp.setCookId(cUID);
-                    tmp.setClientId(mAuth.getCurrentUser().getUid());
-                    tmp.setAccepted(false);
-                    tmp.setCurrentTime(snapshot.child("currentTime").getValue(long.class));
+                    tmp.setCookId(s.child("cookID").getValue(String.class));
+                    tmp.setClientId(s.child("clientID").getValue(String.class));
+                    tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
+                    tmp.setCurrentTime(s.child("currentTime").getValue(long.class));
 
-                    ArrayList<String> meals = new ArrayList<String>();
+                    tmp.setOrders(s.child("orders").getValue(
+                            new GenericTypeIndicator<ArrayList<String>>() {
+                            }));
 
-                    DataSnapshot pendingOrders = snapshot.child("meals");
-                    for (DataSnapshot order : pendingOrders.getChildren()) {
-                        meals.add(String.valueOf(order));
-                    }
                     requests.add(tmp);
                 }
-
-
-
+                RequestList requestListAdapter = new RequestList(CookOrders.this, requests);
+                listViewPending.setAdapter(requestListAdapter);
             }
-
-
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
