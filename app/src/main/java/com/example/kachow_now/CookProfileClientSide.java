@@ -1,7 +1,9 @@
 package com.example.kachow_now;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -64,8 +66,7 @@ public class CookProfileClientSide extends AppCompatActivity {
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Cook.class);
-                startActivity(intent);
+
             }
         });
 
