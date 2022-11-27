@@ -26,6 +26,8 @@
     <string name="phonenumber">PHONENUMBER</string>
     <string name="email">Email:</string>
     <string name="email_">EMAIL</string>
+    <string name="quantity">Quantity</string>
+    <string name="add_to_cart">add to cart</string>
 
     <string-array name="AccountType">
         <item>Select Role…</item>

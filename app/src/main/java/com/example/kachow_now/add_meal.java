@@ -21,6 +21,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -184,6 +185,7 @@ public class add_meal extends AppCompatActivity {
 
         Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
                 mealServingSize, mealCalories);
+        m.setCookUID(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
         dB.child(name.getText().toString()).setValue(m);
 
     }

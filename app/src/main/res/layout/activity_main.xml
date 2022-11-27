@@ -13,8 +13,9 @@
         android:background="#373430"
         android:gravity="clip_vertical"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="-44dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
