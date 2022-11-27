@@ -139,8 +139,9 @@ public class CookHomepage extends AppCompatActivity {
         orders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CookOrders.class);
-                startActivity(intent);
+                //Intent intent = new Intent(v.getContext(), CookOrders.class);
+                //startActivity(intent);
+                //TODO fix this error
             }
         });
 
