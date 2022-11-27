@@ -29,6 +29,9 @@
     <string name="quantity">Quantity</string>
     <string name="add_to_cart">add to cart</string>
     <string name="remove_from_cart">Remove from Cart</string>
+    <string name="orders_">Orders</string>
+    <string name="pending_requests">Pending Requests</string>
+    <string name="accepted_requests">Accepted Requests</string>
 
     <string-array name="AccountType">
         <item>Select Role…</item>
