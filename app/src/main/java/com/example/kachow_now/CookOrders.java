@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -94,7 +95,6 @@ public class CookOrders extends AppCompatActivity {
 
     public void showRequestEntry(final String cookId, String clientId, String currentTime) {
 
-        //TODO like fix everything lol
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.orderstate_dialog,null);
@@ -111,6 +111,7 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child("state").setValue("accepted");
+                Toast.makeText(CookOrders.this, "Accepted Request",Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
         });
@@ -119,6 +120,7 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child("state").setValue("rejected");
+                Toast.makeText( CookOrders.this,"Rejected Request!", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
         });
