@@ -31,7 +31,7 @@
             android:translationY="8dp">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/chefprofilepicture"
                 android:layout_width="wrap_content"
                 android:layout_height="111dp"
                 android:layout_weight="0"

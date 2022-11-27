@@ -41,7 +41,6 @@ public class ClientHomepage extends AppCompatActivity {
 
         rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
         rv.setAdapter(new CookList(chefs));
-        mealTypeRV = (RecyclerView) findViewById(R.id.mealTypeRecyclerView);
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         //  mealTypeRV.setLayoutManager();
