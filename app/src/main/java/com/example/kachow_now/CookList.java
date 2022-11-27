@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
     ArrayList<Cook> cooks;
 
-    private Cook curCook;
     private FirebaseAuth mAuth;
     private DatabaseReference database;
     private FirebaseStorage storage;
@@ -68,8 +67,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         ImageButton a = (ImageButton) viewHolder.profilePic;
-        Cook cook = cooks.get(position);
-        curCook = cook;
+        Cook cook = cooks.get(viewHolder.getAdapterPosition());
         String n = cook.getFirstName() + " " + cook.getLastName();
         ((TextView) viewHolder.name).setText(n);
         ((TextView) viewHolder.name).setTextColor(Color.parseColor("#FFC107"));
@@ -99,7 +97,9 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cUID = curCook.getUID();
+
+                String cUID = cooks.get(viewHolder.getAdapterPosition()).getUID();
+                System.out.println("CUID: " + cUID);
                 Intent intent = new Intent(v.getContext(), OfferedMealsClientSide.class);
                 intent.putExtra("UID", cUID);
                 v.getContext().startActivity(intent);
@@ -120,7 +120,6 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageButton profilePic;
         public TextView name;
-        public TextView uid;//Stupid idea but could be interesting
 
         public ViewHolder(View view) {
             super(view);
@@ -129,6 +128,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
             name = view.findViewById(R.id.nameOfChef);
         }
     }
+
 
 /*
     public CookList(Activity context, List<Cook> listOfCooks) {

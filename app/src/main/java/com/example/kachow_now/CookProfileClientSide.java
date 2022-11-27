@@ -16,6 +16,7 @@ public class CookProfileClientSide extends AppCompatActivity {
 
         String cUID = getIntent().getExtras().getString("UID");
 
+
         /*Cook tmpCook = new Cook();
         dB.child(cUID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,6 +56,15 @@ public class CookProfileClientSide extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), submit_report.class);
                 intent.putExtra("UID", cUID);
+                startActivity(intent);
+            }
+        });
+
+        Button rateButton = (Button)findViewById(R.id.ratingPage);
+        rateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Cook.class);
                 startActivity(intent);
             }
         });
