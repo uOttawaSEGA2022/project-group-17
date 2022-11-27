@@ -20,6 +20,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_weight="0"
+                android:scaleType="fitStart"
                 tools:srcCompat="@drawable/lunch" />
 
             <LinearLayout

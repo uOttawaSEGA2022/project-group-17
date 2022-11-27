@@ -41,7 +41,6 @@ public class ClientHomepage extends AppCompatActivity {
 
         rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
         rv.setAdapter(new CookList(chefs));
-        mealTypeRV = (RecyclerView) findViewById(R.id.mealTypeRecyclerView);
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         //  mealTypeRV.setLayoutManager();
@@ -99,7 +98,7 @@ public class ClientHomepage extends AppCompatActivity {
                         tmpCook.setEmail(cookSnapshot.child("email").getValue(String.class));
                         tmpCook.setFirstName(cookSnapshot.child("firstName").getValue(String.class));
                         tmpCook.setLastName(cookSnapshot.child("lastName").getValue(String.class));
-                        tmpCook.setPassword(cookSnapshot.child("passord").getValue(String.class));
+                        tmpCook.setPassword(cookSnapshot.child("password").getValue(String.class));
                         tmpCook.setPhoneNumber(cookSnapshot.child("phoneNumber").getValue(long.class));
                         tmpCook.setPostalCode(cookSnapshot.child("postalCode").getValue(String.class));
                         tmpCook.setRating(cookSnapshot.child("rating").getValue(Integer.class));
@@ -107,7 +106,8 @@ public class ClientHomepage extends AppCompatActivity {
                         chefs.add(tmpCook);
                     }
                 }
-                rv.swapAdapter(new CookList(chefs), true);
+
+                rv.swapAdapter(new CookList(chefs), false);
             }
 
             @Override

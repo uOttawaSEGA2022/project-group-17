@@ -1,7 +1,9 @@
 package com.example.kachow_now;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +17,7 @@ public class CookProfileClientSide extends AppCompatActivity {
         setContentView(R.layout.activity_cook_profile_client_side);
 
         String cUID = getIntent().getExtras().getString("UID");
+
 
         /*Cook tmpCook = new Cook();
         dB.child(cUID).addValueEventListener(new ValueEventListener() {
@@ -56,6 +59,14 @@ public class CookProfileClientSide extends AppCompatActivity {
                 Intent intent = new Intent(v.getContext(), submit_report.class);
                 intent.putExtra("UID", cUID);
                 startActivity(intent);
+            }
+        });
+
+        Button rateButton = (Button)findViewById(R.id.ratingPage);
+        rateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
