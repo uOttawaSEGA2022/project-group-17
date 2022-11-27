@@ -40,12 +40,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:contentDescription="@string/api_key"
+                    android:numStars="5" />
 
                 <TextView
                     android:id="@+id/chefname"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Chef's Name"
@@ -57,52 +67,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:clickable="false"
-                    android:contentDescription="@string/api_key"
-                    android:numStars="5" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="610dp">
 
-            <ScrollView
+            <ListView
+                android:id="@+id/list_of_offered_meals"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/api_key"
-                android:fillViewport="true">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ListView
-                        android:id="@+id/list_of_offered_meals"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </ListView>
-                </LinearLayout>
-            </ScrollView>
+            </ListView>
 
         </LinearLayout>
 

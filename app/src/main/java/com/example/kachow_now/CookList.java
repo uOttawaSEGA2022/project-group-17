@@ -99,7 +99,6 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
             public void onClick(View v) {
 
                 String cUID = cooks.get(viewHolder.getAdapterPosition()).getUID();
-                System.out.println("CUID: " + cUID);
                 Intent intent = new Intent(v.getContext(), OfferedMealsClientSide.class);
                 intent.putExtra("UID", cUID);
                 v.getContext().startActivity(intent);
