@@ -21,15 +21,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:contentDescription="@string/photo_of_chef"
+            android:scaleType="fitStart"
             app:srcCompat="@drawable/fchef" />
 
         <TextView
             android:id="@+id/nameOfChef"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/chef" />
+            android:text="@string/chef"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
