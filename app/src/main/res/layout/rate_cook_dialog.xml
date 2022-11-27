@@ -21,9 +21,8 @@
             android:ems="10"
             android:foregroundGravity="center_vertical|center_horizontal"
             android:gravity="center|center_horizontal"
-            android:hint="Set Number of Suspension Days"
-            android:inputType="textPersonName"
-            android:text="Meal Settings" />
+            android:hint="Rate Cook"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -31,24 +30,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <EditText
+            android:id="@+id/ratingCook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Rate Cook From 1-5" />
+
         <Button
-            android:id="@+id/toggleoffer"
+            android:id="@+id/rateButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#FFC107"
-            android:text="Toggle Offer"
+            android:text="Rate Cook"
             android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/deletemeal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#FFC107"
-            android:text="Delete Meal"
-            android:textColor="#000000" />
-
     </LinearLayout>
 
 </LinearLayout>
