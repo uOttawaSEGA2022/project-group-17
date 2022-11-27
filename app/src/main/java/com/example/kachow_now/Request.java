@@ -1,62 +1,74 @@
 package com.example.kachow_now;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Request {
 
     private String clientId;
     private String cookId;
-    private String currentTime;
+    private long currentTime;
     private ArrayList<String> orders;
-    private String state;
+    private boolean accepted;
 
-    public Request(ArrayList<String> mealList, String cookId, String clientId){
+    public Request(ArrayList<String> mealList, String cookId, String clientId) {
         this.orders = mealList;
         this.cookId = cookId;
         this.clientId = clientId;
-        this.currentTime = Long.toString(System.currentTimeMillis());
-        this.state = "pending";
+        this.currentTime = (System.currentTimeMillis());
+        this.accepted = false;
     }
-    public Request(){
-
+    public Request() {
+        this.currentTime = (System.currentTimeMillis());
+        this.orders = new ArrayList<>();
+        this.accepted = false;
     }
 
-    public void add(Meal meal){
+    public void add(Meal meal) {
         orders.add(meal.getName());
-
     }
-    public void removeMeal(int i){
+
+    public void removeMeal(int i) {
         orders.remove(i);
     }
 
-    public void setState(String state){
-        this.state = state;
-    }
-    public String getState(){
-        return this.state;
+    public boolean getAccepted() {
+        return this.accepted;
     }
 
-    public void setCookId(String cookId){
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public void setCookId(String cookId) {
         this.cookId = cookId;
     }
-    public String getCookId(){
+
+    public String getCookId() {
         return this.cookId;
     }
-    public void setClientId(String clientId){
+
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
-    public String getClientId(){
+
+    public String getClientId() {
         return this.clientId;
     }
-    public String getCurrentTime(){
+
+    public long getCurrentTime() {
         return this.currentTime;
     }
-    public void setCurrentTime(String currentTime){
+
+    public void setCurrentTime(long currentTime) {
         this.currentTime = currentTime;
     }
-    public void setOrders(ArrayList<String> orders){
+
+    public void setOrders(ArrayList<String> orders) {
         this.orders = orders;
+    }
+
+    public ArrayList<String> getOrders() {
+        return this.orders;
     }
 }
 

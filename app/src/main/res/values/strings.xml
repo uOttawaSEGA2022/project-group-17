@@ -28,6 +28,7 @@
     <string name="email_">EMAIL</string>
     <string name="quantity">Quantity</string>
     <string name="add_to_cart">add to cart</string>
+    <string name="remove_from_cart">Remove from Cart</string>
 
     <string-array name="AccountType">
         <item>Select Role…</item>

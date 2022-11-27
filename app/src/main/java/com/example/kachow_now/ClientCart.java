@@ -10,108 +10,69 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class OfferedMealsClientSide extends AppCompatActivity {
+public class ClientCart extends AppCompatActivity {
 
+    ListView listViewMeals;
+    List<Meal> cart;
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-
     private String cUID;
-
-    List<Meal> meals;
-    ListView listViewMeals;
-    List<Meal> cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cook_offered_meals_client_side);
+        setContentView(R.layout.activity_client_order_cart);
+        cart = new ArrayList<>();
+        Type type = new TypeToken<List<Meal>>() {
+        }.getType();
+        cart = new Gson().fromJson(getIntent().getStringExtra("cart"), type);
 
         cUID = getIntent().getExtras().getString("UID");
+
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("MEALS").child(cUID);
-
-
-
-        ImageButton chefIcon = (ImageButton) findViewById(R.id.cheficon);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        StorageReference mImageRef = storageReference.child("images/" + cUID + "/profilePhoto");
-
-        final long FOUR_MEGABYTE = 4096 * 4096;
-        try {
-            Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
-            im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
-                @Override
-                public void onComplete(@NonNull Task<byte[]> task) {
-                    if (im.isSuccessful()) {
-                        byte[] b = im.getResult();
-                        Bitmap bm = BitmapFactory.decodeByteArray(b, 0, b.length);
-                        chefIcon.setImageBitmap(bm);
-                    } else {
-                        System.out.println("Not Successful");
-                    }
-                }
-            });
-
-        } catch (IndexOutOfBoundsException ignored) {
-        }
-
-        chefIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CookProfileClientSide.class);
-                intent.putExtra("UID", cUID);
-                startActivity(intent);
-            }
-        });
-
-        listViewMeals = (ListView) findViewById(R.id.list_of_offered_meals);
-
-        meals = new ArrayList<Meal>();
-        cart = new ArrayList<Meal>();
-
+        listViewMeals = (ListView) findViewById(R.id.cartListView);
 
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Meal meal = (meals.get(i));
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OfferedMealsClientSide.this);
+                Meal meal = (cart.get(i));
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientCart.this);
                 LayoutInflater inflater = getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.client_order_popup, null);
 
                 EditText quantityEditText = dialogView.findViewById(R.id.orderQuantity);
+                quantityEditText.setVisibility(View.GONE);
                 Button cartButton = dialogView.findViewById(R.id.addToCartButton);
+                cartButton.setVisibility(View.GONE);
                 Button remove = dialogView.findViewById(R.id.deleteMeal);
-                remove.setVisibility(View.GONE);
 
                 TextView textViewMealName = (TextView) dialogView.findViewById(R.id.textViewMealName);
                 TextView textViewDescription = (TextView) dialogView.findViewById(R.id.textViewDescription);
@@ -177,18 +138,12 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                 final AlertDialog b = dialogBuilder.create();
                 b.show();
 
-                cartButton.setOnClickListener(new View.OnClickListener() {
+                remove.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String quantity = quantityEditText.getText().toString();
-                        if (quantity.equals("")) {
-                            quantity = "1";
-                        }//TODO NEED TO VALIDATE QUANTITY FIELD
-                        int a = Integer.parseInt(quantity);
-                        for (int j = 0; j < a; j++) {
-                            cart.add(meal);
-                            System.out.println("added " + meal.getName());
-                        }
+                        cart.remove(i);
+                        MealListClient mealsAdapter = new MealListClient(ClientCart.this, cart);
+                        listViewMeals.setAdapter(mealsAdapter);
                         b.dismiss();
                     }
                 });
@@ -197,61 +152,33 @@ public class OfferedMealsClientSide extends AppCompatActivity {
             }
         });
 
-        Button goToCart = findViewById(R.id.cartButton);
+        Button request = findViewById(R.id.requestOrderButton);
 
-        goToCart.setOnClickListener(new View.OnClickListener() {
+        request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!cart.isEmpty()) {
-                    Intent intent = new Intent(v.getContext(), ClientCart.class);
-                    intent.putExtra("cart", new Gson().toJson(cart));
-                    intent.putExtra("UID", cUID);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(OfferedMealsClientSide.this,
-                            "Please add Items to your cart", Toast.LENGTH_LONG).show();
+                Request r = new Request();
+                r.setClientId(mAuth.getCurrentUser().getUid());
+                r.setCookId(cart.get(0).getCookUID());
+                for (Meal m : cart) {
+                    r.add(m);
                 }
+
+                DatabaseReference tempDB = FirebaseDatabase.getInstance().getReference("ORDERS")
+                        .child(cUID).child("pending").child(Long.toString(r.getCurrentTime()));
+                tempDB.setValue(r);
+                Intent intent = new Intent(v.getContext(), ClientHomepage.class);
+                startActivity(intent);
             }
         });
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
 
-
-        dB.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot mealSnapShot) {
-                meals.clear();
-                for (DataSnapshot s : mealSnapShot.getChildren()) {
-                    if (s.exists() && Boolean.TRUE.equals(s.child("isOffered").getValue(boolean.class))) {
-                        Meal tmpMeal = new Meal();
-                        tmpMeal.setName(s.child("name").getValue(String.class));
-                        tmpMeal.setAllergens(s.child("allergens").getValue(new GenericTypeIndicator<ArrayList<String>>() {
-                        }));
-                        tmpMeal.setCalories(s.child("calories").getValue(double.class));
-                        tmpMeal.setCuisine(s.child("cuisine").getValue(String.class));
-                        tmpMeal.setDescription(s.child("description").getValue(String.class));
-                        tmpMeal.setIngredients(s.child("ingredients").getValue(new GenericTypeIndicator<ArrayList<String>>() {
-                        }));
-                        tmpMeal.setIsOffered(Boolean.TRUE.equals(s.child("isOffered").getValue(boolean.class)));
-                        tmpMeal.setMealType(s.child("mealType").getValue(String.class));
-                        tmpMeal.setPrice(s.child("price").getValue(double.class));
-                        tmpMeal.setServingSize(s.child("servingSize").getValue(double.class));
-                        tmpMeal.setCookUID(s.child("cookUID").getValue(String.class));
-
-                        meals.add(tmpMeal);
-                    }
-                    MealListClient mealsAdapter = new MealListClient(OfferedMealsClientSide.this, meals);
-                    listViewMeals.setAdapter(mealsAdapter);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        MealListClient mealsAdapter = new MealListClient(this, cart);
+        listViewMeals.setAdapter(mealsAdapter);
     }
 }

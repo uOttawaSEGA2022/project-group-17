@@ -1,15 +1,11 @@
 package com.example.kachow_now;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,11 +14,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CookOrders extends AppCompatActivity {
 
@@ -67,8 +65,8 @@ public class CookOrders extends AppCompatActivity {
                     Request tmp = new Request();
                     tmp.setCookId(cUID);
                     tmp.setClientId(mAuth.getCurrentUser().getUid());
-                    tmp.setState("pending");
-                    tmp.setCurrentTime(snapshot.child("currentTime").getValue(String.class));
+                    tmp.setAccepted(false);
+                    tmp.setCurrentTime(snapshot.child("currentTime").getValue(long.class));
 
                     ArrayList<String> meals = new ArrayList<String>();
 
@@ -93,11 +91,11 @@ public class CookOrders extends AppCompatActivity {
         });
     }
 
-    public void showRequestEntry(final String cookId, String clientId, String currentTime) {
+    public void showRequestEntry(final String cookId, String clientId, long currentTime) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.orderstate_dialog,null);
+        final View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
         dialogBuilder.setView(dialogView);
 
         final Button acceptButton = dialogView.findViewById(R.id.acceptButton);

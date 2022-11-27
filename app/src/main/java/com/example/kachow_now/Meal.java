@@ -32,6 +32,7 @@ public class Meal {
         this.isOffered = true;
     }
 
+
     public String getName() {
         return this.Name;
     }
@@ -119,5 +120,7 @@ public class Meal {
     public void setIsOffered(boolean isOffered) {
         this.isOffered = isOffered;
     }
+
+
 }
 
