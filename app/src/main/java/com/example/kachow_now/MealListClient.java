@@ -56,7 +56,7 @@ public class MealListClient extends ArrayAdapter<Meal> {
 
 
         StorageReference ref = storageReference.child("images/" +
-                (mAuth.getCurrentUser()).getUid() + "/" + meal.getName());
+                cUID + "/" + meal.getName());
 
         final long FOUR_MEGABYTE = 4096 * 4096;
         try {

@@ -35,6 +35,9 @@ public class OfferedMealsClientSide extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
+    private String cUID;
+    private boolean exists;
+
     List<Meal> meals;
     ListView listViewMeals;
 
@@ -42,14 +45,20 @@ public class OfferedMealsClientSide extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook_offered_meals_client_side);
+
+
         mAuth = FirebaseAuth.getInstance();
-        dB = FirebaseDatabase.getInstance().getReference("UID");
-        String cUID = getIntent().getExtras().getString("UID");
+        dB = FirebaseDatabase.getInstance().getReference("MEALS");
+
+        cUID = getIntent().getExtras().getString("UID");
+
+        exists = false;
 
         ImageButton chefIcon = (ImageButton) findViewById(R.id.cheficon);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+
         StorageReference mImageRef = storageReference.child("images/" + cUID + "/profilePhoto");
 
         final long FOUR_MEGABYTE = 4096 * 4096;
@@ -80,19 +89,15 @@ public class OfferedMealsClientSide extends AppCompatActivity {
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
-        dB = FirebaseDatabase.getInstance().getReference("UID");
         listViewMeals = (ListView) findViewById(R.id.list_of_offered_meals);
 
         meals = new ArrayList<Meal>();
-        Bundle bundle = getIntent().getExtras();
 
 
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Meal meal = meals.get(i);
-                showMealEntry(meal.getName());
+                showMealEntry(meals.get(i).getName());
                 return true;
             }
         });
@@ -101,44 +106,13 @@ public class OfferedMealsClientSide extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        dB.addValueEventListener(new ValueEventListener() {
+        System.out.println("RAN ON START");
+        dB.child(cUID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                meals.clear();
-                for (DataSnapshot s : snapshot.getChildren()) {
-                    if (s.child("role").getValue(String.class).equals("cook")){
-                        Meal tmp = new Meal();
-                        DataSnapshot mealSnapShot = s.child("meals");
-
-                        ArrayList<String> ingredients = new ArrayList<String>();
-
-                        DataSnapshot ingredientsSnapshot = mealSnapShot.child("Ingredients");
-                        for (DataSnapshot ingredient : ingredientsSnapshot.getChildren()){
-                            ingredients.add(String.valueOf(ingredient));
-                        }
-
-                        ArrayList<String> allergens = new ArrayList<String>();
-
-                        DataSnapshot allergensSnapshot = mealSnapShot.child("Allergens");
-                        for (DataSnapshot allergen : allergensSnapshot.getChildren()){
-                            allergens.add(String.valueOf(allergen));
-                        }
-
-                        tmp.setName(mealSnapShot.child("Name").getValue(String.class));
-                        tmp.setDescription(mealSnapShot.child("Description").getValue(String.class));
-                        tmp.setMealType(mealSnapShot.child("MealType").getValue(String.class));
-                        tmp.setPrice(mealSnapShot.child("Price").getValue(double.class));
-                        tmp.setCuisine(mealSnapShot.child("Cuisine").getValue(String.class));
-                        tmp.setIngredients(ingredients);
-                        tmp.setAllergens(allergens);
-                        tmp.setServingSize(mealSnapShot.child("ServingSize").getValue(double.class));
-                        tmp.setCalories(mealSnapShot.child("Calories").getValue(double.class));
-                        meals.add(tmp);
-                    }
-
+                if (snapshot.getValue(String.class) != null) {
+                    exists = true;
                 }
-                MealListClient productsAdapter = new MealListClient(OfferedMealsClientSide.this, meals);
-                listViewMeals.setAdapter(productsAdapter);
             }
 
             @Override
@@ -146,6 +120,53 @@ public class OfferedMealsClientSide extends AppCompatActivity {
 
             }
         });
+        if (exists) {
+            dB.child(cUID).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    meals.clear();
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        for (DataSnapshot l : s.getChildren()) {
+                            System.out.println(l.getKey());
+                        }
+                        Meal tmp = new Meal();
+                        DataSnapshot mealSnapShot = s.child("meals");
+
+                        ArrayList<String> ingredients = new ArrayList<String>();
+
+                        DataSnapshot ingredientsSnapshot = mealSnapShot.child("ingredients");
+                        for (DataSnapshot ingredient : ingredientsSnapshot.getChildren()) {
+                            ingredients.add(String.valueOf(ingredient));
+                        }
+
+                        ArrayList<String> allergens = new ArrayList<String>();
+
+                        DataSnapshot allergensSnapshot = mealSnapShot.child("allergens");
+                        for (DataSnapshot allergen : allergensSnapshot.getChildren()) {
+                            allergens.add(String.valueOf(allergen));
+                        }
+
+                        tmp.setName(mealSnapShot.child("name").getValue(String.class));
+                        tmp.setDescription(mealSnapShot.child("description").getValue(String.class));
+                        tmp.setMealType(mealSnapShot.child("mealType").getValue(String.class));
+                        tmp.setPrice(mealSnapShot.child("price").getValue(double.class));
+                        tmp.setCuisine(mealSnapShot.child("cuisine").getValue(String.class));
+                        tmp.setIngredients(ingredients);
+                        tmp.setAllergens(allergens);
+                        tmp.setServingSize(mealSnapShot.child("servingSize").getValue(double.class));
+                        tmp.setCalories(mealSnapShot.child("calories").getValue(double.class));
+                        meals.add(tmp);
+                    }
+                    MealListClient mealsAdapter = new MealListClient(OfferedMealsClientSide.this, meals);
+                    listViewMeals.setAdapter(mealsAdapter);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
     public void showMealEntry (String mealName){
 

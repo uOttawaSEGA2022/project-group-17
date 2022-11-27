@@ -3,16 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#373430"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -40,12 +37,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:contentDescription="@string/api_key"
+                    android:numStars="5" />
 
                 <TextView
                     android:id="@+id/chefname"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Chef's Name"
@@ -57,53 +64,31 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="525dp">
 
-            <LinearLayout
+            <ListView
+                android:id="@+id/list_of_offered_meals"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="525dp">
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:clickable="false"
-                    android:contentDescription="@string/api_key"
-                    android:numStars="5" />
-            </LinearLayout>
+            </ListView>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="610dp">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <ScrollView
+            <Button
+                android:id="@+id/cartButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/api_key"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ListView
-                        android:id="@+id/list_of_offered_meals"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </ListView>
-                </LinearLayout>
-            </ScrollView>
-
+                android:layout_weight="0"
+                android:backgroundTint="#FFC107"
+                android:text="Cart" />
         </LinearLayout>
 
     </LinearLayout>

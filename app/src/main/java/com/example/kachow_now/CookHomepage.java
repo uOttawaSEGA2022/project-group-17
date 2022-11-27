@@ -146,7 +146,8 @@ public class CookHomepage extends AppCompatActivity {
     }
     public void logOut(View view) {
         mAuth.signOut();
-        finish();}
+        finish();
+    }
 
 
 
