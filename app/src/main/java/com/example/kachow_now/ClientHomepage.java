@@ -24,6 +24,7 @@ public class ClientHomepage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
+    private DatabaseReference rateMealDB;
     private ArrayList<Cook> chefs;
     private ListView listViewChefs;
     private RecyclerView rv;
@@ -36,10 +37,17 @@ public class ClientHomepage extends AppCompatActivity {
         setContentView(R.layout.activity_clienthomepage);
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("UID");
-        Button logOutButton = (Button) findViewById(R.id.ClientHomePageLogout);
+
+        //TODO if previous order has been accepted and ordered by this client, do the rate the
+        // meal menu, This is just an idea though
+        rateMealDB = FirebaseDatabase.getInstance().getReference("MEALS");
+        // scroll through all info and then give them the popup
+
+
+        Button logOutButton = findViewById(R.id.ClientHomePageLogout);
         chefs = new ArrayList<Cook>();
 
-        rv = (RecyclerView) findViewById(R.id.chefRecyclerView);
+        rv = findViewById(R.id.chefRecyclerView);
         rv.setAdapter(new CookList(chefs));
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

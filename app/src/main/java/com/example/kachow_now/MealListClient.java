@@ -42,7 +42,7 @@ public class MealListClient extends ArrayAdapter<Meal> {
         View listViewItem = inflater.inflate(R.layout.layout_meal_list_client, null, true);
 
         TextView textViewMealName = listViewItem.findViewById(R.id.MealName);
-        TextView textViewRating = listViewItem.findViewById(R.id.textViewRating);
+        TextView textViewRating = listViewItem.findViewById(R.id.MealRating);
         TextView textViewPrice = listViewItem.findViewById(R.id.MealPrice);
         TextView textViewCalories = listViewItem.findViewById(R.id.MealCalories);
         ImageView chefprofilePic = listViewItem.findViewById(R.id.MealPhp);
@@ -81,7 +81,11 @@ public class MealListClient extends ArrayAdapter<Meal> {
         textViewMealName.setText("Meal name:" + meal.getName());
         textViewPrice.setText("Price:" + meal.getPrice());
         textViewCalories.setText("Calories:" + meal.getCalories());
-        textViewRating.setText("Rating: " + meal.getRating());
+        try {
+            textViewRating.setText("Rating: " + meal.getRating());
+        } catch (Exception e) {
+            textViewRating.setText("Rating: -1.0");
+        }
 
 
         return listViewItem;
