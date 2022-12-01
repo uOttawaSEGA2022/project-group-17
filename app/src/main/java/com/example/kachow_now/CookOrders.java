@@ -111,6 +111,7 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child("pending").child(String.valueOf(currentTime)).child("accepted").setValue(true);
+
                 Toast.makeText(CookOrders.this, "Accepted Request",Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
