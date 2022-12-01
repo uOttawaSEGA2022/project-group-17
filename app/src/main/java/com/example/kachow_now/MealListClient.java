@@ -81,7 +81,11 @@ public class MealListClient extends ArrayAdapter<Meal> {
         textViewMealName.setText("Meal name:" + meal.getName());
         textViewPrice.setText("Price:" + meal.getPrice());
         textViewCalories.setText("Calories:" + meal.getCalories());
-        textViewRating.setText("Rating: " + meal.getRating());
+        try {
+            textViewRating.setText("Rating: " + meal.getRating());
+        } catch (Exception e) {
+            textViewRating.setText("Rating: -1.0");
+        }
 
 
         return listViewItem;
