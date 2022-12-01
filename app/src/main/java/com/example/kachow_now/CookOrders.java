@@ -111,7 +111,32 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child("pending").child(String.valueOf(currentTime)).child("accepted").setValue(true);
+                dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot s : snapshot.getChildren()) {
+                            Request tmp = new Request();
+                            tmp.setCookId(s.child("cookID").getValue(String.class));
+                            tmp.setClientId(s.child("clientID").getValue(String.class));
+                            tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
+                            tmp.setCurrentTime(s.child("currentTime").getValue(long.class));
 
+                            tmp.setOrders(s.child("orders").getValue(
+                                    new GenericTypeIndicator<ArrayList<String>>() {
+                                    }));
+
+                            requests.add(tmp);
+                        }
+                        RequestList requestListAdapter = new RequestList(CookOrders.this, requests);
+                        listViewAccepted.setAdapter(requestListAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                dB.child("pending").child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Accepted Request",Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
