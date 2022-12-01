@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#373430"
-    android:backgroundTint="#373430"
+    android:background="#BBE7ED"
+    android:backgroundTint="#BBE7ED"
     android:orientation="vertical">
 
     <LinearLayout
@@ -18,12 +18,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:backgroundTint="#03A9F4"
             android:ems="10"
             android:foregroundGravity="center_vertical|center_horizontal"
             android:gravity="center|center_horizontal"
             android:hint="Set Number of Suspension Days"
             android:inputType="textPersonName"
-            android:text="Meal Settings" />
+            android:text="Meal Settings"
+            android:textColor="#03A9F4" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#FFFFFF"
             android:text="Toggle Offer"
             android:textColor="#000000" />
 
@@ -45,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#FFFFFF"
             android:text="Delete Meal"
             android:textColor="#000000" />
 

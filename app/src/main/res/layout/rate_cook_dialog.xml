@@ -24,7 +24,8 @@
             android:gravity="center|center_horizontal"
             android:hint="Rate Cook"
             android:inputType="textPersonName"
-            android:textColor="#0D709E" />
+            android:textColor="#0D709E"
+            android:textColorHint="#0D709E" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +42,8 @@
             android:hint="Rate Cook From 1-5"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
 
         <Button
             android:id="@+id/rateButton"
