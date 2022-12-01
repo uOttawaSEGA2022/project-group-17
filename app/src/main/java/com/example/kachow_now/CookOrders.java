@@ -58,12 +58,24 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Request request = pendingRequests.get(i);
-                showRequestEntry(request.getCookId(), request.getClientId(),
+                showPendingRequestEntry(request.getCookId(), request.getClientId(),
                         request.getCurrentTime());
                 return true;
             }
         });
+        listViewAccepted.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Request request = pendingRequests.get(i);
+                showAcceptedRequestEntry(request.getCookId(), request.getClientId(),
+                        request.getCurrentTime());
+                return true;
+            }
+        });
+
+
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -87,7 +99,17 @@ public class CookOrders extends AppCompatActivity {
                 }
                 RequestList pendingRequestListAdapter = new RequestList(CookOrders.this, pendingRequests);
                 listViewPending.setAdapter(pendingRequestListAdapter);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        dB.child("accepted").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 acceptedRequests.clear();
                 for (DataSnapshot s : snapshot.getChildren()) {
                     Request tmp = new Request();
@@ -113,7 +135,7 @@ public class CookOrders extends AppCompatActivity {
         });
     }
 
-    public void showRequestEntry(final String cookId, String clientId, long currentTime) {
+    public void showPendingRequestEntry(final String cookId, String clientId, long currentTime) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -123,6 +145,8 @@ public class CookOrders extends AppCompatActivity {
         final Button acceptButton = dialogView.findViewById(R.id.acceptButton);
         final Button rejectButton = dialogView.findViewById(R.id.rejectButton);
 
+        acceptButton.setText("ACCEPT");
+        rejectButton.setText("REJECT");
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
@@ -134,20 +158,20 @@ public class CookOrders extends AppCompatActivity {
                 dB.child("pending").child(String.valueOf(currentTime)).child("accepted").setValue(true);
                 dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot s : snapshot.getChildren()) {
-                            Request tmp = new Request();
-                            tmp.setCookId(s.child("cookID").getValue(String.class));
-                            tmp.setClientId(s.child("clientID").getValue(String.class));
-                            tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
-                            tmp.setCurrentTime(Long.parseLong(snapshot.getKey()));
+                    public void onDataChange(@NonNull DataSnapshot s) {
 
-                            tmp.setOrders(s.child("orders").getValue(
-                                    new GenericTypeIndicator<ArrayList<String>>() {
-                                    }));
+                        Request tmp = new Request();
+                        tmp.setCookId(s.child("cookID").getValue(String.class));
+                        tmp.setClientId(s.child("clientID").getValue(String.class));
+                        tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
+                        tmp.setCurrentTime(Long.parseLong(s.getKey()));
 
-                            acceptedRequests.add(tmp);
-                        }
+                        tmp.setOrders(s.child("orders").getValue(
+                                new GenericTypeIndicator<ArrayList<String>>() {
+                                }));
+
+                        dB.child("accepted").child(String.valueOf(currentTime)).setValue(tmp);
+
                     }
 
                     @Override
@@ -156,7 +180,7 @@ public class CookOrders extends AppCompatActivity {
                     }
                 });
                 dB.child("pending").child(String.valueOf(currentTime)).removeValue();
-                Toast.makeText(CookOrders.this, "Accepted Request",Toast.LENGTH_LONG).show();
+                Toast.makeText(CookOrders.this, "Accepted Request", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
         });
@@ -165,7 +189,65 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child("pending").child(String.valueOf(currentTime)).removeValue();
-                Toast.makeText( CookOrders.this,"Rejected Request!", Toast.LENGTH_LONG).show();
+                Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
+                b.dismiss();
+            }
+        });
+
+    }
+
+    public void showAcceptedRequestEntry(final String cookId, String clientId, long currentTime) {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button acceptButton = dialogView.findViewById(R.id.acceptButton);
+        final Button rejectButton = dialogView.findViewById(R.id.rejectButton);
+
+        acceptButton.setText("COMPLETE");
+        rejectButton.setText("CANCEL");
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dB.child("accepted").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot s) {
+
+                        Request tmp = new Request();
+                        tmp.setCookId(s.child("cookID").getValue(String.class));
+                        tmp.setClientId(s.child("clientID").getValue(String.class));
+                        tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
+                        tmp.setCurrentTime(Long.parseLong(s.getKey()));
+
+                        tmp.setOrders(s.child("orders").getValue(
+                                new GenericTypeIndicator<ArrayList<String>>() {
+                                }));
+
+                        FirebaseDatabase.getInstance().getReference("COMPLETE").child(String.valueOf(currentTime)).setValue(tmp);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
+                Toast.makeText(CookOrders.this, "Completed Request", Toast.LENGTH_LONG).show();
+                b.dismiss();
+            }
+        });
+
+        rejectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 b.dismiss();
             }
         });
