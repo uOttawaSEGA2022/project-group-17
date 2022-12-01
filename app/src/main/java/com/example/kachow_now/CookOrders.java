@@ -110,7 +110,7 @@ public class CookOrders extends AppCompatActivity {
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dB.child("state").setValue("accepted");
+                dB.child("pending").child(String.valueOf(currentTime)).child("accepted").setValue(true);
                 Toast.makeText(CookOrders.this, "Accepted Request",Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -119,7 +119,7 @@ public class CookOrders extends AppCompatActivity {
         rejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dB.child("state").setValue("rejected");
+                dB.child("pending").child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText( CookOrders.this,"Rejected Request!", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
