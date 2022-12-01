@@ -119,7 +119,7 @@ public class CookOrders extends AppCompatActivity {
                             tmp.setCookId(s.child("cookID").getValue(String.class));
                             tmp.setClientId(s.child("clientID").getValue(String.class));
                             tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
-                            tmp.setCurrentTime(s.child("currentTime").getValue(long.class));
+                            tmp.setCurrentTime(Long.parseLong(snapshot.getKey()));
 
                             tmp.setOrders(s.child("orders").getValue(
                                     new GenericTypeIndicator<ArrayList<String>>() {
