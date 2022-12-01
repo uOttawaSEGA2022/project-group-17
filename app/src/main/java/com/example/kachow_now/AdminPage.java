@@ -50,7 +50,7 @@ public class AdminPage extends AppCompatActivity {
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                /*StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
 // Create a reference to the file to delete
                 StorageReference desertRef = storageRef.child("images");
@@ -68,7 +68,7 @@ public class AdminPage extends AppCompatActivity {
                         // Uh-oh, an error occurred!
                         Toast.makeText(AdminPage.this,"FAILED: "+exception,Toast.LENGTH_LONG).show();
                     }
-                });
+                });*/
                 logOut(view);
             }
         });
