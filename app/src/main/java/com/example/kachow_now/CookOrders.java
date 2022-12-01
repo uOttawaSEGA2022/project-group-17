@@ -27,7 +27,8 @@ public class CookOrders extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     DatabaseReference dB;
-    List<Request> requests;
+    List<Request> pendingRequests;
+    List<Request> acceptedRequests;
     ListView listViewPending;
     ListView listViewAccepted;
 
@@ -50,12 +51,13 @@ public class CookOrders extends AppCompatActivity {
         listViewPending = findViewById(R.id.list_of_requests);
 
 
-        requests = new ArrayList<Request>();
+        pendingRequests = new ArrayList<Request>();
+        acceptedRequests = new ArrayList<Request>();
 
         listViewPending.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Request request = requests.get(i);
+                Request request = pendingRequests.get(i);
                 showRequestEntry(request.getCookId(), request.getClientId(),
                         request.getCurrentTime());
                 return true;
@@ -68,7 +70,8 @@ public class CookOrders extends AppCompatActivity {
         dB.child("pending").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                requests.clear();
+                pendingRequests.clear();
+
                 for (DataSnapshot s : snapshot.getChildren()) {
                     Request tmp = new Request();
                     tmp.setCookId(s.child("cookID").getValue(String.class));
@@ -80,10 +83,27 @@ public class CookOrders extends AppCompatActivity {
                             new GenericTypeIndicator<ArrayList<String>>() {
                             }));
 
-                    requests.add(tmp);
+                    pendingRequests.add(tmp);
                 }
-                RequestList requestListAdapter = new RequestList(CookOrders.this, requests);
-                listViewPending.setAdapter(requestListAdapter);
+                RequestList pendingRequestListAdapter = new RequestList(CookOrders.this, pendingRequests);
+                listViewPending.setAdapter(pendingRequestListAdapter);
+
+                acceptedRequests.clear();
+                for (DataSnapshot s : snapshot.getChildren()) {
+                    Request tmp = new Request();
+                    tmp.setCookId(s.child("cookID").getValue(String.class));
+                    tmp.setClientId(s.child("clientID").getValue(String.class));
+                    tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
+                    tmp.setCurrentTime(s.child("currentTime").getValue(long.class));
+
+                    tmp.setOrders(s.child("orders").getValue(
+                            new GenericTypeIndicator<ArrayList<String>>() {
+                            }));
+
+                    acceptedRequests.add(tmp);
+                }
+                RequestList acceptedRequestListAdapter = new RequestList(CookOrders.this, acceptedRequests);
+                listViewAccepted.setAdapter(acceptedRequestListAdapter);
             }
 
             @Override
@@ -110,6 +130,7 @@ public class CookOrders extends AppCompatActivity {
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 dB.child("pending").child(String.valueOf(currentTime)).child("accepted").setValue(true);
                 dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -125,10 +146,8 @@ public class CookOrders extends AppCompatActivity {
                                     new GenericTypeIndicator<ArrayList<String>>() {
                                     }));
 
-                            requests.add(tmp);
+                            acceptedRequests.add(tmp);
                         }
-                        RequestList requestListAdapter = new RequestList(CookOrders.this, requests);
-                        listViewAccepted.setAdapter(requestListAdapter);
                     }
 
                     @Override
