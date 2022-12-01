@@ -13,7 +13,8 @@
             android:id="@+id/textViewOrders"
             android:layout_width="387dp"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="#000000" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
