@@ -41,10 +41,11 @@ public class MealListClient extends ArrayAdapter<Meal> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_meal_list_client, null, true);
 
-        TextView textViewMealName = (TextView) listViewItem.findViewById(R.id.MealName);
-        TextView textViewPrice = (TextView) listViewItem.findViewById(R.id.MealPrice);
-        TextView textViewCalories = (TextView) listViewItem.findViewById(R.id.MealCalories);
-        ImageView chefprofilePic = (ImageView) listViewItem.findViewById(R.id.MealPhp);
+        TextView textViewMealName = listViewItem.findViewById(R.id.MealName);
+        TextView textViewRating = listViewItem.findViewById(R.id.textViewRating);
+        TextView textViewPrice = listViewItem.findViewById(R.id.MealPrice);
+        TextView textViewCalories = listViewItem.findViewById(R.id.MealCalories);
+        ImageView chefprofilePic = listViewItem.findViewById(R.id.MealPhp);
 
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("MEALS");
@@ -80,6 +81,7 @@ public class MealListClient extends ArrayAdapter<Meal> {
         textViewMealName.setText("Meal name:" + meal.getName());
         textViewPrice.setText("Price:" + meal.getPrice());
         textViewCalories.setText("Calories:" + meal.getCalories());
+        textViewRating.setText("Rating: " + meal.getRating());
 
 
         return listViewItem;

@@ -110,6 +110,7 @@ public class MealList extends ArrayAdapter<Meal> {
         textViewMealAllergens.setText("Allergens:" + allergens);
         textViewServingSize.setText("Serving size:" + meal.getServingSize());
         textViewCalories.setText("Calories:" + meal.getCalories());
+        textViewRating.setText("Rating: " + meal.getRating());
 
         offered.setChecked(meal.getIsOffered());
 

@@ -47,6 +47,13 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
             <TextView
+                android:id="@+id/textViewRating1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+            <TextView
                 android:id="@+id/textViewMealName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,15 +117,6 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/addToCartButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                android:text="@string/add_to_cart"
-                android:textColor="#120101" />
-
             <EditText
                 android:id="@+id/orderQuantity"
                 android:layout_width="0dp"
@@ -131,6 +129,15 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:textColorHint="#000000" />
+
+            <Button
+                android:id="@+id/addToCartButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:text="@string/add_to_cart"
+                android:textColor="#120101" />
 
         </LinearLayout>
 
