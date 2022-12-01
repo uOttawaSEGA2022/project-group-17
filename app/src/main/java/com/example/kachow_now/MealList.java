@@ -42,18 +42,19 @@ public class MealList extends ArrayAdapter<Meal> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_meal_list, null, true);
 
-        TextView textViewMealName = (TextView) listViewItem.findViewById(R.id.textViewMealName);
-        TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewDescription);
-        TextView textViewMealType = (TextView) listViewItem.findViewById(R.id.textViewMealType);
-        TextView textViewPrice = (TextView) listViewItem.findViewById(R.id.textViewPrice);
-        TextView textViewCuisine = (TextView) listViewItem.findViewById(R.id.textViewCuisine);
-        TextView textViewIngredients = (TextView) listViewItem.findViewById(R.id.textViewIngredients);
-        TextView textViewMealAllergens = (TextView) listViewItem.findViewById(R.id.textViewMealAllergens);
-        TextView textViewServingSize = (TextView) listViewItem.findViewById(R.id.textViewServingSize);
-        TextView textViewCalories = (TextView) listViewItem.findViewById(R.id.textViewCalories);
+        TextView textViewMealName = listViewItem.findViewById(R.id.textViewMealName);
+        TextView textViewDescription = listViewItem.findViewById(R.id.textViewDescription);
+        TextView textViewMealType = listViewItem.findViewById(R.id.textViewMealType);
+        TextView textViewPrice = listViewItem.findViewById(R.id.textViewPrice);
+        TextView textViewCuisine = listViewItem.findViewById(R.id.textViewCuisine);
+        TextView textViewIngredients = listViewItem.findViewById(R.id.textViewIngredients);
+        TextView textViewMealAllergens = listViewItem.findViewById(R.id.textViewMealAllergens);
+        TextView textViewServingSize = listViewItem.findViewById(R.id.textViewServingSize);
+        TextView textViewCalories = listViewItem.findViewById(R.id.textViewCalories);
+        TextView textViewRating = listViewItem.findViewById(R.id.textViewRating);
 
-        ImageView chefprofilePic = (ImageView) listViewItem.findViewById(R.id.mealPhp);
-        SwitchCompat offered = (SwitchCompat) listViewItem.findViewById(R.id.Offered_switch);
+        ImageView chefprofilePic = listViewItem.findViewById(R.id.mealPhp);
+        SwitchCompat offered = listViewItem.findViewById(R.id.Offered_switch);
 
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("MEALS");
@@ -100,18 +101,17 @@ public class MealList extends ArrayAdapter<Meal> {
         }
         allergens = line2.toString();
 
-        textViewMealName.setText("Meal name:"+meal.getName());
-        textViewDescription.setText("Description:"+meal.getDescription());
-        textViewMealType.setText("Meal Type:"+meal.getMealType());
-        textViewPrice.setText(String.valueOf("Price:"+meal.getPrice()));
-        textViewCuisine.setText("Cuisine Type:"+meal.getCuisine());
-        textViewIngredients.setText("Ingredients:"+ingredients);
-        textViewMealAllergens.setText("Allergens:"+allergens);
-        textViewServingSize.setText(String.valueOf("Serving size:"+meal.getServingSize()));
-        textViewCalories.setText(String.valueOf("Calories:"+meal.getCalories()));
+        textViewMealName.setText("Meal name:" + meal.getName());
+        textViewDescription.setText("Description:" + meal.getDescription());
+        textViewMealType.setText("Meal Type:" + meal.getMealType());
+        textViewPrice.setText("Price:" + meal.getPrice());
+        textViewCuisine.setText("Cuisine Type:" + meal.getCuisine());
+        textViewIngredients.setText("Ingredients:" + ingredients);
+        textViewMealAllergens.setText("Allergens:" + allergens);
+        textViewServingSize.setText("Serving size:" + meal.getServingSize());
+        textViewCalories.setText("Calories:" + meal.getCalories());
 
         offered.setChecked(meal.getIsOffered());
-
 
 
         return listViewItem;

@@ -15,9 +15,11 @@ public class Meal {
     private double Calories;
     private String CookUID;
     private boolean isOffered;
+    private double rating;
 
-    public Meal(){
-
+    public Meal() {
+        this.isOffered = true;
+        this.rating = 0.0;
     }
     public Meal(String Name, String Description, String MealType, double Price, String Cuisine, ArrayList<String> Ingredients, ArrayList<String> Allergens, double servingSize, double Calories) {
         this.Name = Name;
@@ -30,6 +32,7 @@ public class Meal {
         this.servingSize = servingSize;
         this.Calories = Calories;
         this.isOffered = true;
+        this.rating = 0.0;
     }
 
 
@@ -121,6 +124,12 @@ public class Meal {
         this.isOffered = isOffered;
     }
 
+    public double getRating() {
+        return rating;
+    }
 
+    public void setRating(double rating) {
+        this.rating = rating % 5.0;
+    }
 }
 

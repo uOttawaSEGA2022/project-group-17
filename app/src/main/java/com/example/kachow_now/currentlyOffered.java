@@ -55,7 +55,7 @@ public class currentlyOffered extends AppCompatActivity {
         });
 
 
-        Button addMeal = (Button) findViewById(R.id.addMeal);
+        Button addMeal = findViewById(R.id.addMeal);
 
         addMeal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,11 @@ public class currentlyOffered extends AppCompatActivity {
                     tmpMeal.setMealType(s.child("mealType").getValue(String.class));
                     tmpMeal.setPrice(s.child("price").getValue(double.class));
                     tmpMeal.setServingSize(s.child("servingSize").getValue(double.class));
-
+                    try {
+                        tmpMeal.setRating(s.child("rating").getValue(double.class));
+                    } catch (Exception e) {
+                        tmpMeal.setRating(-1.0);
+                    }
                     meals.add(tmpMeal);
                 }
 
