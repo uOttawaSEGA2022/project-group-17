@@ -68,12 +68,23 @@
             android:layout_height="550dp"
             android:layout_weight="1">
 
-            <ListView
-                android:id="@+id/list_of_offered_meals"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
-            </ListView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ListView
+                        android:id="@+id/list_of_offered_meals"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </ListView>
+                </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
 
