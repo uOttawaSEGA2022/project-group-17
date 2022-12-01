@@ -67,7 +67,7 @@
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textColorHint="#000000" />
         </LinearLayout>
 
@@ -87,7 +87,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:textColor="#85E8E3E3"
+                android:textColor="#85000000"
                 android:textColorHint="#020202" />
         </LinearLayout>
 
