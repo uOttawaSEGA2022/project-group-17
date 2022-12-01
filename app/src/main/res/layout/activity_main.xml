@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#373430"
+        android:background="#BBE7ED"
         android:gravity="clip_vertical"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0"
             android:gravity="center_horizontal"
@@ -29,34 +29,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="220dp"
             android:layout_weight="0"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:srcCompat="@drawable/logos" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal" />
 
         <LinearLayout
             android:layout_width="250dp"
@@ -71,11 +63,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FFC107"
+                android:backgroundTint="#000000"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textPersonName"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#000000" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,12 +82,13 @@
                 android:id="@+id/password"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
+                android:backgroundTint="#000000"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:textColor="#85E8E3E3" />
+                android:textColor="#85E8E3E3"
+                android:textColorHint="#020202" />
         </LinearLayout>
 
         <LinearLayout
@@ -108,9 +102,10 @@
                 android:id="@+id/loginButton"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
+                android:backgroundTint="#FFFFFF"
                 android:onClick="login"
-                android:text="@string/login" />
+                android:text="@string/login"
+                android:textColor="#000000" />
 
         </LinearLayout>
 
@@ -125,7 +120,7 @@
                 android:id="@+id/singUpButton"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#8E8585"
+                android:backgroundTint="#03A9F4"
                 android:minHeight="48dp"
                 android:onClick="moveToRegister"
                 android:text="@string/sign_up"
