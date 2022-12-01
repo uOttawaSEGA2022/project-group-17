@@ -25,6 +25,7 @@
                 android:id="@+id/mealPhp"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:background="#00FFFFFF"
                 android:contentDescription="@string/photo_of_chef"
                 android:maxWidth="100dp"
                 android:maxHeight="100dp"

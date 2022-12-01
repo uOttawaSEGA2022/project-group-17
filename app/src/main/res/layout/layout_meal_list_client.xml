@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/MealPhp"
                 android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:scaleType="fitStart"
                 tools:srcCompat="@drawable/lunch" />
