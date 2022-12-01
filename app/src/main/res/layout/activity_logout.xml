@@ -24,9 +24,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:background="#686363"
-            android:backgroundTint="#373430"
-            android:orientation="horizontal" >
+            android:background="#BBE7ED"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView2"
@@ -36,7 +35,7 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:text="Katch you Later!"
-                android:textColor="#FFC107"
+                android:textColor="#0D709E"
                 android:textSize="34sp" />
         </LinearLayout>
 
@@ -44,8 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#686363"
-            android:backgroundTint="#373430"
+            android:background="#BBE7ED"
+            android:backgroundTint="#BBE7ED"
             android:orientation="horizontal">
 
         </LinearLayout>
@@ -54,7 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="87dp"
             android:layout_weight="0"
-            android:backgroundTint="#423F3F"
+            android:background="#BBE7ED"
+            android:backgroundTint="#BBE7ED"
             android:gravity="center|center_horizontal"
             android:orientation="horizontal">
 
@@ -62,8 +62,10 @@
                 android:id="@+id/loginButton"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
-                android:text="Login" />
+                android:backgroundTint="#FFFFFF"
+                android:text="Login"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
         </LinearLayout>
     </LinearLayout>
 
