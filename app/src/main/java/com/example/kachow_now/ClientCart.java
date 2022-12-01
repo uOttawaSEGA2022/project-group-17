@@ -45,9 +45,9 @@ public class ClientCart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_order_cart);
+
         cart = new ArrayList<>();
-        Type type = new TypeToken<List<Meal>>() {
-        }.getType();
+        Type type = new TypeToken<List<Meal>>() { }.getType();
         cart = new Gson().fromJson(getIntent().getStringExtra("cart"), type);
 
         cUID = getIntent().getExtras().getString("UID");

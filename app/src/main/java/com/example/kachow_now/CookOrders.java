@@ -31,7 +31,6 @@ public class CookOrders extends AppCompatActivity {
     ListView listViewPending;
     ListView listViewAccepted;
 
-    private String cUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
