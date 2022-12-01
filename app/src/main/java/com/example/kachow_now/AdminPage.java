@@ -8,7 +8,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,25 @@ public class AdminPage extends AppCompatActivity {
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+// Create a reference to the file to delete
+                StorageReference desertRef = storageRef.child("images");
+
+// Delete the file
+                desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // File deleted successfully
+                        Toast.makeText(AdminPage.this,"Passed",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Uh-oh, an error occurred!
+                        Toast.makeText(AdminPage.this,"FAILED: "+exception,Toast.LENGTH_LONG).show();
+                    }
+                });
                 logOut(view);
             }
         });
@@ -129,7 +153,7 @@ public class AdminPage extends AppCompatActivity {
         final Button buttonDismiss = dialogView.findViewById(R.id.toggleoffer);
         final Button buttonPermaBan = dialogView.findViewById(R.id.deletemeal);
         final Button buttonSuspension = dialogView.findViewById(R.id.rateButton);
-        final EditText textDaySus = dialogView.findViewById(R.id.labelRating);
+        final EditText textDaySus = dialogView.findViewById(R.id.labelRating1);
 
 
         dialogBuilder.setTitle("Complaint about " + cookName);

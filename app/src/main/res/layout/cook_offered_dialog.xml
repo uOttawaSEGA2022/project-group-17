@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/labelRating"
+            android:id="@+id/labelRating1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0"
