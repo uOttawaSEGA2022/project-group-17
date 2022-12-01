@@ -59,7 +59,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
 
 
 
-        ImageButton chefIcon = (ImageButton) findViewById(R.id.cheficon);
+        ImageButton chefIcon = findViewById(R.id.cheficon);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -94,7 +94,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
             }
         });
 
-        listViewMeals = (ListView) findViewById(R.id.list_of_offered_meals);
+        listViewMeals = findViewById(R.id.list_of_offered_meals);
 
         meals = new ArrayList<Meal>();
         cart = new ArrayList<Meal>();
@@ -113,17 +113,18 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                 Button remove = dialogView.findViewById(R.id.deleteMeal);
                 remove.setVisibility(View.GONE);
 
-                TextView textViewMealName = (TextView) dialogView.findViewById(R.id.textViewMealName);
-                TextView textViewDescription = (TextView) dialogView.findViewById(R.id.textViewDescription);
-                TextView textViewMealType = (TextView) dialogView.findViewById(R.id.textViewMealType);
-                TextView textViewPrice = (TextView) dialogView.findViewById(R.id.textViewPrice);
-                TextView textViewCuisine = (TextView) dialogView.findViewById(R.id.textViewCuisine);
-                TextView textViewIngredients = (TextView) dialogView.findViewById(R.id.textViewIngredients);
-                TextView textViewMealAllergens = (TextView) dialogView.findViewById(R.id.textViewMealAllergens);
-                TextView textViewServingSize = (TextView) dialogView.findViewById(R.id.textViewServingSize);
-                TextView textViewCalories = (TextView) dialogView.findViewById(R.id.textViewCalories);
+                TextView textViewMealName = dialogView.findViewById(R.id.textViewMealName);
+                TextView textViewDescription = dialogView.findViewById(R.id.textViewDescription);
+                TextView textViewMealType = dialogView.findViewById(R.id.textViewMealType);
+                TextView textViewPrice = dialogView.findViewById(R.id.textViewPrice);
+                TextView textViewCuisine = dialogView.findViewById(R.id.textViewCuisine);
+                TextView textViewIngredients = dialogView.findViewById(R.id.textViewIngredients);
+                TextView textViewMealAllergens = dialogView.findViewById(R.id.textViewMealAllergens);
+                TextView textViewServingSize = dialogView.findViewById(R.id.textViewServingSize);
+                TextView textViewRating = dialogView.findViewById(R.id.textViewRating1);
+                TextView textViewCalories = dialogView.findViewById(R.id.textViewCalories);
 
-                ImageView chefprofilePic = (ImageView) dialogView.findViewById(R.id.mealPhp);
+                ImageView chefprofilePic = dialogView.findViewById(R.id.mealPhp);
 
                 StorageReference ref = storageReference.child("images/" + cUID + "/" + meal.getName());
 
@@ -240,7 +241,11 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                         tmpMeal.setPrice(s.child("price").getValue(double.class));
                         tmpMeal.setServingSize(s.child("servingSize").getValue(double.class));
                         tmpMeal.setCookUID(s.child("cookUID").getValue(String.class));
-
+                        try {
+                            tmpMeal.setRating(s.child("rating").getValue(double.class));
+                        } catch (Exception e) {
+                            tmpMeal.setRating(-1.0);
+                        }
                         meals.add(tmpMeal);
                     }
                     MealListClient mealsAdapter = new MealListClient(OfferedMealsClientSide.this, meals);
