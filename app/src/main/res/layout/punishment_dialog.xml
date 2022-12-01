@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#373430"
-    android:backgroundTint="#373430"
+    android:backgroundTint="#BBE7ED"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,11 +19,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:backgroundTint="#0D709E"
             android:ems="10"
             android:foregroundGravity="center_vertical|center_horizontal"
             android:gravity="center|center_horizontal"
             android:hint="Set Number of Suspension Days"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#0D709E"
+            android:textColorHint="#0D709E" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#FFFFFF"
             android:text="Dismiss"
             android:textColor="#000000" />
 
@@ -45,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#FFFFFF"
             android:text="Ban"
             android:textColor="#000000" />
 
@@ -54,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#FFFFFF"
             android:text="Suspend"
             android:textColor="#000000" />
     </LinearLayout>
