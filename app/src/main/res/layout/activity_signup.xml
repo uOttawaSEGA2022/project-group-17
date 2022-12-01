@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#373430">
+    android:background="#BBE7ED ">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#BBE7ED "
             android:orientation="vertical"
             android:weightSum="12"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#FFC107"
+                    android:background="#03A9F4 "
                     android:minHeight="?attr/actionBarSize"
                     android:theme="?attr/actionBarTheme"
                     app:title="                          Registration"
@@ -54,12 +55,12 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:autofillHints=""
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="First Name"
                     android:inputType="textPersonName"
-                    android:autofillHints=""
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -76,11 +77,11 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="Last Name"
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,11 +98,11 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -119,11 +120,11 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -142,7 +143,7 @@
                     android:layout_weight="0"
                     android:gravity="bottom|center_vertical"
                     android:text="Phone:"
-                    android:textColor="#9E9E9E"
+                    android:textColor="#000000"
                     android:textSize="18dp" />
 
                 <EditText
@@ -151,13 +152,13 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="(XXX)"
-                    android:maxLength="3"
                     android:inputType="phone"
-                    android:textColor="#FFFFFF"
+                    android:maxLength="3"
+                    android:textColor="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <EditText
@@ -166,13 +167,13 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="XXX"
-                    android:maxLength="3"
                     android:inputType="phone"
-                    android:textColor="#FFFFFF"
+                    android:maxLength="3"
+                    android:textColor="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
@@ -190,13 +191,13 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="XXXX"
-                    android:maxLength="4"
                     android:inputType="phone"
-                    android:textColor="#FFFFFF"
+                    android:maxLength="4"
+                    android:textColor="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
 
             </LinearLayout>
@@ -213,11 +214,12 @@
                     android:layout_width="150dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="Address, Click again for AutoComplete"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -235,6 +237,7 @@
                     android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text="Postal Code: "
+                    android:textColor="#000000"
                     android:textSize="18sp" />
 
                 <EditText
@@ -242,24 +245,24 @@
                     android:layout_width="82dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="XXX"
-                    android:maxLength="3"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:maxLength="3" />
 
                 <EditText
                     android:id="@+id/pc2"
                     android:layout_width="82dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="XXX"
-                    android:maxLength="3"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:maxLength="3" />
             </LinearLayout>
 
             <LinearLayout
@@ -275,7 +278,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:entries="@array/AccountType"
                     android:minHeight="48dp" />
             </LinearLayout>
@@ -294,11 +297,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="Account/Card Number"
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -316,11 +319,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="CCV/Institution"
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -340,7 +343,7 @@
                     android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text=" Enter Card Expiry:"
-                    android:textColor="#9E9E9E" />
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -357,11 +360,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="@string/month_branchnumber"
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:visibility="visible" />
 
                 <EditText
@@ -369,11 +372,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="Year"
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -390,7 +393,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Upload Profile Picture..."
-                    android:textColor="#FFC107" />
+                    android:textColor="#0D709E" />
             </LinearLayout>
 
             <LinearLayout
@@ -407,7 +410,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC107"
+                    android:backgroundTint="#FFFFFF"
                     android:text="@string/register"
                     android:textColor="#000000" />
             </LinearLayout>
