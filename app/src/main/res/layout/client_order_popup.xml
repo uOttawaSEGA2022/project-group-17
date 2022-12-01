@@ -8,7 +8,8 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#373430"
+        android:background="#BBE7ED"
+        android:backgroundTint="#BBE7ED"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,8 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:contentDescription="@string/photo_of_chef"
-                android:maxHeight="100dp"
                 android:maxWidth="100dp"
+                android:maxHeight="100dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/dinner" />
 
@@ -114,7 +115,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FFC107"
+                android:backgroundTint="#FFFFFF"
                 android:text="@string/add_to_cart"
                 android:textColor="#120101" />
 
@@ -129,7 +130,7 @@
                 android:hint="@string/quantity"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:textColorHint="#9E9E9E" />
+                android:textColorHint="#000000" />
 
         </LinearLayout>
 
@@ -144,7 +145,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FFC107"
+                android:backgroundTint="#FFFFFF"
                 android:text="@string/remove_from_cart"
                 android:textColor="#120101" />
 
