@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
+                android:background="#00FFFFFF"
                 android:contentDescription="@string/photo_of_chef"
                 android:scaleType="fitStart"
                 app:srcCompat="@drawable/fchef" />
