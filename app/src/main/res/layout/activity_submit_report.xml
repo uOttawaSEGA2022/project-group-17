@@ -10,15 +10,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#373430"
-        android:backgroundTint="#00952FA6"
+        android:background="#BBE7ED"
+        android:backgroundTint="#BBE7ED"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#FFC107"
+            android:background="#BBE7ED"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.Toolbar
@@ -26,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:background="#FFC107"
+                android:background="#03A9F4"
+                android:gravity="center"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:title="Submit Report"
@@ -37,18 +39,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="75dp"
+            android:background="#BBE7ED"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#BBE7ED"
+                android:textColorHint="#000000">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/setMealOrdered"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#373430"
+                    android:background="#BBE7ED"
                     android:hint="Meal Ordered:"
+                    android:textColor="#000000"
                     android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -56,36 +62,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="110dp"
+            android:background="#BBE7ED"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="100dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#BBE7ED">
 
                 <TextView
                     android:id="@+id/dateTitle"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="Date:"
                     android:textAlignment="viewStart"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
                     android:textSize="24sp"
-                    android:translationY="38dp"
-                    android:layout_height="match_parent" />
+                    android:translationY="38dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="98dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#BBE7ED">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="#BBE7ED"
+                    android:textColorHint="#050505">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/day"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#373430"
+                        android:background="#BBE7ED"
                         android:hint="Day"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000"
                         android:textSize="24sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -96,14 +111,16 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:textColorHint="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/month"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#373430"
+                        android:background="#BBE7ED"
                         android:hint="Month"
+                        android:textColorHint="#388E3C"
                         android:textSize="24sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -114,13 +131,14 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:textColorHint="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/year"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#373430"
+                        android:background="#BBE7ED"
                         android:hint="Year"
                         android:textSize="24sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -135,13 +153,14 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:textColorHint="#000000">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/setTextReview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#373430"
+                    android:background="#BBE7ED"
                     android:hint="Describe the situation."
                     android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -155,14 +174,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/submitButton"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
+                android:layout_weight="0"
+                android:backgroundTint="#FBFBFB"
                 android:text="submit report"
                 android:textColor="@color/black" />
         </LinearLayout>
