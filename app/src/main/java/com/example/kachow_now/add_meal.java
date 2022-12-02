@@ -19,6 +19,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -33,6 +34,7 @@ public class add_meal extends AppCompatActivity {
     private EditText name, type, price, cuisine, allergens, calories, ingredients, description, servingSize;
     private Button upload, add, addAllergen, addIngredients;
     private Uri filePath;
+    private byte[] fileInBytes;
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
     private FirebaseStorage storage;
@@ -151,6 +153,9 @@ public class add_meal extends AppCompatActivity {
                 // Setting image on image view using Bitmap
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                         getContentResolver(), filePath);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+                fileInBytes = baos.toByteArray();
                 //imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
                 // Catch the exception
@@ -198,7 +203,7 @@ public class add_meal extends AppCompatActivity {
 
             // adding listeners on upload
             // or failure of image
-            ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            ref.putBytes(fileInBytes).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     // Image uploaded successfully

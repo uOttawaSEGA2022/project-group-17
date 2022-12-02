@@ -68,7 +68,7 @@ public class MealList extends ArrayAdapter<Meal> {
         StorageReference ref = storageReference.child("images/" +
                 (mAuth.getCurrentUser()).getUid() + "/" + meal.getName());
 
-        final long FOUR_MEGABYTE = 4096 * 4096;
+        final long FOUR_MEGABYTE = 1024 * 1024;
         try {
             Task<byte[]> im = ref.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
@@ -84,7 +84,7 @@ public class MealList extends ArrayAdapter<Meal> {
                 }
             });
 
-        } catch (IndexOutOfBoundsException ignored) {
+        } catch (Exception ignored) {
         }
 
         String ingredients;

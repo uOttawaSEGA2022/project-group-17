@@ -75,7 +75,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         storageReference = storage.getReference();
         StorageReference mImageRef = storageReference.child("images/" + cook.getUID() + "/profilePhoto");
 
-        final long FOUR_MEGABYTE = 4096 * 4096;
+        final long FOUR_MEGABYTE = 1024 * 1024;
         try {
             Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
@@ -91,7 +91,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
                 }
             });
 
-        } catch (IndexOutOfBoundsException ignored) {
+        } catch (Exception ignored) {
         }
 
         a.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +151,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         Cook cook = cooks.get(position);
         StorageReference mImageRef = storageReference.child("images/" + cook.UID + "/profilePhoto");
 
-        final long FOUR_MEGABYTE = 4096 * 4096;
+        final long FOUR_MEGABYTE = 1024 * 1024;
         try {
             Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
             if (im.isSuccessful()) {

@@ -59,7 +59,7 @@ public class MealListClient extends ArrayAdapter<Meal> {
         StorageReference ref = storageReference.child("images/" +
                 cUID + "/" + meal.getName());
 
-        final long FOUR_MEGABYTE = 4096 * 4096;
+        final long FOUR_MEGABYTE = 1024 * 1024;
         try {
             Task<byte[]> im = ref.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
@@ -75,7 +75,7 @@ public class MealListClient extends ArrayAdapter<Meal> {
                 }
             });
 
-        } catch (IndexOutOfBoundsException ignored) {
+        } catch (Exception ignored) {
         }
 
         textViewMealName.setText("Meal name:" + meal.getName());

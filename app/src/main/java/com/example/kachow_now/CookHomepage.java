@@ -87,7 +87,7 @@ public class CookHomepage extends AppCompatActivity {
 
 
 
-        final long FOUR_MEGABYTE = 4096 * 4096;
+        final long FOUR_MEGABYTE = 1024 * 1024;
         try {
             Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
@@ -103,7 +103,7 @@ public class CookHomepage extends AppCompatActivity {
                 }
             });
 
-        } catch (IndexOutOfBoundsException ignored) {
+        } catch (Exception ignored) {
         }
 
 

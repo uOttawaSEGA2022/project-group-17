@@ -37,6 +37,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class OfferedMealsClientSide extends AppCompatActivity {
 
+    public static final long FOUR_MEGABYTE = 1024 * 1024;
     private FirebaseAuth mAuth;
     private DatabaseReference dB;
     private FirebaseStorage storage;
@@ -66,7 +67,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
 
         StorageReference mImageRef = storageReference.child("images/" + cUID + "/profilePhoto");
 
-        final long FOUR_MEGABYTE = 4096 * 4096;
+        final long FOUR_MEGABYTE = 1024 * 1024;
         try {
             Task<byte[]> im = mImageRef.getBytes(FOUR_MEGABYTE);
             im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
@@ -82,7 +83,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                 }
             });
 
-        } catch (IndexOutOfBoundsException ignored) {
+        } catch (Exception ignored) {
         }
 
         chefIcon.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +129,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
 
                 StorageReference ref = storageReference.child("images/" + cUID + "/" + meal.getName());
 
-                final long FOUR_MEGABYTE = 4096 * 4096;
+                final long FOUR_MEGABYTE = 1024 * 1024;
                 try {
                     Task<byte[]> im = ref.getBytes(FOUR_MEGABYTE);
                     im.addOnCompleteListener(new OnCompleteListener<byte[]>() {
