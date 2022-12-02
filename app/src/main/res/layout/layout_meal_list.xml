@@ -124,6 +124,7 @@
                 android:layout_height="match_parent"
                 android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -139,6 +140,7 @@
                 android:layout_height="match_parent"
                 android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -154,6 +156,7 @@
                 android:layout_height="match_parent"
                 android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -169,6 +172,7 @@
                 android:layout_height="match_parent"
                 android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -184,6 +188,7 @@
                 android:layout_height="match_parent"
                 android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -199,6 +204,7 @@
                 android:layout_height="match_parent"
                 android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
