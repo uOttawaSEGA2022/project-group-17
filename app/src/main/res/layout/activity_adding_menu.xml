@@ -64,7 +64,8 @@
                     android:ems="10"
                     android:hint="Meal Name"
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,7 +86,8 @@
                     android:ems="10"
                     android:hint="Meal Type"
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,6 +108,7 @@
                     android:ems="10"
                     android:hint="Price"
                     android:textColor="#FFFFFF"
+                    android:textColorHint="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -128,6 +131,7 @@
                     android:hint="Cuisine"
                     android:inputType="textEmailAddress"
                     android:textColor="#FFFFFF"
+                    android:textColorHint="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -149,6 +153,7 @@
                     android:ems="10"
                     android:hint="Enter Ingredients..."
                     android:textColor="#FFFFFF"
+                    android:textColorHint="#000000"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <Button
@@ -177,7 +182,8 @@
                     android:backgroundTint="#0D709E"
                     android:ems="10"
                     android:hint="Enter Allergens..."
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColorHint="#000000" />
 
                 <Button
                     android:id="@+id/addAllergens"
@@ -209,6 +215,7 @@
                     android:hint="Serving Size"
                     android:inputType="textPersonName"
                     android:textColor="#FFFFFF"
+                    android:textColorHint="#000000"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -231,6 +238,7 @@
                     android:hint="Calories"
                     android:inputType="textPersonName"
                     android:textColor="#FFFFFF"
+                    android:textColorHint="#000000"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -286,7 +294,8 @@
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="Enter Description..."
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColorHint="#000000" />
 
             </LinearLayout>
 
