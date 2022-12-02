@@ -56,9 +56,9 @@
                     android:layout_weight="1"
                     android:backgroundTint="#000000"
                     android:ems="10"
+                    android:hint="First Name"
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
-                    android:text="First Name"
                     android:textColor="#000000"
                     android:textColorHint="#000000" />
 
@@ -259,6 +259,7 @@
                     android:hint="XXX"
                     android:inputType="textPersonName"
                     android:maxLength="3"
+                    android:textColor="#000000"
                     android:textColorHint="#000000" />
 
                 <EditText
@@ -272,6 +273,7 @@
                     android:hint="XXX"
                     android:inputType="textPersonName"
                     android:maxLength="3"
+                    android:textColor="#000000"
                     android:textColorHint="#000000" />
             </LinearLayout>
 
