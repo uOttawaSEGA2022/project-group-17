@@ -167,9 +167,6 @@ public class ClientCart extends AppCompatActivity {
                 DatabaseReference tempDB = FirebaseDatabase.getInstance().getReference("ORDERS")
                         .child(cUID).child("pending").child(Long.toString(r.getCurrentTime()));
                 tempDB.setValue(r);
-                DatabaseReference completedOrders = FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid());
-                completedOrders.setValue(r);
-                completedOrders.child("accepted").setValue(null);
 
                 DatabaseReference tempClientDB = FirebaseDatabase.getInstance()
                         .getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid());
