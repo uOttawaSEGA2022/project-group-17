@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/mealPhp"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:contentDescription="@string/photo_of_chef"
                 android:maxWidth="100dp"
@@ -45,70 +45,100 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewRating1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewMealName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewCalories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewMealType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewMealAllergens"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewCuisine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -129,6 +159,7 @@
                 android:hint="@string/quantity"
                 android:importantForAutofill="no"
                 android:inputType="number"
+                android:textColor="#000000"
                 android:textColorHint="#000000" />
 
             <Button
@@ -136,7 +167,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="#03A9F4"
                 android:text="@string/add_to_cart"
                 android:textColor="#120101" />
 
