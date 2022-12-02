@@ -58,7 +58,21 @@ public class OfferedMealsClientSide extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("MEALS").child(cUID);
 
+        TextView name = findViewById(R.id.chefname);
+        DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("UID").child(cUID);
+        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String fullName = snapshot.child("firstName").getValue(String.class) + " "
+                        + snapshot.child("lastName").getValue(String.class);
+                name.setText(fullName);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         ImageButton chefIcon = findViewById(R.id.cheficon);
 

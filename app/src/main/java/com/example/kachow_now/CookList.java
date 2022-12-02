@@ -70,7 +70,7 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
         Cook cook = cooks.get(viewHolder.getAdapterPosition());
         String n = cook.getFirstName() + " " + cook.getLastName();
         ((TextView) viewHolder.name).setText(n);
-        ((TextView) viewHolder.name).setTextColor(Color.parseColor("#FFC107"));
+        ((TextView) viewHolder.name).setTextColor(Color.parseColor("#0D709E"));
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         StorageReference mImageRef = storageReference.child("images/" + cook.getUID() + "/profilePhoto");
