@@ -66,7 +66,7 @@ public class CookOrders extends AppCompatActivity {
         listViewAccepted.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Request request = pendingRequests.get(i);
+                Request request = acceptedRequests.get(i);
                 showAcceptedRequestEntry(request.getCookId(), request.getClientId(),
                         request.getCurrentTime());
                 return true;
@@ -139,15 +139,15 @@ public class CookOrders extends AppCompatActivity {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
+        View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final Button acceptButton = dialogView.findViewById(R.id.acceptButton);
-        final Button rejectButton = dialogView.findViewById(R.id.rejectButton);
+        Button acceptButton = dialogView.findViewById(R.id.acceptButton);
+        Button rejectButton = dialogView.findViewById(R.id.rejectButton);
 
         acceptButton.setText("ACCEPT");
         rejectButton.setText("REJECT");
-        final AlertDialog b = dialogBuilder.create();
+        AlertDialog b = dialogBuilder.create();
         b.show();
 
 
@@ -200,15 +200,15 @@ public class CookOrders extends AppCompatActivity {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
+        View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final Button acceptButton = dialogView.findViewById(R.id.acceptButton);
-        final Button rejectButton = dialogView.findViewById(R.id.rejectButton);
+        Button acceptButton = dialogView.findViewById(R.id.acceptButton);
+        Button rejectButton = dialogView.findViewById(R.id.rejectButton);
 
         acceptButton.setText("COMPLETE");
-        rejectButton.setText("CANCEL");
-        final AlertDialog b = dialogBuilder.create();
+        rejectButton.setText("REJECT");
+        AlertDialog b = dialogBuilder.create();
         b.show();
 
 
@@ -216,29 +216,6 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                dB.child("accepted").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot s) {
-
-                        Request tmp = new Request();
-                        tmp.setCookId(s.child("cookID").getValue(String.class));
-                        tmp.setClientId(s.child("clientID").getValue(String.class));
-                        tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
-                        tmp.setCurrentTime(Long.parseLong(s.getKey()));
-
-                        tmp.setOrders(s.child("orders").getValue(
-                                new GenericTypeIndicator<ArrayList<String>>() {
-                                }));
-
-                        //FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(tmp.getClientId()).setValue(tmp);
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
                 dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Completed Request", Toast.LENGTH_LONG).show();
                 b.dismiss();
@@ -248,6 +225,8 @@ public class CookOrders extends AppCompatActivity {
         rejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
+                Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
         });
