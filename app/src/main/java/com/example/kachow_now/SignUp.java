@@ -142,12 +142,13 @@ public class SignUp extends AppCompatActivity {
 
         firstPhone.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start,int before, int count) {
-                if(firstPhone.getText().toString().length()==3)     //size as per your requirement
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (firstPhone.getText().toString().length() == 3)     //size as per your requirement
                 {
                     secondPhone.requestFocus();
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
             }
@@ -158,12 +159,13 @@ public class SignUp extends AppCompatActivity {
         });
         secondPhone.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start,int before, int count) {
-                if(secondPhone.getText().toString().length()==3)     //size as per your requirement
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (secondPhone.getText().toString().length() == 3)     //size as per your requirement
                 {
                     thirdPhone.requestFocus();
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
             }
@@ -176,36 +178,35 @@ public class SignUp extends AppCompatActivity {
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                String textFromSpinner =String.valueOf(spin.getSelectedItem()).trim().toLowerCase();
-                if (textFromSpinner.equals("cook")){
+                String textFromSpinner = String.valueOf(spin.getSelectedItem()).trim().toLowerCase();
+                if (textFromSpinner.equals("cook")) {
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
                     CCVorInstitution.setVisibility(View.VISIBLE);
                     BranchNumberorExpiry.setVisibility(View.GONE);
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
                     Year.setVisibility(View.GONE);
                     AccountOrCardNumber.setHint("Account Number");
-                    AccountOrCardNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
+                    AccountOrCardNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
                     MonthOrBranchNumber.setHint("Branch Number");
-                    MonthOrBranchNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(5)});
+                    MonthOrBranchNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
                     CCVorInstitution.setHint("Institution Number");
-                    CCVorInstitution.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)});
+                    CCVorInstitution.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
 
-                } else if (textFromSpinner.equals("client")){
+                } else if (textFromSpinner.equals("client")) {
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
                     CCVorInstitution.setVisibility(View.VISIBLE);
                     BranchNumberorExpiry.setVisibility(View.VISIBLE);
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
                     Year.setVisibility(View.VISIBLE);
                     AccountOrCardNumber.setHint("Card Number");
-                    AccountOrCardNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(16)});
+                    AccountOrCardNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(16)});
                     MonthOrBranchNumber.setHint("Month");
-                    MonthOrBranchNumber.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+                    MonthOrBranchNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
                     CCVorInstitution.setHint("CCV");
-                    CCVorInstitution.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)});
+                    CCVorInstitution.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
                     Year.setHint("Year");
-                    Year.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
-                }
-                else{
+                    Year.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
+                } else {
                     AccountOrCardNumber.setVisibility(View.INVISIBLE);
                     CCVorInstitution.setVisibility(View.INVISIBLE);
                     BranchNumberorExpiry.setVisibility(View.INVISIBLE);
@@ -213,6 +214,7 @@ public class SignUp extends AppCompatActivity {
                     Year.setVisibility(View.INVISIBLE);
                 }
             }
+
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
@@ -288,7 +290,6 @@ public class SignUp extends AppCompatActivity {
             String Year;
 
 
-
             if (Type.equals("client")) {
                 Year = ((EditText) findViewById(R.id.Year)).getText().toString().trim();
             } else {
@@ -328,11 +329,11 @@ public class SignUp extends AppCompatActivity {
                             Client u = new Client(Password, FirstName, Surname, Email,
                                     Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
-                                    address, postalcode ,Long.parseLong(Phone));
+                                    address, postalcode, Long.parseLong(Phone));
                             u.setUID(mAuth.getCurrentUser().getUid());
                             database.child(mAuth.getCurrentUser().getUid()).setValue(u);
                             //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
-                        }else{
+                        } else {
                             Cook u = new Cook(FirstName, Surname, Password, Email, address, postalcode,
                                     Long.parseLong(Phone), Integer.parseInt(BranchOrMonth), Integer.parseInt(CCVorInstitution),
                                     Double.parseDouble(AccountOrCardNumber));

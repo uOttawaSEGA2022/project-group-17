@@ -48,21 +48,19 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             currentUser.reload();
         }
     }
 
 
-    public void login(View view){
-        String username =  ((EditText)findViewById(R.id.userName)).getText().toString().trim();
-        String password =  ((EditText)findViewById(R.id.password)).getText().toString().trim();
-        //TODO error checking here
-        if (username.isEmpty() || password.isEmpty()){
+    public void login(View view) {
+        String username = ((EditText) findViewById(R.id.userName)).getText().toString().trim();
+        String password = ((EditText) findViewById(R.id.password)).getText().toString().trim();
+        if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(MainActivity.this, "Unable to Login. Empty fields detected.",
                     Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             mAuth.signInWithEmailAndPassword(username, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -70,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                ((EditText)findViewById(R.id.userName)).setText("");
-                                ((EditText)findViewById(R.id.password)).setText("");
+                                ((EditText) findViewById(R.id.userName)).setText("");
+                                ((EditText) findViewById(R.id.password)).setText("");
 
                                 Toast.makeText(MainActivity.this, "Authentication Successful.",
                                         Toast.LENGTH_LONG).show();
@@ -137,8 +135,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    public void moveToRegister(View view){
-        Intent intent = new Intent(MainActivity.this.getApplicationContext(),SignUp.class);
+
+    public void moveToRegister(View view) {
+        Intent intent = new Intent(MainActivity.this.getApplicationContext(), SignUp.class);
         startActivity(intent);
     }
 
