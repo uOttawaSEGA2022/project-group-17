@@ -170,6 +170,9 @@ public class ClientCart extends AppCompatActivity {
                 completedOrders.setValue(r);
                 completedOrders.child("accepted").setValue(null);
 
+                DatabaseReference tempClientDB = FirebaseDatabase.getInstance()
+                        .getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid());
+                tempClientDB.setValue(r);
 
                 cart.clear();
                 finish();
