@@ -230,7 +230,7 @@ public class CookOrders extends AppCompatActivity {
                                 new GenericTypeIndicator<ArrayList<String>>() {
                                 }));
 
-                        FirebaseDatabase.getInstance().getReference("COMPLETE").child(String.valueOf(currentTime)).setValue(tmp);
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(tmp.getClientId()).setValue(tmp);
 
                     }
 

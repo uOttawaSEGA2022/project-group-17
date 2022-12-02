@@ -1,6 +1,7 @@
 package com.example.kachow_now;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -41,6 +42,9 @@ public class ClientSearch extends AppCompatActivity {
         EditText searchBox = findViewById(R.id.searchView);
         listViewSearch = findViewById(R.id.lv1);
 
+        searchBox.setFocusableInTouchMode(false);
+        searchBox.setCursorVisible(false);
+        searchBox.setFilters(new InputFilter[]{new InputFilter.LengthFilter(searchQuery.length())});
         searchBox.setText(searchQuery);
 
 
@@ -76,6 +80,8 @@ public class ClientSearch extends AppCompatActivity {
                         meals.add(tmpMeal);
                     }
                 }
+                MealListClient mealsAdapter = new MealListClient(ClientSearch.this, meals);
+                listViewSearch.setAdapter(mealsAdapter);
 
             }
 
