@@ -84,7 +84,7 @@ public class AddingMenu extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                         getContentResolver(), filePath);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 0, baos);
                 byte[] fileInBytes = baos.toByteArray();
                 imageView.setImageBitmap(bitmap);
                 uploadImage(fileInBytes);

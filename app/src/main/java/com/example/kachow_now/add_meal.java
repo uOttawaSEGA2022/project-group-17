@@ -154,7 +154,7 @@ public class add_meal extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                         getContentResolver(), filePath);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 0, baos);
                 fileInBytes = baos.toByteArray();
                 //imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
@@ -174,8 +174,7 @@ public class add_meal extends AppCompatActivity {
     }
 
     private void SendMealToDatabase() {
-
-        String mealName = name.getText().toString().trim();
+        String mealName = name.getText().toString().replace(" ", "");
         String mealDesc = description.getText().toString().trim();
         String mealType = type.getText().toString().trim();
         String mealPriceString = price.getText().toString().trim();

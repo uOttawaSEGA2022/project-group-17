@@ -34,8 +34,8 @@
     <string name="accepted_requests">Accepted Requests</string>
 
     <string-array name="AccountType">
-        <item>Select Role…</item>
-        <item>Cook</item>
-        <item>Client</item>
+        <item><font fgcolor='#03A9F4'>Select Role…</font></item>
+        <item><font fgcolor='#03A9F4'>Cook</font></item>
+        <item><font fgcolor='#03A9F4'>Client</font></item>
     </string-array>
 </resources>

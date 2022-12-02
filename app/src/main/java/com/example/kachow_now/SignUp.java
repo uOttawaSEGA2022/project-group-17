@@ -44,7 +44,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class    SignUp extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
     private static final int PICK_IMAGE_REQUEST = 22;
@@ -117,6 +117,9 @@ public class    SignUp extends AppCompatActivity {
         EditText firstPhone = findViewById(R.id.IngredientsList);
         EditText secondPhone = findViewById(R.id.secondPhone);
         EditText thirdPhone = findViewById(R.id.thirdPhone);
+
+        //spin.setBackgroundColor(1);
+
 
         postalcode1.addTextChangedListener(new TextWatcher() {
 
@@ -255,7 +258,7 @@ public class    SignUp extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                         getContentResolver(), filePath);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 0, baos);
                 fileInBytes = baos.toByteArray();
                 //imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
