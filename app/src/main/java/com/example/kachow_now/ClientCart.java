@@ -1,7 +1,6 @@
 package com.example.kachow_now;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -167,8 +166,8 @@ public class ClientCart extends AppCompatActivity {
                 DatabaseReference tempDB = FirebaseDatabase.getInstance().getReference("ORDERS")
                         .child(cUID).child("pending").child(Long.toString(r.getCurrentTime()));
                 tempDB.setValue(r);
-                Intent intent = new Intent(v.getContext(), ClientHomepage.class);
-                startActivity(intent);
+                cart.clear();
+                finish();
             }
         });
 

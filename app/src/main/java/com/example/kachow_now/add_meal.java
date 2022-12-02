@@ -174,7 +174,7 @@ public class add_meal extends AppCompatActivity {
     }
 
     private void SendMealToDatabase() {
-        String mealName = name.getText().toString().replace(" ", "");
+        String mealName = name.getText().toString();
         String mealDesc = description.getText().toString().trim();
         String mealType = type.getText().toString().trim();
         String mealPriceString = price.getText().toString().trim();
@@ -185,7 +185,7 @@ public class add_meal extends AppCompatActivity {
         String mealServingSizeString = servingSize.getText().toString().trim();
         double mealServingSize = Double.parseDouble(mealServingSizeString);
 
-
+        System.out.println("Meal Name: " + mealName);
 
         Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
                 mealServingSize, mealCalories);

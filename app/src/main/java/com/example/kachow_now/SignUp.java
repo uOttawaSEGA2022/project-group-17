@@ -243,7 +243,6 @@ public class SignUp extends AppCompatActivity {
                 Status status = Autocomplete.getStatusFromIntent(data);
                 //Log.i(TAG, status.getStatusMessage());
             } else if (resultCode == RESULT_CANCELED) {
-
                 // The user canceled the operation.
             }
         }
@@ -365,9 +364,7 @@ public class SignUp extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,
-                        "Select Image from here..."),
-                PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select Image from here..."), PICK_IMAGE_REQUEST);
     }
 
     private void uploadImage() {
