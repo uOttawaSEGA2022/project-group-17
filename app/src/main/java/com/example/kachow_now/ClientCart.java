@@ -160,6 +160,7 @@ public class ClientCart extends AppCompatActivity {
                 Request r = new Request();
                 r.setClientId(mAuth.getCurrentUser().getUid());
                 r.setCookId(cart.get(0).getCookUID());
+                r.setCurrentTime(r.getCurrentTime());
                 for (Meal m : cart) {
                     r.add(m);
                 }
