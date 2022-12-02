@@ -162,10 +162,11 @@ public class ClientCart extends AppCompatActivity {
                 for (Meal m : cart) {
                     r.add(m);
                 }
-
                 DatabaseReference tempDB = FirebaseDatabase.getInstance().getReference("ORDERS")
                         .child(cUID).child("pending").child(Long.toString(r.getCurrentTime()));
                 tempDB.setValue(r);
+
+
                 cart.clear();
                 finish();
             }
