@@ -1,9 +1,11 @@
 package com.example.kachow_now;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +45,23 @@ public class ClientHomepage extends AppCompatActivity {
         rateMealDB = FirebaseDatabase.getInstance().getReference("MEALS");
         // scroll through all info and then give them the popup
 
+        SearchView s = findViewById(R.id.Search);
+        s.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (!query.isEmpty()) {
+                    Intent intent = new Intent(getApplicationContext(), ClientSearch.class);
+                    intent.putExtra("query", query);
+                    startActivity(intent);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         Button logOutButton = findViewById(R.id.ClientHomePageLogout);
         chefs = new ArrayList<Cook>();

@@ -48,24 +48,14 @@
             android:orientation="horizontal">
 
             <SearchView
+                android:id="@+id/Search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#BBE7ED"
                 android:backgroundTint="#BBE7ED"
                 android:foregroundTint="#00E8E1E1"
                 android:searchHintIcon="@drawable/quantum_ic_search_grey600_24"
-                android:searchIcon="@drawable/quantum_ic_search_grey600_24">
-
-                <EditText
-                    android:id="@+id/editTextTextPersonName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="search"
-                    android:textColorHint="#000000" />
-            </SearchView>
+                android:searchIcon="@drawable/quantum_ic_search_grey600_24" />
         </LinearLayout>
 
         <LinearLayout
