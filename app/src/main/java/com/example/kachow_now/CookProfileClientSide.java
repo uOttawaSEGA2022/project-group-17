@@ -18,12 +18,10 @@ public class CookProfileClientSide extends AppCompatActivity {
 
         String cUID = getIntent().getExtras().getString("UID");
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CookProfileClientSide.this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.rate_cook_dialog, null);
         dialogBuilder.setView(dialogView);
-
-
 
         /*Cook tmpCook = new Cook();
         dB.child(cUID).addValueEventListener(new ValueEventListener() {
@@ -72,9 +70,10 @@ public class CookProfileClientSide extends AppCompatActivity {
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Button buttonRate = dialogView.findViewById(R.id.rateButton);
-                final AlertDialog b = dialogBuilder.create();
-                b.show();
+                //final Button buttonRate = dialogView.findViewById(R.id.rateButton);
+                //final AlertDialog b = dialogBuilder.create();
+                //b.show();
+
             }
         });
 
