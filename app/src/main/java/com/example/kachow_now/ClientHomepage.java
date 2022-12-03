@@ -250,7 +250,7 @@ public class ClientHomepage extends AppCompatActivity {
         });
 
 
-        if (!exists) { // not really sure how to check this //TODO aaditya help plz
+        if (!exists) {
             statusOrders.setVisibility(View.GONE);
         } else {
             statusOrders.setVisibility(View.VISIBLE);
