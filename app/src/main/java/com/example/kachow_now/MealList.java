@@ -113,6 +113,7 @@ public class MealList extends ArrayAdapter<Meal> {
             allergens = "";
         }
 
+
         textViewMealName.setText("Meal name:" + meal.getName());
         textViewDescription.setText("Description:" + meal.getDescription());
         textViewMealType.setText("Meal Type:" + meal.getMealType());
