@@ -69,7 +69,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
             }
 
             @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -170,11 +170,21 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                 ingredients = line.toString();
 
                 String allergens;
-                StringBuilder line2 = new StringBuilder();
-                for (String allergen : meal.getAllergens()) {
-                    line.append(allergen + ", ");
+                if (meal.getAllergens() != null) {
+
+                    StringBuilder line2 = new StringBuilder();
+                    for (String allergen : meal.getAllergens()) {
+                        if (!allergen.isEmpty()) {
+                            line.append(allergen + ", ");
+                        }
+                    }
+                    if (line2.length() > 0) {
+                        line2.deleteCharAt(line2.length() - 1);
+                    }
+                    allergens = line2.toString();
+                } else {
+                    allergens = "";
                 }
-                allergens = line2.toString();
 
                 textViewMealName.setText("Meal name: " + meal.getName());
                 textViewDescription.setText("Description: " + meal.getDescription());
