@@ -49,57 +49,34 @@
                 tools:srcCompat="@drawable/chef2" />
 
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_weight="1">
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/ChefRating"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:text="  Address:"
-                        android:textColor="#0D709E" />
-
-                    <TextView
-                        android:id="@+id/chefaddress"
-                        android:layout_width="210dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="0"
-                        android:text="TextView"
-                        android:textColor="#000000"
-                        android:translationX="10dp" />
-
+                        android:text="chefRating" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="62dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0">
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/CookRating"
-                        android:layout_width="63dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="0"
-                        android:text="  Rating:"
-                        android:textColor="#0D709E" />
-
-                    <TextView
-                        android:id="@+id/chefrating"
-                        android:layout_width="210dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="0"
-                        android:text="TextView"
-                        android:textColor="#FFC107"
-                        android:translationX="10dp" />
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -110,17 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="horizontal"
-            android:translationY="20dp">
-
-            <TextView
-                android:id="@+id/cookDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Description"
-                android:textColor="#0D709E"
-                android:textSize="24sp" />
-        </LinearLayout>
+            android:translationY="20dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
