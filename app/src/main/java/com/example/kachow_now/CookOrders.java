@@ -160,9 +160,6 @@ public class CookOrders extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot s) {
 
-                        for (DataSnapshot l : s.getChildren()) {
-                            System.out.println(l.getKey());
-                        }
 
                         Request tmp = new Request();
                         tmp.setCookId(s.child("cookId").getValue(String.class));

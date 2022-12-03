@@ -58,7 +58,6 @@ public class ClientSearch extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Meal m = meals.get(position);
                 String cUID = m.getCookUID();
-                System.out.println(cUID);
                 Intent intent = new Intent(getApplicationContext(), OfferedMealsClientSide.class);
                 intent.putExtra("UID", cUID);
                 startActivity(intent);
