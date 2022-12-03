@@ -81,6 +81,37 @@ public class ClientSearch extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        ArrayList<String> SUScooks = new ArrayList<>();
+        DatabaseReference d = FirebaseDatabase.getInstance().getReference("UID");
+        d.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot l) {
+                SUScooks.clear();
+                for (DataSnapshot s : l.getChildren()) {
+                    String role = s.child("role").getValue(String.class);
+                    if (role != null && role.equalsIgnoreCase("cook")) {
+                        boolean isSus = true;
+                        boolean isBan = true;
+                        try {
+                            isSus = s.child("isSuspended").getValue(boolean.class);
+                            isBan = s.child("isBanned").getValue(boolean.class);
+                        } catch (Exception e) {
+                            isSus = true;
+                            isBan = true;
+                        }
+
+                        if (isSus || isBan) {
+                            SUScooks.add(s.getKey());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
         dB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -90,7 +121,11 @@ public class ClientSearch extends AppCompatActivity {
 
                         String name = s.child("name").getValue(String.class);
                         assert name != null;
-                        if (name.equalsIgnoreCase(searchQuery)) {//&& !isSUS && !isBAN
+
+                        String id = s.child("cookUID").getValue(String.class);
+                        assert id != null;
+
+                        if (name.equalsIgnoreCase(searchQuery) && !(SUScooks.contains(id))) {//&& !isSUS && !isBAN
                             Meal tmpMeal = new Meal();
                             tmpMeal.setName(s.child("name").getValue(String.class));
                             tmpMeal.setAllergens(s.child("allergens").getValue(new GenericTypeIndicator<ArrayList<String>>() {
@@ -110,25 +145,8 @@ public class ClientSearch extends AppCompatActivity {
                             } catch (Exception e) {
                                 tmpMeal.setRating(-1.0);
                             }
-                            String cookUID = s.child("cookUID").getValue(String.class);
 
-                            assert cookUID != null;
-                            DatabaseReference d = FirebaseDatabase.getInstance()
-                                    .getReference("UID").child(cookUID);
-                            d.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot l) {
-                                    if (!(l.child("isSuspended").getValue(boolean.class)) &&
-                                            !(l.child("isBanned").getValue(boolean.class))) {
-                                        meals.add(tmpMeal);
-                                        //TODO FIX THIS SUSPENDED SHIT
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                }
-                            });
+                            meals.add(tmpMeal);
                         }
                     }
                 }
