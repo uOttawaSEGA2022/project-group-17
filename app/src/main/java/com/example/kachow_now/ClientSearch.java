@@ -2,6 +2,8 @@ package com.example.kachow_now;
 
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -26,13 +28,15 @@ public class ClientSearch extends AppCompatActivity {
     private ArrayList<Meal> meals;
     private ListView listViewSearch;
 
+    private String searchQuery;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        String searchQuery = getIntent().getExtras().getString("query").trim();
+        searchQuery = getIntent().getExtras().getString("query").trim();
 
         meals = new ArrayList<>();
 
@@ -47,6 +51,16 @@ public class ClientSearch extends AppCompatActivity {
         searchBox.setFilters(new InputFilter[]{new InputFilter.LengthFilter(searchQuery.length())});
         searchBox.setText(searchQuery);
 
+        listViewSearch.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Meal m = meals.get(position);
+                String cUID = m.getCookUID();
+
+                return false;
+            }
+        });
+
 
     }
 
@@ -59,25 +73,28 @@ public class ClientSearch extends AppCompatActivity {
                 meals.clear();
                 for (DataSnapshot cook : snapshot.getChildren()) {
                     for (DataSnapshot s : cook.getChildren()) {
-                        Meal tmpMeal = new Meal();
-                        tmpMeal.setName(s.child("name").getValue(String.class));
-                        tmpMeal.setAllergens(s.child("allergens").getValue(new GenericTypeIndicator<ArrayList<String>>() {
-                        }));
-                        tmpMeal.setCalories(s.child("calories").getValue(double.class));
-                        tmpMeal.setCuisine(s.child("cuisine").getValue(String.class));
-                        tmpMeal.setDescription(s.child("description").getValue(String.class));
-                        tmpMeal.setIngredients(s.child("ingredients").getValue(new GenericTypeIndicator<ArrayList<String>>() {
-                        }));
-                        tmpMeal.setIsOffered(Boolean.TRUE.equals(s.child("isOffered").getValue(boolean.class)));
-                        tmpMeal.setMealType(s.child("mealType").getValue(String.class));
-                        tmpMeal.setPrice(s.child("price").getValue(double.class));
-                        tmpMeal.setServingSize(s.child("servingSize").getValue(double.class));
-                        try {
-                            tmpMeal.setRating(s.child("rating").getValue(double.class));
-                        } catch (Exception e) {
-                            tmpMeal.setRating(-1.0);
+                        String name = s.child("name").getValue(String.class);
+                        if (name.equalsIgnoreCase(searchQuery)) {
+                            Meal tmpMeal = new Meal();
+                            tmpMeal.setName(s.child("name").getValue(String.class));
+                            tmpMeal.setAllergens(s.child("allergens").getValue(new GenericTypeIndicator<ArrayList<String>>() {
+                            }));
+                            tmpMeal.setCalories(s.child("calories").getValue(double.class));
+                            tmpMeal.setCuisine(s.child("cuisine").getValue(String.class));
+                            tmpMeal.setDescription(s.child("description").getValue(String.class));
+                            tmpMeal.setIngredients(s.child("ingredients").getValue(new GenericTypeIndicator<ArrayList<String>>() {
+                            }));
+                            tmpMeal.setIsOffered(Boolean.TRUE.equals(s.child("isOffered").getValue(boolean.class)));
+                            tmpMeal.setMealType(s.child("mealType").getValue(String.class));
+                            tmpMeal.setPrice(s.child("price").getValue(double.class));
+                            tmpMeal.setServingSize(s.child("servingSize").getValue(double.class));
+                            try {
+                                tmpMeal.setRating(s.child("rating").getValue(double.class));
+                            } catch (Exception e) {
+                                tmpMeal.setRating(-1.0);
+                            }
+                            meals.add(tmpMeal);
                         }
-                        meals.add(tmpMeal);
                     }
                 }
                 MealListClient mealsAdapter = new MealListClient(ClientSearch.this, meals);
