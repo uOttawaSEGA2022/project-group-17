@@ -172,7 +172,7 @@ public class CookOrders extends AppCompatActivity {
 
                         dB.child("accepted").child(String.valueOf(currentTime)).setValue(tmp);
                         dB.child("accepted").child(String.valueOf(currentTime)).child("accepted").setValue(true);
-                        FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).child("accepted").setValue(true);
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(tmp.getClientId()).child(String.valueOf(currentTime)).child("accepted").setValue(true);
 
                     }
 
@@ -190,8 +190,21 @@ public class CookOrders extends AppCompatActivity {
         rejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                dB.child("pending").child(String.valueOf(currentTime)).child("clientId").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String clientId = snapshot.getValue(String.class);
+
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(clientId).child(String.valueOf(currentTime)).removeValue();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 dB.child("pending").child(String.valueOf(currentTime)).removeValue();
-                FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -219,8 +232,20 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
-                FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).child("accepted").removeValue();
+                dB.child("accepted").child(String.valueOf(currentTime)).child("clientId").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String clientId = snapshot.getValue(String.class);
+                        dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(clientId).child(String.valueOf(currentTime)).child("accepted").removeValue();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
                 Toast.makeText(CookOrders.this, "Completed Request", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -229,8 +254,21 @@ public class CookOrders extends AppCompatActivity {
         rejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                dB.child("accepted").child(String.valueOf(currentTime)).child("clientId").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String clientId = snapshot.getValue(String.class);
+
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(clientId).child(String.valueOf(currentTime)).removeValue();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
-                FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
