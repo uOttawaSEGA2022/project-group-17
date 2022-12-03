@@ -182,7 +182,9 @@ public class ClientHomepage extends AppCompatActivity {
                 chefs.clear();
                 for (DataSnapshot cookSnapshot : snapshot.getChildren()) {
                     String r = cookSnapshot.child("role").getValue(String.class);
-                    if (r.equalsIgnoreCase("cook")) {
+                    if (r.equalsIgnoreCase("cook") &&
+                            !cookSnapshot.child("isSuspended").getValue(boolean.class) &&
+                            !cookSnapshot.child("isBanned").getValue(boolean.class)) {
                         Cook tmpCook = new Cook();
                         tmpCook.setUID(cookSnapshot.child("uid").getValue(String.class));
                         tmpCook.setAddress(cookSnapshot.child("address").getValue(String.class));

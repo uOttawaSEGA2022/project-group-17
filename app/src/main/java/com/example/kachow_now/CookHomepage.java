@@ -59,11 +59,11 @@ public class CookHomepage extends AppCompatActivity {
         dB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean isSuspended = snapshot.child("isSuspended").getValue(boolean.class);
-                if (isSuspended == true){
+                boolean isSuspended = Boolean.TRUE.equals(snapshot.child("isSuspended").getValue(boolean.class));
+                if (isSuspended) {
                     menu.setVisibility(View.GONE);
                     orders.setVisibility(View.GONE);
-                }else{
+                } else {
                     menu.setVisibility(View.VISIBLE);
                     orders.setVisibility(View.VISIBLE);
                 }

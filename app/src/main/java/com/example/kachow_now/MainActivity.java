@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                         } else if (role.equalsIgnoreCase("cook") && snapshot.child("isBanned").getValue(boolean.class) != null) {
                                             boolean isBanned = Boolean.TRUE.equals(snapshot.child("isBanned").getValue(boolean.class));
                                             boolean isSuspended = Boolean.TRUE.equals(snapshot.child("isSuspended").getValue(boolean.class));
-                                            Cook cook = new Cook();
+
                                             if (!isSuspended && !isBanned) {
                                                 Intent intent = new Intent(MainActivity.this.getApplicationContext(), CookHomepage.class);
                                                 startActivity(intent);

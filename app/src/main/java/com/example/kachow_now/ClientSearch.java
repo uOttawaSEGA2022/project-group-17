@@ -30,8 +30,7 @@ public class ClientSearch extends AppCompatActivity {
     private ArrayList<Meal> meals;
     private ListView listViewSearch;
 
-    boolean isSUS;
-    boolean isBAN;
+
 
 
     private String searchQuery;
@@ -88,29 +87,10 @@ public class ClientSearch extends AppCompatActivity {
                 meals.clear();
                 for (DataSnapshot cook : snapshot.getChildren()) {
                     for (DataSnapshot s : cook.getChildren()) {
-                        String cookUID = s.child("cookUID").getValue(String.class);
-
-                        DatabaseReference d = FirebaseDatabase.getInstance()
-                                .getReference("UID").child(cookUID);
-
-                        d.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot s) {
-                                isSUS = s.child("isSuspended").getValue(boolean.class);
-                                isBAN = s.child("isSuspended").getValue(boolean.class);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                                isSUS = false;
-                                isBAN = false;
-                                //Assume everyone is a good person :-)
-                            }
-                        });
 
                         String name = s.child("name").getValue(String.class);
                         assert name != null;
-                        if (name.equalsIgnoreCase(searchQuery) && !isSUS && !isBAN) {
+                        if (name.equalsIgnoreCase(searchQuery)) {//&& !isSUS && !isBAN
                             Meal tmpMeal = new Meal();
                             tmpMeal.setName(s.child("name").getValue(String.class));
                             tmpMeal.setAllergens(s.child("allergens").getValue(new GenericTypeIndicator<ArrayList<String>>() {
@@ -130,7 +110,25 @@ public class ClientSearch extends AppCompatActivity {
                             } catch (Exception e) {
                                 tmpMeal.setRating(-1.0);
                             }
-                            meals.add(tmpMeal);
+                            String cookUID = s.child("cookUID").getValue(String.class);
+
+                            assert cookUID != null;
+                            DatabaseReference d = FirebaseDatabase.getInstance()
+                                    .getReference("UID").child(cookUID);
+                            d.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot l) {
+                                    if (!(l.child("isSuspended").getValue(boolean.class)) &&
+                                            !(l.child("isBanned").getValue(boolean.class))) {
+                                        meals.add(tmpMeal);
+                                        //TODO FIX THIS SUSPENDED SHIT
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
                         }
                     }
                 }
