@@ -101,36 +101,36 @@ public class add_meal extends AppCompatActivity {
                 if (name.getText().toString().isEmpty() || type.getText().toString().isEmpty() || price.getText().toString().isEmpty() || cuisine.getText().toString().isEmpty() ||
                         calories.getText().toString().isEmpty() || description.getText().toString().isEmpty() || servingSize.getText().toString().isEmpty()) {
                     Toast.makeText(add_meal.this, "Could not add meal. Please fill all boxes.", Toast.LENGTH_LONG).show();
-                    try{
+                    try {
                         String mealPriceString = price.getText().toString().trim();
                         double mealPrice = Double.parseDouble(mealPriceString);
-                    }catch (NumberFormatException e){
+                    } catch (NumberFormatException e) {
                         Toast.makeText(add_meal.this, "Could not add meal. Price must be a number.", Toast.LENGTH_LONG).show();
                         price.setText("");
                     }
-                    try{
+                    try {
                         String mealCaloriesString = calories.getText().toString().trim();
                         double mealCalories = Double.parseDouble(mealCaloriesString);
-                    }catch (NumberFormatException exception){
+                    } catch (NumberFormatException exception) {
                         Toast.makeText(add_meal.this, "Could not add meal. Calories must be a number.", Toast.LENGTH_LONG).show();
                         calories.setText("");
                     }
-                    try{
+                    try {
                         String mealServingSizeString = servingSize.getText().toString().trim();
                         double mealServingSize = Double.parseDouble(mealServingSizeString);
-                    }catch (NumberFormatException a){
+                    } catch (NumberFormatException a) {
                         Toast.makeText(add_meal.this, "Could not add meal. Serving size must be a number.", Toast.LENGTH_LONG).show();
                         servingSize.setText("");
                     }
-                }else if (ing.isEmpty()){
+                } else if (ing.isEmpty()) {
                     Toast.makeText(add_meal.this, "Could not add meal. Please enter ingredients.", Toast.LENGTH_LONG).show();
-                }else{
-                    if (filePath != null){
+                } else {
+                    if (filePath != null) {
                         Toast.makeText(add_meal.this, "Added meal.", Toast.LENGTH_LONG).show();
                         SendMealToDatabase();
                         uploadImage();
                         finish();
-                    } else{
+                    } else {
                         Toast.makeText(add_meal.this, "Please upload a picture of the meal", Toast.LENGTH_LONG).show();
                     }
 
@@ -185,7 +185,6 @@ public class add_meal extends AppCompatActivity {
         String mealServingSizeString = servingSize.getText().toString().trim();
         double mealServingSize = Double.parseDouble(mealServingSizeString);
 
-        System.out.println("Meal Name: " + mealName);
 
         Meal m = new Meal(mealName, mealDesc, mealType, mealPrice, mealCuisine, ing, all,
                 mealServingSize, mealCalories);
@@ -193,6 +192,7 @@ public class add_meal extends AppCompatActivity {
         dB.child(name.getText().toString()).setValue(m);
 
     }
+
     private void uploadImage() {
         if (filePath != null) {
             // Code for showing progressDialog while uploading

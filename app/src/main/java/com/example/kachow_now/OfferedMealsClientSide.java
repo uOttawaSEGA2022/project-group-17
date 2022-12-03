@@ -205,13 +205,17 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                                 int a = Integer.parseInt(quantity);
                                 for (int j = 0; j < a; j++) {
                                     cart.add(meal);
-                                    System.out.println("added " + meal.getName());
+
                                 }
                                 b.dismiss();
                             } catch (NumberFormatException nfe) {
                                 quantityEditText.setText("");
                                 Toast.makeText(OfferedMealsClientSide.this,
                                         "Please enter a number", Toast.LENGTH_LONG).show();
+                            } catch (Exception e) {
+                                quantityEditText.setText("");
+                                Toast.makeText(OfferedMealsClientSide.this,
+                                        "Error entering quantity", Toast.LENGTH_LONG).show();
                             }
                         }
 
