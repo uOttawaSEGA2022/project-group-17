@@ -39,7 +39,7 @@ public class ClientSearch extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("MEALS");
 
-        EditText searchBox = findViewById(R.id.searchView);
+        EditText searchBox = findViewById(R.id.searchItemName);
         listViewSearch = findViewById(R.id.lv1);
 
         searchBox.setFocusableInTouchMode(false);

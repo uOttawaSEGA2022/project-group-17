@@ -155,7 +155,7 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                dB.child("pending").child(String.valueOf(currentTime)).child("accepted").setValue(true);
+                dB.child("pending").child(String.valueOf(currentTime)).child("accepted").removeValue();
                 dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot s) {
@@ -163,7 +163,7 @@ public class CookOrders extends AppCompatActivity {
                         Request tmp = new Request();
                         tmp.setCookId(s.child("cookID").getValue(String.class));
                         tmp.setClientId(s.child("clientID").getValue(String.class));
-                        tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
+                        //tmp.setAccepted(Boolean.TRUE.equals(s.child("accepted").getValue(boolean.class)));
                         tmp.setCurrentTime(Long.parseLong(s.getKey()));
 
                         tmp.setOrders(s.child("orders").getValue(
@@ -171,6 +171,8 @@ public class CookOrders extends AppCompatActivity {
                                 }));
 
                         dB.child("accepted").child(String.valueOf(currentTime)).setValue(tmp);
+                        dB.child("accepted").child(String.valueOf(currentTime)).child("accepted").setValue(true);
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).child("accepted").setValue(true);
 
                     }
 
@@ -189,6 +191,7 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child("pending").child(String.valueOf(currentTime)).removeValue();
+                FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -217,6 +220,7 @@ public class CookOrders extends AppCompatActivity {
             public void onClick(View view) {
 
                 dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
+                FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).child("accepted").removeValue();
                 Toast.makeText(CookOrders.this, "Completed Request", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -226,6 +230,7 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
+                FirebaseDatabase.getInstance().getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid()).child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }

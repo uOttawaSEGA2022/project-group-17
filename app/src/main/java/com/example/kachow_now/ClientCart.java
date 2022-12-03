@@ -46,7 +46,8 @@ public class ClientCart extends AppCompatActivity {
         setContentView(R.layout.activity_client_order_cart);
 
         cart = new ArrayList<>();
-        Type type = new TypeToken<List<Meal>>() { }.getType();
+        Type type = new TypeToken<List<Meal>>() {
+        }.getType();
         cart = new Gson().fromJson(getIntent().getStringExtra("cart"), type);
 
         cUID = getIntent().getExtras().getString("UID");
@@ -159,6 +160,7 @@ public class ClientCart extends AppCompatActivity {
                 Request r = new Request();
                 r.setClientId(mAuth.getCurrentUser().getUid());
                 r.setCookId(cart.get(0).getCookUID());
+                r.setCurrentTime(r.getCurrentTime());
                 for (Meal m : cart) {
                     r.add(m);
                 }
@@ -166,6 +168,9 @@ public class ClientCart extends AppCompatActivity {
                         .child(cUID).child("pending").child(Long.toString(r.getCurrentTime()));
                 tempDB.setValue(r);
 
+                DatabaseReference tempClientDB = FirebaseDatabase.getInstance()
+                        .getReference("CLIENTLOG").child(mAuth.getCurrentUser().getUid());
+                tempClientDB.setValue(r);
 
                 cart.clear();
                 finish();
