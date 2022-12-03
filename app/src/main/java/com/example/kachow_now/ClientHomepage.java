@@ -44,7 +44,6 @@ public class ClientHomepage extends AppCompatActivity {
     private RecyclerView rv;
     private LinearLayout statusOrders;
     private ListView myOrders;
-    private boolean exists;
 
 
     @Override
@@ -60,14 +59,12 @@ public class ClientHomepage extends AppCompatActivity {
 
         statusOrders = findViewById(R.id.statusOrders);
         myOrders = findViewById(R.id.myOrders);
-        exists = false;
+        showOrderStatus();
 
         rateMealDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                exists = true;
-                showOrderStatus();
 
                 for (DataSnapshot s : snapshot.getChildren()) {
 
@@ -145,8 +142,6 @@ public class ClientHomepage extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                exists = false;
-
             }
         });
 
@@ -259,54 +254,64 @@ public class ClientHomepage extends AppCompatActivity {
     }
 
     private void showOrderStatus() {
-        if (!exists) {
-            statusOrders.setVisibility(View.GONE);
-        } else {
-            statusOrders.setVisibility(View.VISIBLE);
-            ArrayList<String> orderTimes = new ArrayList<String>();
-            rateMealDB.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    orderTimes.clear();
-                    for (DataSnapshot o : snapshot.getChildren()) {
-                        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
 
-                        Date res = new Date(Long.parseLong(Objects.requireNonNull(o.getKey())));
+        rateMealDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    statusOrders.setVisibility(View.VISIBLE);
+                    ArrayList<String> orderTimes = new ArrayList<String>();
+                    rateMealDB.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            orderTimes.clear();
+                            for (DataSnapshot o : snapshot.getChildren()) {
+                                DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
 
-                        String date = dateFormat.format(res);
-                        String finishedString = "";
-                        Boolean accepted = null;
+                                Date res = new Date(Long.parseLong(Objects.requireNonNull(o.getKey())));
 
-                        try {
-                            accepted = o.child("accepted").getValue(Boolean.class);
-                        } catch (NullPointerException nullPointerException) {
+                                String date = dateFormat.format(res);
+                                String finishedString = "";
+                                Boolean accepted = null;
 
+                                try {
+                                    accepted = o.child("accepted").getValue(Boolean.class);
+                                } catch (NullPointerException nullPointerException) {
+
+                                }
+
+                                if (accepted == null) { //TODO how about rejected
+                                    finishedString = "The request made on " + date + " is now completed.";
+                                } else if (accepted) {
+                                    finishedString = "The request made on " + date + " is now accepted.";
+                                } else {
+                                    finishedString = "The request made on " + date + " is now pending.";
+                                }
+                                System.out.println("added: " + finishedString);
+                                orderTimes.add(finishedString);
+
+                            }
+                            ArrayAdapter<String> orderAdapter =
+                                    new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, orderTimes);
+                            System.out.println("ORDERS: \n" + orderTimes.toString());
+                            myOrders.setAdapter(orderAdapter);
                         }
 
-                        if (accepted == null) { //TODO how about rejected
-                            finishedString = "The request made on " + date + " is now completed.";
-                        } else if (accepted) {
-                            finishedString = "The request made on " + date + " is now accepted.";
-                        } else {
-                            finishedString = "The request made on " + date + " is now pending.";
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
                         }
-                        System.out.println("added: " + finishedString);
-                        orderTimes.add(finishedString);
-
-                    }
-                    ArrayAdapter<String> orderAdapter =
-                            new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, orderTimes);
-                    System.out.println("ORDERS: \n" + orderTimes.toString());
-                    myOrders.setAdapter(orderAdapter);
+                    });
+                } else {
+                    statusOrders.setVisibility(View.GONE);
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    exists = false;
-                }
-            });
 
+            }
 
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
