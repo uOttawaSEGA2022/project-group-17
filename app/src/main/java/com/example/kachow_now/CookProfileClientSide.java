@@ -85,6 +85,7 @@ public class CookProfileClientSide extends AppCompatActivity {
 
                 EditText ratingInput = dialogView.findViewById(R.id.ratingCook);
                 Button rateCook = dialogView.findViewById(R.id.rateCook);
+                rateCook.setText("Rate Meal");
 
                 dialogBuilder.setView(dialogView);
                 final AlertDialog b = dialogBuilder.create();
