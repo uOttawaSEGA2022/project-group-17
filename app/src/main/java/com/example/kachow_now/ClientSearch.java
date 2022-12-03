@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -58,6 +59,13 @@ public class ClientSearch extends AppCompatActivity {
                 String cUID = m.getCookUID();
 
                 return false;
+            }
+        });
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
