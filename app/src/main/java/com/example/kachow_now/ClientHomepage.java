@@ -46,8 +46,6 @@ public class ClientHomepage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference("UID");
 
-        //TODO if previous order has been accepted and ordered by this client, do the rate the
-        // meal menu, This is just an idea though
         rateMealDB = FirebaseDatabase.getInstance().getReference("CLIENTLOG")
                 .child(mAuth.getCurrentUser().getUid());
 
