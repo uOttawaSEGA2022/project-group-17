@@ -1,5 +1,6 @@
 package com.example.kachow_now;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
@@ -57,7 +58,10 @@ public class ClientSearch extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Meal m = meals.get(position);
                 String cUID = m.getCookUID();
-
+                System.out.println(cUID);
+                Intent intent = new Intent(getApplicationContext(), OfferedMealsClientSide.class);
+                intent.putExtra("UID", cUID);
+                startActivity(intent);
                 return false;
             }
         });
@@ -89,6 +93,7 @@ public class ClientSearch extends AppCompatActivity {
                             }));
                             tmpMeal.setCalories(s.child("calories").getValue(double.class));
                             tmpMeal.setCuisine(s.child("cuisine").getValue(String.class));
+                            tmpMeal.setCookUID(s.child("cookUID").getValue(String.class));
                             tmpMeal.setDescription(s.child("description").getValue(String.class));
                             tmpMeal.setIngredients(s.child("ingredients").getValue(new GenericTypeIndicator<ArrayList<String>>() {
                             }));
