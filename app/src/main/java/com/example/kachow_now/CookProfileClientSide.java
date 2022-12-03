@@ -86,6 +86,7 @@ public class CookProfileClientSide extends AppCompatActivity {
                 EditText ratingInput = dialogView.findViewById(R.id.ratingCook);
                 Button rateCook = dialogView.findViewById(R.id.rateCook);
 
+
                 dialogBuilder.setView(dialogView);
                 final AlertDialog b = dialogBuilder.create();
                 b.show();
@@ -114,6 +115,7 @@ public class CookProfileClientSide extends AppCompatActivity {
                                         dB.child("rating").removeValue();
                                         dB.child("rating").setValue((userRating + dbRating) / 2);
                                     }
+
                                 }
 
                                 @Override

@@ -66,6 +66,7 @@ public class ClientHomepage extends AppCompatActivity {
                         EditText ratingInput = dialogView.findViewById(R.id.ratingCook);
                         ratingInput.setHint("Enter a rating from 1 to 5");
                         Button rateCook = dialogView.findViewById(R.id.rateCook);
+                        rateCook.setText("Rate Meal");
 
                         dialogBuilder.setView(dialogView);
                         final AlertDialog b = dialogBuilder.create();
