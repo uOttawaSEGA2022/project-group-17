@@ -92,6 +92,7 @@ public class MealList extends ArrayAdapter<Meal> {
         for (String ingredient : meal.getIngredients()) {
             line.append(ingredient + ", ");
         }
+        line.deleteCharAt(line.length()-1);
         ingredients = line.toString();
 
         String allergens;
@@ -99,6 +100,7 @@ public class MealList extends ArrayAdapter<Meal> {
         for (String allergen: meal.getAllergens()){
             line.append(allergen+", ");
         }
+        line2.deleteCharAt(line2.length()-1);
         allergens = line2.toString();
 
         textViewMealName.setText("Meal name:" + meal.getName());
