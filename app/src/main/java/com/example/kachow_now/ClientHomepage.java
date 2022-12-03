@@ -57,13 +57,20 @@ public class ClientHomepage extends AppCompatActivity {
         rateMealDB = FirebaseDatabase.getInstance().getReference("CLIENTLOG")
                 .child(mAuth.getCurrentUser().getUid());
 
+
+        statusOrders = findViewById(R.id.statusOrders);
+        myOrders = findViewById(R.id.myOrders);
         exists = false;
 
         rateMealDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                exists = true;
+                showOrderStatus();
+
                 for (DataSnapshot s : snapshot.getChildren()) {
-                    exists = true;
+
                     if (s.child("accepted").getValue(boolean.class) == null) {
 
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientHomepage.this);
@@ -178,8 +185,6 @@ public class ClientHomepage extends AppCompatActivity {
             }
         });
 
-        statusOrders = findViewById(R.id.statusOrders);
-        myOrders = findViewById(R.id.myOrders);
 
     }
 
@@ -249,7 +254,11 @@ public class ClientHomepage extends AppCompatActivity {
             }
         });
 
+        showOrderStatus();
 
+    }
+
+    private void showOrderStatus() {
         if (!exists) {
             statusOrders.setVisibility(View.GONE);
         } else {
@@ -258,6 +267,7 @@ public class ClientHomepage extends AppCompatActivity {
             rateMealDB.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    orderTimes.clear();
                     for (DataSnapshot o : snapshot.getChildren()) {
                         DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
 
@@ -280,10 +290,14 @@ public class ClientHomepage extends AppCompatActivity {
                         } else {
                             finishedString = "The request made on " + date + " is now pending.";
                         }
-
+                        System.out.println("added: " + finishedString);
                         orderTimes.add(finishedString);
 
                     }
+                    ArrayAdapter<String> orderAdapter =
+                            new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, orderTimes);
+                    System.out.println("ORDERS: \n" + orderTimes.toString());
+                    myOrders.setAdapter(orderAdapter);
                 }
 
                 @Override
@@ -291,9 +305,7 @@ public class ClientHomepage extends AppCompatActivity {
                     exists = false;
                 }
             });
-            ArrayAdapter<String> orderAdapter =
-                    new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, orderTimes);
-            myOrders.setAdapter(orderAdapter);
+
 
         }
     }
