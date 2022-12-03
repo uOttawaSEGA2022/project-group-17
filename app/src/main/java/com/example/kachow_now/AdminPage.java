@@ -8,10 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,8 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +147,7 @@ public class AdminPage extends AppCompatActivity {
 
         final Button buttonDismiss = dialogView.findViewById(R.id.toggleoffer);
         final Button buttonPermaBan = dialogView.findViewById(R.id.deletemeal);
-        final Button buttonSuspension = dialogView.findViewById(R.id.rateButton);
+        final Button buttonSuspension = dialogView.findViewById(R.id.rateCook);
         final EditText textDaySus = dialogView.findViewById(R.id.labelRating1);
 
 
