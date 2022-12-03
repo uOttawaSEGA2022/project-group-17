@@ -1,9 +1,13 @@
 package com.example.kachow_now;
 
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,12 +33,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import static com.example.kachow_now.App.ACCEPTED_ID;
-import static com.example.kachow_now.App.REJECTED_ID;
 
 public class CookOrders extends AppCompatActivity {
 
 
+    private static final String CHANNEL_ID = "system_default";
     private NotificationManagerCompat notificationManager;
 
     FirebaseAuth mAuth;
@@ -55,8 +58,6 @@ public class CookOrders extends AppCompatActivity {
         dB = FirebaseDatabase.getInstance().getReference("ORDERS")
                 .child(mAuth.getCurrentUser().getUid());
         // This page is accessed by the cook, so we have their ID
-
-        notificationManager = NotificationManagerCompat.from(this);
 
         listViewAccepted = findViewById(R.id.list_of_accepted);
         // This is what I meant when we were talking about it, Check out the layout for cook orders
@@ -168,14 +169,9 @@ public class CookOrders extends AppCompatActivity {
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //NotificationCompat.Builder builder = new NotificationCompat.Builder(CookOrders.this);
-                //builder.setContentTitle("KaChow Now");
-                //builder.setContentText("Your order has been accepted");
-                //builder.setSmallIcon(R.drawable.logos);
-                //builder.setAutoCancel(true);
 
-                //NotificationManagerCompat managerCompat = NotificationManagerCompat.from(CookOrders.this);
-                //managerCompat.notify(1,builder.build());
+                sendNotif("Your order has been Accepted",
+                        "Hi there, we have just received word your order is Accepted");
 
                 dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -225,14 +221,9 @@ public class CookOrders extends AppCompatActivity {
         rejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //NotificationCompat.Builder builder = new NotificationCompat.Builder(CookOrders.this);
-                //builder.setContentTitle("KaChow Now");
-                //builder.setContentText("Your order has been rejected");
-                //builder.setSmallIcon(R.drawable.logos);
-                //builder.setAutoCancel(true);
 
-                //NotificationManagerCompat managerCompat = NotificationManagerCompat.from(CookOrders.this);
-                //managerCompat.notify(1,builder.build());
+                sendNotif("Your order has been Rejected",
+                        "Hi there, we have just received word your order is Rejected");
 
                 dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -277,8 +268,10 @@ public class CookOrders extends AppCompatActivity {
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendOnHighChannel(view,"KaChow Now","Your order has been accepted");
-                System.out.println("SENT NOTIF");
+
+                sendNotif("Your order has been Completed",
+                        "Hi there, we have just received word your order is completed");
+
                 dB.child("accepted").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -307,7 +300,10 @@ public class CookOrders extends AppCompatActivity {
         rejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendOnHighChannel(view,"KaChow Now", "Your order has been rejected");
+
+                sendNotif("Your order has been Rejected",
+                        "Hi there, we have just received word your order is Rejected");
+
                 dB.child("accepted").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -336,15 +332,39 @@ public class CookOrders extends AppCompatActivity {
 
     }
 
-    public void sendOnHighChannel(View v,String title,String message){
-        Notification notification = new NotificationCompat.Builder(this, ACCEPTED_ID)
-                .setSmallIcon(R.drawable.logos)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .build();
+    public void sendNotif(String title, String message) {
 
-        notificationManager.notify(1, notification);
+        Intent intent = new Intent(getApplicationContext(), CookOrders.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_IMMUTABLE);
+
+
+        String channelId = "DEFAULT_CHANNEL";
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, channelId)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+//                        .setContentTitle(getString(R.string.app_name)
+                        .setContentTitle(title)
+                        .setContentText(message)
+                        .setAutoCancel(true)
+                        .setSound(defaultSoundUri)
+                        .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            assert notificationManager != null;
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        assert notificationManager != null;
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
 }
