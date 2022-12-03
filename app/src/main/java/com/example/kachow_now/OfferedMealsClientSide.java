@@ -185,7 +185,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                 textViewMealAllergens.setText("Allergens: " + allergens);
                 textViewServingSize.setText("Serving size: " + meal.getServingSize());
                 textViewCalories.setText("Calories: " + meal.getCalories());
-                textViewRating.setText("Rating: "+meal.getRating());
+                textViewRating.setText("Rating: " + meal.getRating());
 
 
                 dialogBuilder.setView(dialogView);
@@ -198,15 +198,23 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String quantity = quantityEditText.getText().toString();
-                        if (quantity.equals("")) {
+                        if (quantity.equals("") || quantity.length() == 0) {
                             quantity = "1";
-                        }//TODO NEED TO VALIDATE QUANTITY FIELD
-                        int a = Integer.parseInt(quantity);
-                        for (int j = 0; j < a; j++) {
-                            cart.add(meal);
-                            System.out.println("added " + meal.getName());
+                        } else {
+                            try {
+                                int a = Integer.parseInt(quantity);
+                                for (int j = 0; j < a; j++) {
+                                    cart.add(meal);
+                                    System.out.println("added " + meal.getName());
+                                }
+                                b.dismiss();
+                            } catch (NumberFormatException nfe) {
+                                quantityEditText.setText("");
+                                Toast.makeText(OfferedMealsClientSide.this,
+                                        "Please enter a number", Toast.LENGTH_LONG).show();
+                            }
                         }
-                        b.dismiss();
+
                     }
                 });
 
@@ -233,6 +241,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
         });
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
