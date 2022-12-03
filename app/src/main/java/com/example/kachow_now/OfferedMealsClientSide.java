@@ -176,15 +176,16 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                 }
                 allergens = line2.toString();
 
-                textViewMealName.setText("Meal name:" + meal.getName());
-                textViewDescription.setText("Description:" + meal.getDescription());
-                textViewMealType.setText("Meal Type:" + meal.getMealType());
-                textViewPrice.setText("Price:" + meal.getPrice());
-                textViewCuisine.setText("Cuisine Type:" + meal.getCuisine());
-                textViewIngredients.setText("Ingredients:" + ingredients);
-                textViewMealAllergens.setText("Allergens:" + allergens);
-                textViewServingSize.setText("Serving size:" + meal.getServingSize());
-                textViewCalories.setText("Calories:" + meal.getCalories());
+                textViewMealName.setText("Meal name: " + meal.getName());
+                textViewDescription.setText("Description: " + meal.getDescription());
+                textViewMealType.setText("Meal Type: " + meal.getMealType());
+                textViewPrice.setText("Price: " + meal.getPrice());
+                textViewCuisine.setText("Cuisine Type: " + meal.getCuisine());
+                textViewIngredients.setText("Ingredients: " + ingredients);
+                textViewMealAllergens.setText("Allergens: " + allergens);
+                textViewServingSize.setText("Serving size: " + meal.getServingSize());
+                textViewCalories.setText("Calories: " + meal.getCalories());
+                textViewRating.setText("Rating: "+meal.getRating());
 
 
                 dialogBuilder.setView(dialogView);
