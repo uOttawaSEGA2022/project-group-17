@@ -81,6 +81,7 @@ public class currentlyOffered extends AppCompatActivity {
                     }));
                     tmpMeal.setCalories(s.child("calories").getValue(double.class));
                     tmpMeal.setCuisine(s.child("cuisine").getValue(String.class));
+                    tmpMeal.setCookUID(s.child("cookUID").getValue(String.class));
                     tmpMeal.setDescription(s.child("description").getValue(String.class));
                     tmpMeal.setIngredients(s.child("ingredients").getValue(new GenericTypeIndicator<ArrayList<String>>() {
                     }));
