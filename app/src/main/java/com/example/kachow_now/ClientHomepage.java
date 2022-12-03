@@ -98,6 +98,7 @@ public class ClientHomepage extends AppCompatActivity {
                                             } else {
                                                 mealDb.child("rating").setValue((userRating + dbRating) / 2);
                                             }
+                                            rateMealDB.child(s.getKey()).removeValue();
                                         }
 
                                         @Override
@@ -167,11 +168,10 @@ public class ClientHomepage extends AppCompatActivity {
         });
     }
 
-    public void logOut(View view){
+    public void logOut(View view) {
         mAuth.signOut();
         finish();
     }
-
 
 
     @Override
