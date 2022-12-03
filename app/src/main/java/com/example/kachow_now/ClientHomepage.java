@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,9 +41,10 @@ public class ClientHomepage extends AppCompatActivity {
     private DatabaseReference dB;
     private DatabaseReference rateMealDB;
     private ArrayList<Cook> chefs;
-    private ListView listViewChefs;
     private RecyclerView rv;
-    private RecyclerView mealTypeRV;
+    private LinearLayout statusOrders;
+    private ListView myOrders;
+    private boolean exists;
 
 
     @Override
@@ -49,10 +57,13 @@ public class ClientHomepage extends AppCompatActivity {
         rateMealDB = FirebaseDatabase.getInstance().getReference("CLIENTLOG")
                 .child(mAuth.getCurrentUser().getUid());
 
+        exists = false;
+
         rateMealDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot s : snapshot.getChildren()) {
+                    exists = true;
                     if (s.child("accepted").getValue(boolean.class) == null) {
 
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientHomepage.this);
@@ -127,6 +138,7 @@ public class ClientHomepage extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                exists = false;
 
             }
         });
@@ -165,6 +177,10 @@ public class ClientHomepage extends AppCompatActivity {
                 logOut(view);
             }
         });
+
+        statusOrders = findViewById(R.id.statusOrders);
+        myOrders = findViewById(R.id.myOrders);
+
     }
 
     public void logOut(View view) {
@@ -229,7 +245,56 @@ public class ClientHomepage extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+
             }
         });
+
+
+        if (!exists) { // not really sure how to check this //TODO aaditya help plz
+            statusOrders.setVisibility(View.GONE);
+        } else {
+            statusOrders.setVisibility(View.VISIBLE);
+            ArrayList<String> orderTimes = new ArrayList<String>();
+            rateMealDB.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot o : snapshot.getChildren()) {
+                        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
+
+                        Date res = new Date(Long.parseLong(Objects.requireNonNull(o.getKey())));
+
+                        String date = dateFormat.format(res);
+                        String finishedString = "";
+                        Boolean accepted = null;
+
+                        try {
+                            accepted = o.child("accepted").getValue(Boolean.class);
+                        } catch (NullPointerException nullPointerException) {
+
+                        }
+
+                        if (accepted == null) { //TODO how about rejected
+                            finishedString = "The request made on " + date + " is now completed.";
+                        } else if (accepted) {
+                            finishedString = "The request made on " + date + " is now accepted.";
+                        } else {
+                            finishedString = "The request made on " + date + " is now pending.";
+                        }
+
+                        orderTimes.add(finishedString);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    exists = false;
+                }
+            });
+            ArrayAdapter<String> orderAdapter =
+                    new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, orderTimes);
+            myOrders.setAdapter(orderAdapter);
+
+        }
     }
 }
