@@ -222,6 +222,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                     Intent intent = new Intent(v.getContext(), ClientCart.class);
                     intent.putExtra("cart", new Gson().toJson(cart));
                     intent.putExtra("UID", cUID);
+                    cart.clear();
                     startActivity(intent);
                 } else {
                     Toast.makeText(OfferedMealsClientSide.this,
