@@ -278,6 +278,7 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sendOnHighChannel(view,"KaChow Now","Your order has been accepted");
+                System.out.println("SENT NOTIF");
                 dB.child("accepted").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
