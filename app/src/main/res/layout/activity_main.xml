@@ -121,7 +121,6 @@
                 android:id="@+id/singUpButton"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#03A9F4"
                 android:minHeight="48dp"
                 android:onClick="moveToRegister"
                 android:text="@string/sign_up"

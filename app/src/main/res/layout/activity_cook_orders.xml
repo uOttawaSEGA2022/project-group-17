@@ -29,10 +29,8 @@
                 android:id="@+id/InboxText"
                 android:layout_width="388dp"
                 android:layout_height="100dp"
-                android:layout_weight="0"
                 android:gravity="center_vertical"
                 android:text="@string/orders_"
-                android:textColor="#0D709E"
                 android:textSize="50sp"
                 android:translationX="20dp" />
 
@@ -44,32 +42,25 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/list_of_accepted"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9">
+
+                </ListView>
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/accepted_requests"
-                android:textColor="#03A9F4" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ListView
-                        android:id="@+id/list_of_accepted"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.9">
-
-                    </ListView>
-                </LinearLayout>
-            </ScrollView>
+                android:text="@string/accepted_requests" />
 
         </LinearLayout>
 
@@ -79,31 +70,24 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/list_of_requests"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/pending_requests"
-                android:textColor="#03A9F4" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <ListView
-                        android:id="@+id/list_of_requests"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.9" />
-                </LinearLayout>
-            </ScrollView>
+                android:text="@string/pending_requests" />
 
         </LinearLayout>
     </LinearLayout>

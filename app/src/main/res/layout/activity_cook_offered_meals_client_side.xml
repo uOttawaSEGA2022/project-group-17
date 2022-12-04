@@ -51,7 +51,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Chef's Name"
-                    android:textColor="#0D709E"
                     android:textSize="34sp" />
 
             </LinearLayout>
@@ -75,7 +74,10 @@
                     <ListView
                         android:id="@+id/list_of_offered_meals"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:divider="#0d709e"
+                        android:dividerHeight="2dp"
+                        android:headerDividersEnabled="true">
 
                     </ListView>
                 </LinearLayout>
