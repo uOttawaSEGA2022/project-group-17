@@ -15,26 +15,17 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp">
 
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/submitreporttitle"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#BBE7ED"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="#03A9F4"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/submitreporttitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:background="#03A9F4"
-                android:gravity="center"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:title="Submit Report"
-                app:titleTextColor="#131212" />
-
-        </LinearLayout>
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="Submit Report"
+            app:titleTextColor="#131212" />
 
         <LinearLayout
             android:layout_width="match_parent"
