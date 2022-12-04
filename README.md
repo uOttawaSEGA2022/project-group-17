@@ -1,6 +1,6 @@
 # KaChow-Now
 
-![image](https://user-images.githubusercontent.com/113709975/197296383-f44619a8-581a-4e5d-bcbf-46de12daafcc.png)
+![image]([https://user-images.githubusercontent.com/113709975/197296383-f44619a8-581a-4e5d-bcbf-46de12daafcc.png])
 
 **Description**
 
@@ -9,12 +9,20 @@ KaChow-Now is an app where Clients order homecooked meals from local Cooks in th
 
 **Features**
 
-Deliverable 1:
+Deliverable 4:
 
-- Create an account choosing either the Cook or Client role.
-- Login to account using email and password
-- Dedicated welcome screen displaying the user's name and role once signed in
-- The ability to log out of account on the welcome screen
+- Client can search for a meal
+- Client can request a meal in which the Cook can accept or reject
+- Client can rate Cook after they purchased a meal, average rating will be displayed on Cook's profile
+- Client can report Cook to the Admin
+
+
+Deliverable 3:
+
+- Cook can create a new meal and add it to menu
+- New meal can be toggled as offered for the day or not
+- Suspended cooks can login but won't be able to do anything on the app aside from logging out
+
 
 Deliverable 2:
 
@@ -22,10 +30,12 @@ Deliverable 2:
 - Admin can take action by punishing the Cook (by suspending or banning) or dismissing the report
 
 
-Deliverable 3:
-- Cook can create a new meal and add it to menu
-- New meal can be toggled as offered for the day or not
-- Suspended cooks can login but won't be able to do anything on the app aside from logging out
+Deliverable 1:
+
+- Create an account choosing either the Cook or Client role.
+- Login to account using email and password
+- Dedicated welcome screen displaying the user's name and role once signed in
+- The ability to log out of account on the welcome screen
 
 **Admin Login**
 
