@@ -41,13 +41,26 @@ Deliverable 1:
 - Dedicated welcome screen displaying the user's name and role once signed in
 - The ability to log out of account on the welcome screen
 
-**Admin Login**
+**Sample Logins**
 
 Admins can login using the following:
 
 ```Email: halosman@uottawa.ca ```
 
 ```Password: 123456```
+
+Cook login:
+
+```Email: bobolin1@hotmail.com ```
+
+```Password: 123456```
+
+Client login:
+
+```Email: tron8001@gmail.com ```
+
+```Password: 123456```
+
 
 **Built in**
 - Android Studio
