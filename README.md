@@ -1,6 +1,7 @@
 # KaChow-Now
 
-![image]([https://user-images.githubusercontent.com/113709975/197296383-f44619a8-581a-4e5d-bcbf-46de12daafcc.png])
+
+![kachowNow](https://user-images.githubusercontent.com/113709975/205511061-62f57345-c81a-47af-bd7a-0a7c1f38b18f.png)
 
 **Description**
 
@@ -8,6 +9,7 @@ KaChow-Now is an app where Clients order homecooked meals from local Cooks in th
 
 
 **Features**
+*NEW* 
 
 Deliverable 4:
 
@@ -15,6 +17,7 @@ Deliverable 4:
 - Client can request a meal in which the Cook can accept or reject
 - Client can rate Cook after they purchased a meal, average rating will be displayed on Cook's profile
 - Client can report Cook to the Admin
+- New UI changes + logo
 
 
 Deliverable 3:
