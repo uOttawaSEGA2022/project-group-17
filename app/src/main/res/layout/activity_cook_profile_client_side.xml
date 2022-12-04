@@ -11,33 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#BBE7ED"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/CookMenuToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#03A9F4"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="Profile"
+            app:titleTextColor="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="20dp"
             android:layout_weight="0"
             android:orientation="horizontal">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/CookMenuToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#03A9F4"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:title="Profile"
-                app:titleTextColor="#000000" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="109dp"
+            android:layout_height="0dp"
             android:layout_gravity="left"
-            android:layout_weight="0"
-            android:orientation="horizontal"
-            android:translationY="8dp">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/chefprofilepicture"
@@ -60,11 +63,12 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/ChefRating"
+                        android:id="@+id/ChefName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0"
-                        android:text="chefRating" />
+                        android:layout_weight="1"
+                        android:text="chefName"
+                        android:textColor="#000000" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -73,10 +77,13 @@
                     android:layout_weight="0"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ChefRating"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"/>
+                        android:layout_weight="0"
+                        android:text="chefRating"
+                        android:textColor="#000000" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -85,44 +92,41 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            android:translationY="20dp"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:orientation="vertical"
+            android:translationY="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/ReportCookProfileClient"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="0"
-                android:backgroundTint="#03A9F4"
-                android:text="Report" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="0"
-            android:background="#00FFC107"
-            android:backgroundTint="#FFC107"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/ratingPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFFFFF"
+                    android:onClick="showAlertDialog"
+                    android:text="Rate"
+                    android:textColor="#000000"
+                    tools:ignore="TextContrastCheck" />
 
-            <Button
-                android:id="@+id/ratingPage"
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:backgroundTint="#FFFFFF"
-                android:text="Rate"
-                android:textColor="#000000"
-                android:onClick="showAlertDialog"
-                tools:ignore="TextContrastCheck" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/ReportCookProfileClient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:backgroundTint="#03A9F4"
+                    android:text="Report" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -40,14 +40,19 @@ public class CookProfileClientSide extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.rate_cook_dialog, null);
         dialogBuilder.setView(dialogView);
-        TextView name = findViewById(R.id.ChefRating);
+        TextView name = findViewById(R.id.ChefName);
+        TextView rating = findViewById(R.id.ChefRating);
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("UID").child(cUID);
         userDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String fullName = snapshot.child("firstName").getValue(String.class) + " "
+                String fullName = "Name: "+snapshot.child("firstName").getValue(String.class) + " "
                         + snapshot.child("lastName").getValue(String.class);
                 name.setText(fullName);
+
+                String Rating = "Rating: " + snapshot.child("rating").getValue(double.class);
+                rating.setText(Rating);
+
             }
 
             @Override
