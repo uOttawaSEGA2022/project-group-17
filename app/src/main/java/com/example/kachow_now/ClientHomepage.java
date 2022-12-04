@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +66,12 @@ public class ClientHomepage extends AppCompatActivity {
         myOrders = findViewById(R.id.myOrders);
         showOrderStatus();
 
+        //TODO change below code to scan for tag as well as scanning for ratings
+
+        //TODO CHECK ACCEPTED BEFORE WE DELETE CLIENTLOG ANd SEND A NOTIFICATION
+        //TODO CHECK ACCEPTED == NULL and send notification
+        //TODO CHECK NEW TAG AND IF TAG EXISTS, SEND NOTIF REJECTED
+
         rateMealDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,7 +79,26 @@ public class ClientHomepage extends AppCompatActivity {
 
                 for (DataSnapshot s : snapshot.getChildren()) {
 
+                    if (s.child("rejected").getValue(Boolean.class) != null) {
+                        sendNotif("Sorry about this",
+                                "Your order unfortunately can't be fulfilled");
+
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG")
+                                .child(mAuth.getCurrentUser().getUid())
+                                .child(s.getKey())
+                                .removeValue();
+                    }
+
+
                     if (s.child("accepted").getValue(boolean.class) == null) {
+
+                        sendNotif("Information about your latest order",
+                                "Your order is complete please proceed to pick it up");
+
+                        FirebaseDatabase.getInstance().getReference("CLIENTLOG")
+                                .child(mAuth.getCurrentUser().getUid())
+                                .child(s.getKey())
+                                .removeValue();
 
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientHomepage.this);
                         LayoutInflater inflater = getLayoutInflater();
@@ -142,6 +166,9 @@ public class ClientHomepage extends AppCompatActivity {
 
                             }
                         });
+                    } else if (s.child("accepted").getValue(boolean.class) == true) {
+                        sendNotif("Information about your latest order",
+                                "Your order has been accepted");
                     }
                 }
             }
@@ -353,7 +380,7 @@ public class ClientHomepage extends AppCompatActivity {
 
     public void sendNotif(String title, String message) {
 
-        Intent intent = new Intent(getApplicationContext(), CookOrders.class);
+        Intent intent = new Intent(getApplicationContext(), ClientHomepage.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_IMMUTABLE);
 
@@ -374,13 +401,11 @@ public class ClientHomepage extends AppCompatActivity {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         // Since android Oreo notification channel is needed.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId,
-                    "Channel human readable title",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            assert notificationManager != null;
-            notificationManager.createNotificationChannel(channel);
-        }
+        NotificationChannel channel = new NotificationChannel(channelId,
+                "Channel human readable title",
+                NotificationManager.IMPORTANCE_DEFAULT);
+        assert notificationManager != null;
+        notificationManager.createNotificationChannel(channel);
 
         assert notificationManager != null;
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());

@@ -170,8 +170,8 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendNotif("Your order has been Accepted",
-                        "Hi there, we have just received word your order is Accepted");
+                //sendNotif("Your order has been Accepted",
+                //        "Hi there, we have just received word your order is Accepted");
 
                 dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -222,8 +222,8 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendNotif("Your order has been Rejected",
-                        "Hi there, we have just received word your order is Rejected");
+                //sendNotif("Your order has been Rejected",
+                //        "Hi there, we have just received word your order is Rejected");
 
                 dB.child("pending").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -233,7 +233,8 @@ public class CookOrders extends AppCompatActivity {
                         FirebaseDatabase.getInstance().getReference("CLIENTLOG")
                                 .child(clientId)
                                 .child(String.valueOf(currentTime))
-                                .removeValue();
+                                .child("rejected")
+                                .setValue(true);
                     }
 
                     @Override
@@ -269,8 +270,8 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendNotif("Your order has been Completed",
-                        "Hi there, we have just received word your order is completed");
+                //sendNotif("Your order has been Completed",
+                //        "Hi there, we have just received word your order is completed");
 
                 dB.child("accepted").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -301,8 +302,11 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendNotif("Your order has been Rejected",
-                        "Hi there, we have just received word your order is Rejected");
+                //TODO Change to not delete clientlog and instead add tag to client log, then
+                // delete from orders
+
+                //sendNotif("Your order has been Rejected",
+                //        "Hi there, we have just received word your order is Rejected");
 
                 dB.child("accepted").child(String.valueOf(currentTime)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -314,7 +318,8 @@ public class CookOrders extends AppCompatActivity {
                         FirebaseDatabase.getInstance().getReference("CLIENTLOG")
                                 .child(clientId)
                                 .child(String.valueOf(currentTime))
-                                .removeValue();
+                                .child("rejected")
+                                .setValue(true);
                     }
 
                     @Override
