@@ -260,41 +260,71 @@ public class ClientHomepage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     statusOrders.setVisibility(View.VISIBLE);
-                    ArrayList<String> orderTimes = new ArrayList<String>();
+                    ArrayList<String> finalSentences = new ArrayList<String>();
                     rateMealDB.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            orderTimes.clear();
+                            finalSentences.clear();
                             for (DataSnapshot o : snapshot.getChildren()) {
-                                DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
+                                DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
 
                                 Date res = new Date(Long.parseLong(Objects.requireNonNull(o.getKey())));
 
                                 String date = dateFormat.format(res);
-                                String finishedString = "";
-                                Boolean accepted = null;
 
-                                try {
-                                    accepted = o.child("accepted").getValue(Boolean.class);
-                                } catch (NullPointerException nullPointerException) {
+                                final Boolean accepted = o.child("accepted").getValue(Boolean.class);
+                                String cookUID = o.child("cookId").getValue(String.class);
 
-                                }
 
-                                if (accepted == null) { //TODO how about rejected
-                                    finishedString = "The request made on " + date + " is now completed.";
-                                } else if (accepted) {
-                                    finishedString = "The request made on " + date + " is now accepted.";
-                                } else {
-                                    finishedString = "The request made on " + date + " is now pending.";
-                                }
-                                System.out.println("added: " + finishedString);
-                                orderTimes.add(finishedString);
+                                DatabaseReference uidDB = FirebaseDatabase.getInstance().getReference("UID");
+                                ArrayList<String> cookNames = new ArrayList<String>();
+                                uidDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for (DataSnapshot m : snapshot.getChildren()) {
+                                            try {
+                                                if (m.getKey().equals(cookUID)) {
+
+                                                    String firstName = m.child("firstName").getValue(String.class);
+                                                    String lastName = m.child("lastName").getValue(String.class);
+                                                    String fullName = (firstName + " " + lastName);
+
+                                                    cookNames.add(fullName);
+
+                                                }
+                                            } catch (NullPointerException nullPointerException) {
+                                                System.out.println("COOK DOES NOT EXIST");
+                                            }
+
+                                        }
+                                        String finishedString;
+                                        for (String fullName : cookNames) {
+                                            if (accepted == null) { //TODO how about rejected
+                                                finishedString = "The request from " + fullName + " made on " + date + " is now completed.";
+                                            } else if (accepted) {
+                                                finishedString = "The request from " + fullName + " made on " + date + " is now accepted.";
+                                            } else {
+                                                finishedString = "The request from " + fullName + " made on " + date + " is now pending.";
+                                            }
+                                            System.out.println("added: " + finishedString);
+                                            finalSentences.add(finishedString);
+                                        }
+
+                                        ArrayAdapter<String> orderAdapter =
+                                                new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, finalSentences);
+                                        System.out.println("ORDERS: \n" + finalSentences.toString());
+                                        myOrders.setAdapter(orderAdapter);
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
 
                             }
-                            ArrayAdapter<String> orderAdapter =
-                                    new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, orderTimes);
-                            System.out.println("ORDERS: \n" + orderTimes.toString());
-                            myOrders.setAdapter(orderAdapter);
                         }
 
                         @Override
@@ -314,4 +344,5 @@ public class ClientHomepage extends AppCompatActivity {
             }
         });
     }
+
 }
