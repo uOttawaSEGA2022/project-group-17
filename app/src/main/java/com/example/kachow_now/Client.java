@@ -11,66 +11,66 @@ public class Client extends User {
     public Client() {
     }
 
-    public Client(String password, String firstName, String lastName, String email, long CC, int month, int year, int ccv, String address, String postalCode, long phoneNumber) {
+    public Client(final String password, final String firstName, final String lastName, final String email, final long CC, final int month, final int year, final int ccv, final String address, final String postalCode, final long phoneNumber) {
         super(firstName, lastName, password, email);
-        this.role = "Client";
-        this.bank = new ArrayList<>();
-        bank.add(CC);
-        bank.add(month);
-        bank.add(year);
-        bank.add(ccv);
+        role = "Client";
+        bank = new ArrayList<>();
+        this.bank.add(CC);
+        this.bank.add(month);
+        this.bank.add(year);
+        this.bank.add(ccv);
         this.address = address;
         this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBank(int creditCardNumber, int expMonth, int expYear, int ccv) {
-        ArrayList<Number> bank1 = new ArrayList<>();
+    public void setBank(final int creditCardNumber, final int expMonth, final int expYear, final int ccv) {
+        final ArrayList<Number> bank1 = new ArrayList<>();
         bank1.add(creditCardNumber);
         bank1.add(expMonth);
         bank1.add(expYear);
         bank1.add(ccv);
-        bank = bank1;
-    }
-
-    public void setAddress(String newAddress) {
-        address = newAddress;
-    }
-
-    public void setPhoneNumber(long newNumber) {
-        phoneNumber = newNumber;
+        this.bank = bank1;
     }
 
     public String getPostalCode() {
-        return postalCode;
+        return this.postalCode;
+    }
+
+    // setter methods
+    public void setPostalCode(final String postalCode) {
+        this.postalCode = postalCode;
     }
 
     // getter methods
     public String getAddress() {
-        return address;
+        return this.address;
     }
 
-    // setter methods
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setAddress(final String newAddress) {
+        this.address = newAddress;
     }
 
     public long getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(final long newNumber) {
+        this.phoneNumber = newNumber;
     }
 
     public ArrayList<Number> getBank() {
-        return bank;
+        return this.bank;
     }
 
 
     @Override
     public String toString() {
         return super.toString() + "\n{" +
-                " bank='" + getBank() + "'" +
-                ", address='" + getAddress() + "'" +
-                ", phoneNumber='" + getPhoneNumber() + "'" +
-                ", postalCode='" + getPostalCode() + "'" +
+                " bank='" + this.getBank() + "'" +
+                ", address='" + this.getAddress() + "'" +
+                ", phoneNumber='" + this.getPhoneNumber() + "'" +
+                ", postalCode='" + this.getPostalCode() + "'" +
                 "}";
     }
 

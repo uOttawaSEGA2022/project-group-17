@@ -18,10 +18,11 @@ public class Meal {
     private double rating;
 
     public Meal() {
-        this.isOffered = true;
-        this.rating = 0.0;
+        isOffered = true;
+        rating = 0.0;
     }
-    public Meal(String Name, String Description, String MealType, double Price, String Cuisine, ArrayList<String> Ingredients, ArrayList<String> Allergens, double servingSize, double Calories) {
+
+    public Meal(final String Name, final String Description, final String MealType, final double Price, final String Cuisine, final ArrayList<String> Ingredients, final ArrayList<String> Allergens, final double servingSize, final double Calories) {
         this.Name = Name;
         this.Description = Description;
         this.MealType = MealType;
@@ -31,104 +32,104 @@ public class Meal {
         this.Allergens = Allergens;
         this.servingSize = servingSize;
         this.Calories = Calories;
-        this.isOffered = true;
-        this.rating = 0.0;
+        isOffered = true;
+        rating = 0.0;
     }
 
 
     public String getName() {
-        return this.Name;
+        return Name;
     }
 
-    public void setName(String Name) {
+    public void setName(final String Name) {
         this.Name = Name;
     }
 
     public String getDescription() {
-        return this.Description;
+        return Description;
     }
 
-    public void setDescription(String Description) {
+    public void setDescription(final String Description) {
         this.Description = Description;
     }
 
     public String getMealType() {
-        return this.MealType;
+        return MealType;
     }
 
-    public void setMealType(String MealType) {
+    public void setMealType(final String MealType) {
         this.MealType = MealType;
     }
 
     public double getPrice() {
-        return this.Price;
+        return Price;
     }
 
-    public void setPrice(double Price) {
+    public void setPrice(final double Price) {
         this.Price = Price;
     }
 
     public String getCuisine() {
-        return this.Cuisine;
+        return Cuisine;
     }
 
-    public void setCuisine(String Cuisine) {
+    public void setCuisine(final String Cuisine) {
         this.Cuisine = Cuisine;
     }
 
     public ArrayList<String> getIngredients() {
-        return this.Ingredients;
+        return Ingredients;
     }
 
-    public void setIngredients(ArrayList<String> Ingredients) {
+    public void setIngredients(final ArrayList<String> Ingredients) {
         this.Ingredients = Ingredients;
     }
 
     public ArrayList<String> getAllergens() {
-        return this.Allergens;
+        return Allergens;
     }
 
-    public void setAllergens(ArrayList<String> Allergens) {
+    public void setAllergens(final ArrayList<String> Allergens) {
         this.Allergens = Allergens;
     }
 
     public double getServingSize() {
-        return this.servingSize;
+        return servingSize;
     }
 
-    public void setServingSize(double servingSize) {
+    public void setServingSize(final double servingSize) {
         this.servingSize = servingSize;
     }
 
     public double getCalories() {
-        return this.Calories;
+        return Calories;
     }
 
-    public void setCalories(double Calories) {
+    public void setCalories(final double Calories) {
         this.Calories = Calories;
     }
 
     public String getCookUID() {
-        return this.CookUID;
+        return CookUID;
     }
 
-    public void setCookUID(String s) {
-        this.CookUID = s;
+    public void setCookUID(final String s) {
+        CookUID = s;
     }
 
     public boolean getIsOffered() {
-        return this.isOffered;
+        return isOffered;
     }
 
-    public void setIsOffered(boolean isOffered) {
+    public void setIsOffered(final boolean isOffered) {
         this.isOffered = isOffered;
     }
 
     public double getRating() {
-        return rating;
+        return this.rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(final double rating) {
         this.rating = rating % 5.0;
     }
 }

@@ -60,11 +60,12 @@ public class submit_report extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     sendReportToDatabase();
-                    setContentView(R.layout.activity_clienthomepage);
+                    finish();
+                } catch (NumberFormatException f) {
+                    Toast.makeText(submit_report.this, "Invalid date", Toast.LENGTH_LONG).show();
                 } catch (IllegalArgumentException e) {
                     Toast.makeText(submit_report.this, "All fields must be filled out.", Toast.LENGTH_LONG).show();
                 }
-
 
 
             }
@@ -83,9 +84,7 @@ public class submit_report extends AppCompatActivity {
             throw new IllegalArgumentException();
         }
         if (dayOfReview.length() != 2 || monthOfReview.length() != 2 || yearOfReview.length() != 4) {
-            Toast.makeText(this, "Invalid date", Toast.LENGTH_LONG).show();
             throw new NumberFormatException();
-
         }
 
 
@@ -126,7 +125,7 @@ public class submit_report extends AppCompatActivity {
 
 
                 Toast.makeText(submit_report.this, "Report has been sent.", Toast.LENGTH_LONG).show();
-                finish();
+                //finish();
 
             }
 

@@ -118,7 +118,7 @@ public class CookHomepage extends AppCompatActivity {
                 email.setText(c.child("email").getValue(String.class));
                 phoneNumber.setText(String.valueOf(c.child("phoneNumber").getValue(long.class)));
                 address.setText(c.child("address").getValue(String.class));
-                postalCode.setText(c.child("rating").getValue(String.class));
+                postalCode.setText(String.valueOf(c.child("rating").getValue(double.class)));
 
             }
 

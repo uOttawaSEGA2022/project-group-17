@@ -66,11 +66,6 @@ public class ClientHomepage extends AppCompatActivity {
         myOrders = findViewById(R.id.myOrders);
         showOrderStatus();
 
-        //TODO change below code to scan for tag as well as scanning for ratings
-
-        //TODO CHECK ACCEPTED BEFORE WE DELETE CLIENTLOG ANd SEND A NOTIFICATION
-        //TODO CHECK ACCEPTED == NULL and send notification
-        //TODO CHECK NEW TAG AND IF TAG EXISTS, SEND NOTIF REJECTED
 
         rateMealDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -316,7 +311,7 @@ public class ClientHomepage extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         for (DataSnapshot m : snapshot.getChildren()) {
                                             try {
-                                                if (m.getKey().equals(cookUID)) {
+                                                if (Objects.equals(m.getKey(), cookUID)) {
 
                                                     String firstName = m.child("firstName").getValue(String.class);
                                                     String lastName = m.child("lastName").getValue(String.class);
@@ -332,20 +327,19 @@ public class ClientHomepage extends AppCompatActivity {
                                         }
                                         String finishedString;
                                         for (String fullName : cookNames) {
-                                            if (accepted == null) { //TODO how about rejected
+                                            if (accepted == null) {
                                                 finishedString = "The request from " + fullName + " made on " + date + " is now completed.";
                                             } else if (accepted) {
                                                 finishedString = "The request from " + fullName + " made on " + date + " is now accepted.";
                                             } else {
                                                 finishedString = "The request from " + fullName + " made on " + date + " is now pending.";
                                             }
-                                            System.out.println("added: " + finishedString);
                                             finalSentences.add(finishedString);
                                         }
 
                                         ArrayAdapter<String> orderAdapter =
                                                 new ArrayAdapter<String>(ClientHomepage.this, R.layout.layout_order_status_display, finalSentences);
-                                        System.out.println("ORDERS: \n" + finalSentences);
+
                                         myOrders.setAdapter(orderAdapter);
 
                                     }

@@ -19,104 +19,103 @@ public class Cook extends User {
     public Cook() {
     }
 
-    public Cook(String firstName, String lastname, String password, String email,
-                String address, String postalCode, long phoneNumber, int transit, int institution, double account) {
+    public Cook(final String firstName, final String lastname, final String password, final String email,
+                final String address, final String postalCode, final long phoneNumber, final int transit, final int institution, final double account) {
         super(firstName, lastname, password, email);
-        this.role = "Cook";
+        role = "Cook";
         this.address = address;
         this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
-        this.bank = new ArrayList();
-        bank.add(transit);
-        bank.add(institution);
-        bank.add(account);
-        this.rating = 0.0;
-        this.description = "";
-        this.isSuspended = false;
-        this.isBanned = false;
+        bank = new ArrayList();
+        this.bank.add(transit);
+        this.bank.add(institution);
+        this.bank.add(account);
+        rating = 0.0;
+        description = "";
+        isSuspended = false;
+        isBanned = false;
     }
     // setter methods
 
-    public String getAddress() {
-        return this.address;
+    public static int getDate() {
+        final Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.DAY_OF_YEAR);
     }
 
-    public void setAddress(String address) {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(final String address) {
         this.address = address;
     }
 
     public String getPostalCode() {
-        return this.postalCode;
+        return postalCode;
     }
 
-    public void setPostalCode(String postalcode) {
-        this.postalCode = postalcode;
+    public void setPostalCode(final String postalcode) {
+        postalCode = postalcode;
     }
 
-    public long getPhoneNumber(){
-        return this.phoneNumber;
+    public long getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(final long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     public ArrayList getBank() {
-        return this.bank;
+        return bank;
     }
 
-    public void setBank(ArrayList bank1) {
+    public void setBank(final ArrayList bank1) {
         //setBank(int transit, int institution, int account)
         //ArrayList bank1 = new ArrayList<>();
         //bank1.add(transit);
         //bank1.add(institution);
         //bank1.add(account);
-        this.bank = bank1;
+        bank = bank1;
     }
 
     public double getRating() {
-        return this.rating;
+        return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(final double rating) {
         this.rating = rating;
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
-
     public boolean getIsBanned() {
-        return this.isBanned;
+        return isBanned;
     }
 
-    public void setIsBanned(boolean isBanned) {
+    public void setIsBanned(final boolean isBanned) {
         this.isBanned = isBanned;
     }
 
-    public static int getDate() {
-        Calendar calendar = Calendar.getInstance();
-        return calendar.get(Calendar.DAY_OF_YEAR);
-    }
-
     public boolean getIsSuspended() {
-        return this.isSuspended;
+        return isSuspended;
     }
 
-    public void setIsSuspended(boolean isSuspended) {
+    public void setIsSuspended(final boolean isSuspended) {
         this.isSuspended = isSuspended;
     }
 
     public int getDaySus() {
-        return this.daySus;
+        return daySus;
     }
 
-    public void setDaySus(int daySus) {
+    public void setDaySus(final int daySus) {
         this.daySus = daySus;
     }
 
@@ -157,15 +156,15 @@ public class Cook extends User {
     @Override
     public String toString() {
         return super.toString() + "\n{" +
-                " address='" + getAddress() + "'" +
-                ", postalCode='" + getPostalCode() + "'" +
-                ", phoneNumber='" + getPhoneNumber() + "'" +
-                ", bank='" + getBank() + "'" +
-                ", rating='" + getRating() + "'" +
-                ", description='" + getDescription() + "'" +
-                ", isBanned='" + getIsBanned() + "'" +
-                ", isSuspended='" + getIsSuspended() + "'" +
-                ", daySus='" + getDaySus() + "'" +
+                " address='" + this.getAddress() + "'" +
+                ", postalCode='" + this.getPostalCode() + "'" +
+                ", phoneNumber='" + this.getPhoneNumber() + "'" +
+                ", bank='" + this.getBank() + "'" +
+                ", rating='" + this.getRating() + "'" +
+                ", description='" + this.getDescription() + "'" +
+                ", isBanned='" + this.getIsBanned() + "'" +
+                ", isSuspended='" + this.getIsSuspended() + "'" +
+                ", daySus='" + this.getDaySus() + "'" +
                 "}";
     }
 

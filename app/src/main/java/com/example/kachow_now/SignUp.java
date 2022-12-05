@@ -3,20 +3,25 @@ package com.example.kachow_now;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Media;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputFilter.LengthFilter;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kachow_now.R.id;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,7 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.firebase.storage.UploadTask.TaskSnapshot;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -160,26 +165,28 @@ public class SignUp extends AppCompatActivity {
         });
         secondPhone.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+            public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
                 if (secondPhone.getText().toString().length() == 3)     //size as per your requirement
-                {
                     thirdPhone.requestFocus();
-                }
             }
 
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
+            @Override
+            public void beforeTextChanged(final CharSequence s, final int start,
+                                          final int count, final int after) {
             }
 
-            public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(final Editable s) {
             }
 
         });
 
 
-        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                String textFromSpinner = String.valueOf(spin.getSelectedItem()).trim().toLowerCase();
+        spin.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(final AdapterView<?> parent, final View view, final int pos, final long id) {
+                final String textFromSpinner = String.valueOf(spin.getSelectedItem()).trim().toLowerCase();
                 if (textFromSpinner.equals("cook")) {
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
                     CCVorInstitution.setVisibility(View.VISIBLE);
@@ -187,11 +194,11 @@ public class SignUp extends AppCompatActivity {
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
                     Year.setVisibility(View.GONE);
                     AccountOrCardNumber.setHint("Account Number");
-                    AccountOrCardNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
+                    AccountOrCardNumber.setFilters(new InputFilter[]{new LengthFilter(12)});
                     MonthOrBranchNumber.setHint("Branch Number");
-                    MonthOrBranchNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
+                    MonthOrBranchNumber.setFilters(new InputFilter[]{new LengthFilter(5)});
                     CCVorInstitution.setHint("Institution Number");
-                    CCVorInstitution.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+                    CCVorInstitution.setFilters(new InputFilter[]{new LengthFilter(3)});
 
                 } else if (textFromSpinner.equals("client")) {
                     AccountOrCardNumber.setVisibility(View.VISIBLE);
@@ -200,13 +207,13 @@ public class SignUp extends AppCompatActivity {
                     MonthOrBranchNumber.setVisibility(View.VISIBLE);
                     Year.setVisibility(View.VISIBLE);
                     AccountOrCardNumber.setHint("Card Number");
-                    AccountOrCardNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(16)});
+                    AccountOrCardNumber.setFilters(new InputFilter[]{new LengthFilter(16)});
                     MonthOrBranchNumber.setHint("Month");
-                    MonthOrBranchNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
+                    MonthOrBranchNumber.setFilters(new InputFilter[]{new LengthFilter(2)});
                     CCVorInstitution.setHint("CCV");
-                    CCVorInstitution.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+                    CCVorInstitution.setFilters(new InputFilter[]{new LengthFilter(3)});
                     Year.setHint("Year");
-                    Year.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
+                    Year.setFilters(new InputFilter[]{new LengthFilter(2)});
                 } else {
                     AccountOrCardNumber.setVisibility(View.INVISIBLE);
                     CCVorInstitution.setVisibility(View.INVISIBLE);
@@ -216,146 +223,135 @@ public class SignUp extends AppCompatActivity {
                 }
             }
 
-            public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(final AdapterView<?> parent) {
 
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
-                createAccount(v);
+            public void onClick(final View v) {
+                SignUp.this.createAccount(v);
             }
         });
 
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                //When success initialize place
-                Place place = Autocomplete.getPlaceFromIntent(data);
-                //set address on edittext
-                AddressField.setText(place.getAddress());
+        if (requestCode == SignUp.AUTOCOMPLETE_REQUEST_CODE) if (resultCode == Activity.RESULT_OK) {
+            //When success initialize place
+            final Place place = Autocomplete.getPlaceFromIntent(data);
+            //set address on edittext
+            this.AddressField.setText(place.getAddress());
 
-            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                Status status = Autocomplete.getStatusFromIntent(data);
-                //Log.i(TAG, status.getStatusMessage());
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                // The user canceled the operation.
-            }
+        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+            final Status status = Autocomplete.getStatusFromIntent(data);
+            //Log.i(TAG, status.getStatusMessage());
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            // The user canceled the operation.
         }
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
+        if (requestCode == SignUp.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
                 && data != null && data.getData() != null) {
 
             // Get the Uri of data
-            filePath = data.getData();
+            this.filePath = data.getData();
             try {
                 // Setting image on image view using Bitmap
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
-                        getContentResolver(), filePath);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 0, baos);
-                fileInBytes = baos.toByteArray();
+                final Bitmap bitmap = Media.getBitmap(
+                        this.getContentResolver(), this.filePath);
+                final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(CompressFormat.JPEG, 0, baos);
+                this.fileInBytes = baos.toByteArray();
                 //imageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 // Catch the exception
             }
         }
     }
 
-    private void createAccount(View view) {
+    private void createAccount(final View view) {
 
         try {
-            String Type = String.valueOf(((Spinner) findViewById(R.id.SignupRole)).getSelectedItem()).trim().toLowerCase();
-            String FirstName = ((EditText) findViewById(R.id.ItemName)).getText().toString().trim();
-            String Surname = ((EditText) findViewById(R.id.MealType)).getText().toString().trim();
-            String firstPhone = ((EditText) findViewById(R.id.IngredientsList)).getText().toString().trim();
-            String secondPhone = ((EditText) findViewById(R.id.secondPhone)).getText().toString().trim();
-            String thirdPhone = ((EditText) findViewById(R.id.thirdPhone)).getText().toString().trim();
-            String Phone = firstPhone + secondPhone + thirdPhone;
-            String Email = ((EditText) findViewById(R.id.CusineType)).getText().toString().trim();
-            String Password = ((EditText) findViewById(R.id.Price)).getText().toString().trim();
-            String AccountOrCardNumber = ((EditText) findViewById(R.id.ServingSize)).getText().toString().trim();
-            String CCVorInstitution = ((EditText) findViewById(R.id.Calories)).getText().toString().trim();
-            String BranchOrMonth = ((EditText) findViewById(R.id.MonthOrBranchNumber)).getText().toString().trim();
-            String address = ((EditText) findViewById(R.id.Allergens)).getText().toString().trim();
-            String postalcode1 = ((EditText) findViewById(R.id.Description)).getText().toString().trim();
-            String postalcode2 = ((EditText) findViewById(R.id.pc2)).getText().toString().trim();
-            String postalcode = postalcode1 + postalcode2;
-            String Year;
+            final String Type = String.valueOf(((Spinner) this.findViewById(id.SignupRole)).getSelectedItem()).trim().toLowerCase();
+            final String FirstName = ((EditText) this.findViewById(id.ItemName)).getText().toString().trim();
+            final String Surname = ((EditText) this.findViewById(id.MealType)).getText().toString().trim();
+            final String firstPhone = ((EditText) this.findViewById(id.IngredientsList)).getText().toString().trim();
+            final String secondPhone = ((EditText) this.findViewById(id.secondPhone)).getText().toString().trim();
+            final String thirdPhone = ((EditText) this.findViewById(id.thirdPhone)).getText().toString().trim();
+            final String Phone = firstPhone + secondPhone + thirdPhone;
+            final String Email = ((EditText) this.findViewById(id.CusineType)).getText().toString().trim();
+            final String Password = ((EditText) this.findViewById(id.Price)).getText().toString().trim();
+            final String AccountOrCardNumber = ((EditText) this.findViewById(id.ServingSize)).getText().toString().trim();
+            final String CCVorInstitution = ((EditText) this.findViewById(id.Calories)).getText().toString().trim();
+            final String BranchOrMonth = ((EditText) this.findViewById(id.MonthOrBranchNumber)).getText().toString().trim();
+            final String address = ((EditText) this.findViewById(id.Allergens)).getText().toString().trim();
+            final String postalcode1 = ((EditText) this.findViewById(id.Description)).getText().toString().trim();
+            final String postalcode2 = ((EditText) this.findViewById(id.pc2)).getText().toString().trim();
+            final String postalcode = postalcode1 + postalcode2;
+            final String Year;
 
 
-            if (Type.equals("client")) {
-                Year = ((EditText) findViewById(R.id.Year)).getText().toString().trim();
-            } else {
-                Year = null;
-            }
+            if (Type.equals("client"))
+                Year = ((EditText) this.findViewById(id.Year)).getText().toString().trim();
+            else Year = null;
 
             //exception handling
 
             if (FirstName.isEmpty() || Surname.isEmpty() || Email.isEmpty() || Phone.isEmpty() ||
                     Password.isEmpty() || AccountOrCardNumber.isEmpty() || BranchOrMonth.isEmpty() ||
-                    CCVorInstitution.isEmpty() || address.isEmpty() || postalcode.isEmpty() || (Type.equals("client") && Year.isEmpty())) {
+                    CCVorInstitution.isEmpty() || address.isEmpty() || postalcode.isEmpty() || Type.equals("client") && Year.isEmpty())
                 throw new IllegalArgumentException();
-            }
-            if (Phone.length() != 10 || postalcode.length() != 6) {
+            if (Phone.length() != 10 || postalcode.length() != 6) throw new NumberFormatException();
+            if (Type.equals("client") && (AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
+                    Integer.parseInt(BranchOrMonth) > 12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) > 99))
                 throw new NumberFormatException();
-            }
-            if (Type.equals("client") && ((AccountOrCardNumber.length() != 16 || CCVorInstitution.length() != 3 ||
-                    Integer.parseInt(BranchOrMonth) > 12 || Integer.parseInt(BranchOrMonth) < 1 || Integer.parseInt(Year) < 22 || Integer.parseInt(Year) > 99))) {
-                throw new NumberFormatException();
-            }
             if (Type.equals("cook") && (AccountOrCardNumber.length() > 12 || AccountOrCardNumber.length() < 7 || CCVorInstitution.length() != 3 ||
-                    BranchOrMonth.length() != 5)) {
-                throw new NumberFormatException();
-            }
+                    BranchOrMonth.length() != 5)) throw new NumberFormatException();
 
-            if (Type.equals("cook") && filePath == null) {
-                throw new NullPointerException();
-            }
+            if (Type.equals("cook") && this.filePath == null) throw new NullPointerException();
 
-            mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            this.mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
+                public void onComplete(@NonNull final Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
-                        FirebaseUser usr = mAuth.getCurrentUser();
+                        final FirebaseUser usr = SignUp.this.mAuth.getCurrentUser();
                         if (Type.equals("client")) {
-                            Client u = new Client(Password, FirstName, Surname, Email,
+                            final Client u = new Client(Password, FirstName, Surname, Email,
                                     Long.parseLong(AccountOrCardNumber), Integer.parseInt(BranchOrMonth),
                                     Integer.parseInt(Year), Integer.parseInt(CCVorInstitution),
                                     address, postalcode, Long.parseLong(Phone));
-                            u.setUID(mAuth.getCurrentUser().getUid());
-                            database.child(mAuth.getCurrentUser().getUid()).setValue(u);
+                            u.setUID(SignUp.this.mAuth.getCurrentUser().getUid());
+                            SignUp.this.database.child(SignUp.this.mAuth.getCurrentUser().getUid()).setValue(u);
                             //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Client");
                         } else {
-                            Cook u = new Cook(FirstName, Surname, Password, Email, address, postalcode,
+                            final Cook u = new Cook(FirstName, Surname, Password, Email, address, postalcode,
                                     Long.parseLong(Phone), Integer.parseInt(BranchOrMonth), Integer.parseInt(CCVorInstitution),
                                     Double.parseDouble(AccountOrCardNumber));
-                            u.setUID(mAuth.getCurrentUser().getUid());
-                            database.child(mAuth.getCurrentUser().getUid()).setValue(u);
+                            u.setUID(SignUp.this.mAuth.getCurrentUser().getUid());
+                            SignUp.this.database.child(SignUp.this.mAuth.getCurrentUser().getUid()).setValue(u);
                             //database.child(String.valueOf(mAuth.getCurrentUser().getUid())).child("role").setValue("Cook");
                         }
-                        uploadImage();
+                        SignUp.this.uploadImage();
                         Toast.makeText(SignUp.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                        finish();
+                        SignUp.this.finish();
                     } else {
                         Toast.makeText(SignUp.this, "Authentication failed.", Toast.LENGTH_LONG).show();
                         Toast.makeText(SignUp.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             Toast.makeText(this, e + " Please Enter Valid Input", Toast.LENGTH_LONG).show();
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show();
-        } catch (NullPointerException e) {
+        } catch (final NullPointerException e) {
             Toast.makeText(this, "Please add an image", Toast.LENGTH_LONG).show();
         }
 
@@ -363,24 +359,24 @@ public class SignUp extends AppCompatActivity {
 
     private void SelectImage() {
         // Defining Implicit Intent to mobile gallery
-        Intent intent = new Intent();
+        final Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image from here..."), PICK_IMAGE_REQUEST);
+        this.startActivityForResult(Intent.createChooser(intent, "Select Image from here..."), SignUp.PICK_IMAGE_REQUEST);
     }
 
     private void uploadImage() {
-        if (filePath != null) {
+        if (this.filePath != null) {
             // Code for showing progressDialog while uploading
 
             // Defining the child of storageReference
-            StorageReference ref = storageReference.child("images/" + (mAuth.getCurrentUser()).getUid() + "/profilePhoto");
+            final StorageReference ref = this.storageReference.child("images/" + this.mAuth.getCurrentUser().getUid() + "/profilePhoto");
 
             // adding listeners on upload
             // or failure of image
-            ref.putBytes(fileInBytes).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            ref.putBytes(this.fileInBytes).addOnSuccessListener(new OnSuccessListener<TaskSnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                public void onSuccess(final TaskSnapshot taskSnapshot) {
                     // Image uploaded successfully
                     // Dismiss dialog
 
@@ -388,7 +384,7 @@ public class SignUp extends AppCompatActivity {
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public void onFailure(@NonNull Exception e) {
+                public void onFailure(@NonNull final Exception e) {
 
                     // Error, Image not uploaded
 

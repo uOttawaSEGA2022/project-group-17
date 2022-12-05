@@ -310,8 +310,6 @@ public class CookOrders extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO Change to not delete clientlog and instead add tag to client log, then
-                // delete from orders
 
                 //sendNotif("Your order has been Rejected",
                 //        "Hi there, we have just received word your order is Rejected");

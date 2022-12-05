@@ -11,7 +11,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String password, String email) {
+    public User(final String firstName, final String lastName, final String password, final String email) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -19,50 +19,50 @@ public class User {
     }
 
     public String getRole() {
-        return role;
+        return this.role;
     }
 
-    public String getUID() {
-        return this.UID;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setRole(String role) {
+    public void setRole(final String role) {
         this.role = role;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUID() {
+        return UID;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setUID(String UID) {
+    public void setUID(final String UID) {
         this.UID = UID;
     }
 
-    public void setEmail(String email) {
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(final String email) {
         this.email = email;
     }
 
-    public void setPassword(String password) {
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(final String password) {
         this.password = password;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setLastName(String lastName) {
+    public void setFirstName(final String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -70,12 +70,12 @@ public class User {
     @Override
     public String toString() {
         return "{" +
-                " email='" + getEmail() + "'" +
-                ", password='" + getPassword() + "'" +
-                ", firstName='" + getFirstName() + "'" +
-                ", lastName='" + getLastName() + "'" +
-                ", role='" + getRole() + "'" +
-                ", UID='" + getUID() + "'" +
+                " email='" + this.getEmail() + "'" +
+                ", password='" + this.getPassword() + "'" +
+                ", firstName='" + this.getFirstName() + "'" +
+                ", lastName='" + this.getLastName() + "'" +
+                ", role='" + this.getRole() + "'" +
+                ", UID='" + this.getUID() + "'" +
                 "}";
     }
 

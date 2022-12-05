@@ -8,7 +8,7 @@ public class Admin {
     private String lastName;
 
 
-    public Admin(String email, String password, String firstName, String lastName) {
+    public Admin(final String email, final String password, final String firstName, final String lastName) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -16,34 +16,34 @@ public class Admin {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
     
