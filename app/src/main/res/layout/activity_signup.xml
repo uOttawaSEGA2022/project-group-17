@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#03A9F4 "
+                    android:background="@color/lighter_blue"
                     android:minHeight="?attr/actionBarSize"
                     android:theme="?attr/actionBarTheme"
                     app:title="                          Registration"
@@ -411,7 +411,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Upload Profile Picture..."
-                    android:textColor="#0D709E" />
+                    android:textColor="@color/blue" />
             </LinearLayout>
 
             <LinearLayout

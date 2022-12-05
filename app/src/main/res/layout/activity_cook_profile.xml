@@ -15,15 +15,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/CookMenuToolbar"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#03A9F4"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:title="Profile"
-            app:titleTextColor="#000000" />
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/CookMenuToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#03A9F4"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:title="Profile"
+                app:titleTextColor="#000000" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="400dp"
@@ -84,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/name"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:translationX="5dp" />
 
@@ -109,6 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/email_"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:translationX="5dp" />
             </LinearLayout>
@@ -135,6 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/phonenumber"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:translationX="5dp" />
 
@@ -160,6 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/address"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:translationX="5dp" />
             </LinearLayout>
@@ -184,6 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/postalcode"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:translationX="5dp" />
             </LinearLayout>

@@ -41,6 +41,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Chef's Name"
+                android:textColor="@color/dark_est_blue"
                 android:textSize="34sp" />
 
         </LinearLayout>

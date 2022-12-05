@@ -2,6 +2,7 @@
 <resources>
     <color name="barely_blue">#BBE7ED</color>
     <color name="light_blue">#4B94B0</color>
+    <color name="light_est_blue">#ADD8E6</color>
     <color name="blue">#0D709E</color>
     <color name="dark_blue">#2F6090</color>
     <color name="dark_er_blue">#074973</color>

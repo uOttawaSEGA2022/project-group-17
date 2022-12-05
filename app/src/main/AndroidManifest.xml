@@ -111,13 +111,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".WelcomePage"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".AdminPage"
             android:exported="false">
             <meta-data

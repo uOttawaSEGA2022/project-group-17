@@ -26,14 +26,4 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/labelRating1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:gravity="center_horizontal"
-        android:text="Meal Settings"
-        android:textColor="#0D709E"
-        android:textSize="24sp" />
-
 </LinearLayout>
