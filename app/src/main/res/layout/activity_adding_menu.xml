@@ -22,23 +22,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <Button
-            android:id="@+id/UploadImageButton"
-            style="@style/Widget.Material3.Button.TextButton.Dialog.Flush"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Upload Meal Photo..." />
-
-        <Button
-            android:id="@+id/AddNewItemButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#F8F8F7"
-            android:text="ADD MEAL!"
-            android:textColor="#000000" />
-
         <EditText
             android:id="@+id/ItemName"
             android:layout_width="match_parent"
@@ -185,6 +168,23 @@
                 android:textColorHint="#000000" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/UploadImageButton"
+            style="@style/Widget.Material3.Button.TextButton.Dialog.Flush"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Upload Meal Photo..." />
+
+        <Button
+            android:id="@+id/AddNewItemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#F8F8F7"
+            android:text="ADD MEAL!"
+            android:textColor="#000000" />
 
 
     </LinearLayout>
