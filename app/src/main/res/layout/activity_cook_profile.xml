@@ -184,7 +184,7 @@
                     android:layout_width="91dp"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:text="@string/postal_code"
+                    android:text="Rating:"
                     android:textColor="#0D709E"
                     android:textSize="20sp" />
 
@@ -193,7 +193,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/postalcode"
+                    android:text="RATING"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:translationX="5dp" />
