@@ -13,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RequestList extends ArrayAdapter<Request> {
@@ -44,7 +43,7 @@ public class RequestList extends ArrayAdapter<Request> {
         Request request = requests.get(position);
 
 
-        TextView listOfOrders = (TextView) listViewItem.findViewById(R.id.textViewOrders);
+        TextView listOfOrders = listViewItem.findViewById(R.id.textViewOrders);
 
         String orders;
         StringBuilder line = new StringBuilder();

@@ -150,7 +150,7 @@ public class AdminPage extends AppCompatActivity {
         final Button buttonSuspension = dialogView.findViewById(R.id.rateCook);
         final EditText textDaySus = dialogView.findViewById(R.id.labelRating1);
 
-        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(AdminPage.this)
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(this)
                 .setTitle("Complaint about " + cookName)
                 .setView(dialogView)
                 .show();

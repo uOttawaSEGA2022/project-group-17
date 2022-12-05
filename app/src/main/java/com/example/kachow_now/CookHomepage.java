@@ -44,17 +44,17 @@ public class CookHomepage extends AppCompatActivity {
         dB = FirebaseDatabase.getInstance().getReference("UID").child(mAuth.getCurrentUser().getUid());
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        Button logOutButton = (Button) findViewById(R.id.CookLogout);
+        Button logOutButton = findViewById(R.id.CookLogout);
 
-        tName = (Toolbar) findViewById(R.id.CookMenuToolbar);
-        name = (TextView) findViewById(R.id.cookNameInput);
-        email = (TextView) findViewById(R.id.cookEmailInput);
-        phoneNumber = (TextView) findViewById(R.id.cookPhoneNumberInput);
-        address = (TextView) findViewById(R.id.cookAddressInput);
-        postalCode = (TextView) findViewById(R.id.cookPostalCodeInput);
-        profilePic = (ImageView) findViewById(R.id.cookProfilePic);
-        menu = (Button) findViewById(R.id.cookProfileMenuButton);
-        orders = (Button) findViewById(R.id.cookProfileOrders);
+        tName = findViewById(R.id.CookMenuToolbar);
+        name = findViewById(R.id.cookNameInput);
+        email = findViewById(R.id.cookEmailInput);
+        phoneNumber = findViewById(R.id.cookPhoneNumberInput);
+        address = findViewById(R.id.cookAddressInput);
+        postalCode = findViewById(R.id.cookPostalCodeInput);
+        profilePic = findViewById(R.id.cookProfilePic);
+        menu = findViewById(R.id.cookProfileMenuButton);
+        orders = findViewById(R.id.cookProfileOrders);
 
         dB.addValueEventListener(new ValueEventListener() {
             @Override

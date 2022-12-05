@@ -385,7 +385,7 @@ public class ClientHomepage extends AppCompatActivity {
                 PendingIntent.FLAG_IMMUTABLE);
 
 
-        String channelId = "DEFAULT_CHANNEL";
+        final String channelId = "DEFAULT_CHANNEL";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)

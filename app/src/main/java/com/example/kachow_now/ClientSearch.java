@@ -89,7 +89,7 @@ public class ClientSearch extends AppCompatActivity {
                 SUScooks.clear();
                 for (DataSnapshot s : l.getChildren()) {
                     String role = s.child("role").getValue(String.class);
-                    if (role != null && role.equalsIgnoreCase("cook")) {
+                    if ("cook".equalsIgnoreCase(role)) {
                         boolean isSus = true;
                         boolean isBan = true;
                         try {

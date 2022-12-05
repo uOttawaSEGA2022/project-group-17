@@ -164,7 +164,7 @@ public class CookOrders extends AppCompatActivity {
         rejectButton.setText("REJECT");
 
         //AlertDialog b = dialogBuilder.create();
-        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(CookOrders.this)
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(this)
                 .setTitle("Accept or Reject request ")
                 .setView(dialogView)
                 .show();
@@ -266,7 +266,7 @@ public class CookOrders extends AppCompatActivity {
 
         acceptButton.setText("COMPLETE");
         rejectButton.setText("REJECT");
-        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(CookOrders.this)
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(this)
                 .setTitle("Complete or Reject request ")
                 .setView(dialogView)
                 .show();
@@ -352,7 +352,7 @@ public class CookOrders extends AppCompatActivity {
                 PendingIntent.FLAG_IMMUTABLE);
 
 
-        String channelId = "DEFAULT_CHANNEL";
+        final String channelId = "DEFAULT_CHANNEL";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)

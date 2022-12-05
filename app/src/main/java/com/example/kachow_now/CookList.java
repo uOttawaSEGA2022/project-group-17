@@ -66,11 +66,11 @@ public class CookList extends RecyclerView.Adapter<CookList.ViewHolder> {
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        ImageButton a = (ImageButton) viewHolder.profilePic;
+        ImageButton a = viewHolder.profilePic;
         Cook cook = cooks.get(viewHolder.getAdapterPosition());
         String n = cook.getFirstName() + " " + cook.getLastName();
-        ((TextView) viewHolder.name).setText(n);
-        ((TextView) viewHolder.name).setTextColor(Color.parseColor("#0D709E"));
+        viewHolder.name.setText(n);
+        viewHolder.name.setTextColor(Color.parseColor("#0D709E"));
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         StorageReference mImageRef = storageReference.child("images/" + cook.getUID() + "/profilePhoto");

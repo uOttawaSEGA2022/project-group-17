@@ -58,7 +58,7 @@ public class ClientCart extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        listViewMeals = (ListView) findViewById(R.id.cartListView);
+        listViewMeals = findViewById(R.id.cartListView);
 
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -74,17 +74,17 @@ public class ClientCart extends AppCompatActivity {
                 cartButton.setVisibility(View.GONE);
                 Button remove = dialogView.findViewById(R.id.deleteMeal);
 
-                TextView textViewMealName = (TextView) dialogView.findViewById(R.id.textViewMealName);
-                TextView textViewDescription = (TextView) dialogView.findViewById(R.id.textViewDescription);
-                TextView textViewMealType = (TextView) dialogView.findViewById(R.id.textViewMealType);
-                TextView textViewPrice = (TextView) dialogView.findViewById(R.id.textViewPrice);
-                TextView textViewCuisine = (TextView) dialogView.findViewById(R.id.textViewCuisine);
-                TextView textViewIngredients = (TextView) dialogView.findViewById(R.id.textViewIngredients);
-                TextView textViewMealAllergens = (TextView) dialogView.findViewById(R.id.textViewMealAllergens);
-                TextView textViewServingSize = (TextView) dialogView.findViewById(R.id.textViewServingSize);
-                TextView textViewCalories = (TextView) dialogView.findViewById(R.id.textViewCalories);
+                TextView textViewMealName = dialogView.findViewById(R.id.textViewMealName);
+                TextView textViewDescription = dialogView.findViewById(R.id.textViewDescription);
+                TextView textViewMealType = dialogView.findViewById(R.id.textViewMealType);
+                TextView textViewPrice = dialogView.findViewById(R.id.textViewPrice);
+                TextView textViewCuisine = dialogView.findViewById(R.id.textViewCuisine);
+                TextView textViewIngredients = dialogView.findViewById(R.id.textViewIngredients);
+                TextView textViewMealAllergens = dialogView.findViewById(R.id.textViewMealAllergens);
+                TextView textViewServingSize = dialogView.findViewById(R.id.textViewServingSize);
+                TextView textViewCalories = dialogView.findViewById(R.id.textViewCalories);
 
-                ImageView chefprofilePic = (ImageView) dialogView.findViewById(R.id.mealPhp);
+                ImageView chefprofilePic = dialogView.findViewById(R.id.mealPhp);
 
                 StorageReference ref = storageReference.child("images/" + cUID + "/" + meal.getName());
 

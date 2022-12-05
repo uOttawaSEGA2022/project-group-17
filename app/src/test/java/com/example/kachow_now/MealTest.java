@@ -1,10 +1,11 @@
 package com.example.kachow_now;
 
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
 import java.util.ArrayList;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class MealTest {
 
@@ -12,8 +13,8 @@ public class MealTest {
     public void getName() {
         ArrayList<String> ingredients = new ArrayList<String>();
         ingredients.add("lettuce");
-        Meal salad = new Meal("Salad", "well-dressed salad", "Lunch", 5.00, "Mediterranean", ingredients, null, 2.00, 200.00 );
-        assertEquals( "Salad", salad.getName());
+        Meal salad = new Meal("Salad", "well-dressed salad", "Lunch", 5.00, "Mediterranean", ingredients, null, 2.00, 200.00);
+        assertEquals("Salad", salad.getName());
     }
 
     @Test

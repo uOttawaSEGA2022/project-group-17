@@ -44,7 +44,6 @@ public class currentlyOffered extends AppCompatActivity {
         meals = new ArrayList<Meal>();
 
 
-
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -96,7 +95,7 @@ public class currentlyOffered extends AppCompatActivity {
                     meals.add(tmpMeal);
                 }
 
-                MealList mealAdapter = new MealList(currentlyOffered.this,meals);
+                MealList mealAdapter = new MealList(currentlyOffered.this, meals);
                 listViewMeals.setAdapter(mealAdapter);
             }
 
@@ -115,7 +114,7 @@ public class currentlyOffered extends AppCompatActivity {
         Button toggleOffer = dialogView.findViewById(R.id.toggleoffer);
         Button deleteMeal = dialogView.findViewById(R.id.deletemeal);
 
-        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(currentlyOffered.this)
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(this)
                 .setTitle("Information about " + meals.get(position).getName())
                 .setView(dialogView)
                 .show();

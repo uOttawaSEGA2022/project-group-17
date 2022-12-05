@@ -52,8 +52,9 @@
                 android:id="@+id/textViewMealName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -66,8 +67,9 @@
                 android:id="@+id/textViewServingSize"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -80,8 +82,9 @@
                 android:id="@+id/textViewRating"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -94,8 +97,9 @@
                 android:id="@+id/textViewCalories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -108,8 +112,9 @@
                 android:id="@+id/textViewDescription"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -122,8 +127,9 @@
                 android:id="@+id/textViewMealType"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -136,8 +142,9 @@
                 android:id="@+id/textViewIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -150,8 +157,9 @@
                 android:id="@+id/textViewPrice"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -164,8 +172,9 @@
                 android:id="@+id/textViewMealAllergens"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -178,8 +187,9 @@
                 android:id="@+id/textViewCuisine"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 

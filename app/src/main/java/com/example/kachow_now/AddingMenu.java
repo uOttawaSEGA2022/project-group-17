@@ -1,5 +1,6 @@
 package com.example.kachow_now;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -42,7 +43,7 @@ public class AddingMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_menu);
 
-        uploadBtn = (Button) findViewById(R.id.UploadImageButton);
+        uploadBtn = findViewById(R.id.UploadImageButton);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference("UID");
@@ -74,7 +75,7 @@ public class AddingMenu extends AppCompatActivity {
         // if request code is PICK_IMAGE_REQUEST and
         // resultCode is RESULT_OK
         // then set image in the image view
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
                 && data != null && data.getData() != null) {
 
             // Get the Uri of data

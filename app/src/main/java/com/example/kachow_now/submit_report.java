@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -84,7 +83,7 @@ public class submit_report extends AppCompatActivity {
             throw new IllegalArgumentException();
         }
         if (dayOfReview.length() != 2 || monthOfReview.length() != 2 || yearOfReview.length() != 4) {
-            Toast.makeText(submit_report.this, "Invalid date", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Invalid date", Toast.LENGTH_LONG).show();
             throw new NumberFormatException();
 
         }

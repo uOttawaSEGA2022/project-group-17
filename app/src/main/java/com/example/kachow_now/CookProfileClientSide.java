@@ -84,7 +84,7 @@ public class CookProfileClientSide extends AppCompatActivity {
         }
 
 
-        Button reportButton = (Button) findViewById(R.id.ReportCookProfileClient);
+        Button reportButton = findViewById(R.id.ReportCookProfileClient);
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +94,7 @@ public class CookProfileClientSide extends AppCompatActivity {
             }
         });
 
-        Button rateButton = (Button)findViewById(R.id.ratingPage);
+        Button rateButton = findViewById(R.id.ratingPage);
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

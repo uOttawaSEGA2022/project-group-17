@@ -1,5 +1,6 @@
 package com.example.kachow_now;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -235,7 +236,7 @@ public class SignUp extends AppCompatActivity {
 
 
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 //When success initialize place
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 //set address on edittext
@@ -244,12 +245,12 @@ public class SignUp extends AppCompatActivity {
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 Status status = Autocomplete.getStatusFromIntent(data);
                 //Log.i(TAG, status.getStatusMessage());
-            } else if (resultCode == RESULT_CANCELED) {
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 // The user canceled the operation.
             }
         }
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
                 && data != null && data.getData() != null) {
 
             // Get the Uri of data
@@ -351,11 +352,11 @@ public class SignUp extends AppCompatActivity {
                 }
             });
         } catch (NumberFormatException e) {
-            Toast.makeText(SignUp.this, e + " Please Enter Valid Input", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, e + " Please Enter Valid Input", Toast.LENGTH_LONG).show();
         } catch (IllegalArgumentException e) {
-            Toast.makeText(SignUp.this, "Please fill in all fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show();
         } catch (NullPointerException e) {
-            Toast.makeText(SignUp.this, "Please add an image", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please add an image", Toast.LENGTH_LONG).show();
         }
 
     }

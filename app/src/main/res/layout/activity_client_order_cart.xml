@@ -11,12 +11,23 @@
         android:background="#BBE7ED"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/requestOrderButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Request Order" />
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_weight="0"
+                android:background="#03A9F4"
+                android:minHeight="56dp"
+                android:theme="?attr/actionBarTheme"
+                app:title="Cart"
+                app:titleTextColor="#120101" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,19 +52,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            <Button
+                android:id="@+id/requestOrderButton"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_weight="0"
-                android:background="#03A9F4"
-                android:minHeight="56dp"
-                android:theme="?attr/actionBarTheme"
-                app:title="Cart"
-                app:titleTextColor="#120101" />
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Request Order" />
         </LinearLayout>
 
     </LinearLayout>

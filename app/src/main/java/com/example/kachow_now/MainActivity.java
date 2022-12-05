@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         String username = ((EditText) findViewById(R.id.userName)).getText().toString().trim();
         String password = ((EditText) findViewById(R.id.password)).getText().toString().trim();
         if (username.isEmpty() || password.isEmpty()) {
-            Toast.makeText(MainActivity.this, "Unable to Login. Empty fields detected.",
+            Toast.makeText(this, "Unable to Login. Empty fields detected.",
                     Toast.LENGTH_LONG).show();
         } else {
             mAuth.signInWithEmailAndPassword(username, password)
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void moveToRegister(View view) {
-        Intent intent = new Intent(MainActivity.this.getApplicationContext(), SignUp.class);
+        Intent intent = new Intent(this.getApplicationContext(), SignUp.class);
         startActivity(intent);
     }
 
