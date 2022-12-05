@@ -57,28 +57,16 @@
             android:layout_width="match_parent"
             android:layout_height="532dp"
             android:orientation="horizontal"
+            android:padding="16dp"
             android:translationY="-20dp">
 
-            <ScrollView
-                android:id="@+id/listOfComplaints"
+            <ListView
+                android:id="@+id/list_of_complaints"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ListView
-                        android:id="@+id/list_of_complaints"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:divider="#0d709e"
-                        android:dividerHeight="2dp"
-                        android:headerDividersEnabled="true" />
-                </LinearLayout>
-            </ScrollView>
+                android:layout_height="wrap_content"
+                android:divider="#0d709e"
+                android:dividerHeight="2dp"
+                android:headerDividersEnabled="true" />
 
         </LinearLayout>
     </LinearLayout>

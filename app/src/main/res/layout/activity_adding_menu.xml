@@ -1,354 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LoginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BBE7ED">
+    android:background="#BBE7ED"
+    android:padding="16dp">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/LoginLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#BBE7ED">
+        android:background="#BBE7ED"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+
+        <Button
+            android:id="@+id/UploadImageButton"
+            style="@style/Widget.Material3.Button.TextButton.Dialog.Flush"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Upload Meal Photo..." />
+
+        <Button
+            android:id="@+id/AddNewItemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#F8F8F7"
+            android:text="ADD MEAL!"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/ItemName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:hint="Meal Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/MealType"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:backgroundTint="#0D709E"
+            android:ems="10"
+            android:hint="Meal Type"
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
+
+        <EditText
+            android:id="@+id/Price"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:backgroundTint="#0D709E"
+            android:ems="10"
+            android:hint="Price"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/CusineType"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:backgroundTint="#0D709E"
+            android:ems="10"
+            android:hint="Cuisine"
+            android:inputType="textEmailAddress"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/ServingSize"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="#0D709E"
+            android:ems="10"
+            android:hint="Serving Size"
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/Calories"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="#0D709E"
+            android:ems="10"
+            android:hint="Calories"
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/Description"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="#0D709E"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="Enter Description..."
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#BBE7ED"
-            android:orientation="vertical"
-            android:weightSum="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="0dp">
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/addIngredients"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:text="Add Ingredients"
+                android:textColor="#0D709E" />
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="0"
-                    android:background="#03A9F4"
-                    android:gravity="center"
-                    android:minHeight="?attr/actionBarSize"
-                    android:theme="?attr/actionBarTheme"
-                    app:title="                       Add New Item"
-                    app:titleTextColor="#000000" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="375dp"
+            <EditText
+                android:id="@+id/IngredientsList"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <EditText
-                    android:id="@+id/ItemName"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Meal Name"
-                    android:inputType="textPersonName"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <EditText
-                    android:id="@+id/MealType"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Meal Type"
-                    android:inputType="textPersonName"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <EditText
-                    android:id="@+id/Price"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Price"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <EditText
-                    android:id="@+id/CusineType"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Cuisine"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <EditText
-                    android:id="@+id/IngredientsList"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Enter Ingredients..."
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <Button
-                    android:id="@+id/addIngredients"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Add Ingredients"
-                    android:textColor="#0D709E" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/Allergens"
-                    android:layout_width="150dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Enter Allergens..."
-                    android:inputType="textPersonName"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000" />
-
-                <Button
-                    android:id="@+id/addAllergens"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Add Allergens"
-                    android:textColor="#0D709E" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <EditText
-                    android:id="@+id/ServingSize"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Serving Size"
-                    android:inputType="textPersonName"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <EditText
-                    android:id="@+id/Calories"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:hint="Calories"
-                    android:inputType="textPersonName"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:translationY="0dp" />
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:backgroundTint="#FFC107"
-                android:orientation="horizontal"
-                android:translationY="0dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" />
-                </ScrollView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/Description"
-                    android:layout_width="82dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:ems="10"
-                    android:gravity="center_horizontal"
-                    android:hint="Enter Description..."
-                    android:inputType="textPersonName"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:backgroundTint="#000000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <Button
-                    android:id="@+id/UploadImageButton"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#0D709E"
-                    android:text="Upload Meal Photo..."
-                    android:textColor="#0D709E" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"></LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/RegisterConfirm"
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:translationY="0dp">
-
-                <Button
-                    android:id="@+id/AddNewItemButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#F8F8F7"
-                    android:text="ADD MEAL!"
-                    android:textColor="#000000" />
-            </LinearLayout>
-
+                android:backgroundTint="#0D709E"
+                android:hint="Enter Ingredients..."
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/addAllergens"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:text="Add Allergens"
+                android:textColor="#0D709E" />
+
+            <EditText
+                android:id="@+id/Allergens"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#0D709E"
+                android:ems="10"
+                android:hint="Enter Allergens..."
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

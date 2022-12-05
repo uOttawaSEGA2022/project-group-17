@@ -29,18 +29,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="left"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/chefprofilepicture"
@@ -53,38 +46,26 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="8dp">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/ChefName"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="chefName"
+                    android:textColor="#000000" />
 
-                    <TextView
-                        android:id="@+id/ChefName"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="chefName"
-                        android:textColor="#000000" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/ChefRating"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_weight="0"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/ChefRating"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0"
-                        android:text="chefRating"
-                        android:textColor="#000000" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="chefRating"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -93,40 +74,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.05"
+            android:layout_weight="0.01"
             android:orientation="vertical"
-            android:translationY="20dp">
+            android:padding="8dp">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/ratingPage"
+                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="showAlertDialog"
+                android:text="Rate"
+                tools:ignore="TextContrastCheck" />
 
-                <Button
-                    android:id="@+id/ratingPage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FFFFFF"
-                    android:onClick="showAlertDialog"
-                    android:text="Rate"
-                    android:textColor="#000000"
-                    tools:ignore="TextContrastCheck" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <Button
+                android:id="@+id/ReportCookProfileClient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="0"
+                android:text="Report" />
 
-                <Button
-                    android:id="@+id/ReportCookProfileClient"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:backgroundTint="#03A9F4"
-                    android:text="Report" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

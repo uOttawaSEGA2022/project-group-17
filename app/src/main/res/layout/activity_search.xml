@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#03A9F4">
@@ -8,7 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#BBE7ED"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,38 +20,22 @@
             android:background="#BBE7ED"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="110dp"
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:background="#BBE7ED"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:padding="2dp"
+                android:text="back" />
 
-                <Button
-                    android:id="@+id/backButton"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:backgroundTint="#03A9F4"
-                    android:text="back" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="200dp"
+            <EditText
+                android:id="@+id/searchItemName"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/searchItemName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="NAME" />
-            </LinearLayout>
+                android:layout_weight="1"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:text="@string/app_name" />
 
         </LinearLayout>
 
@@ -56,22 +44,13 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ScrollView
+            <ListView
+                android:id="@+id/lv1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ListView
-                        android:id="@+id/lv1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:divider="#0D709E" />
-                </LinearLayout>
-            </ScrollView>
+                android:divider="#0d709e"
+                android:dividerHeight="2dp"
+                android:headerDividersEnabled="true" />
 
         </LinearLayout>
     </LinearLayout>

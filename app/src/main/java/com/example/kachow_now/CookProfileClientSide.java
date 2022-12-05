@@ -1,6 +1,5 @@
 package com.example.kachow_now;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,15 +7,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CookProfileClientSide extends AppCompatActivity {
     private FirebaseStorage storage;
@@ -36,13 +37,10 @@ public class CookProfileClientSide extends AppCompatActivity {
 
         String cUID = getIntent().getExtras().getString("UID");
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CookProfileClientSide.this);
-        LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.rate_cook_dialog, null);
-        dialogBuilder.setView(dialogView);
         TextView name = findViewById(R.id.ChefName);
         TextView rating = findViewById(R.id.ChefRating);
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("UID").child(cUID);
+
         userDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -100,10 +98,71 @@ public class CookProfileClientSide extends AppCompatActivity {
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //final Button buttonRate = dialogView.findViewById(R.id.rateButton);
-                //final AlertDialog b = dialogBuilder.create();
-                //b.show();
 
+                LayoutInflater inflater = getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.rate_cook_dialog, null);
+                TextView label = dialogView.findViewById(R.id.labelRating1);
+
+                label.setVisibility(View.GONE);
+
+                EditText cookRating = dialogView.findViewById(R.id.ratingCook);
+                Button submit = dialogView.findViewById(R.id.rateCook);
+
+                androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(CookProfileClientSide.this)
+                        .setTitle("Please rate the following cook")
+                        .setView(dialogView)
+                        .show();
+
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot s) {
+                                double dbRating;
+                                try {
+                                    dbRating = s.child("rating").getValue(double.class);
+                                } catch (NullPointerException e) {
+                                    dbRating = 0.0;
+                                }
+
+
+                                String c = cookRating.getText().toString();
+                                try {
+                                    double userRating = Double.parseDouble(c);
+
+                                    if ((userRating <= 0) || (userRating > 5)) {
+                                        throw new IllegalArgumentException();
+                                    }
+
+                                    if (dbRating != 0.0) {
+                                        userDB.child("rating").setValue((dbRating + userRating) / 2);
+                                    } else {
+                                        userDB.child("rating").setValue(userRating);
+                                    }
+
+
+                                    bc.dismiss();
+                                } catch (NullPointerException e) {
+                                    Toast.makeText(CookProfileClientSide.this,
+                                            "Please enter a rating", Toast.LENGTH_LONG).show();
+                                } catch (NumberFormatException e) {
+                                    Toast.makeText(CookProfileClientSide.this,
+                                            "Please enter a number", Toast.LENGTH_LONG).show();
+                                } catch (IllegalArgumentException e) {
+                                    Toast.makeText(CookProfileClientSide.this,
+                                            "Please enter a number between 1 and 5", Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                });
             }
         });
 

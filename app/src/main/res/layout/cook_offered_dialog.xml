@@ -2,28 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BBE7ED"
-    android:backgroundTint="#BBE7ED"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_weight="0"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/labelRating1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:gravity="center_horizontal"
-            android:text="Meal Settings"
-            android:textColor="#0D709E"
-            android:textSize="24sp" />
-
-    </LinearLayout>
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,19 +15,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#FFFFFF"
-            android:text="Toggle Offer"
-            android:textColor="#000000" />
+            android:text="Toggle Offer" />
 
         <Button
             android:id="@+id/deletemeal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#FFFFFF"
-            android:text="Delete Meal"
-            android:textColor="#000000" />
+            android:text="Delete Meal" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/labelRating1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="center_horizontal"
+        android:text="Meal Settings"
+        android:textColor="#0D709E"
+        android:textSize="24sp" />
 
 </LinearLayout>

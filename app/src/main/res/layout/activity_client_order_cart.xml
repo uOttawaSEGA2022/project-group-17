@@ -11,35 +11,25 @@
         android:background="#BBE7ED"
         android:orientation="vertical">
 
-        <LinearLayout
+        <Button
+            android:id="@+id/requestOrderButton"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_weight="0"
-                android:background="#03A9F4"
-                android:minHeight="56dp"
-                android:theme="?attr/actionBarTheme"
-                app:subtitleTextColor="#BC3333"
-                app:title="Cart"
-                app:titleTextColor="#120101" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Request Order" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <ListView
                 android:id="@+id/cartListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:divider="#0d709e"
                 android:dividerHeight="2dp"
                 android:headerDividersEnabled="true">
@@ -48,18 +38,16 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/requestOrderButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="#FFFFFF"
-                android:text="Request Order"
-                android:textColor="#120101" />
-        </LinearLayout>
+            android:layout_height="56dp"
+            android:layout_weight="0"
+            android:background="#03A9F4"
+            android:minHeight="56dp"
+            android:theme="?attr/actionBarTheme"
+            app:title="Cart"
+            app:titleTextColor="#120101" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

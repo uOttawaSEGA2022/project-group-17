@@ -1,6 +1,5 @@
 package com.example.kachow_now;
 
-import android.app.AlertDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -64,7 +64,7 @@ public class ClientCart extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Meal meal = (cart.get(i));
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientCart.this);
+                //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientCart.this);
                 LayoutInflater inflater = getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.client_order_popup, null);
 
@@ -132,11 +132,15 @@ public class ClientCart extends AppCompatActivity {
                 textViewCalories.setText("Calories:" + meal.getCalories());
 
 
-                dialogBuilder.setView(dialogView);
+                //dialogBuilder.setView(dialogView);
+                androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(ClientCart.this)
+                        .setTitle((meal.getName()))
+                        .setView(dialogView)
+                        .show();
 
-                dialogBuilder.setTitle((meal.getName()));
-                final AlertDialog b = dialogBuilder.create();
-                b.show();
+                //dialogBuilder.setTitle();
+                //final AlertDialog b = dialogBuilder.create();
+                bc.show();
 
                 remove.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -144,7 +148,7 @@ public class ClientCart extends AppCompatActivity {
                         cart.remove(i);
                         MealListClient mealsAdapter = new MealListClient(ClientCart.this, cart);
                         listViewMeals.setAdapter(mealsAdapter);
-                        b.dismiss();
+                        bc.dismiss();
                     }
                 });
 

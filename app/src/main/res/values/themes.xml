@@ -2,18 +2,21 @@
     <!-- Base application theme. -->
     <style name="Theme.KaChowNow" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/dark_er_blue</item>
+        <item name="colorPrimary">@color/dark_er_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_est_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorOnSurface">@color/barely_blue</item>
-        <item name="colorSecondary">@color/light_blue</item>
-        <item name="colorSecondaryVariant">@color/lighter_blue</item>
+        <item name="colorOnSurface">@color/light_blue</item>
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorSecondaryVariant">@color/dark_er_blue</item>
         <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:textColor">@color/dark_est_blue</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="textInputStyle">@style/Widget.Material3.TextInputLayout.OutlinedBox</item>
+        <item name="alertDialogTheme">@style/MaterialAlertDialog.Material3</item>
         <item name="switchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
     </style>
 

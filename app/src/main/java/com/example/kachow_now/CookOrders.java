@@ -1,6 +1,5 @@
 package com.example.kachow_now;
 
-import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -17,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -152,18 +152,22 @@ public class CookOrders extends AppCompatActivity {
 
     public void showPendingRequestEntry(final String cookId, String clientId, long currentTime) {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
-        dialogBuilder.setView(dialogView);
+        //dialogBuilder.setView(dialogView);
 
         Button acceptButton = dialogView.findViewById(R.id.acceptButton);
         Button rejectButton = dialogView.findViewById(R.id.rejectButton);
 
         acceptButton.setText("ACCEPT");
         rejectButton.setText("REJECT");
-        AlertDialog b = dialogBuilder.create();
-        b.show();
+
+        //AlertDialog b = dialogBuilder.create();
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(CookOrders.this)
+                .setTitle("Accept or Reject request ")
+                .setView(dialogView)
+                .show();
 
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +218,7 @@ public class CookOrders extends AppCompatActivity {
                 });
                 dB.child("pending").child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Accepted Request", Toast.LENGTH_LONG).show();
-                b.dismiss();
+                bc.dismiss();
             }
         });
 
@@ -244,7 +248,7 @@ public class CookOrders extends AppCompatActivity {
                 });
                 dB.child("pending").child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
-                b.dismiss();
+                bc.dismiss();
             }
         });
 
@@ -252,18 +256,22 @@ public class CookOrders extends AppCompatActivity {
 
     public void showAcceptedRequestEntry(final String cookId, String clientId, long currentTime) {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.orderstate_dialog, null);
-        dialogBuilder.setView(dialogView);
+        //dialogBuilder.setView(dialogView);
 
         Button acceptButton = dialogView.findViewById(R.id.acceptButton);
         Button rejectButton = dialogView.findViewById(R.id.rejectButton);
 
         acceptButton.setText("COMPLETE");
         rejectButton.setText("REJECT");
-        AlertDialog b = dialogBuilder.create();
-        b.show();
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(CookOrders.this)
+                .setTitle("Complete or Reject request ")
+                .setView(dialogView)
+                .show();
+        //AlertDialog b = dialogBuilder.create();
+        //b.show();
 
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
@@ -294,7 +302,7 @@ public class CookOrders extends AppCompatActivity {
                 });
                 dB.child("accepted").child(String.valueOf(currentTime)).removeValue();
                 Toast.makeText(CookOrders.this, "Completed Request", Toast.LENGTH_LONG).show();
-                b.dismiss();
+                bc.dismiss();
             }
         });
 
@@ -331,7 +339,7 @@ public class CookOrders extends AppCompatActivity {
                         .child(String.valueOf(currentTime))
                         .removeValue();
                 Toast.makeText(CookOrders.this, "Rejected Request!", Toast.LENGTH_LONG).show();
-                b.dismiss();
+                bc.dismiss();
             }
         });
 

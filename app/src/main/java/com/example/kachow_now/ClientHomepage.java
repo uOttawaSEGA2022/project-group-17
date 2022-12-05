@@ -1,6 +1,5 @@
 package com.example.kachow_now;
 
-import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -19,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -100,7 +100,7 @@ public class ClientHomepage extends AppCompatActivity {
                                 .child(s.getKey())
                                 .removeValue();
 
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientHomepage.this);
+                        //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ClientHomepage.this);
                         LayoutInflater inflater = getLayoutInflater();
                         final View dialogView = inflater.inflate(R.layout.rate_cook_dialog, null);
 
@@ -111,9 +111,9 @@ public class ClientHomepage extends AppCompatActivity {
                         Button rateCook = dialogView.findViewById(R.id.rateCook);
                         rateCook.setText("Rate Meal");
 
-                        dialogBuilder.setView(dialogView);
-                        final AlertDialog b = dialogBuilder.create();
-                        b.show();
+                        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(ClientHomepage.this)
+                                .setView(dialogView)
+                                .show();
 
                         rateCook.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -152,7 +152,7 @@ public class ClientHomepage extends AppCompatActivity {
                                     });
 
 
-                                    b.dismiss();
+                                    bc.dismiss();
                                 } catch (NullPointerException e) {
                                     Toast.makeText(ClientHomepage.this,
                                             "Please enter a rating", Toast.LENGTH_LONG).show();

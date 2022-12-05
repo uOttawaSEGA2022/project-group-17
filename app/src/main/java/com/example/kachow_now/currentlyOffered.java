@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class currentlyOffered extends AppCompatActivity {
@@ -44,7 +44,6 @@ public class currentlyOffered extends AppCompatActivity {
         meals = new ArrayList<Meal>();
 
 
-        //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -108,30 +107,35 @@ public class currentlyOffered extends AppCompatActivity {
         });
     }
 
-    private void showMealEntry(int position){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+    private void showMealEntry(int position) {
+        //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.cook_offered_dialog, null);
-        dialogBuilder.setView(dialogView);
+        //dialogBuilder.setView(dialogView);
         Button toggleOffer = dialogView.findViewById(R.id.toggleoffer);
         Button deleteMeal = dialogView.findViewById(R.id.deletemeal);
-        final AlertDialog b = dialogBuilder.create();
 
-            toggleOffer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    toggleOffered(meals.get(position).getName());
-                    b.dismiss();
-                }
-            });
-            deleteMeal.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    deleteMeal(meals.get(position).getName());
-                    b.dismiss();
-                }
-            });
-            b.show();
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(currentlyOffered.this)
+                .setTitle("Information about " + meals.get(position).getName())
+                .setView(dialogView)
+                .show();
+        //final AlertDialog b = dialogBuilder.create();
+
+        toggleOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleOffered(meals.get(position).getName());
+                bc.dismiss();
+            }
+        });
+        deleteMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteMeal(meals.get(position).getName());
+                bc.dismiss();
+            }
+        });
+        bc.show();
     }
     private void toggleOffered(String name){
         dB.child(name).addListenerForSingleValueEvent(new ValueEventListener() {

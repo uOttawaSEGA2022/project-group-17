@@ -1,6 +1,5 @@
 package com.example.kachow_now;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -140,27 +140,31 @@ public class AdminPage extends AppCompatActivity {
 
     public void showComplaintEntry(final String mealName, String cookName, Cook cook, Complaint c) {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        //AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.punishment_dialog, null);
-        dialogBuilder.setView(dialogView);
+        //dialogBuilder.setView(dialogView);
 
         final Button buttonDismiss = dialogView.findViewById(R.id.toggleoffer);
         final Button buttonPermaBan = dialogView.findViewById(R.id.deletemeal);
         final Button buttonSuspension = dialogView.findViewById(R.id.rateCook);
         final EditText textDaySus = dialogView.findViewById(R.id.labelRating1);
 
+        androidx.appcompat.app.AlertDialog bc = new MaterialAlertDialogBuilder(AdminPage.this)
+                .setTitle("Complaint about " + cookName)
+                .setView(dialogView)
+                .show();
 
-        dialogBuilder.setTitle("Complaint about " + cookName);
-        final AlertDialog b = dialogBuilder.create();
-        b.show();
+        //dialogBuilder.setTitle("Complaint about " + cookName);
+        //final AlertDialog b = dialogBuilder.create();
+        //b.show();
 
 
         buttonDismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dB.child(String.valueOf(c.getTime())).removeValue();
-                b.dismiss();
+                bc.dismiss();
             }
         });
 
@@ -169,7 +173,7 @@ public class AdminPage extends AppCompatActivity {
             public void onClick(View view) {
                 banCook(cook);
                 dB.child(String.valueOf(c.getTime())).removeValue();
-                b.dismiss();
+                bc.dismiss();
             }
         });
 
@@ -179,7 +183,7 @@ public class AdminPage extends AppCompatActivity {
                 int daySus = Integer.parseInt(textDaySus.getText().toString());
                 suspendCook(cook, daySus);
                 dB.child(String.valueOf(c.getTime())).removeValue();
-                b.dismiss();
+                bc.dismiss();
             }
         });
 

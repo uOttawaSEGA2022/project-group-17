@@ -1,6 +1,5 @@
 package com.example.kachow_now;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -119,7 +119,6 @@ public class OfferedMealsClientSide extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Meal meal = (meals.get(i));
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OfferedMealsClientSide.this);
                 LayoutInflater inflater = getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.client_order_popup, null);
 
@@ -198,11 +197,16 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                 textViewRating.setText("Rating: " + meal.getRating());
 
 
-                dialogBuilder.setView(dialogView);
+                //dialogBuilder.setView(dialogView);
 
-                dialogBuilder.setTitle((meal.getName()));
-                final AlertDialog b = dialogBuilder.create();
-                b.show();
+                androidx.appcompat.app.AlertDialog c = new MaterialAlertDialogBuilder(OfferedMealsClientSide.this)
+                        .setTitle(meal.getName())
+                        .setView(dialogView)
+                        .show();
+
+                //dialogBuilder.setTitle((meal.getName()));
+                //final AlertDialog b = dialogBuilder.create();
+                //b.show();
 
                 cartButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -217,7 +221,7 @@ public class OfferedMealsClientSide extends AppCompatActivity {
                                     cart.add(meal);
 
                                 }
-                                b.dismiss();
+                                c.dismiss();
                             } catch (NumberFormatException nfe) {
                                 quantityEditText.setText("");
                                 Toast.makeText(OfferedMealsClientSide.this,
