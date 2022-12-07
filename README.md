@@ -71,8 +71,8 @@ Client login:
 **Authors**
 
 Group 17:
+- Nathan Le (Team Leader)
 - Aaditya Shah
-- Nathan Le
 - Bo Lin Chen
 - Kevin Dang
 - Sami Hassan
