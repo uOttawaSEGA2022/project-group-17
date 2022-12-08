@@ -18,7 +18,7 @@ Deliverable 4:
 - Client can request a meal in which the Cook can accept or reject
 - Client can rate Cook after they purchased a meal, average rating will be displayed on Cook's profile
 - Client can report Cook to the Admin
-- New UI changes + logo
+- New UI changes + updated logo
 
 
 Deliverable 3:
